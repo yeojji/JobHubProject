@@ -1,0 +1,56 @@
+*{
+    box-sizing: border-box;
+}
+
+
+.footer_box{
+    display: flex;
+    width: 90%;
+    border-top: 1px solid rgb(158, 158, 158) ;
+    justify-content: space-between;
+    padding-top: 30px;
+    margin: 0 auto;
+    padding-bottom: 30px;
+}
+
+.footer_menu{
+    display: flex;
+    margin: 0 ;
+    font-size: 13px;
+}
+
+.fa-copyright{
+    margin-right: 5px;
+}
+
+.personal_information_text{
+    font-weight: bold;
+}
+
+.company_icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 30px;
+    color: rgb(86, 86, 86);
+}
+
+.personal_information_div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon_box{
+    display: flex;
+    margin: 0;
+}
+
+.footer_icon{
+    margin-right: 20px;
+    font-size: 30px;
+}
+
+.round{
+    border-radius: 50%;
+}

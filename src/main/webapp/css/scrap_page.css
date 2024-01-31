@@ -1,0 +1,162 @@
+*{
+    margin: 0 ;
+}
+
+.scrap_main{
+    display: flex;
+    flex-direction: column;
+}
+
+.scrap_notice_title{
+    display: flex;
+    width: 100%;
+    height: 200px;
+    justify-content: center;
+    align-items: center;
+}
+
+.scrap_notice_title_text{
+    font-size: 45px;
+    font-weight: bold;
+
+}
+
+.scrap_notice_box{
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(255, 250, 244);
+    padding-top: 50px;
+}
+
+.scrap_notice_left{
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid rgb(230, 230, 230);
+    padding: 20px;
+}
+
+.show_all_notice{
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    padding-bottom: 20px;
+    justify-content: left;
+    
+}
+
+.dividing_line{
+    width: 90%;
+    border: 1px solid rgb(230, 230, 230);
+    
+}
+
+.scrap_notice_left_item_box{
+    width: 90%;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.scrap_notice_left_item_box_text{
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    padding-bottom: 20px;
+}
+
+.go_to_all_notice_page{
+    font-size: 15px;
+    margin-right: 10px;
+}
+
+.notice_box_list{
+    display: flex;
+    flex-direction: column;
+    scroll-behavior: smooth;
+}
+
+.notice_box{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 130px;
+    border: 2px solid rgb(230, 230, 230);
+    padding: 20px;
+    padding-top: 30px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    background-color: white;
+}
+
+.notice_box_item_title{
+    font-size: 15px;
+}
+
+.scrap-heart{
+    font-size: 21px;
+}
+
+.scrap_notice_right{
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+}
+
+.notice_list{
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    padding-left: 50px;
+}
+
+
+
+.notice_detail_box{
+    height: auto;
+    border: 1px solid rgb(230, 230, 230);
+    padding: 40px;
+    background-color: white;
+}
+
+
+.notice_3_menu{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 20px;
+}
+
+.notice_header_left{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 35px;
+    height: 25px;
+    border: 1px solid rgb(230, 230, 230);
+}
+
+.notice_career{
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.notice_header_right{
+    font-size: 25px;
+}
+
+.notice_heart{
+    margin-right: 15px;
+}
+
+
+.notice_hire_type_box{
+    display: flex;
+}
+
+.notice_hire_type, .notice_dividing_line, .notice_date{
+    padding-top: 35px;
+    padding-right: 10px;
+    font-size: 13px;
+    color: rgb(107, 107, 107);
+}
