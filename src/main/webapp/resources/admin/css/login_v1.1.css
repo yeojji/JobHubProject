@@ -1,0 +1,2427 @@
+@charset "utf-8";
+
+/* reset */
+html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre,
+	code, form, fieldset, legend, input, textarea, p, blockquote, th, td,
+	img {
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	width: 100%;
+	height: 100%;
+}
+
+body {
+	height: 100%;
+}
+
+body, code {
+	font-size: 14px;
+	color: #667084 !important;
+	line-height: initial !important;
+	background: #fff !important;
+	-webkit-text-size-adjust: none;
+	letter-spacing: -1px;
+}
+
+html:lang(ko) body, html:lang(ko) code {
+	font-family: 'Noto Sans KR', 'Malgun Gothic', '맑은 고딕', 'Dotum', '돋움',
+		'Arial', 'verdana', sans-serif;
+}
+
+html:lang(ja) body, html:lang(ja) code {
+	font-family: Meiryo, "メイリオ", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",
+		sans-serif;
+}
+
+html:lang(vi) body, html:lang(vi) code {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+html:lang(en) body, html:lang(en) code {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+ul, ol, dl, li {
+	list-style: none;
+}
+
+img, fieldset {
+	border: 0;
+	vertical-align: top;
+}
+
+table {
+	table-layout: fixed;
+	width: 100%;
+	border: 0;
+	border-spacing: 0;
+	border-collapse: collapse;
+}
+
+table img {
+	vertical-align: middle;
+}
+
+th, td {
+	border: 0;
+	word-wrap: break-word;
+}
+
+input, select, textarea {
+	font-size: 14px;
+	vertical-align: middle;
+	-webkit-appearance: none;
+	outline: 0;
+	-webkit-border-radius: 0;
+}
+
+html:lang(ko) input, html:lang(ko) select, html:lang(ko) textarea {
+	font-family: 'Noto Sans KR', 'Malgun Gothic', '맑은 고딕', 'Dotum', '돋움',
+		'Arial', 'verdana', sans-serif;
+}
+
+html:lang(ja) input, html:lang(ja) select, html:lang(ja) textarea {
+	font-family: Meiryo, "メイリオ", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",
+		sans-serif;
+}
+
+html:lang(vi) input, html:lang(vi) select, html:lang(vi) textarea {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+html:lang(en) input, html:lang(en) select, html:lang(en) textarea {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+input[type="checkbox"], label {
+	cursor: pointer;
+}
+
+caption {
+	overflow: hidden;
+	width: 1px;
+	font-size: 1px;
+	line-height: 0;
+	text-indent: 150%;
+	white-space: nowrap;
+}
+
+legend, .blind {
+	display: block;
+	overflow: hidden;
+	position: absolute;
+	font-size: 1px;
+	line-height: 0;
+	color: transparent;
+	text-indent: -150%;
+	white-space: nowrap;
+}
+
+hr.layout {
+	display: none;
+}
+
+button {
+	overflow: visible;
+	padding: 0;
+	margin: 0;
+	border: 0;
+	outline: 0;
+	cursor: pointer;
+	background: transparent;
+}
+
+html:lang(ko) button {
+	font-family: 'Noto Sans KR', 'Malgun Gothic', '맑은 고딕', 'Dotum', '돋움',
+		'Arial', 'verdana', sans-serif;
+}
+
+html:lang(ja) button {
+	font-family: Meiryo, "メイリオ", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",
+		sans-serif;
+}
+
+html:lang(vi) button {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+html:lang(en) button {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+button::-moz-focus-inner {
+	padding: 0;
+	border: 0;
+}
+
+a {
+	text-decoration: none;
+	color: #667084;
+}
+
+/* input */
+::-webkit-input-placeholder {
+	color: #828388;
+}
+
+:-moz-placeholder {
+	color: #828388;
+	opacity: 1;
+}
+
+::-moz-placeholder {
+	color: #828388;
+	opacity: 1;
+}
+
+:-ms-input-placeholder {
+	color: #828388;
+}
+
+::placeholder {
+	color: #aeb4c6;
+	opacity: 1;
+}
+
+input {
+	word-break: break-all;
+}
+
+input[type="text"]:disabled {
+	color: #444b59;
+	background: #f4f5f8;
+	cursor: not-allowed;
+}
+
+input[type=text]::-ms-clear {
+	display: none;
+}
+
+input[type=password]::-ms-reveal {
+	display: none;
+}
+
+input[type=tel]::-ms-clear {
+	display: none;
+}
+
+input[type=number]::-ms-clear {
+	display: none;
+}
+
+input[type=number]::-webkit-outer-spin-button, input[type=number]::-webkit-inner-spin-button
+	{
+	display: none;
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+input[type=number] {
+	-moz-appearance: textfield;
+}
+
+input:-webkit-autofill {
+	-webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+
+input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus,
+	input:-webkit-autofill:active {
+	transition: background-color 5000s ease-in-out 0s !important;
+}
+
+/* html5 */
+object, del, sub, var {
+	margin: 0;
+	padding: 0;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup,
+	menu, nav, section {
+	display: block;
+}
+
+/* 미대응브라우저 */
+#unsupported {
+	overflow: hidden;
+	height: 100%;
+}
+
+#unsupported:lang(ko) {
+	font-family: 'Malgun Gothic', '맑은 고딕', 'Dotum', '돋움', 'Arial', 'verdana',
+		sans-serif;
+	font-weight: 300;
+}
+
+#unsupported:lang(ja) {
+	font-family: Meiryo, "メイリオ", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",
+		sans-serif;
+}
+
+#unsupported:lang(vi) {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+#unsupported:lang(en) {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+#unsupported #wrap {
+	-webkit-filter: blur(1.5px);
+	-moz-filter: blur(1.5px);
+	-ms-filter: blur(1.5px);
+	filter: blur(1.5px);
+	filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius='5');
+}
+
+#unsupported .unsupported {
+	display: block;
+}
+
+.unsupported {
+	display: none;
+}
+
+.unsupported .info {
+	z-index: 110;
+	position: fixed;
+	top: 15%;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	padding: 60px 48px;
+	width: 820px;
+	color: #4c4c4f;
+	text-align: center;
+	border: 2px solid #000;
+	background: #fff;
+	box-sizing: border-box;
+}
+
+.unsupported .info:lang(ko) {
+	height: 615px;
+}
+
+.unsupported .info:lang(ja) {
+	height: 616px;
+}
+
+.unsupported h1 {
+	margin: 0 0 30px;
+	color: #27273a;
+}
+
+.unsupported h1:lang(ko) {
+	font-size: 50px;
+	font-weight: normal;
+}
+
+.unsupported h1:lang(ja) {
+	font-size: 40px;
+	font-weight: bold;
+}
+
+.unsupported .desc {
+	margin: 0 0 40px;
+	line-height: 24px;
+}
+
+.unsupported .desc:lang(ko) {
+	font-size: 16px;
+}
+
+.unsupported .desc:lang(ja) {
+	font-size: 14px;
+	font-weight: 300;
+}
+
+.unsupported .desc strong {
+	color: #000;
+}
+
+.unsupported .browser {
+	overflow: hidden;
+}
+
+.unsupported .browser li {
+	float: left;
+	margin: 0 0 0 27px;
+}
+
+.unsupported .browser li:first-child {
+	margin: 0;
+}
+
+.unsupported .browser li>img {
+	border: 1px solid #d5d5d5;
+	border-bottom-width: 0;
+}
+
+.unsupported .browser li .btnLink {
+	display: block;
+	position: relative;
+	font-size: 17px;
+	color: #fff;
+	background: #43485b;
+}
+
+.unsupported .browser li .btnLink:lang(ko) {
+	padding: 15px 12px 15px 0;
+}
+
+.unsupported .browser li .btnLink:lang(ja) {
+	padding: 15px 25px 15px 0;
+	font-weight: 700;
+}
+
+.unsupported .browser .btnLink:after {
+	content: "";
+	position: absolute;
+	width: 8px;
+	height: 8px;
+	margin: -9px 0 0 -6px;
+	border-left: 1px solid #fff;
+	border-bottom: 1px solid #fff;
+	-webkit-transform: rotate(-135deg);
+	transform: rotate(-135deg);
+}
+
+.unsupported .browser .btnLink:lang(ko):after {
+	top: 61%;
+	right: 70px;
+}
+
+.unsupported .browser .btnLink:lang(ja):after {
+	top: 58%;
+	right: 50px;
+}
+
+.unsupported .browser li .btnLink:hover {
+	text-decoration: none;
+}
+
+.unsupported .footer {
+	padding: 20px 0 0;
+	text-align: right;
+}
+
+.unsupported .close {
+	position: absolute;
+	top: 30px;
+	right: 30px;
+}
+
+.unsupported .close {
+	overflow: hidden;
+	display: block;
+	width: 25px;
+	height: 24px;
+	white-space: nowrap;
+	font-size: 0;
+	text-indent: -150%;
+	background:
+		url("//img.jobhub.com/images/common/browser/sfix_footer.png")
+		no-repeat 0 0;
+}
+
+.unsupported .today {
+	font-size: 12px;
+}
+
+.unsupported .today:lang(ko) {
+	font-family: "돋움", Dotum, sans-serif;
+}
+
+.unsupported .today:lang(ja) {
+	font-family: Meiryo, "メイリオ", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",
+		sans-serif;
+	font-weight: 500;
+}
+
+.unsupported .today:lang(vi) {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.unsupported .today:lang(en) {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.unsupported .today .check {
+	width: 17px;
+	height: 17px;
+	margin: 0 0 0 9px;
+	border-radius: 0;
+	cursor: pointer;
+	background:
+		url('//img.jobhub.com/images/common/browser/sfix_footer.png')
+		no-repeat 0 -50px;
+}
+
+.unsupported .today .check:checked {
+	background-position: -50px -50px;
+}
+
+.unsupported .dimmed {
+	z-index: 100;
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.5);
+}
+
+/* 솔루션 전환기능 */
+.language.active {
+	display: block;
+}
+
+.language {
+	display: none;
+	position: relative;
+	font-size: 13px;
+	line-height: 20px;
+	color: #444b59;
+	background: #f4f5f8;
+}
+
+.language .wrap {
+	margin: 0 auto;
+	padding: 0 24px 16px;
+}
+
+.language .copy {
+	position: relative;
+	display: inline-block;
+	margin: 32px 0 0;
+	padding: 0 0 0 24px;
+}
+
+.language .copy:before {
+	content: "";
+	position: absolute;
+	top: 3px;
+	left: 0;
+	width: 16px;
+	height: 16px;
+	background-image:
+		url('//img.echosting.jobhub.com/smartAdmin/img/login/ico_notice.png');
+}
+
+.language .changer {
+	display: block;
+	padding: 8px 0 0 0;
+}
+
+.language .changer .global {
+	position: relative;
+	margin: 0 10px 0 0;
+	color: #1b1e26;
+}
+
+.language .changer .global .btnCountry {
+	position: relative;
+	display: block;
+	width: 100%;
+	padding: 0 22px 0 12px;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	height: 36px;
+	min-height: 36px;
+	line-height: 36px;
+	border: 1px solid #d6dae1;
+	font-size: inherit;
+	color: inherit;
+	text-align: left;
+	text-transform: capitalize;
+	background: #fff;
+	border-radius: 4px;
+}
+
+.language .changer .global .btnCountry:after {
+	content: "";
+	position: absolute;
+	top: 12px;
+	right: 12px;
+	width: 5px;
+	height: 5px;
+	border: solid #444b59;
+	border-width: 2px 0 0 2px;
+	-webkit-transform: rotate(225deg);
+	-ms-transform: rotate(225deg);
+	transform: rotate(225deg);
+	background: transparent;
+}
+
+.language .changer .global .btnCountry:hover {
+	border-color: #3971ff;
+}
+
+.language .changer .global.open .list {
+	display: block;
+}
+
+.language .changer .global .list {
+	display: none;
+	width: 100%;
+	position: absolute;
+	top: 0;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.language .changer .global .list li {
+	border: 1px solid #d6dae1;
+	overflow: hidden;
+	height: 36px;
+	box-sizing: border-box;
+}
+
+.language .changer .global .list li+li {
+	margin: -1px 0 0;
+}
+
+.language .changer .global .list li:first-child a:after {
+	content: "";
+	position: absolute;
+	top: 16px;
+	right: 12px;
+	width: 5px;
+	height: 5px;
+	border: solid #444b59;
+	border-width: 2px 0 0 2px;
+	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
+	background: transparent;
+}
+
+.language .changer .global .list li a {
+	display: block;
+	width: 100%;
+	padding: 7px 22px 7px 12px;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	font-size: inherit;
+	color: #1b1e26;
+	text-align: left;
+	text-transform: capitalize;
+	background: #fff;
+}
+
+.language .changer .global .list li a:hover {
+	background-color: #f4f9ff;
+}
+
+.language .changer .global .list li:first-child {
+	position: relative;
+	box-shadow: 0px 0px 0px 3px #bccdfa;
+	-webkit-transition: all .3s ease-out;
+	transition: all .3s ease-out;
+	z-index: 2;
+	border-radius: 4px 4px 0 0;
+	border-color: #3971ff;
+}
+
+.language .changer .global .list li:last-child {
+	border-radius: 0 0 4px 4px;
+}
+
+.language .changer .global .list li.active {
+	position: relative;
+	z-index: 1;
+	border-color: #3971ff;
+}
+
+.language .changer .global .list li.disabled a {
+	background-color: #f4f5f8;
+	cursor: not-allowed;
+}
+
+.language .changer .global .list li.disabled:hover {
+	box-shadow: none;
+	border-color: #d6dae1;
+}
+
+.language .changer .global img {
+	padding-right: 4px;
+	vertical-align: sub;
+}
+
+.language .btnClose {
+	display: inline-block;
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	width: 36px;
+	height: 36px;
+	font-size: 0;
+	line-height: 0;
+	overflow: hidden;
+	white-space: nowrap;
+	text-indent: 150%;
+	background: transparent;
+}
+
+.language .btnClose:before, .language .btnClose:after {
+	content: "";
+	position: absolute;
+	top: 18px;
+	right: 9px;
+	width: 18px;
+	height: 1px;
+	background: #1a1a1b;
+}
+
+.language .btnClose:before {
+	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+.language .btnClose:after {
+	-webkit-transform: rotate(135deg);
+	-ms-transform: rotate(135deg);
+	transform: rotate(135deg);
+}
+
+/* 상단 띠배너 */
+.banner.active {
+	display: block;
+}
+
+.banner {
+	display: none;
+	position: relative;
+	width: 100%;
+	height: 90px;
+	padding: 18px 0;
+	box-sizing: border-box;
+	color: #fff;
+	letter-spacing: -0.0075em;
+	text-align: center;
+	background-image:
+		url('//img.echosting.jobhub.com/smartAdmin/img/login/bg_top_banner.png');
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.banner .info .title {
+	font-size: 20px;
+	line-height: 30px;
+	vertical-align: middle;
+}
+
+.banner .info .desc {
+	font-size: 16px;
+	line-height: 24px;
+	color: #F4F5F8;
+	font-weight: 300;
+}
+
+.banner .info .txtStressLink span {
+	position: relative;
+	display: inline-block;
+	color: #00FFFC;
+}
+
+.banner .info .txtStressLink span:after {
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: 1px;
+	width: 100%;
+	height: 1px;
+	background-color: #00FFFC;
+}
+
+.banner .info .txtStressLink em.icoOutLink {
+	display: inline-block;
+	width: 12px;
+	height: 12px;
+	background:
+		url('//img.echosting.jobhub.com/smartAdmin/img/login/ico_target.png')
+		no-repeat 0 0;
+}
+
+.banner .btnClose {
+	display: inline-block;
+	position: absolute;
+	top: 33px;
+	right: 30px;
+	width: 24px;
+	height: 24px;
+	min-height: 24px;
+	padding: 0;
+	font-size: 0;
+	line-height: 0;
+	overflow: hidden;
+	white-space: nowrap;
+	text-indent: 150%;
+	background: transparent;
+}
+
+.banner .btnClose:before, .banner .btnClose:after {
+	content: "";
+	position: absolute;
+	top: 12px;
+	right: 3px;
+	width: 18px;
+	height: 1px;
+	background-color: #fff;
+}
+
+.banner .btnClose:before {
+	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+.banner .btnClose:after {
+	-webkit-transform: rotate(135deg);
+	-ms-transform: rotate(135deg);
+	transform: rotate(135deg);
+}
+
+/* ie8 */
+.ie8 {
+	background: url('//img.echosting.jobhub.com/ec/login_global/bg_ie8.jpg')
+		no-repeat center 0;
+}
+
+.ie8 #wrap {
+	display: none;
+}
+
+.ie8 .unsupported .footer {
+	display: none;
+}
+
+/* skipNavigation */
+#skipNavigation {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 100;
+	width: 100%;
+	height: 0;
+}
+
+#skipNavigation a {
+	position: absolute;
+	left: 0;
+	top: 0;
+	display: block;
+	overflow: hidden;
+	width: 1px;
+	height: 1px;
+	margin-left: -1px;
+	margin-bottom: -1px;
+	text-align: center;
+	color: #000;
+	white-space: nowrap;
+}
+
+#skipNavigation a:focus, #skipNavigation a:hover, #skipNavigation a:active
+	{
+	width: 100%;
+	height: auto;
+	padding: 10px 0;
+	background: #c4122f;
+	color: #fff;
+	z-index: 100;
+	transform: translateY(-50px);
+}
+
+.RMB, .RTB.RMB {
+	display: block;
+}
+
+.RTB, .RPB {
+	display: none;
+}
+
+/* layout common */
+#wrap {
+	position: relative;
+	box-sizing: border-box;
+	min-height: 100%;
+}
+
+/* header */
+#header {
+	margin: 0 auto;
+	padding: 28px 0;
+	max-width: 396px;
+}
+
+#header h1 {
+	font-weight: normal;
+	font-size: 0;
+	text-align: center;
+}
+/* logo */
+#header .logo a {
+	display: inline-block;
+}
+
+#header .jobhubLogo {
+	width: 145px;
+	height: 28px;
+	margin: 8px 28px;
+}
+
+#header .jobhubLogo .path1 {
+	fill: #001522;
+}
+
+#header .jobhubLogo .path2 {
+	fill: #0071bb;
+}
+
+/* contents */
+#contents {
+	margin: 0 auto;
+	padding: 0 24px 122px;
+}
+
+/* container */
+#container {
+	min-height: 100%;
+	padding: 0 !important;
+}
+
+/* footer */
+#footer {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	max-width: 396px;
+	padding: 64px 0 24px;
+	box-sizing: border-box;
+}
+
+#footer .copyright, .jobhub_direct {
+	font-size: 12px;
+	line-height: 18px;
+	text-align: center;
+}
+
+/* section */
+.section {
+	background: #fff;
+}
+
+.gSingle {
+	display: block;
+	margin-top: 8px !important;
+}
+
+.gFlex {
+	min-width: 0;
+	-webkit-flex: 1;
+	-moz-flex: 1;
+	-ms-flex: 1;
+	flex: 1;
+}
+
+/* button */
+[class*="btn"] {
+	display: inline-block;
+	padding: 0 16px;
+	min-height: 48px;
+	box-sizing: border-box !important;
+	border-radius: 4px;
+	font-size: 14px;
+	line-height: 48px;
+	background: #fff;
+	-webkit-transition: .3s ease-out;
+	transition: .3s ease-out;
+}
+
+[class*="btn"].large {
+	height: 56px;
+	line-height: 56px;
+}
+
+.btnNormal {
+	min-width: 123px;
+	color: #000;
+	line-height: 46px;
+	border: 1px solid #aeb4c6;
+}
+
+.btnNormal.active {
+	border: 1px solid #3971ff;
+	color: #0f93ed;
+}
+
+.btnNormal.disabled, .btnNormal:disabled {
+	color: #aeb4c6;
+	border-color: #d6dae1;
+	cursor: not-allowed;
+}
+
+.btnNormal.loading {
+	overflow: hidden;
+	font-size: 1px;
+	color: transparent;
+	white-space: nowrap;
+	background: #fff
+		url('//img.echosting.jobhub.com/smartAdmin/img/login/img_loading_dark.gif')
+		center center no-repeat;
+	background-size: 24px auto;
+}
+
+.btnNormal:hover {
+	border-color: #d6dae1;
+	background-color: #f4f9ff;
+}
+
+.btnNormal:hover.disabled, .btnNormal:hover:disabled {
+	border: 1px solid #dfe1e9;
+	background-color: #fff;
+}
+
+.btnStrong {
+	font-size: 16px;
+	font-weight: bold;
+	color: #fff;
+	background: #3971ff;
+}
+
+.btnStrong.disabled, .btnStrong:disabled {
+	color: #fff;
+	background: #d6dae1;
+	cursor: not-allowed;
+}
+
+.btnStrong.loading {
+	overflow: hidden;
+	font-size: 1px;
+	color: transparent;
+	white-space: nowrap;
+	background: #3971ff
+		url('//img.echosting.jobhub.com/smartAdmin/img/login/img_loading.gif')
+		center center no-repeat;
+	background-size: 24px auto;
+}
+
+.btnStrong:hover {
+	background-color: #1c50d8;
+}
+
+.btnStrong:hover.disabled, .btnStrong:hover:disabled {
+	background-color: #d6dae1;
+}
+
+.btnCtrl {
+	background-color: #444b59;
+	color: #fff;
+}
+
+.btnCtrl.active {
+	background-color: #667084;
+	color: #fff;
+}
+
+.btnCtrl.disabled, .btnCtrl:disabled {
+	background-color: #d6dae1;
+	cursor: not-allowed;
+}
+
+.btnCtrl.loading {
+	overflow: hidden;
+	font-size: 1px;
+	color: transparent;
+	white-space: nowrap;
+	background: #444b59
+		url('//img.echosting.jobhub.com/smartAdmin/img/login/img_loading.gif')
+		center center no-repeat;
+	background-size: 24px auto;
+}
+
+.btnCtrl:hover {
+	background-color: #667084;
+}
+
+.btnCtrl:hover.disabled, .btnCtrl:hover:disabled {
+	background-color: #d6dae1;
+}
+
+.btnView {
+	position: absolute;
+	right: 12px;
+	top: 13px;
+	padding: 0;
+	width: 24px;
+	height: 24px;
+	min-height: 24px;
+	font-size: 0;
+	color: transparent;
+	text-indent: 150%;
+}
+
+.btnView:after {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 24px;
+	height: 24px;
+}
+
+.btnView.off:after {
+	background:
+		url('//img.echosting.jobhub.com/smartAdmin/img/login/ico_pw_on.png')
+		no-repeat;
+}
+
+.btnView.on:after {
+	background:
+		url('//img.echosting.jobhub.com/smartAdmin/img/login/ico_pw_off.png')
+		no-repeat;
+}
+
+.btnSubmit {
+	display: inline-block;
+	min-width: 123px;
+	padding: 14px 24px;
+	font-size: 14px;
+	line-height: 20px;
+	color: #fff;
+	text-align: center;
+	background-color: #3971ff;
+	border-radius: 4px;
+	box-sizing: border-box;
+	vertical-align: middle;
+	-webkit-transition: .2s ease-out;
+	transition: .2s ease-out;
+}
+
+.btnSubmit:hover {
+	background-color: #2952b8;
+}
+/* size */
+.btnNormal.small {
+	padding: 7px 16px;
+	min-width: 41px;
+	font-size: 13px;
+}
+
+.btnSubmit.small {
+	padding: 8px 16px;
+	min-width: 41px;
+	font-size: 13px;
+}
+
+/* ico */
+.icoSns {
+	display: inline-block;
+	margin: -4px 5px 0 0;
+	overflow: hidden;
+	width: 16px;
+	height: 16px;
+	font-size: 0;
+	line-height: 0;
+	vertical-align: middle;
+}
+
+.icoFacebook {
+	background-image:
+		url('//img.echosting.jobhub.com/smartAdmin/img/login/ico_logo_facebook.png');
+}
+
+.icoGoogle {
+	background-image:
+		url('//img.echosting.jobhub.com/smartAdmin/img/login/ico_logo_google.png');
+}
+
+.icoLine {
+	background-image:
+		url('//img.echosting.jobhub.com/smartAdmin/img/login/ico_logo_line.png');
+}
+
+.icoStatus {
+	display: inline-block;
+	padding: 2px 8px;
+	box-sizing: border-box;
+	border-radius: 50px;
+	font-size: 10px;
+	line-height: 14px;
+	vertical-align: text-top;
+	font-style: normal;
+	font-weight: 700;
+	color: #fff;
+}
+
+.icoStatus.recent {
+	background-color: #3971ff;
+}
+
+.icoStatus.disabled {
+	background-color: #aeb4c6;
+}
+
+/* text */
+.txtWarn {
+	color: #dc2c2c;
+}
+
+.txtEm {
+	color: #3971ff;
+}
+
+.txtLight {
+	color: #aeb4c6;
+}
+
+.txtLink {
+	position: relative;
+	display: inline-block;
+	color: #667084;
+}
+
+.txtLink:after {
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: -1px;
+	width: 0;
+	height: 1px;
+	background-color: #667084;
+	-webkit-transition: width .3s ease-out;
+	transition: width .3s ease-out;
+}
+
+.txtEmLink {
+	position: relative;
+	display: inline-block;
+	color: #3971ff;
+}
+
+.txtEmLink:after {
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: -1px;
+	width: 0;
+	height: 1px;
+	background-color: #3971ff;
+	-webkit-transition: width .3s ease-out;
+	transition: width .3s ease-out;
+}
+
+.txtLink:hover:after, .txtEmLink:hover:after {
+	width: 100%;
+}
+
+/* form */
+/* fText */
+.fText {
+	position: relative;
+	padding: 14px 12px;
+	width: 100%;
+	height: 48px !important;
+	font-size: 14px;
+	line-height: 20px;
+	border: 1px solid #d6dae1 !important;
+	border-radius: 4px !important;
+	-webkit-transition: border .3s ease-out;
+	transition: border .3s ease-out;
+	box-sizing: border-box !important;
+	color: #1b1e26 !important;
+	background: #fff !important;
+}
+
+.fText:hover {
+	border-color: #3971ff;
+}
+
+.fText:focus {
+	border-color: #3971ff;
+	box-shadow: 0px 0px 0px 3px #bccdfa;
+	-webkit-transition: all .3s ease-out;
+	transition: all .3s ease-out;
+}
+
+.fText:disabled, .fText.disabled {
+	color: #aeb4c6;
+	background-color: #f4f5f8;
+	cursor: not-allowed;
+}
+
+.fText:disabled:hover, .fText.disabled:hover, .fText:disabled:focus,
+	.fText.disabled:focus {
+	box-shadow: none;
+	border-color: #d6dae1;
+}
+
+.fText.typeError {
+	color: #f52247;
+	border-color: #f52247;
+}
+
+.fText.typeError:focus {
+	box-shadow: 0px 0px 0px 3px #f4b6c3;
+}
+
+.fText.suffix {
+	padding-right: 105px;
+}
+
+html:lang(en) .fText.suffix, html:lang(ja) .fText.suffix, html:lang(vi) .fText.suffix
+	{
+	padding-right: 135px;
+}
+
+.fText.typePassword {
+	padding-right: 40px;
+}
+
+/* fSelect */
+.fSelect {
+	position: relative;
+	width: 100%;
+	height: 48px;
+}
+
+.fSelect select {
+	display: none;
+}
+
+.fSelect .select-selected {
+	padding: 13px 30px 13px 12px;
+	height: 100%;
+	border: 1px solid #d6dae1;
+	border-radius: 4px;
+	-webkit-transition: border .3s ease-out;
+	transition: border .3s ease-out;
+	box-sizing: border-box;
+	color: #1b1e26;
+	cursor: pointer;
+	background-color: #fff;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.fSelect:not(.disabled, .typeError) .select-selected:hover {
+	border-color: #3971ff;
+}
+
+.fSelect.typeError .select-selected {
+	color: #f52247;
+	border-color: #f52247;
+}
+
+.fSelect.typeError .select-selected.select-arrow-active {
+	border-color: #f52247;
+	box-shadow: 0px 0px 0px 3px #f4b6c3;
+}
+
+.fSelect.disabled .select-selected {
+	color: #aeb4c6;
+	background-color: #f4f5f8;
+	cursor: not-allowed;
+}
+
+.fSelect .select-selected:after {
+	position: absolute;
+	content: "";
+	top: 17px;
+	right: 16px;
+	content: "";
+	width: 8px;
+	height: 8px;
+	border-width: 1px 1px 0 0;
+	border-style: solid;
+	border-color: #000;
+	-webkit-transform: rotate(135deg);
+	-moz-transform: rotate(135deg);
+	-ms-transform: rotate(135deg);
+	transform: rotate(135deg);
+	-webkit-transition: 0.3s;
+	transition: 0.3s;
+}
+
+.fSelect .select-selected.select-arrow-active {
+	border-color: #3971ff;
+	box-shadow: 0px 0px 0px 3px #bccdfa;
+	-webkit-transition: all .3s ease-out;
+	transition: all .3s ease-out;
+}
+
+.fSelect .select-selected.select-arrow-active:after {
+	top: 20px;
+	-webkit-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+}
+
+.fSelect .select-items {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	right: 0;
+	z-index: 99;
+	margin: 3px 0 0;
+	border: solid #d6dae1;
+	border-width: 0 1px 1px 1px;
+	border-radius: 0 0 3px 3px;
+	background-color: #fff;
+}
+
+.fSelect .select-items div {
+	padding: 13px 12px;
+	line-height: 22px;
+	color: #1b1e26;
+	cursor: default;
+	word-break: break-word;
+}
+
+.fSelect .select-hide {
+	display: none;
+}
+
+.fSelect .select-items div:hover {
+	background-color: #f4f9ff;
+}
+
+.fSelect .select-items .select-item-selected {
+	color: #3971ff;
+	font-weight: bold;
+}
+
+.fSelect:not(.disabled, .typeError):hover {
+	border-color: #3971ff;
+}
+
+.fSelect.typeError {
+	color: #f52247;
+	border-color: #f52247;
+}
+
+/* mTitle */
+.mTitle {
+	margin: 8px 0 0;
+	font-size: 20px;
+	line-height: 40px;
+	font-weight: normal;
+	color: #444b59;
+	text-align: center;
+}
+
+.mTitle.left {
+	text-align: left;
+}
+
+.mPersonal+.mTitle {
+	margin: 16px 0 0;
+}
+
+.mTitle h2 {
+	font-size: 20px;
+	line-height: 28px;
+	color: #2e3039;
+}
+
+/* mTab */
+.mTab {
+	margin: 0 0 24px;
+}
+
+.mTab ul {
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: -ms-flex;
+	display: flex;
+	position: relative;
+	height: 56px;
+}
+
+.mTab li {
+	-webkit-flex: 1;
+	-ms-flex: 1;
+	flex: 1;
+	position: relative;
+	border: 1px solid #e2e5ea;
+	box-sizing: border-box;
+	overflow: hidden;
+}
+
+.mTab li+li {
+	margin-left: -1px;
+}
+
+.mTab li:first-child {
+	border-radius: 4px 0 0 4px;
+}
+
+.mTab li:last-child {
+	border-radius: 0 4px 4px 0;
+}
+
+.mTab li a {
+	display: inline-block;
+	width: 100%;
+	height: 54px;
+	line-height: 54px;
+	color: #444b59;
+	text-align: center;
+	background-color: #fafafd;
+}
+
+.mTab li a:hover {
+	color: #aeb4c6;
+	-webkit-transition: .3s ease-out;
+	transition: .3s ease-out;
+}
+
+.mTab li.selected {
+	z-index: 1;
+	border-color: #667084;
+}
+
+.mTab li.selected a {
+	font-weight: bold;
+	color: #444b59;
+	border-color: #667084;
+	background-color: #fff;
+}
+/* themeSolid */
+.mTab.themeSolid {
+	
+}
+
+.mTab.themeSolid li {
+	position: relative;
+	border: none;
+	border-radius: 0;
+}
+
+.mTab.themeSolid li a {
+	display: block;
+	width: auto;
+	color: #667084;
+	border: 1px solid #e2e5ea;
+	background: #FAFAFD;
+}
+
+.mTab.themeSolid li.selected::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 2px;
+	background: #235BF5;
+}
+
+.mTab.themeSolid li.selected a {
+	border-bottom: 0;
+	color: #235BF5;
+	background: #fff;
+}
+
+/* mFormBox */
+.mFormBox {
+	margin: 12px auto 0;
+}
+/* column */
+.mFormBox .column {
+	margin: 12px 0 0;
+}
+
+.mFormBox .column:nth-child(1) {
+	margin-top: 0;
+}
+
+.mFormBox .column .title {
+	display: block;
+	padding: 0 0 5px;
+	font-weight: normal;
+	color: #444b59;
+}
+
+.mFormBox .column .txtSuffix {
+	position: absolute;
+	top: 14px;
+	right: 20px;
+	color: #444b59;
+}
+
+.mFormBox .gridPosition {
+	position: relative;
+}
+
+.mFormBox .gridSet {
+	display: -webkit-flex;
+	display: -ms-flex;
+	display: -moz-flex;
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+}
+/*.mFormBox .gFlex { flex:1; }*/
+.mFormBox .formBox {
+	position: relative;
+}
+
+.gridSet .formBox+[class^="btn"], .gridSet.statusBox .text+[class^="btn"]
+	{
+	margin: 0 0 0 8px;
+}
+/* message */
+.mFormBox .message {
+	margin: 16px 0;
+	text-align: center;
+}
+
+.mFormBox .message.typeLeft {
+	text-align: left;
+}
+
+.message-txt-cert strong {
+	display: block;
+	margin-bottom: 4px;
+	color: #1B1E26;
+	font-size: 16px;
+	font-weight: 700;
+}
+/* mUserBox */
+.mUserBox {
+	margin: 24px auto 0;
+}
+
+.mUserBox .title {
+	display: block;
+	padding: 0 0 5px;
+	font-weight: normal;
+	color: #444b59;
+}
+
+.mUserBox .innerBox {
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: -ms-flex;
+	display: flex;
+	align-items: center;
+	position: relative;
+	padding: 12px 16px;
+	background-color: #fafafd;
+	border-radius: 4px;
+}
+
+.mUserBox .innerBox .thumb {
+	width: 48px;
+}
+
+.mUserBox .innerBox .info {
+	flex: 1;
+	padding: 0 16px;
+	word-break: break-word;
+}
+
+.mUserBox .innerBox .info .name {
+	font-size: 13px;
+	font-weight: normal;
+	color: #1b1e26;
+}
+
+.mUserBox .innerBox .info .email {
+	padding: 2px 0 0 0;
+	font-size: 12px;
+	line-height: 18px;
+}
+
+.mUserBox .innerBox .txtLink {
+	padding: 0;
+	height: auto;
+	font-size: 14px;
+	line-height: 20px;
+	font-weight: normal;
+	background-color: transparent;
+}
+
+/* txtInfo */
+ul.txtInfo {
+	margin: 8px 0 0 0;
+}
+
+ul.txtInfo li {
+	position: relative;
+	margin: 0;
+	padding: 0 0 0 6px;
+	font-size: 14px;
+	text-align: left;
+}
+
+ul.txtInfo li:before {
+	content: "";
+	position: absolute;
+	width: 4px;
+	height: 1px;
+	top: 10px;
+	left: 0;
+	background-color: #667084;
+}
+
+ul.txtInfo>li>ul>li:before {
+	width: 2px;
+	height: 2px;
+}
+
+ol.txtInfo {
+	margin: 8px 0 0 15px;
+}
+
+ol.txtInfo li {
+	list-style: decimal;
+	color: #1b1e26;
+	font-size: 11px;
+	line-height: 1.5;
+}
+
+ol.txtInfo li li {
+	list-style: none;
+}
+
+ul.txtInfo>li>ol>li {
+	padding: 0;
+	list-style: decimal;
+}
+
+ul.txtInfo>li>ol>li:before {
+	display: none;
+}
+
+ul.txtInfo li li, ol.txtInfo li li {
+	color: #70747b;
+}
+
+ul.txtInfo li li:before, ol.txtInfo li li:before {
+	background-color: #70747b;
+}
+
+/* mBoard */
+.mBoard {
+	margin: 24px 0;
+}
+
+.mBoard th, .mBoard td {
+	height: 42px;
+	font-weight: bold;
+	color: #70747b;
+}
+
+.mBoard th {
+	padding: 0 20px;
+	text-align: left;
+	color: #1b1e26;
+}
+
+/* mCheck */
+.mCheck {
+	margin: 10px 0 9px 0;
+	text-align: right;
+}
+
+/* .mButton */
+.mButton {
+	display: -webkit-flex;
+	display: -ms-flex;
+	display: -ms-flexbox;
+	display: flex;
+	margin: 24px 0 0;
+}
+
+.mButton.gColumn {
+	flex-direction: column;
+}
+
+.mButton [class*="btn"]+[class*="btn"] {
+	margin: 0 0 0 10px;
+}
+
+.mButton.gColumn [class*="btn"] {
+	margin: 0 0 8px;
+	flex: auto;
+	background-size: 22px;
+}
+
+.mButton button, .mButton a {
+	display: inline-block;
+	-webkit-flex: 1;
+	-ms-flex: 1;
+	flex: 1;
+	white-space: nowrap;
+	padding: 0 20px;
+	text-align: center;
+}
+
+/* mSnsButton */
+.mSnsButton {
+	margin: 16px 0;
+}
+
+.mSnsButton .btnNormal {
+	display: inline-block;
+	padding: 16px;
+	width: 100%;
+	color: #444b59;
+	font-family: Arial;
+	font-weight: bold;
+	line-height: 24px;
+	text-align: center;
+}
+
+.mSnsButton .btnNormal:hover {
+	background-color: #f4f9ff;
+}
+
+.mSnsButton .or {
+	margin: 16px 0;
+	font-size: 14px;
+	line-height: 18px;
+	text-align: center;
+	color: #444b59;
+}
+
+/* mUtility */
+.mUtility {
+	margin: 24px 0 0 0;
+}
+
+.mUtility:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+/* gRight */
+.mUtility .gRight {
+	float: right;
+}
+/* gLeft*/
+.mUtility .gLeft {
+	float: left;
+}
+
+/* mSnsJoin */
+.mSnsJoin {
+	margin: 32px 0 0;
+}
+
+.mSnsJoin .title {
+	position: relative;
+	text-align: center;
+}
+
+.mSnsJoin .title::before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 50%;
+	width: 100%;
+	height: 1px;
+	background-color: #d6dae1;
+}
+
+.mSnsJoin .title .txt {
+	display: inline-block;
+	position: relative;
+	padding: 0 8px;
+	font-size: 14px;
+	line-height: 20px;
+	letter-spacing: -0.5px;
+	color: #444b59;
+	font-weight: 400;
+	background-color: #fff;
+}
+
+.mSnsJoin .cont {
+	margin: 32px 0 0;
+}
+
+.mSnsJoin .snsList {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 36px;
+}
+
+.mSnsJoin .snsList li a {
+	display: inline-block;
+	overflow: hidden;
+	width: 56px;
+	height: 56px;
+	box-sizing: border-box;
+	border-radius: 100%;
+	font-size: 1px;
+	color: transparent;
+	text-indent: 150%;
+	white-space: nowrap;
+	transition: .2s ease-out;
+}
+
+.mSnsJoin .snsList li a.google {
+	border: 1px solid #d6dae1;
+	background: #fff
+		url('//img.echosting.jobhub.com/smartAdmin/img/login/ico_sns_google.svg')
+		center center no-repeat;
+}
+
+.mSnsJoin .snsList li a.google:hover {
+	background-color: #f4f5f8;
+}
+
+.mSnsJoin .snsList li a.naver {
+	background: #03c75a
+		url('//img.echosting.jobhub.com/smartAdmin/img/login/ico_sns_naver.svg')
+		center center no-repeat;
+}
+
+.mSnsJoin .snsList li a.naver:hover {
+	background-color: #02a64b;
+}
+
+.mSnsJoin .snsList li a.kakao {
+	background: #fee500
+		url('//img.echosting.jobhub.com/smartAdmin/img/login/ico_sns_kakao.svg')
+		center center no-repeat;
+}
+
+.mSnsJoin .snsList li a.kakao:hover {
+	background-color: #d7c200;
+}
+
+/* mRecaptcha */
+.mRecaptcha {
+	position: relative;
+	margin: 24px 0 0;
+	height: 109px;
+}
+
+.mRecaptcha>.gRecaptcha {
+	position: absolute;
+	top: 0;
+	width: 304px;
+	margin: 0;
+	transform: scale(0.9);
+	transform-origin: 0 0;
+}
+
+/* mAd */
+.mAd {
+	display: none;
+	overflow: hidden;
+	margin: 32px 0 -16px 0;
+}
+
+.mAd img {
+	margin: 0 0 16px 0;
+	max-width: 100%;
+}
+
+/* mLayer */
+.mLayer {
+	display: none;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	z-index: 103;
+	width: calc(100% - 48px);
+	font-size: 13px;
+	line-height: 20px;
+	word-wrap: break-word;
+	word-break: keep-all;
+	transform: translate(-50%, -50%);
+	-webkit-transform: translate(-50%, -50%);
+	border: 1px solid #d6dae1;
+	box-shadow: 0 10px 10px 0 rgb(0 0 0/ 10%);
+	border: 1px solid #D6DAE1;
+	border-radius: 4px;
+	background-color: #fff;
+}
+
+.mLayer.show {
+	display: block;
+}
+
+.mLayer.gSmall {
+	max-width: 432px;
+}
+
+.mLayer .wrap {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 24px;
+}
+
+.mLayer .wrap:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+.mLayer .wrap img {
+	margin: 8px 0 16px;
+}
+
+.mLayer .title {
+	margin: 0 0 5px;
+	font-size: 16px;
+	font-weight: 700;
+	color: #1B1E26;
+}
+
+.mLayer .title+.desc {
+	text-align: center;
+	margin: 4px 0 0;
+}
+
+.mLayer .content {
+	margin: 24px 0 0;
+	line-height: 20px;
+	font-size: 13px;
+	text-align: center;
+}
+
+.mLayer .btnClose {
+	display: inline-block;
+	position: absolute;
+	right: 16px;
+	top: 16px;
+	overflow: hidden;
+	width: 24px;
+	height: 24px;
+	margin: 0 auto;
+	padding: 0;
+	min-height: initial;
+	border-radius: 0;
+	font-size: 1px;
+	line-height: 0;
+	color: transparent;
+	white-space: nowrap;
+	text-indent: 150%;
+	background-color: transparent;
+	-webkit-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+.mLayer .btnClose:before {
+	content: "";
+	position: absolute;
+	top: 3px;
+	right: 11px;
+	width: 1px;
+	height: 17px;
+	background-color: #667084;
+	-webkit-transition: .3s ease-out;
+	transition: .3s ease-out;
+}
+
+.mLayer .btnClose:after {
+	content: "";
+	position: absolute;
+	top: 11px;
+	right: 3px;
+	width: 17px;
+	height: 1px;
+	background-color: #667084;
+	-webkit-transition: .3s ease-out;
+	transition: .3s ease-out;
+}
+
+.mLayer .mButton {
+	margin-top: 24px;
+}
+
+.mLayer .btnSubmit {
+	min-height: initial;
+}
+
+.mList {
+	padding: 13px 16px;
+	border-radius: 4px;
+	border: 1px solid #E2E5EA;
+	background: #FAFAFD;
+}
+
+.mList li {
+	position: relative;
+	padding: 0 0 0 7px;
+	text-align: left;
+}
+
+.mList li::before {
+	content: '';
+	position: absolute;
+	top: 10px;
+	left: 0;
+	width: 3px;
+	height: 3px;
+	border-radius: 5px;
+	background: #AEB4C6;
+}
+
+.dimmed {
+	display: none;
+	z-index: 102;
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	right: 0px;
+	bottom: 0px;
+	background-color: #000;
+	opacity: 0.2;
+	filter: alpha(opacity = 70);
+}
+
+.mLayer.show ~ .dimmed {
+	display: block;
+}
+
+/* mAlert */
+.mAlert {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 2;
+	background: rgba(0, 0, 0, 0.5);
+}
+
+.mAlert.show {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.mAlert .alertWrap {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	width: 432px;
+	max-width: calc(100% - 48px);
+	max-height: 90%;
+	padding: 23px;
+	border: 1px solid #d6dae1;
+	box-sizing: border-box;
+	border-radius: 4px;
+	background: #fff;
+	box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+}
+
+.mAlert .alertWrap .mTitle {
+	margin: 0 0 4px;
+}
+
+.mAlert .alertWrap h2 {
+	padding: 0 15px 0 0;
+	font-size: 16px;
+	line-height: 24px;
+	color: #1b1e26;
+}
+
+.mAlert .alertWrap .desc {
+	font-size: 13px;
+	line-height: 20px;
+	color: #667084;
+}
+
+.mAlert .alertContent {
+	flex: 1;
+}
+
+.mAlert .alertFooter {
+	margin: 24px 0 0;
+	font-size: 0;
+	text-align: right;
+}
+
+.mAlert .alertFooter a {
+	min-height: initial;
+	line-height: 20px;
+	vertical-align: middle;
+}
+
+.mAlert .alertFooter a+a {
+	margin: 0 0 0 8px;
+}
+
+.mAlert .btnClose {
+	display: inline-block;
+	position: absolute;
+	right: 16px;
+	top: 16px;
+	overflow: hidden;
+	width: 24px;
+	height: 24px;
+	margin: 0 auto;
+	padding: 0;
+	min-height: initial;
+	border-radius: 0;
+	font-size: 1px;
+	line-height: 0;
+	color: transparent;
+	white-space: nowrap;
+	text-indent: 150%;
+	background-color: transparent;
+	-webkit-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+.mAlert .btnClose:before {
+	content: "";
+	position: absolute;
+	top: 3px;
+	right: 11px;
+	width: 1px;
+	height: 17px;
+	background-color: #667084;
+	-webkit-transition: .3s ease-out;
+	transition: .3s ease-out;
+}
+
+.mAlert .btnClose:after {
+	content: "";
+	position: absolute;
+	top: 11px;
+	right: 3px;
+	width: 17px;
+	height: 1px;
+	background-color: #667084;
+	-webkit-transition: .3s ease-out;
+	transition: .3s ease-out;
+}
+
+/* mPersonal */
+.mPersonal {
+	position: relative;
+	padding: 16px 20px 16px 80px;
+	box-sizing: border-box;
+	letter-spacing: -0.5px;
+	background-color: #fafafd;
+}
+
+.mPersonal+.mPersonal {
+	margin: 16px 0 0;
+}
+
+.mPersonal.google::before, .mPersonal.naver::before, .mPersonal.kakao::before
+	{
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 16px;
+	margin: -24px 0 0;
+	width: 48px;
+	height: 48px;
+	border-radius: 100%;
+	box-sizing: border-box;
+}
+
+.mPersonal.google::before {
+	border: 1px solid #d6dae1;
+	background: #fff
+		url('//img.echosting.jobhub.com/smartAdmin/img/login/ico_sns_google.svg')
+		center center no-repeat;
+}
+
+.mPersonal.naver::before {
+	background: #03c75a
+		url('//img.echosting.jobhub.com/smartAdmin/img/login/ico_sns_naver.svg')
+		center center no-repeat;
+}
+
+.mPersonal.kakao::before {
+	background: #fee500
+		url('//img.echosting.jobhub.com/smartAdmin/img/login/ico_sns_kakao.svg')
+		center center no-repeat;
+}
+
+.mPersonal .id {
+	font-size: 13px;
+	line-height: 20px;
+	color: #1b1e26;
+}
+
+.mPersonal .mail {
+	display: block;
+	margin: 2px 0 0;
+	font-size: 12px;
+	line-height: 18px;
+}
+
+/* mMallList */
+.mMallList {
+	margin: 16px 0 0;
+	letter-spacing: -0.5px;
+}
+
+.mMallList .list li a {
+	display: block;
+	position: relative;
+	padding: 12px 100px 20px 16px;
+	border: 1px solid #d6dae1;
+}
+
+.mMallList .list li a::after {
+	content: '';
+	position: absolute;
+	right: 24px;
+	top: 50%;
+	width: 8px;
+	height: 8px;
+	border-width: 1px 1px 0 0;
+	border-style: solid;
+	border-color: #616161;
+	transform: translateY(-50%) rotate(45deg);
+}
+
+.mMallList .list li+li {
+	margin: 12px 0 0;
+}
+
+.mMallList .list li .id {
+	font-size: 13px;
+	line-height: 20px;
+	color: #1b1e26;
+}
+
+.mMallList .list li .icoStatus {
+	margin: 0 0 0 4px;
+}
+
+.mMallList .list li .link {
+	display: block;
+	margin: 2px 0 0;
+	font-size: 12px;
+	line-height: 18px;
+}
+
+@media ( max-width : 320px) {
+	.mRecaptcha>.gRecaptcha {
+		transform: scale(0.765);
+	}
+}
+
+@media ( max-width : 767px) {
+	.RMI {
+		display: inline !important;
+	}
+	.RPI {
+		display: none;
+	}
+	.banner {
+		height: 76px;
+		padding: 15px 0;
+		background-image:
+			url('//img.echosting.jobhub.com/smartAdmin/img/login/bg_top_banner_m.png');
+		background-size: 100% 76px;
+	}
+	.banner .info .title {
+		font-size: 16px;
+		line-height: 24px;
+	}
+	.banner .info .title img {
+		width: 20px;
+		height: 20px;
+	}
+	.banner .info .desc {
+		font-size: 15px;
+		line-height: 22px;
+	}
+	.banner .btnClose {
+		top: 10px;
+		right: 10px;
+		width: 12px;
+		height: 12px;
+		min-height: 10px;
+	}
+	.banner .btnClose:before, .banner .btnClose:after {
+		top: 6px;
+		right: 0;
+		width: 13px;
+	}
+	#header .jobhubLogo {
+		width: 104px;
+	}
+
+	/* mSnsJoin */
+	.mSnsJoin .cont {
+		margin: 16px 0 0;
+	}
+	.mSnsJoin .snsList {
+		gap: 24px;
+	}
+	.mSnsJoin .snsList li a {
+		width: 48px;
+		height: 48px;
+	}
+}
+
+@media ( min-width : 768px) {
+	.RMI {
+		display: none;
+	}
+	.RPI {
+		display: inline !important;
+	}
+	.mRecaptcha>.gRecaptcha {
+		transform: scale(1.3);
+	}
+}
+
+@media ( min-width : 1024px) {
+	.RPB {
+		display: block;
+	}
+	.language .wrap {
+		padding: 0 10px;
+		text-align: center;
+	}
+	.language .copy {
+		margin: 0;
+		padding: 18px 0 18px 25px;
+	}
+	.language .copy:before {
+		top: 20px;
+	}
+	.language .changer {
+		display: inline-block;
+		padding: 10px 0 10px 40px;
+	}
+	.language .changer .global {
+		margin: 0 10px 0 0;
+		width: 150px;
+	}
+	.language .btnClose {
+		top: 10px;
+		right: 22px;
+	}
+	#contents {
+		max-width: 396px;
+	}
+	#header {
+		padding: 160px 0 48px;
+	}
+	#footer {
+		padding: 64px 0 40px;
+	}
+	.mUtility .gLeft .RPB {
+		display: inline-block;
+	}
+	.mAd {
+		display: block;
+	}
+}
