@@ -1,0 +1,201 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+.main_header{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: space-between;
+    padding: 50px;
+    width: 100%;
+    height: 800px;
+    background-color:rgb(97, 97, 97);
+    color: white;
+}
+
+.text_area{
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+}
+
+.company_title_text{
+    font-size: 85px;
+    font-weight: bold;
+}
+
+.select_filter_box{
+    display: flex;
+    align-items: center;
+    padding-top: 45px;
+}
+
+.select_category_box{
+    display: flex;
+    border-bottom: 1px solid white;
+}
+
+.select_region_menu, .select_city_menu, .select_jobunit_menu{
+    border: none;
+    color: white;
+    background-color:rgb(97, 97, 97);
+    width: 200px;
+    font-size: 20px;
+    padding: 13px;
+}
+
+.go_resume_by_filter{
+    display: flex;
+    font-size: 25px;
+    padding-left: 20px;
+}
+
+.scroll_down{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.scroll_down_text{
+    font-size: 13px;
+}
+
+.main{
+    display: flex;
+    flex-direction: column;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+.company_news_boxs{
+    display: flex;
+    flex-direction: column;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.company_news_title, .career_title_text{
+    font-size: 55px;
+    font-weight: bold;
+}
+
+.company_news_title{
+    padding-left: 40px;
+}
+.company_news_list{
+    padding-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.company_news_box{
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+}
+
+.news_1_image, .news_2_image, .news_3_image, .news_4_image{
+    width: 100%;
+    height: 250px;
+    border: 1px solid gray;
+}
+
+.news_box{
+    display: flex;
+    flex-direction: column;
+    padding-top: 30px;
+}
+
+.news_title{
+    font-size: 25px;
+    font-weight: bold;
+    padding-bottom: 20px;
+}
+
+.news_content{
+    padding-top: 10px;
+    padding-bottom: 20px;
+    font-size: 15px;
+    color: gray;
+}
+
+.more_about_company_news, .more_about_employee_info{
+    display: flex;
+    justify-content: right;
+}
+
+.more_about_text1{
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    padding-right: 40px;
+    padding-top: 20px;
+    cursor: pointer;
+}
+
+.more_about_text2{
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    padding-right: 50px;
+    padding-top: 20px;
+    cursor: pointer;
+}
+
+.career_image{
+    height: 480px;
+    background-image: url(../image/interview_bg@2x-78ffd7c12a40b4d67535242132ed99a9.jpg);
+    background-size: cover;
+    display: flex;
+}
+
+.career_title_text{
+    padding-left: 50px;
+    padding-top: 150px;
+    color: white;
+}
+
+.company_career_boxs{
+    display: flex;
+    flex-direction: column;
+}
+
+.career_category_list{
+    display: flex;
+    justify-content: space-around;
+    margin-top: -200px;
+}
+
+.more_about_employee_info{
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.category_item{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 350px;
+    height: 500px;
+    padding: 25px;
+    background-color: white;
+    border: 1px solid gray;
+}
+
+.category_title{
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.employee_info{
+    display: flex;
+    flex-direction: column;
+}
+
+.employee_name{
+    font-size: 25px;
+}
