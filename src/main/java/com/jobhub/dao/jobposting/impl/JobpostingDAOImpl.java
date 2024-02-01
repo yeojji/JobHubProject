@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class JobpostingDAOImpl {
 
-	@Autowired
-	SqlSessionTemplate sqlSessionTemplate;
+//	@Autowired
+//	SqlSessionTemplate sqlSessionTemplate;
 	
 }
