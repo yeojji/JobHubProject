@@ -9,10 +9,8 @@
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
 <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 <title>Jobhub 계정 생성 요청</title>
-<link rel="stylesheet" type="text/css" href="admin/css/notosans.css"
-	media="all">
-<link rel="stylesheet" type="text/css" href="admin/css/user_v1.1.css"
-	media="all">
+<link rel="stylesheet" type="text/css" href="css/notosans.css" media="all">
+<link rel="stylesheet" type="text/css" href="css/user_v1_1.css" media="all">
 
 <!--  <script type="text/javascript" src="/kr/_resource/js/jquery/jquery-3.5.1.min.js"></script>
 	<script type="text/javascript" src="/kr/_resource/js/jquery/jquery.capslockstate.js"></script>
@@ -155,15 +153,6 @@
                 }
             }
         });
-
-
-    //	var AuthTimer = new $ComTimer()
-    //	AuthTimer.comSecond = 2;
-    //	AuthTimer.fnCallback = function(){alert("다시인증을 시도해주세요.")}
-    //	AuthTimer.timer =  setInterval(function(){AuthTimer.fnTimer()},1000);
-    //	AuthTimer.domId = document.getElementById("timer");
-
-
     });
 
 

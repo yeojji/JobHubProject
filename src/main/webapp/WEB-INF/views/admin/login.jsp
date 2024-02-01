@@ -16,7 +16,7 @@
 <title>관리자 로그인 - Jobhub</title>
 <link rel="stylesheet" type="text/css" href="admin/css/notosans.css"
 	media="all">
-<link rel="stylesheet" type="text/css" href="admin/css/login_v1.1.css"
+<link rel="stylesheet" type="text/css" href="admin/css/login_v1_1.css"
 	media="all">
 	
 	

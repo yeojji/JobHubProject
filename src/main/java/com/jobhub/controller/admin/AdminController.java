@@ -12,6 +12,7 @@ public class AdminController {
 	@Autowired
 	AdminService adminService;
 	
+	
 	@GetMapping("/admin")
 	public String admin() {
 		
