@@ -10,4 +10,11 @@ public class UserController {
 	public String login() {
 		return "login/login";
 	}
+	
+	@GetMapping("/mypage")
+	public String mypage() {
+		return "user_mypage/mypage";
+	}
+	
+	
 }
