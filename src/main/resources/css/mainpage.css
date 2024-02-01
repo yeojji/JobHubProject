@@ -1,3 +1,4 @@
+
 *{
     box-sizing: border-box;
     margin: 0;
@@ -141,7 +142,7 @@
     font-size: 13px;
     font-weight: bold;
     cursor: pointer;
-    padding-right: 50px;
+    padding-right: 7px;
     padding-top: 20px;
     cursor: pointer;
 }
@@ -162,6 +163,7 @@
 .company_career_boxs{
     display: flex;
     flex-direction: column;
+    padding-top: 100px;
 }
 
 .career_category_list{

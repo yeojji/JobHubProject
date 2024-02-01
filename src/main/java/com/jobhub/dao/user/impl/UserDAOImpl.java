@@ -7,8 +7,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class UserDAOImpl {
 
-	@Autowired
-	SqlSessionTemplate sqlSessionTemplate;
+//	@Autowired
+//	SqlSessionTemplate sqlSessionTemplate;
 	
 	
 }
