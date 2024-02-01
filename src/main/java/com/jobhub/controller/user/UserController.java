@@ -1,4 +1,4 @@
-package com.app.controller.user;
+package com.jobhub.controller.user;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
