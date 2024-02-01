@@ -18,10 +18,14 @@
 	media="all">
 <link rel="stylesheet" type="text/css" href="admin/css/login_v1.1.css"
 	media="all">
+	
+	
+	
+<!-- 	
 <script type="text/javascript" src="/_scripts/jquery-3.6.1.min.js"></script>
 <script type="text/javascript" src="/_scripts/ui_desktop.js?22032309"></script>
 <script type="text/javascript" src="/_scripts/mall_auth.js?24011709"></script>
-
+ -->
 <script type="text/javascript">
         var correctCaptcha = function(response) {
         };
