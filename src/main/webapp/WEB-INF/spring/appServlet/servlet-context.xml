@@ -17,8 +17,9 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 	<annotation-driven />
 
 	<!-- 스캔할 bean이 모여있는 패키지 지정 -->
-	<context:component-scan
-		base-package="com.jobhub.controller"></context:component-scan>
+	<context:component-scan base-package="com.jobhub.controller"/>
+	<context:component-scan base-package="com.jobhub.service"/>
+	<context:component-scan base-package="com.jobhub.dao"/>
 
 	<beans:bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
