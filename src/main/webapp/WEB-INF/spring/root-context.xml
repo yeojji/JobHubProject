@@ -18,7 +18,7 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<!-- 스캔할 bean이 모여있는 패키지 지정 -->
 	<context:component-scan
-		base-package="com.app.controller"></context:component-scan>
+		base-package="com.jobhub.controller"></context:component-scan>
 
 	<beans xmlns="http://www.springframework.org/schema/beans"
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
