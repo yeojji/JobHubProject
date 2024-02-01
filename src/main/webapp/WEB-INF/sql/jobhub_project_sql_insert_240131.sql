@@ -196,4 +196,21 @@ INSERT INTO administrator (admin_ID, admin_PW, employee_ID, permission_code, cre
 VALUES ('admin10', 'password10', 'emp10', 'SUPERVISOR', SYSTIMESTAMP);
 
 
+
+
+-- 경력조건
+-- 경력
+INSERT INTO common_code_master (code_name, group_code, name, description)
+VALUES ('EXPERIENCED', 'career_condition', '경력', '경력조건');
+
+-- 신입
+INSERT INTO common_code_master (code_name, group_code, name, description)
+VALUES ('NEW_ENTRY', 'career_condition', '신입', '경력조건');
+
+-- 무관
+INSERT INTO common_code_master (code_name, group_code, name, description)
+VALUES ('NO_EXPERIENCE_REQUIREMENT', 'career_condition', '무관', '경력조건');
+
+
+
 commit;
