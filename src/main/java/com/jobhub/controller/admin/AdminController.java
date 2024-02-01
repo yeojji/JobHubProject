@@ -18,6 +18,11 @@ public class AdminController {
 		return "admin/login";
 	}
 	
+	@GetMapping("/admin/adminJoinRequest")
+	public String adminJoinRequest() {
+		
+		return "admin/adminJoinRequest";
+	}
 	
 	
 }

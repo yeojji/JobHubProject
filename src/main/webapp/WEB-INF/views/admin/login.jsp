@@ -201,7 +201,7 @@
 							<div class="mUtility">
 								<span class="gLeft"><span clas="RPB">관리자가 아니신가요?
 										&nbsp;</span><a
-									href="https://user.jobhub.com/kr/join/ec/?action=joinForm"
+									href="/admin/adminJoinRequest"
 									class="txtEmLink" target="_blank">계정 생성 요청</a></span> <span
 									class="gRight"> <a
 									href="https://user.jobhub.com/user/echosting/idsearch/"
