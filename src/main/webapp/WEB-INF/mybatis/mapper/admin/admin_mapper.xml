@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+					"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+					
+<mapper namespace="admin_mapper">
+
+
+	<select id="findLoginAdmin" parameterType="Admin" resultType="Admin">
+		SELECT * FROM ADMINISTRATOR WHERE id=#{id} and pw=#{pw} and employee_id=#{employeeId}
+	</select>
+	
+	
+	<!-- 관리자ID로 조회 -->
+	<select id="findAdminByAdminId" parameterType="String" resultType="Admin">
+		SELECT * FROM ADMINISTRATOR
+		WHERE admin_id=#{id}
+	</select>
+	
+	
+	<!-- 직원ID로 조회 -->
+	<select id="findAdminByEmployeeId" parameterType="String" resultType="Admin">
+		SELECT * FROM ADMINISTRATOR
+		WHERE employee_id=#{employeeId}
+	</select>
+	
+	
+	<!-- 관리자 저장(생성) -->
+	<insert id="saveAdmin" parameterType="Admin">
+		insert into ADMINISTRATOR values ( #{id}, #{pw}, #{employeeId}, #{permissionCode}, NOW() ) 
+	</insert>
+	
+	
+	<select id="findAdminList" resultType="Admin">
+		SELECT * FROM ADMINISTRATOR
+	</select>
+	
+	
+	<select id="findAdminListByPermissionCode" resultType="Admin" parameterType="String">
+		SELECT * FROM ADMINISTRATOR
+		WHERE permission_code = #{permissionCode}
+	</select>
+	
+	
+	<select id="findAdminListBySearchCondition" resultType="Admin" parameterType="AdminSearchCondition">
+		SELECT * FROM ADMINISTRATOR
+		WHERE 1 = 1 
+		<if test="id != null and id != ''">
+			AND id = #{searchKeyword}
+		</if>
+		<if test="name != null and name != ''">
+			AND name LIKE '%' || #{searchKeyword} || '%'   
+		</if>
+		<if test="permissionCode != null and permissionCode != ''">
+			AND permission_code = #{permissionCode}
+		</if>
+	</select>
+	
+	
+	
+	<!-- 직원 등록 -->
+	<insert id="saveEmployeeProfile" parameterType="EmployeeProfile">
+		INSERT INTO EMPLOYEE
+		VALUES ( 'emp'||EMP_ID_SEQ.NEXTVAL, #{imagePath}, #{jobsId}, #{name}, #{phone}, #{tel}, #{birth}, #{gender}, #{address}, #{hireDate}, #{email} )
+	</insert>
+	
+	
+	<select id="findEmployeeProfileByName" parameterType="String" resultType="EmployeeProfile">
+		SELECT *
+		FROM EMPLOYEE
+		WHERE name = #{name}
+	</select>
+	
+	
+	<select id="findEmployeeList" resultType="Employee">
+		SELECT * FROM EMPLOYEE
+	</select>
+	
+	
+	<select id="findEmployeeListByJobsId" resultType="Employee" parameterType="String">
+		SELECT * FROM EMPLOYEE
+		WHERE jobs_id = #{jobsId}
+	</select>
+	
+	
+	
+	<select id="findEmployeeListBySearchCondition" resultType="Employee" parameterType="EmployeeSearchCondition">
+		SELECT * FROM EMPLOYEE
+		WHERE 1 = 1 
+		<if test="employeeId != null and employeeId != ''">
+			AND employee_id = #{searchKeyword}
+		</if>
+		<if test="jobsId != null and jobsId != ''">
+			AND jobs_id = #{jobsId}
+		</if>
+		<if test="name != null and name != ''">
+			AND name LIKE '%' || #{searchKeyword} || '%'   
+		</if>
+		<if test="phone != null and phone != ''">
+			AND phone LIKE '%' || #{searchKeyword} || '%'   
+		</if>
+		<if test="tel != null and tel != ''">
+			AND tel LIKE '%' || #{searchKeyword} || '%'   
+		</if>
+		<if test="birth != null and birth != ''">
+			AND birth BETWEEN #{birthStartDate} AND #{birthEndDate}  
+		</if>
+		<if test="gender != null and gender != ''">
+			AND gender = #{gender}
+		</if>
+		<if test="address != null and address != ''">
+			AND address = #{address}
+		</if>
+		<if test="hireDate != null and hireDate != ''">
+			AND hire_date BETWEEN #{hireStartDate} AND #{hireEndDate}  
+		</if>
+		<if test="email != null and email != ''">
+			AND email LIKE '%' || #{searchKeyword} || '%'  
+		</if>
+	</select>
+	
+	
+</mapper>	
