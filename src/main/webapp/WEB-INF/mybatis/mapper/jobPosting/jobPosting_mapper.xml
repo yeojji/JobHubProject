@@ -5,5 +5,17 @@
 					
 <mapper namespace="jobPosting_mapper">
 
-
+	<select id="findJobList" resultType="Job">
+		SELECT * FROM jobs
+	</select>
+	
+	<!-- <insert id="saveJobPosting" parameterType="">
+		insert into jobs_posting values
+		('posting'||seq_posting_id.nextVal , #{jobPostingTitle} , #{jobName} , #{}
+	</insert>
+	 -->
+	 
+	 
+	
+	
 </mapper>
