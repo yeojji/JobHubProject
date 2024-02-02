@@ -1,5 +1,10 @@
-package com.jobhub.dao.user;
+package com.jobhub.dao.customer;
 
-public interface UserDAO {
+import java.util.List;
 
+import com.jobhub.dto.customer.Customer;
+
+public interface CustomerDAO {
+	
+	public List<Customer> findCustomerList();
 }

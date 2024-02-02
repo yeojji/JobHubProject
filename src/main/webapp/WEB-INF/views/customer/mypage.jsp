@@ -1,17 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>마이페이지</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" 
     integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="  
     crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <link rel="stylesheet" href="../css/footer.css">
-    <link rel="stylesheet" href="../css/header.css">
-    <link rel="stylesheet" href="../css/mypage.css">
+    <link rel="stylesheet" href="css/mypage.css">
 </head>
 <body>
 	<!--헤더 -->
@@ -23,7 +22,7 @@
             <div class="member_info_box">
                 <div class="member_info_header">
                     <div class="member_name">
-                        <span class="member_name_text">000</span><span class="nim">님</span>
+                        <span class="member_name_text">${name}</span><span class="nim">님</span>
                     </div>
                     <div class="member_modify_btn_box">
                         <div class="normal_info_modify">
@@ -46,15 +45,15 @@
                 <div class="member_info_box_footer">
                     <div class="member_email_box">
                         <span class="member_info_title">이메일</span>
-                        <p class="member_email">000@naver.com</p>
+                        <p class="member_email">${email}</p>
                     </div>
                     <div class="member_birth_box">
                         <span class="member_info_title">생년월일</span>
-                        <p class="member_birth">2000.12.21(여)</p>
+                        <p class="member_birth">${birth}</p>
                     </div>
                     <div class="member_tel_box">
                         <span class="member_info_title">휴대폰 번호</span>
-                        <p class="member_tel">010-1234-5678</p>
+                        <p class="member_tel">${tel}</p>
                     </div>
                 </div>
             </div>
