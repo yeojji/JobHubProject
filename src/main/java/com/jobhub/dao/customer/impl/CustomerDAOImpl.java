@@ -24,4 +24,12 @@ public class CustomerDAOImpl implements CustomerDAO{
 		return customerList;
 	}
 
+	@Override
+	public int saveUser(Customer customer) {
+		// TODO Auto-generated method stub
+		
+		int result = sqlSessionTemplate.insert("login_mapper.saveUser", customer);
+		return result;
+	}
+
 }

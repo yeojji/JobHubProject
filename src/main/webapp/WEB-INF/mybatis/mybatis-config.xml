@@ -13,8 +13,6 @@
 	
 	<typeAliases>
 		<typeAlias type="com.jobhub.dto.customer.Customer" alias="Customer"/>
-		
-		
 	</typeAliases>
 
 

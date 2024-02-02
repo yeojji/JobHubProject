@@ -14,17 +14,17 @@
         
         <div class="signup_main">
             <div class="signup_form">
-                <form>
+                <form action="" method="post">
                     <div class="form_group">
                         <div class="form_line">
                             <label for="signup_input_id" class="signup_label">아이디</label>
-                            <input type="text" class="signup_input" id="signup_input_id" placeholder="아이디를 입력해 주세요">
+                            <input type="text" name="userId" class="signup_input" id="signup_input_id" placeholder="아이디를 입력해 주세요">
                         </div>
                     </div>
                     <div class="form_group">
                         <div class="form_line">
                             <label for="signup_input_pw" class="signup_label">비밀번호</label>
-                            <input type="password" class="signup_input" id="signup_input_pw"
+                            <input type="password" name="password" class="signup_input" id="signup_input_pw"
                                 placeholder="비밀번호를 입력해 주세요">
                         </div>
                         <div class="form_line2">
@@ -36,13 +36,13 @@
                     <div class="form_group">
                         <div class="form_line">
                             <label for="signup_input_name" class="signup_label">이름(한글)</label>
-                            <input type="text" class="signup_input" id="signup_input_name" placeholder="이름을 입력해 주세요">
+                            <input type="text" name="name" class="signup_input" id="signup_input_name" placeholder="이름을 입력해 주세요">
                         </div>
                     </div>
                     <div class="form_group">
                         <div class="form_line">
                             <label for="signup_input_birth" class="signup_label">생년월일</label>
-                            <input type="text" class="signup_input" id="signup_input_birth" placeholder="YYYY-MM-DD">
+                            <input type="text" name="birth" class="signup_input" id="signup_input_birth" placeholder="YYYY-MM-DD">
                         </div>
                         <div class="form_line3">
                             <label class="form_gender">
@@ -58,13 +58,13 @@
                     <div class="form_group">
                         <div class="form_line">
                             <label for="signup_input_email" class="signup_label">이메일</label>
-                            <input type="email" class="signup_input" id="signup_input_email" placeholder="이메일을 입력해 주세요">
+                            <input type="email" name="email" class="signup_input" id="signup_input_email" placeholder="이메일을 입력해 주세요">
                         </div>
                     </div>
                     <div class="form_group">
                         <div class="form_line">
                             <label for="signup_input_tel" class="signup_label">휴대폰 번호</label>
-                            <input type="tel" class="signup_input" id="signup_input_tel" placeholder="000-0000-0000">
+                            <input type="tel" name="phone" class="signup_input" id="signup_input_tel" placeholder="000-0000-0000">
                         </div>
                     </div>
                     <div class="signup_submit">
