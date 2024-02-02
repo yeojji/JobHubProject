@@ -14,13 +14,8 @@ public class UserLoginController {
 	
 	@Autowired
 	CustomerService customerService;
-
-	@GetMapping("/login")
-	public String login() {
-		return "login/login";
-	}
 	
-	@RequestMapping("/sign-up")
+	@GetMapping("/sign-up")
 	public String signUp() {
 		return "login/signup";
 	}
@@ -33,10 +28,11 @@ public class UserLoginController {
 		int result = customerService.saveUser(customer);
 		
 		if(result > 0) {
-			return "redirect:/sign-up";
+			return "redirect:/login";
 		}else {
 			return "login/sign-up";
 		}
+		
 	}
 	
 	

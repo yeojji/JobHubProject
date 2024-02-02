@@ -5,11 +5,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <link href="css/apply.css" rel="stylesheet">
 </head>
 <body>
- <!-- 헤더박을부분 -->
-    <div class="apply_title">지원서 작성하기</div>
+	<!-- 헤더박을부분 -->
+  <div class="apply_title">지원서 작성하기</div>
     <div class="container">
         <div class="apply_header">
             <div class="apply_header_title">2024 LINE ADS AI/ML Internship</div>
@@ -20,23 +23,23 @@
             </div>
         </div>
         <div class="apply_main">
-            <form action="">
+            <form action="" method="post">
                 <div class="apply_content">
                     <p>기본 인적사항 <em>필수</em></p>
                     <div>
                         <div class="ap_mydetail">
-                            <input type="text" value="내이름" class="ap_inpt apply_name">
-                            <input type="text" value="1999.01.01" class="ap_inpt apply_birth">
-                            <input type="text" value="abc@gmail.com" class="ap_inpt apply_email">
+                            <input type="text" name="name" value="내이름" class="ap_inpt apply_name margin5px">
+                            <input type="text" name="birth" value="1999.01.01" class="ap_inpt apply_birth margin5px">
+                            <input type="text" name="email" value="abc@gmail.com" class="ap_inpt apply_email">
                         </div>
                         <div class="ap_mydetail">
-                            <select name="gender" class="ap_inpt apply_gender">
+                            <select name="gender" class="ap_inpt apply_gender margin5px">
                                 <option value="" disabled selected hidden>성별</option>
                                 <option value="남성">남성</option>
                                 <option value="여성">여성</option>
                             </select>
-                            <input type="text" value="010-0000-0000" class="ap_inpt apply_tel">
-                            <select name="howfound" class="ap_inpt apply_howfound">
+                            <input type="text" name="phone" value="010-0000-0000" class="ap_inpt apply_tel margin5px">
+                            <select name="supportPath" class="ap_inpt apply_howfound">
                                 <option value="" disabled selected hidden>지원경로(공고를 처음 알게 된 경로)</option>
                                 <option value="사람인">사람인</option>
                                 <option value="SNS">SNS광고</option>
@@ -45,15 +48,65 @@
                     </div>
                 </div>
                 <div class="apply_content">
+                    <p>학력사항 <em>필수</em></p>
+                    <div class="ap_mydetail ap_grade">
+                        <select name="eduSortation" class="ap_inpt apply_edu">
+                            <option value="" disabled selected hidden>구분</option>
+                            <option value="고등학교">고등학교</option>
+                            <option value="전문대학">전문대학</option>
+                            <option value="대학교">대학교</option>
+                            <option value="대학원(석사)">대학원(석사)</option>
+                            <option value="대학원(박사)">대학원(박사)</option>
+                        </select>
+                        <div class="apply_edu_highschool">
+                            <input type="text" name="schoolName" placeholder="학교명" class="ap_inpt apply_shcname">
+                            <input type="text" name="admission" placeholder="입학년월" class="ap_inpt apply_date2">
+                            <span class="from_to">~</span>
+                            <input type="text" name="graduation" placeholder="졸업년월" class="ap_inpt apply_date2">
+                            <button class="ap_inpt2 apply_careerbtn">완료</button>
+                        </div>
+                        <div class="apply_edu_university">
+                            <input type="text" name="schoolName" placeholder="학교명" class="apply_shcname2 ap_inpt">
+                            <input type="text" name="major" placeholder="전공" class="apply_major ap_inpt">
+                            <input type="text" name="minor" placeholder="세부전공" class="apply_major ap_inpt">
+                            <input type="text" name="grade" placeholder="평점" class="apply_grade ap_inpt">
+                            <input type="text" name="totalScore" placeholder="총점"
+                                class="apply_grade apply_total ap_inpt">
+                            <input type="text" name="admission" placeholder="입학년월" class="ap_inpt apply_date3">
+                            <span class="from_to">~</span>
+                            <input type="text" name="graduation" placeholder="졸업년월" class="ap_inpt apply_date3">
+                            <select name="graduationStatus" class="ap_inpt apply_grade_status">
+                                <option value="졸업">졸업</option>
+                                <option value="졸업예정">졸업예정</option>
+                                <option value="휴학">휴학</option>
+                                <option value="재학">재학</option>
+                                <option value="수료">수료</option>
+                                <option value="중퇴/자퇴">중퇴/자퇴</option>
+                            </select>
+                            <button class="ap_inpt2 apply_careerbtn">완료</button>
+                        </div>
+                    </div>
+                    <div class="cr_noti">
+                        <ul>
+                            <li>학력은 최종학력에서부터 고등학교 순으로, 역순으로 기재해주시기 바랍니다.</li>
+                            <li>
+                                <strong>해당 항목을 모두 기입한 후, 완료버튼을 누르면 다음 항목이 활성화됩니다.</strong>
+                            </li>
+                            <li>입학년월/졸업년월은 YYYY.MM 순서로 입력해 주세요. (예: 1999.01)</li>
+                            <li>복수전공 및 이중전공을 이수하신 분들은 부전공란에 입력해주세요.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="apply_content">
                     <p>경력사항 <em>필수</em></p>
                     <div class="ap_mydetail">
-                        <input type="text" placeholder="회사명" class="ap_inpt2 apply_cname">
-                        <input type="text" placeholder="부서명" class="ap_inpt2 apply_dname">
-                        <input type="text" placeholder="입사일" class="ap_inpt2 apply_date">
+                        <input type="text" name="companyId" placeholder="회사명" class="ap_inpt apply_cname">
+                        <input type="text" name="departmentName" placeholder="부서명" class="ap_inpt apply_dname">
+                        <input type="text" name="joinDate" placeholder="입사일" class="ap_inpt apply_date">
                         <span class="from_to">~</span>
-                        <input type="text" placeholder="퇴사일" class="ap_inpt2 apply_date">
-                        <input type="text" placeholder="담당업무" class="ap_inpt2 apply_duty">
-                        <select name="duty" class="ap_inpt2 apply_position">
+                        <input type="text" name="resignationDate" placeholder="퇴사일" class="ap_inpt apply_date">
+                        <input type="text" name="duty" placeholder="담당업무" class="ap_inpt apply_duty">
+                        <select name="position" class="ap_inpt apply_position">
                             <option value="" disabled selected hidden>고용형태</option>
                             <option value="정규">정규</option>
                             <option value="계약">계약</option>
@@ -63,7 +116,8 @@
                         <button class="ap_inpt2 apply_careerbtn">완료</button>
                     </div>
                     <div>
-                        <textarea name="" id="" cols="100" rows="14" placeholder="상세업무내용" class="text_area"></textarea>
+                        <textarea name="detailWork" id="" cols="100" rows="14" placeholder="상세업무내용"
+                            class="text_area"></textarea>
                     </div>
                     <div class="cr_noti">
                         <ul>
@@ -78,46 +132,29 @@
                     </div>
                 </div>
                 <div class="apply_content">
-                    <p>학력사항 <em>필수</em></p>
-                    <div class="ap_mydetail">
-                        <select name="education" class="ap_inpt2 apply_edu">
-                            <option value="" disabled selected hidden>구분</option>
-                            <option value="고등학교">고등학교</option>
-                            <option value="전문대학">전문대학</option>
-                            <option value="대학교">대학교</option>
-                            <option value="대학원(석사)">대학원(석사)</option>
-                            <option value="대학원(박사)">대학원(박사)</option>
-                        </select>
-                        <input type="text" placeholder="학교명" class="ap_inpt2 apply_shcname">
-                        <input type="text" placeholder="입학년월" class="ap_inpt2 apply_date2">
-                        <span class="from_to">~</span>
-                        <input type="text" placeholder="졸업년월" class="ap_inpt2 apply_date2">
-                        <button class="ap_inpt2 apply_careerbtn">완료</button>
-                    </div>
-                    <div class="cr_noti">
-                        <ul>
-                            <li>학력은 최종학력에서부터 고등학교 순으로, 역순으로 기재해주시기 바랍니다.</li>
-                            <li>
-                                <strong>해당 항목을 모두 기입한 후, 완료버튼을 누르면 다음 항목이 활성화됩니다.</strong>
-                            </li>
-                            <li>입학년월/졸업년월은 YYYY.MM 순서로 입력해 주세요. (예: 1999.01)</li>
-                            <li>복수전공 및 이중전공을 이수하신 분들은 부전공란에 입력해주세요.</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="apply_content">
                     <p>자격/어학 사항</p>
-                    <div class="ap_mydetail">
-                        <select name="education" class="ap_inpt2 apply_certi">
+                    <div class="ap_mydetail ap_certi">
+                        <select name="certSortation" class="ap_inpt apply_certi">
                             <option value="" disabled selected hidden>구분</option>
                             <option value="자격">자격</option>
                             <option value="어학">어학</option>
                         </select>
-                        <input type="text" placeholder="자격/면허종류" class="ap_inpt2 apply_type">
-                        <input type="text" placeholder="등급" class="ap_inpt2 apply_level">
-                        <input type="text" placeholder="취득/응시일" class="ap_inpt2 apply_cdate">
-                        <input type="text" placeholder="발급기관" class="ap_inpt2 apply_auth">
-                        <button class="ap_inpt2 apply_careerbtn">완료</button>
+                        <div class="apply_qualification">
+                            <input type="text" name="certType" placeholder="자격/면허종류" class="ap_inpt apply_type">
+                            <input type="text" name="certLevel" placeholder="등급" class="ap_inpt apply_level">
+                            <input type="text" name="acquisition" placeholder="취득/응시일" class="ap_inpt apply_cdate">
+                            <input type="text" name="lssuingAuthority" placeholder="발급기관" class="ap_inpt apply_auth">
+                            <button class="ap_inpt2 apply_careerbtn">완료</button>
+                        </div>
+                        <div class="apply_language_skill">
+                            <input type="text" name="language" placeholder="언어" class="ap_inpt apply_language">
+                            <input type="text" name="test" placeholder="시험" class="ap_inpt apply_language">
+                            <input type="text" name="certLevel" placeholder="등급" class="ap_inpt apply_level">
+                            <input type="text" name="languageGrade" placeholder="점수" class="ap_inpt apply_langGrade">
+                            <input type="text" name="acquisition" placeholder="취득/응시일" class="ap_inpt apply_cdate">
+                            <input type="text" name="lssuingAuthority" placeholder="발급기관" class="ap_inpt apply_auth">
+                            <button class="ap_inpt2 apply_careerbtn">완료</button>
+                        </div>
                     </div>
                 </div>
                 <div class="apply_content"> <!--여기 for문을 따로 또 줘야되나?-->
@@ -125,36 +162,37 @@
                     <div class="ap_mydetail">
                         <label class="apply_label">자신을 자유롭게 소개해 주세요.</label>
                         <div>
-                            <textarea name="" id="" cols="100" rows="14" class="text_area"></textarea>
+                            <textarea name="content1" id="" cols="100" rows="14" class="text_area"></textarea>
                         </div>
                     </div>
                 </div>
                 <div class="apply_content"> <!--여기 for문을 따로 또 줘야되나?-->
                     <p>첨부자료 <em>필수</em></p>
-                    <label class="apply_label">* 타사의 영업비밀에 해당하거나, 이에 해당될 수 있는 것으로 오해할 수 있는 자료는 경력기술서 또는 포트폴리오에 포함하여서는 안됩니다.</label>
+                    <label class="apply_label">* 타사의 영업비밀에 해당하거나, 이에 해당될 수 있는 것으로 오해할 수 있는 자료는 경력기술서 또는 포트폴리오에 포함하여서는
+                        안됩니다.</label>
                     <div class="ap_mydetail">
-                        <label class="apply_label">포트폴리오 혹은 경력기술서(200MB까지 가능, 대표적인 프로젝트 결과물 PPT, 초과시 작업물 확인 가능한 URL을 PPT에 작성하여 제출)</label>
+                        <label class="apply_label">포트폴리오 혹은 경력기술서(200MB까지 가능, 대표적인 프로젝트 결과물 PPT, 초과시 작업물 확인 가능한 URL을
+                            PPT에 작성하여 제출)</label>
                         <div class="filebox">
-                            <input class="upload-name" value="첨부파일" placeholder="첨부파일">
-                            <label for="file">파일찾기</label> 
-                            <input type="file" id="file">
+                            <input class="upload-name" value="" placeholder="첨부파일">
+                            <label for="file">파일찾기</label>
+                            <input type="file" name="data" id="file">
                         </div>
                     </div>
                 </div>
                 <div class="apply_content" id="apply_inquire">
                     <div>
                         <p>병역사항 <em>필수</em></p>
-                        <select name="military" class="ap_inpt2 apply_mili">
+                        <select name="military" class="ap_inpt apply_mili">
                             <option value="" disabled selected hidden>병역구분</option>
-                            <option value="만기제대">만기제대</option>
+                            <option value="ED">만기제대</option>
                             <option value="제대 기타">제대 기타</option>
-                            <option value="복무중">복무중</option>
-                            <option value="병역특례복무완료">병역특례복무완료</option>
-                            <option value="병역특례 복무 중(전문)">병역특례 복무 중(전문)</option>
-                            <option value="병역특례 복무 중(산업)">병역특례 복무 중(산업)</option>
-                            <option value="군미필">군미필</option>
-                            <option value="면제">면제</option>
-                            <option value="해당없음">해당없음</option>
+                            <option value="IS">복무중</option>
+                            <option value="EM">병역특례복무완료</option>
+                            <option value="SM">병역특례 복무 중</option>
+                            <option value="UM">군미필</option>
+                            <option value="ME">면제</option>
+                            <option value="NONE">해당없음</option>
                         </select>
                     </div>
                     <div>
@@ -164,7 +202,7 @@
                     </div>
                     <div>
                         <p>장애사항 <em>필수</em></p>
-                        <select name="disorder" class="ap_inpt2 apply_disorder">
+                        <select name="disorder" class="ap_inpt apply_disorder">
                             <option value="해당없음">해당없음</option>
                             <option value="일반">일반</option>
                             <option value="산재">산재</option>
@@ -181,5 +219,7 @@
         </div>
     </div>
     <!-- 푸터박을부분 -->
+
+    <script src="javascript/apply.js"></script>
 </body>
 </html>

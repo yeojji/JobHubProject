@@ -8,7 +8,7 @@
 <link href="css/login.css" rel="stylesheet"/>
 </head>
 <body>
-	<!-- 헤더박을부분 -->
+
 	<%@ include file="../header_footer/header.jsp" %>
 	
     <div class="container">
@@ -28,7 +28,7 @@
             </div>
         </div>
     </div>
-    <!-- 푸터박을부분 -->
+    
     <%@ include file="../header_footer/footer.jsp" %>
 </body>
 </html>

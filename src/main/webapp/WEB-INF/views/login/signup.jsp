@@ -8,10 +8,11 @@
 <link href="css/signup.css" rel="stylesheet"/>
 </head>
 <body>
+
+<%@ include file="../header_footer/header.jsp" %>
+
 <div class="signup_title">신규지원자 등록</div>
-    
     <div class="container">
-        
         <div class="signup_main">
             <div class="signup_form">
                 <form action="" method="post">
@@ -121,7 +122,6 @@
             </div>
         </div>
     </div>
-
-    <!-- 푸터박을부분 -->
+    <%@ include file="../header_footer/footer.jsp" %>
 </body>
 </html>

@@ -45,6 +45,9 @@
     border:1px solid black;
     cursor: pointer;
 }
+.margin5px{
+    margin-right: 5px;
+}
 .apply_header_submit{
     width:90px;
     height:40px;
@@ -75,12 +78,24 @@
     font-size: 18px;
 }
 .ap_inpt{
-    margin-right: 5px;
     font-size: 14px;
     height: 38px;
     padding: 0 10px;
     border: 1px solid #b2b2b2;
     line-height: 38px;
+    outline:none;
+}
+.ap_inpt:focus{
+    outline:none;
+    border-color:#2dc26b;
+}
+.ap_inpt2{
+    font-size: 14px;
+    height: 38px;
+    padding: 0 10px;
+    border: 1px solid #b2b2b2;
+    line-height: 38px;
+    outline:none;
 }
 .apply_name{
     width:178px;
@@ -98,19 +113,58 @@
     width:80px;
     padding-left:5px;
 }
+.apply_major{
+    width:78px;
+}
+.apply_minor{
+    width:85px;
+}
+.apply_grade{
+    width:50px;
+}
+.apply_total{
+    margin-left: -7px;
+}
+.apply_date3{
+    width:77px;
+}
+.ap_grade{
+    display: flex;
+    align-items: center;
+}
+.apply_edu_university{
+    margin-left:5px;
+    display: none;
+}
+.apply_edu_highschool{
+    margin-left:5px;
+}
+.ap_certi{
+    display:flex;
+    align-items: center;
+}
+.apply_qualification{
+    margin-left:5px;
+}
+.apply_language_skill{
+    margin-left:5px;
+    display: none;
+}
+.apply_language{
+    width:75px;
+}
+.apply_langGrade{
+    width:60px;
+}
+.apply_grade_status{
+    width:85px;
+}
 .apply_tel{
     width:144px;
 }
 .apply_howfound{
     width:260px;
     padding-left:5px;
-}
-.ap_inpt2{
-    font-size: 14px;
-    height: 38px;
-    padding: 0 10px;
-    border: 1px solid #b2b2b2;
-    line-height: 38px;
 }
 .apply_cname{
     width: 153px;
@@ -135,6 +189,7 @@
     margin-left:8px;
     width:70px;
 }
+
 .text_area{
     display: block;
     overflow-x: hidden;
@@ -164,8 +219,15 @@
     width:131px;
     padding-left:5px;
 }
+.apply_edu2{
+    width:98px;
+    padding-left:5px;
+}
 .apply_date2{
     width:144px;
+}
+.apply_shcname2{
+	width:100px;
 }
 .apply_certi{
     width:80px;
