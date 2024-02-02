@@ -24,4 +24,12 @@ public class CustomerDAOImpl implements CustomerDAO{
 		return customerList;
 	}
 
+	@Override
+	public Customer findLoginCustomer(Customer customer) {
+		// TODO Auto-generated method stub
+		
+		Customer loginCustomer = sqlSessionTemplate.selectOne("user_mapper.findLoginCustomer", customer);
+		return loginCustomer;
+	}
+
 }

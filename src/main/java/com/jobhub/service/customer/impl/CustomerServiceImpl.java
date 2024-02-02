@@ -24,6 +24,14 @@ public class CustomerServiceImpl implements CustomerService {
 		return customerList;
 	}
 
+	@Override
+	public Customer findLoginCustomer(Customer customer) {
+		// TODO Auto-generated method stub
+		
+		Customer loginCustomer = customerDAO.findLoginCustomer(customer);
+		return loginCustomer;
+	}
+
 	
 
 	

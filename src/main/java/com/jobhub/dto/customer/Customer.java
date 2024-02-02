@@ -9,7 +9,7 @@ public class Customer {
 
 	//고객(회원) 정보
 	
-	int userId;
+	String userId;
 	String email;
 	String password;
 	String name;

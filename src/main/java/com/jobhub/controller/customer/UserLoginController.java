@@ -13,10 +13,6 @@ public class UserLoginController {
 	@Autowired
 	CustomerService customerService;
 
-	@GetMapping("/login")
-	public String login() {
-		return "login/login";
-	}
 	
 	@RequestMapping("/sign-up")
 	public String signUp() {
