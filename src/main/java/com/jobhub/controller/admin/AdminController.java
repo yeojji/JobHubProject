@@ -72,10 +72,11 @@ public class AdminController {
 		
 		//로그인 정보 처리
 		session.setAttribute("loginId", loginAdmin.getId()); //로그인한 사용자의 id를 세션에 저장
-		
-		return "redirect:/admin";
+		//log.info("로그인 성공");
+		return "redirect:/admin/adminMain";
 	}
 
+	
 	
 	// 관리자 승인 요청
 	@GetMapping("/adminJoinRequest")

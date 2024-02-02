@@ -6,7 +6,7 @@
 
 
 	<select id="findLoginAdmin" parameterType="Admin" resultType="Admin">
-		SELECT * FROM ADMINISTRATOR WHERE id=#{id} and pw=#{pw} and employee_id=#{employeeId}
+		SELECT * FROM ADMINISTRATOR WHERE admin_id=#{id} and admin_pw=#{pw} and employee_id=#{employeeId}
 	</select>
 	
 	

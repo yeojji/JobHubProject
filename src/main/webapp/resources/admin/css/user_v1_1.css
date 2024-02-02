@@ -777,7 +777,7 @@ body.iframe.mobile #wrap.easiest .gFrame { width:360px; height:720px; margin-top
     .mNav { margin:0 -24px; }
 
     /* headingArea */
-    .headingArea { padding:28px 0; box-sizing:border-box; }
+    .headingArea { padding:100px 0 40px; box-sizing:border-box; }
     .headingArea .cafe24Logo { height:17px; }
 
     /* mLayer */

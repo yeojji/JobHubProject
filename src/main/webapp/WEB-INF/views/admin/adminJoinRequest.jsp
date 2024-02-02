@@ -272,7 +272,8 @@
 -->
 					<div class="headingArea">
 						<h1 class="logo">
-							<a href="https://www.jobhub.com" title="쇼핑몰센터 바로가기"> <!-- <img class="img_logo" src="//img.jobhub.com/images/common/jobhub.svg" alt="jobhub"> -->
+							<a href="https://www.jobhub.com" title="jobhub 바로가기"> <img class="jobhubLogo"
+					src="images/logo_250x35.png" alt="jobhub">
 							</a>
 						</h1>
 					</div>

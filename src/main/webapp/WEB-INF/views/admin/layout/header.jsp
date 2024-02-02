@@ -5,10 +5,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>관리자 페이지</title>
+<title>Jobhub 관리자</title>
 </head>
 <body>
-
-	<h1>관리자 메인</h1>
+	<h1>관리자 header</h1>
 </body>
 </html>

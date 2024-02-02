@@ -18,48 +18,48 @@
 	media="all">
 <link rel="stylesheet" type="text/css" href="css/login_v1_1.css"
 	media="all">
-	
-	
-	
+
+
+
 <!-- 	
 <script type="text/javascript" src="/_scripts/jquery-3.6.1.min.js"></script>
 <script type="text/javascript" src="/_scripts/ui_desktop.js?22032309"></script>
 <script type="text/javascript" src="/_scripts/mall_auth.js?24011709"></script>
  -->
 <script type="text/javascript">
-        var correctCaptcha = function(response) {
-        };
-        var onloadCallback = function() {
-            grecaptcha.render('html_element', {
-                'sitekey' : '6LehBQQTAAAAADqgKwu7R9xDHt3FB8VPiZnk0iK-',
-                'callback' : correctCaptcha,
-                'size': 'normal'
-            });
-        };
-        $(function(){
-            $(document).bind("keydown", function(e) {
-                if ((window.event && event.keyCode === 13) || (e.keyCode === 13)) {
-                    form_check();
-                }
-            });
-        });
-        $(function(){
-            $('.ePasswordClick').click(function(){
-                var passwordInput = $(this).parent().find('.typePassword');
-                if ( passwordInput.attr('type') ==="password" ) {
-                    passwordInput.attr('type', 'text');
-                    $(this).removeClass("off").addClass("on");
-                } else {
-                    passwordInput.attr('type', 'password');
-                    $(this).removeClass("on").addClass("off");
-                }
-            })
-        });
-        function ipBlockLayer(url) {
-            $("#shadow").show();
-            $("#blockFrame").attr('src', url).show();
-        }
-    </script>
+	var correctCaptcha = function(response) {
+	};
+	var onloadCallback = function() {
+		grecaptcha.render('html_element', {
+			'sitekey' : '6LehBQQTAAAAADqgKwu7R9xDHt3FB8VPiZnk0iK-',
+			'callback' : correctCaptcha,
+			'size' : 'normal'
+		});
+	};
+	$(function() {
+		$(document).bind("keydown", function(e) {
+			if ((window.event && event.keyCode === 13) || (e.keyCode === 13)) {
+				form_check();
+			}
+		});
+	});
+	$(function() {
+		$('.ePasswordClick').click(function() {
+			var passwordInput = $(this).parent().find('.typePassword');
+			if (passwordInput.attr('type') === "password") {
+				passwordInput.attr('type', 'text');
+				$(this).removeClass("off").addClass("on");
+			} else {
+				passwordInput.attr('type', 'password');
+				$(this).removeClass("on").addClass("off");
+			}
+		})
+	});
+	function ipBlockLayer(url) {
+		$("#shadow").show();
+		$("#blockFrame").attr('src', url).show();
+	}
+</script>
 
 </head>
 <body>
@@ -104,9 +104,10 @@
 		<!-- 참고: 상단 띠배너 -->
 		<div class="banner">
 			<div class="info">
-				<strong class="title"> 
-				<img src="//img.echosting.jobhub.com/smartAdmin/img/login/ico_logo_ie.png" class="RPI" alt="ie 로고"> <img
-					src="//img.echosting.jobhub.com/smartAdmin/img/login/ico_logo_ie_m.png"
+				<strong class="title"> <img
+					src="images/login/ico_logo_ie.png"
+					class="RPI" alt="ie 로고"> <img
+					src="images/login/ico_logo_ie_m.png"
 					class="RMI" alt="ie 로고"> Internet Explorer 지원 종료
 				</strong>
 				<p class="desc">
@@ -122,26 +123,28 @@
 		<!-- //참고 -->
 
 		<script type="text/javascript">
-        $(function () {
-            var agent = navigator.userAgent.toLowerCase();
+			$(function() {
+				var agent = navigator.userAgent.toLowerCase();
 
-            var obj = $('.banner'),
-                btnClose = obj.find('.btnClose');
+				var obj = $('.banner'), btnClose = obj.find('.btnClose');
 
-            if ( (navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') != -1) || (agent.indexOf("msie") != -1) ) {
-                obj.addClass('active')
-            }
-    
-            btnClose.on('click', function () {
-                obj.removeClass('active')
-            });
-        }());
-    </script>
+				if ((navigator.appName == 'Netscape' && navigator.userAgent
+						.search('Trident') != -1)
+						|| (agent.indexOf("msie") != -1)) {
+					obj.addClass('active')
+				}
+
+				btnClose.on('click', function() {
+					obj.removeClass('active')
+				});
+			}());
+		</script>
 
 		<!-- header -->
 		<header id="header">
 			<h1 class="logo">
-				<a href="#" title="jobhub 관리자 바로가기"> <img class="jobhubLogo" src="../" alt="jobhub">
+				<a href="#" title="jobhub 관리자 바로가기"> <img class="jobhubLogo"
+					src="images/logo_250x35.png" alt="jobhub">
 				</a>
 			</h1>
 		</header>
@@ -152,7 +155,7 @@
 			<section id="contents">
 				<div class="section">
 					<div class="mTab eTab themeSolid"></div>
-					<form name="frm_user" id="frm_user" action="" method="POST">
+					<form name="frm_admin" id="frm_admin" action="" method="POST">
 						<input type="hidden" name="url" id="idUrl" value=""> <input
 							type="hidden" name="login_mode" id="login_mode" value="1">
 						<input type="hidden" id="mobile" name="mobile" value="F">
@@ -172,10 +175,10 @@
 								<!-- 참고: 2차 인증 display 대응을 위한 div -->
 								<div class="mFormBox">
 									<div class="column">
-										<strong class="title">아이디</strong>
+										<strong class="title">관리자 아이디</strong>
 										<div class="gridPosition">
 											<input type="text" class="fText suffix"
-												placeholder="아이디를 입력해 주세요." title="아이디" name="loginId"
+												placeholder="아이디를 입력해 주세요." title="아이디" name="id"
 												id="mall_id" value="" tabindex="1" maxlength="20">
 										</div>
 									</div>
@@ -183,7 +186,7 @@
 										<span class="title">비밀번호</span>
 										<div class="gridPosition">
 											<input type="password" class="fText typePassword"
-												placeholder="비밀번호를 입력해 주세요." title="비밀번호" name="loginPasswd"
+												placeholder="비밀번호를 입력해 주세요." title="비밀번호" name="pw"
 												id="userpasswd" tabindex="3" maxlength="20">
 											<button type="button" class="btnView ePasswordClick off">현시하다</button>
 										</div>
@@ -194,17 +197,13 @@
 								</div>
 							</div>
 							<div class="mButton">
-								<button type="button" class="btnStrong large" tabindex="5"
+								<button type="submit" class="btnStrong large" tabindex="5"
 									onclick="form_check();">로그인</button>
 							</div>
 							<div class="mUtility">
 								<span class="gLeft"><span clas="RPB">관리자가 아니신가요?
-										&nbsp;</span><a
-									href="/admin/adminJoinRequest"
-									class="txtEmLink" target="_blank">계정 생성 요청</a></span> <span
-									class="gRight"> <a
-									href="https://user.jobhub.com/user/echosting/idsearch/"
-									class="txtLink" target="_blank">아이디/비밀번호 찾기</a>
+										&nbsp;</span><a href="/admin/adminJoinRequest" class="txtEmLink">계정 생성 요청</a></span> 
+										<span class="gRight"> <a href="#" class="txtLink" target="_blank">아이디/비밀번호 찾기</a>
 								</span>
 							</div>
 						</div>

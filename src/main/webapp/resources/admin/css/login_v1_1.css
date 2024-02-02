@@ -434,20 +434,6 @@ article, aside, details, figcaption, figure, footer, header, hgroup,
 	font-family: "돋움", Dotum, sans-serif;
 }
 
-.unsupported .today:lang(ja) {
-	font-family: Meiryo, "メイリオ", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",
-		sans-serif;
-	font-weight: 500;
-}
-
-.unsupported .today:lang(vi) {
-	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-
-.unsupported .today:lang(en) {
-	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-
 .unsupported .today .check {
 	width: 17px;
 	height: 17px;
@@ -855,7 +841,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup,
 /* header */
 #header {
 	margin: 0 auto;
-	padding: 28px 0;
+	padding: 100px 0 20px;
 	max-width: 396px;
 }
 
@@ -870,8 +856,8 @@ article, aside, details, figcaption, figure, footer, header, hgroup,
 }
 
 #header .jobhubLogo {
-	width: 145px;
-	height: 28px;
+	width: 250px;
+	height: auto;
 	margin: 8px 28px;
 }
 
@@ -1079,13 +1065,13 @@ article, aside, details, figcaption, figure, footer, header, hgroup,
 
 .btnView.off:after {
 	background:
-		url('//img.echosting.jobhub.com/smartAdmin/img/login/ico_pw_on.png')
+		url('images/login/ico_pw_on.png')
 		no-repeat;
 }
 
 .btnView.on:after {
 	background:
-		url('//img.echosting.jobhub.com/smartAdmin/img/login/ico_pw_off.png')
+		url('images/login/ico_pw_off.png')
 		no-repeat;
 }
 
@@ -1135,17 +1121,17 @@ article, aside, details, figcaption, figure, footer, header, hgroup,
 
 .icoFacebook {
 	background-image:
-		url('//img.echosting.jobhub.com/smartAdmin/img/login/ico_logo_facebook.png');
+		url('images/login/ico_logo_facebook.png');
 }
 
 .icoGoogle {
 	background-image:
-		url('//img.echosting.jobhub.com/smartAdmin/img/login/ico_logo_google.png');
+		url('images/login/ico_logo_google.png');
 }
 
 .icoLine {
 	background-image:
-		url('//img.echosting.jobhub.com/smartAdmin/img/login/ico_logo_line.png');
+		url('images/login/ico_logo_line.png');
 }
 
 .icoStatus {
@@ -2354,7 +2340,7 @@ ul.txtInfo li li:before, ol.txtInfo li li:before {
 		width: 13px;
 	}
 	#header .jobhubLogo {
-		width: 104px;
+		width: 200px;
 	}
 
 	/* mSnsJoin */
