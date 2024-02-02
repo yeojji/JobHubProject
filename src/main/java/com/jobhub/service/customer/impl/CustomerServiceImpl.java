@@ -20,7 +20,6 @@ public class CustomerServiceImpl implements CustomerService {
 		// TODO Auto-generated method stub
 		List<Customer> customerList = customerDAO.findCustomerList();
 		
-		
 		return customerList;
 	}
 
@@ -35,4 +34,10 @@ public class CustomerServiceImpl implements CustomerService {
 	
 
 	
+
+	public int saveUser(Customer customer) {
+		// TODO Auto-generated method stub
+		int result = customerDAO.saveUser(customer);
+		return result;
+	}
 }
