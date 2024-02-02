@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.jobhub.dao.admin.AdminDAO;
 import com.jobhub.dto.admin.Admin;
+import com.jobhub.dto.admin.AdminProfile;
 import com.jobhub.dto.admin.AdminSearchCondition;
 import com.jobhub.dto.employee.Employee;
 import com.jobhub.dto.employee.EmployeeProfile;
@@ -35,6 +36,13 @@ public class AdminDAOImpl implements AdminDAO {
 		int result = sqlSessionTemplate.insert("admin_mapper.saveAdmin", admin);
 		return result;
 	}
+	
+	@Override
+	public int saveAdminProfile(AdminProfile adminProfile) {
+		//DB에 Admin 저장
+		int result = sqlSessionTemplate.insert("admin_mapper.saveAdmin", adminProfile);
+		return result;
+	}
 
 	@Override
 	public List<Admin> findAdminList() {
@@ -50,8 +58,8 @@ public class AdminDAOImpl implements AdminDAO {
 
 	@Override
 	public List<Admin> findAdminListBySearchCondition(AdminSearchCondition adminSearchCondition) {
-		List<Admin> adminList = sqlSessionTemplate.selectList("admin_mapper.findAdminListBySearchCondition");
-		return adminList;
+	    List<Admin> adminList = sqlSessionTemplate.selectList("admin_mapper.findAdminListBySearchCondition", adminSearchCondition);
+	    return adminList;
 	}
 
 	
@@ -70,8 +78,8 @@ public class AdminDAOImpl implements AdminDAO {
 
 	@Override
 	public List<EmployeeProfile> findEmployeeProfileByName(String name) {
-		List<EmployeeProfile> employeeProfileList = sqlSessionTemplate.selectList("admin_mapper.findEmployeeProfileByName");
-		return employeeProfileList;
+	    List<EmployeeProfile> employeeProfileList = sqlSessionTemplate.selectList("admin_mapper.findEmployeeProfileByName", name);
+	    return employeeProfileList;
 	}
 
 	@Override

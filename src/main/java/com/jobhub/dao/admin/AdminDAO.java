@@ -3,6 +3,7 @@ package com.jobhub.dao.admin;
 import java.util.List;
 
 import com.jobhub.dto.admin.Admin;
+import com.jobhub.dto.admin.AdminProfile;
 import com.jobhub.dto.admin.AdminSearchCondition;
 import com.jobhub.dto.employee.Employee;
 import com.jobhub.dto.employee.EmployeeProfile;
@@ -13,6 +14,8 @@ public interface AdminDAO {
 	public Admin findLoginAdmin(Admin admin);
 	
 	public int saveAdmin(Admin admin);
+	
+	public int saveAdminProfile(AdminProfile adminProfile);
 	
 	public List<Admin> findAdminList();
 	

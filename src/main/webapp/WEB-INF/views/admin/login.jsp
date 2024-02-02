@@ -14,9 +14,9 @@
 <meta property="og:description" content="Jobhub 관리자 로그인 바로가기">
 <meta property="og:type" content="website">
 <title>관리자 로그인 - Jobhub</title>
-<link rel="stylesheet" type="text/css" href="admin/css/notosans.css"
+<link rel="stylesheet" type="text/css" href="css/notosans.css"
 	media="all">
-<link rel="stylesheet" type="text/css" href="admin/css/login_v1_1.css"
+<link rel="stylesheet" type="text/css" href="css/login_v1_1.css"
 	media="all">
 	
 	
@@ -104,9 +104,8 @@
 		<!-- 참고: 상단 띠배너 -->
 		<div class="banner">
 			<div class="info">
-				<strong class="title"> <img
-					src="//img.echosting.jobhub.com/smartAdmin/img/login/ico_logo_ie.png"
-					class="RPI" alt="ie 로고"> <img
+				<strong class="title"> 
+				<img src="//img.echosting.jobhub.com/smartAdmin/img/login/ico_logo_ie.png" class="RPI" alt="ie 로고"> <img
 					src="//img.echosting.jobhub.com/smartAdmin/img/login/ico_logo_ie_m.png"
 					class="RMI" alt="ie 로고"> Internet Explorer 지원 종료
 				</strong>
@@ -142,7 +141,7 @@
 		<!-- header -->
 		<header id="header">
 			<h1 class="logo">
-				<a href="#" title="jobhub 관리자 바로가기"> <!-- <img class="jobhubLogo" src="../" alt="jobhub"> -->
+				<a href="#" title="jobhub 관리자 바로가기"> <img class="jobhubLogo" src="../" alt="jobhub">
 				</a>
 			</h1>
 		</header>
