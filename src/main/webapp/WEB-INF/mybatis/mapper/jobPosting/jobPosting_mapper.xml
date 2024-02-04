@@ -6,16 +6,64 @@
 <mapper namespace="jobPosting_mapper">
 
 	<select id="findJobList" resultType="Job">
-		SELECT * FROM jobs
+		
+		select * from jobs
+		
+		
 	</select>
 	
-	<!-- <insert id="saveJobPosting" parameterType="">
-		insert into jobs_posting values
-		('posting'||seq_posting_id.nextVal , #{jobPostingTitle} , #{jobName} , #{}
-	</insert>
-	 -->
-	 
-	 
+
+	 <select id="findJobNameListbyPid" resultType="Job" parameterType="Job">
+		SELECT * FROM jobs
+		where jobsPid = #{jobItem.jobsId} 무  jobsLevel = 2;
+	</select>
 	
+	<select id="cateList" resultType="Job">
+  	
+  		select * from jobs
+  	
+  	</select>
+	
+	
+<insert id="saveJobposting" parameterType="Jobposting">
+	insert into job_posting values
+	('posting'||seq_posting_id.nextVal ,
+	#{title} ,
+	#{jobLevel2} ,
+	#{careerCondition},
+	#{employmentType} ,
+	sysdate,
+	#{postStartDate} ,
+	#{postEndDate} ,
+	#{applicationStart} ,
+	#{applicationDeadline} ,
+	#{postStatus} ,
+	sysdate,
+	'admiinId',
+	#{question1} ,
+	#{question2} ,
+	#{question3} )
+</insert>
+
+<insert id="saveDescription" parameterType="Description">
+	insert into Description values
+	('desc'||seq_posting_id.nextVal ,
+	'posting'||seq_posting_id.nextVal ,
+	sysdate ,
+	#{assignedTask},
+	#{requirements} ,
+	#{preferentialTreatment} ,
+	#{screeningGuide} ,
+	#{workForm} ,
+	#{workPlace} ,
+	#{workingHours} ,
+	#{etc} ,
+	#{submissionGuide} )
+</insert>
+
+
+
+
+
 	
 </mapper>

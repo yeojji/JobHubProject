@@ -13,6 +13,8 @@
 	
 	<typeAliases>
 		<typeAlias type="com.jobhub.dto.jobposting.Job" alias="Job"/>
+		<typeAlias type="com.jobhub.dto.jobposting.Jobposting" alias="Jobposting"/>
+		<typeAlias type="com.jobhub.dto.jobposting.Description" alias="Description"/>
 	</typeAliases>
 
 

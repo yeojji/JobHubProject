@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jobhub.dao.jobposting.JobpostingDAO;
+import com.jobhub.dto.jobposting.Description;
 import com.jobhub.dto.jobposting.Job;
+import com.jobhub.dto.jobposting.Jobposting;
 import com.jobhub.service.jobposting.JobpostingService;
 
 @Service
@@ -14,17 +16,40 @@ public class JobpostingServiceImpl implements JobpostingService {
 
 	
 	@Autowired
-	JobpostingDAO jobPostingDAO;
+	JobpostingDAO jobpostingDAO;
 	
 	@Override
 	public List<Job> findJobList(){
 		
-		List<Job> jobList = jobPostingDAO.findJobList();
+		List<Job> jobList = jobpostingDAO.findJobList();
 		
 		return jobList;
-	
 	}
 	
+	public List<Job> findJobNameListbyPid(int jobsId){
+		List<Job> jobNameList = jobpostingDAO.findJobNameListbyPid();
+		return jobNameList;
+	}
+	
+	/* 카테고리 리스트 */
+	/*
+	 * @Override public List<Job> cateList() {
+	 * 
+	 * List<Job> cateList = jobPostingDAO.cateList();
+	 * 
+	 * return cateList; }
+	 */
 
+	
+	public int saveJobposting(Jobposting jobposting) {	//잡포스팅 저장
+		int result = jobpostingDAO.saveJobposting(jobposting);
+		return result;
+	}
+	
+	public int saveDescription(Description description) {	//잡포스팅 저장
+		int result = jobpostingDAO.saveDescription(description);
+		return result;
+	}
+	
 }
 
