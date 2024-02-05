@@ -2,68 +2,74 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 					"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-					
+
 <mapper namespace="jobPosting_mapper">
 
 	<select id="findJobList" resultType="Job">
-		
+
 		select * from jobs
-		
-		
-	</select>
-	
 
-	 <select id="findJobNameListbyPid" resultType="Job" parameterType="Job">
+
+	</select>
+
+
+	<select id="findJobNameListbyPid" resultType="Job"
+		parameterType="int">
 		SELECT * FROM jobs
-		where jobsPid = #{jobItem.jobsId} 무  jobsLevel = 2;
+		WHERE jobsPid = #{jobLevel1} AND jobsLevel = 2;
 	</select>
-	
+
+
 	<select id="cateList" resultType="Job">
-  	
-  		select * from jobs
-  	
-  	</select>
-	
-	
-<insert id="saveJobposting" parameterType="Jobposting">
-	insert into job_posting values
-	('posting'||seq_posting_id.nextVal ,
-	#{title} ,
-	#{jobLevel2} ,
-	#{careerCondition},
-	#{employmentType} ,
-	sysdate,
-	#{postStartDate} ,
-	#{postEndDate} ,
-	#{applicationStart} ,
-	#{applicationDeadline} ,
-	#{postStatus} ,
-	sysdate,
-	'admiinId',
-	#{question1} ,
-	#{question2} ,
-	#{question3} )
-</insert>
 
-<insert id="saveDescription" parameterType="Description">
-	insert into Description values
-	('desc'||seq_posting_id.nextVal ,
-	'posting'||seq_posting_id.nextVal ,
-	sysdate ,
-	#{assignedTask},
-	#{requirements} ,
-	#{preferentialTreatment} ,
-	#{screeningGuide} ,
-	#{workForm} ,
-	#{workPlace} ,
-	#{workingHours} ,
-	#{etc} ,
-	#{submissionGuide} )
-</insert>
+		select * from jobs
+
+	</select>
 
 
+	<insert id="saveJobposting" parameterType="Jobposting">
+		insert into job_posting values
+		(#{postingId} ,
+		#{title} ,
+		#{jobLevel2} ,
+		#{careerCondition},
+		#{employmentType} ,
+		sysdate,
+		#{postStartDate} ,
+		#{postEndDate} ,
+		#{applicationStart} ,
+		#{applicationDeadline} ,
+		#{postStatus} ,
+		sysdate,
+		'admiinId',
+		#{question1} ,
+		#{question2} ,
+		#{question3} )
+	</insert>
+
+	<insert id="saveDescription" parameterType="Description">
+		insert into Description values
+		('desc'||seq_description_id.nextVal ,
+		#{postingId},
+		sysdate ,
+		#{assignedTask},
+		#{requirements} ,
+		#{preferentialTreatment} ,
+		#{screeningGuide} ,
+		#{workForm} ,
+		#{workPlace} ,
+		#{workingHours} ,
+		#{etc} ,
+		#{submissionGuide} )
+	</insert>
+
+	<select id="findJobpostingId" resultType="String">
+		select 'posting'||seq_posting_id.nextVal from dual
+	</select>
 
 
 
-	
+
+
+
 </mapper>

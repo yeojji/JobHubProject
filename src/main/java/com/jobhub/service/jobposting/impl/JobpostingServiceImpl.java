@@ -26,8 +26,8 @@ public class JobpostingServiceImpl implements JobpostingService {
 		return jobList;
 	}
 	
-	public List<Job> findJobNameListbyPid(int jobsId){
-		List<Job> jobNameList = jobpostingDAO.findJobNameListbyPid();
+	public List<Job> findJobNameListbyPid(int jobLevel1){
+		List<Job> jobNameList = jobpostingDAO.findJobNameListbyPid(jobLevel1);
 		return jobNameList;
 	}
 	

@@ -13,7 +13,7 @@ public interface JobpostingService {
 	
 	public List<Job> findJobList();
 	
-	public List<Job> findJobNameListbyPid(int jobsId);
+	public List<Job> findJobNameListbyPid(int jobLevel1);
 	
 	/* public List<Job> cateList(); */
 	

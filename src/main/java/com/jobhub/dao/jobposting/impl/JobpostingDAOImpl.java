@@ -16,33 +16,31 @@ public class JobpostingDAOImpl implements JobpostingDAO {
 
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;
-	
-	public List<Job> findJobList(){
+
+	public List<Job> findJobList() {
 		List<Job> jobList = sqlSessionTemplate.selectList("jobPosting_mapper.findJobList");
 		return jobList;
 	}
-	
-	public List<Job> findJobNameListbyPid(){
+
+	public List<Job> findJobNameListbyPid(int jobLevel1) {
 		List<Job> jobNameList = sqlSessionTemplate.selectList("jobPosting_mapper.findJobNameListbyPid");
 		return jobNameList;
 	}
+
 	
-	
-	public List<Job> cateList(){
-		List<Job> cateList = sqlSessionTemplate.selectList("jobPosting_mapper.cateList");
-		return cateList;
-	}
-	
+	  public List<Job> cateList(){ 
+		  List<Job> cateList = sqlSessionTemplate.selectList("jobPosting_mapper.cateList"); return cateList;
+	  }
+	 
+
 	public int saveJobposting(Jobposting jobposting) {
-		int result = sqlSessionTemplate.insert("jobPosting_mapper.saveJobposting",jobposting);
+		int result = sqlSessionTemplate.insert("jobPosting_mapper.saveJobposting", jobposting);
 		return result;
 	}
-	
+
 	public int saveDescription(Description description) {
-		int result = sqlSessionTemplate.insert("jobPosting_mapper.saveDescription",description);
+		int result = sqlSessionTemplate.insert("jobPosting_mapper.saveDescription", description);
 		return result;
 	}
-	
-	
-	
+
 }

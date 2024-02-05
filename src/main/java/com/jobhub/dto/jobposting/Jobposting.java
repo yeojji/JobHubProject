@@ -25,7 +25,7 @@ public class Jobposting {
 	String question2;	
 	String question3;	
 	
-	
-	String jobLevel2;
+	int jobLevel1;
+	int jobLevel2;
 	
 }

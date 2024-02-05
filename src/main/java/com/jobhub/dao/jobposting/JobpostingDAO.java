@@ -10,7 +10,7 @@ public interface JobpostingDAO {
 
 	public List<Job> findJobList();
 	
-	public List<Job> findJobNameListbyPid();
+	public List<Job> findJobNameListbyPid(int jobLevel1);
 	
 	public List<Job> cateList();
 	
