@@ -9,13 +9,15 @@
 </head>
 <body>
 	<!-- 헤더박을부분 -->
+	<%@ include file="../header_footer/header.jsp" %>
+	
     <div class="container">
         <div class="content">
             <div class="login_form">
                 <h2 class="login_title">로그인</h2>
-                <form>
-                    <div class="login_id"><input type="text" class="login_input log_id" placeholder="아이디" autofocus></div>
-                    <div class="login_pw"><input type="password" class="login_input" placeholder="비밀번호"></div>
+                <form method="post">
+                    <div class="login_id"><input type="text" class="login_input log_id" placeholder="아이디" autofocus name="userId"></div>
+                    <div class="login_pw"><input type="password" class="login_input" placeholder="비밀번호" name="password"></div>
                     <button type="submit" class="login_btn">로그인</button>
                 </form>
             </div>
@@ -27,5 +29,6 @@
         </div>
     </div>
     <!-- 푸터박을부분 -->
+    <%@ include file="../header_footer/footer.jsp" %>
 </body>
 </html>

@@ -1,21 +1,22 @@
-<!--header.html-->
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>헤더</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" 
     integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="  
     crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="css/header.css">
 </head>
 <body>
     <header>
         <div class="header_menu">
             <div class="header_menu1">
                 <div class="header_title">
-                    <div class="">LINE CAREER</div>
+                    <div class="company_title">Job Hub</div>
                 </div>
                 <div class="header_menu1_list">
                     <div class="header_menu1_list_item">People</div>
@@ -41,6 +42,5 @@
 
 
     </header>
-
 </body>
 </html>
