@@ -2,19 +2,19 @@ package com.jobhub.dto.resume;
 
 import org.springframework.web.multipart.MultipartFile;
 
-public class Resume {
+public class ResumeApplyForm {
 	//이력서 관련 내용
 	String supportPath;
 	
 	String eduSortation;	//학력사항 구분
-	String schoolName;		//학교명
-	String admission;		//입학년도
-	String graduation;		//졸업년도
+	String[] inputschoolName;		//학교명   //서울대학교   동서울대학교    남서울대학교    서서울대하교
+	String[] admission;		//입학년도
+	String[] graduation;		//졸업년도
 	String major;			//전공
 	String minor;			//부전공
 	String grade;			//평점
 	String totalScore;		//총점
-	String graduationStatus;	//졸업상태
+	String[] graduationStatus;	//졸업상태
 	
 	String companyName;		//회사명
 	String departmentName;	//부서명

@@ -227,7 +227,7 @@
     width:144px;
 }
 .apply_shcname2{
-	width:100px;
+    width:100px;
 }
 .apply_certi{
     width:80px;
@@ -307,4 +307,22 @@ hr{
     height:60px;
     margin-left: 20px;
     font-size: 18px;
+}
+.eduinput{
+    display:none;
+    flex-direction: column;
+    margin-top: 5px;
+}
+#edu_major,
+#edu_minor,
+#edu_grade,
+#edu_date,
+#edu_state,
+#edu_remove
+{
+    margin-left: 20px;
+}
+#edu_info{
+    display: flex;
+    margin-top:5px;
 }

@@ -12,7 +12,7 @@
 </head>
 <body>
 	<!-- 헤더박을부분 -->
-  <div class="apply_title">지원서 작성하기</div>
+    <div class="apply_title">지원서 작성하기</div>
     <div class="container">
         <div class="apply_header">
             <div class="apply_header_title">2024 LINE ADS AI/ML Internship</div>
@@ -23,7 +23,7 @@
             </div>
         </div>
         <div class="apply_main">
-            <form action="" method="post">
+            <form action="">
                 <div class="apply_content">
                     <p>기본 인적사항 <em>필수</em></p>
                     <div>
@@ -49,6 +49,8 @@
                 </div>
                 <div class="apply_content">
                     <p>학력사항 <em>필수</em></p>
+                    <div class="eduinput">
+                    </div>
                     <div class="ap_mydetail ap_grade">
                         <select name="eduSortation" class="ap_inpt apply_edu">
                             <option value="" disabled selected hidden>구분</option>
@@ -59,23 +61,23 @@
                             <option value="대학원(박사)">대학원(박사)</option>
                         </select>
                         <div class="apply_edu_highschool">
-                            <input type="text" name="schoolName" placeholder="학교명" class="ap_inpt apply_shcname">
-                            <input type="text" name="admission" placeholder="입학년월" class="ap_inpt apply_date2">
+                            <input type="text" placeholder="학교명" class="ap_inpt apply_shcname" id="highName">
+                            <input type="text" name="admission[]" placeholder="입학년월" class="ap_inpt apply_date2" id="high_admis">
                             <span class="from_to">~</span>
-                            <input type="text" name="graduation" placeholder="졸업년월" class="ap_inpt apply_date2">
-                            <button class="ap_inpt2 apply_careerbtn">완료</button>
+                            <input type="text" name="graduation[]" placeholder="졸업년월" class="ap_inpt apply_date2" id="high_grad">
+                            <button type="button" class="ap_inpt2 apply_careerbtn" name="edu">완료</button>
+                            <input type="hidden" name="schoolName[]">
                         </div>
                         <div class="apply_edu_university">
-                            <input type="text" name="schoolName" placeholder="학교명" class="apply_shcname2 ap_inpt">
-                            <input type="text" name="major" placeholder="전공" class="apply_major ap_inpt">
-                            <input type="text" name="minor" placeholder="세부전공" class="apply_major ap_inpt">
-                            <input type="text" name="grade" placeholder="평점" class="apply_grade ap_inpt">
-                            <input type="text" name="totalScore" placeholder="총점"
-                                class="apply_grade apply_total ap_inpt">
-                            <input type="text" name="admission" placeholder="입학년월" class="ap_inpt apply_date3">
+                            <input type="text" name="schoolName[]" placeholder="학교명" class="apply_shcname2 ap_inpt" id="uniName">
+                            <input type="text" name="major[]" placeholder="전공" class="apply_major ap_inpt" id="uni_major">
+                            <input type="text" name="minor[]" placeholder="(세)부전공" class="apply_major ap_inpt" id="uni_minor">
+                            <input type="text" name="grade[]" placeholder="평점" class="apply_grade ap_inpt" id="uni_grade">
+                            <input type="text" name="totalScore[]" placeholder="총점" class="apply_grade apply_total ap_inpt" id="uni_total">
+                            <input type="text" name="admission[]" placeholder="입학년월" class="ap_inpt apply_date3" id="uni_admis">
                             <span class="from_to">~</span>
-                            <input type="text" name="graduation" placeholder="졸업년월" class="ap_inpt apply_date3">
-                            <select name="graduationStatus" class="ap_inpt apply_grade_status">
+                            <input type="text" name="graduation[]" placeholder="졸업년월" class="ap_inpt apply_date3" id="uni_grad">
+                            <select name="graduationStatus[]" class="ap_inpt apply_grade_status" id="uni_state">
                                 <option value="졸업">졸업</option>
                                 <option value="졸업예정">졸업예정</option>
                                 <option value="휴학">휴학</option>
@@ -83,7 +85,7 @@
                                 <option value="수료">수료</option>
                                 <option value="중퇴/자퇴">중퇴/자퇴</option>
                             </select>
-                            <button class="ap_inpt2 apply_careerbtn">완료</button>
+                            <button type="button" class="ap_inpt2 apply_careerbtn" name="edu">완료</button>
                         </div>
                     </div>
                     <div class="cr_noti">
@@ -198,7 +200,7 @@
                     <div>
                         <p>보훈대상 여부 <em>필수</em></p>
                         <input type="radio" name="veternas" value="대상">대상
-                        <input type="radio" name="veternas" value="비대상">비대상
+                        <input type="radio" name="veternas" value="비대상" checked>비대상
                     </div>
                     <div>
                         <p>장애사항 <em>필수</em></p>

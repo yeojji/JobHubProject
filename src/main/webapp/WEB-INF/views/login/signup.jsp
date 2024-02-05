@@ -11,6 +11,8 @@
 
 <%@ include file="../header_footer/header.jsp" %>
 
+
+
 <div class="signup_title">신규지원자 등록</div>
     <div class="container">
         <div class="signup_main">
@@ -43,7 +45,8 @@
                     <div class="form_group">
                         <div class="form_line">
                             <label for="signup_input_birth" class="signup_label">생년월일</label>
-                            <input type="text" name="birth" class="signup_input" id="signup_input_birth" placeholder="YYYY-MM-DD">
+                            <input type="text" name="birth" class="signup_input" id="signup_input_birth" placeholder="YYYY-MM-DD" maxlength="10" oninput="onInputHandler()">
+                            <span class="warning">잘못된 생년월일 형식입니다. 생년월일을 정확하게 입력해주세요.</span>
                         </div>
                         <div class="form_line3">
                             <label class="form_gender">
@@ -59,13 +62,13 @@
                     <div class="form_group">
                         <div class="form_line">
                             <label for="signup_input_email" class="signup_label">이메일</label>
-                            <input type="email" name="email" class="signup_input" id="signup_input_email" placeholder="이메일을 입력해 주세요">
+                            <input type="email" name="email" class="signup_input" id="signup_input_email" placeholder="이메일을 입력해 주세요" pattern="[a-zA-Z0-9]+[@][a-zA-Z0-9]+[.]+[a-zA-Z]+[.]*[a-zA-Z]*">
                         </div>
                     </div>
                     <div class="form_group">
                         <div class="form_line">
                             <label for="signup_input_tel" class="signup_label">휴대폰 번호</label>
-                            <input type="tel" name="phone" class="signup_input" id="signup_input_tel" placeholder="000-0000-0000">
+                            <input type="text" name="phone" class="signup_input" id="signup_input_tel" placeholder="000-0000-0000"  oninput="autoHyphen2(this)" maxlength="13">
                         </div>
                     </div>
                     <div class="signup_submit">
@@ -115,13 +118,14 @@
                                     <p>개인정보 수집 이용에 동의하지 않으실 수 있으며, 동의하지 않는 경우 지원자 등록이 제한됩니다.</p>
                                 </div>
                             </div>
-                            <button type="submit" class="signup_btn">등록하기</button>
+                            <button type="submit" class="signup_btn" onclick="pw()">등록하기</button>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
-    </div>
+	</div>
+	<script type="text/javascript" src="javascript/signup.js" ></script> 
     <%@ include file="../header_footer/footer.jsp" %>
 </body>
 </html>
