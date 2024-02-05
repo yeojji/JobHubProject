@@ -75,46 +75,7 @@ public class JobpostingController {
 		}
 	}
 
-
-
-
-
-
-	/*
-	 * @RequestMapping("/jobs") public String jobsList(Model model) {
-	 * 
-	 * List<Job> cateList = jobpostingService.cateList(); //카테고리 여기 ObjectMapper
-	 * objm = new ObjectMapper(); String result = objm.writeValueAsString(cateList);
-	 * model.addAttribute("cateList" , cateList);
-	 * 
-	 * return "/jobPosting/posting";
-	 * 
-	 * }
-	 */
-
-	/*
-	 * @ResponseBody
-	 * 
-	 * @RequestMapping("/jobList") public String jobNameList(@RequestBody Job job){
-	 * 
-	 * 
-	 * return jobNameList(job); }
-	 */
-
-
-	/*
-	 * @ResponseBody
-	 * 
-	 * @RequestMapping("/jobnameByPid") public List<Job>
-	 * findJobNameListbyPid(@RequestBody String jobLevel1, Model model){
-	 * 
-	 * List<Job> jobNameList = jobpostingService.findJobNameListbyPid(jobLevel1);
-	 * 
-	 * model.addAttribute("jobNameList" , jobNameList);
-	 * 
-	 * return jobNameList ; }
-	 */
-
+	//ajax
 	@ResponseBody
 	@PostMapping("/jobnameByPid")
 	public List<Job> findJobNameListbyPid(@RequestParam int jobLevel1, Model model) {

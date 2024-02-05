@@ -6,26 +6,14 @@
 <mapper namespace="jobPosting_mapper">
 
 	<select id="findJobList" resultType="Job">
-
 		select * from jobs
-
-
 	</select>
 
 
-	<select id="findJobNameListbyPid" resultType="Job"
-		parameterType="int">
+	<select id="findJobNameListbyPid" resultType="Job" parameterType="int">
 		SELECT * FROM jobs
-		WHERE jobsPid = #{jobLevel1} AND jobsLevel = 2;
+		WHERE jobs_Pid = #{jobLevel1} AND jobs_Level = 2
 	</select>
-
-
-	<select id="cateList" resultType="Job">
-
-		select * from jobs
-
-	</select>
-
 
 	<insert id="saveJobposting" parameterType="Jobposting">
 		insert into job_posting values

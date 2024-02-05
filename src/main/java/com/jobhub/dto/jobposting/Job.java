@@ -11,7 +11,4 @@ public class Job {
 	String jobType;
 	int jobsLevel;
 	int jobsPid;
-	
-	
-
 }

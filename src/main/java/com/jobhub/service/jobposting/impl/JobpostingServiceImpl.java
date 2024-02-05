@@ -31,16 +31,6 @@ public class JobpostingServiceImpl implements JobpostingService {
 		return jobNameList;
 	}
 	
-	/* 카테고리 리스트 */
-	/*
-	 * @Override public List<Job> cateList() {
-	 * 
-	 * List<Job> cateList = jobPostingDAO.cateList();
-	 * 
-	 * return cateList; }
-	 */
-
-	
 	public int saveJobposting(Jobposting jobposting) {	//잡포스팅 저장
 		int result = jobpostingDAO.saveJobposting(jobposting);
 		return result;

@@ -15,8 +15,6 @@ public interface JobpostingService {
 	
 	public List<Job> findJobNameListbyPid(int jobLevel1);
 	
-	/* public List<Job> cateList(); */
-	
 	public int saveJobposting(Jobposting jobposting);
 	
 	public int saveDescription(Description description);
