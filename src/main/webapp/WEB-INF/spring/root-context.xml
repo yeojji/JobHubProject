@@ -2,8 +2,6 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-<<<<<<< HEAD
-	
 	<!-- 
 	<bean id="userDAO" class="com.rsrvapp.dao.user.impl.UserDAOImpl"></bean>
 	
@@ -13,10 +11,6 @@
 	</bean>  -->
 	
 	<bean class="org.apache.commons.dbcp2.BasicDataSource" id="data_source">
-=======
-
-<bean class="org.apache.commons.dbcp2.BasicDataSource" id="data_source">
->>>>>>> ffdcc66765165024d42f28b8f9ad53f91f0ec68a
 		<property name="driverClassName" value="oracle.jdbc.OracleDriver" />
 		<property name="url" value="jdbc:oracle:thin:@localhost:1521:orcl" />
 		<property name="username" value="scott" />
@@ -30,15 +24,7 @@
 	</bean>
 	
 	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
-<<<<<<< HEAD
-		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory" />
-	</bean>
-	
-</beans>
-=======
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/>
 	</bean>
 
-
 </beans>
->>>>>>> ffdcc66765165024d42f28b8f9ad53f91f0ec68a
