@@ -9,9 +9,9 @@
 </head>
 <body>
 	<!-- 관리자 sidebar menu -->
-	<div class="sidebar_menu_wrap">
+	<div id="sidebar_menu" class="sidebar_menu_wrap">
 		<h3 class="jobhub_logo">
-			<a href=""><span class="hidden">Jobhub</span></a>
+			<a href=""><h3 class="hidden">Jobhub</h3></a>
 		</h3>
 		<div class="sidebar_menu_content">
 			<!-- 조회 section -->
