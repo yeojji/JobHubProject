@@ -28,4 +28,7 @@ public class Jobposting {
 	int jobLevel1;
 	int jobLevel2;
 	
+	String jobsCateName;
+	String jobsItemName;
+	
 }

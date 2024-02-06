@@ -13,11 +13,21 @@ public interface JobpostingService {
 	
 	public List<Job> findJobList();
 	
+	public List<Jobposting> findJobpostingList();
+	
 	public List<Job> findJobNameListbyPid(int jobLevel1);
 	
 	public int saveJobposting(Jobposting jobposting);
 	
 	public int saveDescription(Description description);
 	
+	public Jobposting findPostingBypostingId(String postingId);
+	
+	public Description findDescriptionBypostingId(String postingId);
+	
+	public int modifyJobposting(Jobposting jobposting);
+	
+	public int modifyDescription(Description description);
+
 	
 }

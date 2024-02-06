@@ -37,6 +37,7 @@
 					</c:when>
 				</c:choose>
 			</c:forEach>
+			<option>직무를 선택하세요.</option>
 		</select> 
 		
 		<br> 
@@ -93,38 +94,50 @@
 		
 
 		<br> <label>담당업무</label> <br>
-		<textarea name="assignedTask"></textarea>
+		<textarea name="assignedTask" required></textarea>
 
 		<br> <label>자격요건</label> <br>
-		<textarea name="requirements"></textarea>
+		<textarea name="requirements" required></textarea>
 
 		<br> <label>우대사항</label> <br>
-		<textarea name="preferentialTreatment"></textarea>
+		<textarea name="preferentialTreatment" required></textarea>
 
 		<br> <label>전형안내</label> <br>
-		<textarea name="screeningGuide"></textarea>
+		<textarea name="screeningGuide" required></textarea>
 
 		<br> <label>근무형태</label> <br>
-		<textarea name="workForm"></textarea>
+		<textarea name="workForm" required></textarea>
 
 		<br> <label>근무지</label> <br>
-		<textarea name="workPlace"></textarea>
+		<textarea name="workPlace" required></textarea>
 
 		<br> <label>근무시간</label> <br>
-		<textarea name="workingHours"></textarea>
+		<textarea name="workingHours" required></textarea>
 
 		<br> <label>기타</label> <br>
-		<textarea name="etc"></textarea>
+		<textarea name="etc" required></textarea>
 
 		<br> <label>보훈 취업지원 대상 및 장애인 서류 제출 안내 </label> <br>
-		<textarea name="submissionGuide">여기는 정해진 값이 있어서 그거로 고정하자 ~</textarea>
-
+		<textarea name="submissionGuide" required>여기는 정해진 값이 있어서 그거로 고정하자 ~</textarea>
+		
 		<button type="submit">저장</button>
 
+	
 	</form>
 
 	</div>
 <script>
+
+/* function save() {
+    if (confirm('저장하시겠습니까?')) {
+    	alert('저장되었습니다!');
+    	
+    	 window.location.href = 'jobpostingMain';
+    }
+} */
+
+
+
 	
 $(document).ready(function(){
 	
@@ -137,7 +150,6 @@ $(document).ready(function(){
     	console.log('select chagned');
     	jobLevel1 = $(this).val();
     	console.log(jobLevel1);
-
     	
         if (jobLevel1 != "") {
             jQuery.ajax({
@@ -156,6 +168,7 @@ $(document).ready(function(){
                     $.each(jobNameList, function (index, job) {	 //index, Object
                         console.log(index); // 콘솔에 각각의 키와 값이 제대로 나오는지 확인
                         console.log(job); // 콘솔에 각각의 키와 값이 제대로 나오는지 확인
+                        //index: 현재 요소의 인덱스(걍 자리채우기용) //job 현재 요소의 값
                         $('<option></option>').val(job.jobsId).text(job.jobsName).appendTo($('#jobLevel2'));
                     });
                 },

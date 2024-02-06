@@ -22,6 +22,7 @@ import com.jobhub.dto.jobposting.Job;
 import com.jobhub.dto.jobposting.Jobposting;
 import com.jobhub.service.jobposting.JobpostingService;
 
+
 @Controller
 public class JobpostingController {
 
@@ -35,8 +36,6 @@ public class JobpostingController {
 	@GetMapping("/jobposting")
 	public String jobsget(Model model) {
 
-		System.out.println("get 요청");
-
 		List<Job> jobList = jobpostingService.findJobList();
 
 		model.addAttribute("jobList" , jobList);
@@ -46,13 +45,11 @@ public class JobpostingController {
 	}
 
 	@PostMapping("/jobposting")
-	public String jobpostingProcess(@ModelAttribute Jobposting jobposting, @ModelAttribute Description description ) {
+	public String jobpostingProcess(@ModelAttribute Jobposting jobposting, @ModelAttribute Description description) {
 
 		System.out.println("post 요청");
-		System.out.println(jobposting);
-		System.out.println(description); 
-
-		String jobpostingId = sqlSession.selectOne("jobPosting_mapper.findJobpostingId");;
+		
+		String jobpostingId = sqlSession.selectOne("jobPosting_mapper.findJobpostingId"); //posting id 값 맞춘거
 
 		jobposting.setPostingId(jobpostingId);
 		int result = jobpostingService.saveJobposting(jobposting);
@@ -67,11 +64,11 @@ public class JobpostingController {
 
 		if(result > 0 && result2 > 0) { //저장이 성공
 			System.out.println("성공");
-			return "redirect:/jobPosting/posting";  //main 요청 경로
+			return "redirect:/jobposting/postingMain";   //main 요청 경로
 
 		} else { //저장 실패
 			System.out.println("실패");
-			return "jobPosting/posting"; //view 파일경로
+			return "jobPosting/postingMain"; //view 파일경로
 		}
 	}
 
@@ -79,15 +76,79 @@ public class JobpostingController {
 	@ResponseBody
 	@PostMapping("/jobnameByPid")
 	public List<Job> findJobNameListbyPid(@RequestParam int jobLevel1, Model model) {
-	    System.out.println(jobLevel1);
-
+		
 	    List<Job> jobNameList = jobpostingService.findJobNameListbyPid(jobLevel1);
 	    model.addAttribute("jobNameList", jobNameList);
 	    
 	    return jobNameList;
 	}
+	
+	
+	@RequestMapping("jobpostingMain")
+	public String jobpostingMain(Model model) {
+		
+		List<Jobposting> jobpostingList = jobpostingService.findJobpostingList();
+
+		model.addAttribute("jobpostingList" , jobpostingList);
+		
+		
+		return "jobPosting/postingMain";
+	}
+	
+	
+	@GetMapping("/modifyJobposting")
+	public String modifyjobpositng(@RequestParam String postingId, Model model) {
+		
+		System.out.println("get요청");
+		
+		Jobposting jobposting = jobpostingService.findPostingBypostingId(postingId);
+		Description description = jobpostingService.findDescriptionBypostingId(postingId);
+		
+		System.out.println(jobposting);
+		System.out.println(description);
+		
+		model.addAttribute("jobposting", jobposting);
+		model.addAttribute("description", description);
+		
+		return "jobPosting/modifyJobposting";
+	}
+	
+	
+	@PostMapping("/modifyJobposting")
+	public String  modifyJobpostingProcess(@ModelAttribute Jobposting jobposting , @ModelAttribute Description description) {
+		System.out.println("post요청");
+
+		int result = jobpostingService.modifyJobposting(jobposting);
+		int result2 = jobpostingService.modifyDescription(description);
+		
+		System.out.println(jobposting);
+		System.out.println(description);
+		//저장
+
+		if(result > 0 && result2 > 0) { //저장이 성공
+			System.out.println("성공");
+			return "/postingMain";  //main 요청 경로
+
+		} else { //저장 실패
+			System.out.println("실패");
+			return "jobPosting/postingMain"; //view 파일경로
+		}
+		
+		
+	}
+	
+	
+	
+	
+
+
+	
+	
+	}
+	
+	
 
 
 
 
-}
+
