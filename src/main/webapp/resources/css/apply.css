@@ -1,0 +1,248 @@
+@charset "UTF-8";
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+.container{
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+    background-color: #ececec;
+}
+.apply_title{
+    width:100%;
+    background-color: #ececec;
+    font-size:25px;
+    padding-left:180px;
+    padding-top:40px;
+}
+.apply_header{
+    width:78%;
+    height:70px;
+    display:flex;
+    border:1px solid #e2e2e2;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    margin-top:18px;
+}
+.apply_header_title{
+    font-size: 22px;
+    margin-left:40px;
+}
+.apply_header_button{
+    width:300px;
+    margin-right:40px;
+    display:flex;
+    justify-content: space-around;
+}
+.apply_header_btn{
+    width:90px;
+    height:40px;
+    font-size: 16px;
+    background-color: #fff;
+    border:1px solid black;
+    cursor: pointer;
+}
+.apply_header_submit{
+    width:90px;
+    height:40px;
+    font-size: 16px;
+    color:white;
+    background-color: #2dc26b;
+    border:none;
+    cursor: pointer;
+}
+.apply_main{
+    width:78%;
+    display:flex;
+    border:1px solid #e2e2e2;
+    align-items: center;
+    background-color: white;
+    margin-top:15px;
+    margin-bottom: 90px;
+    padding-bottom:40px;
+}
+.apply_content{
+    display:flex;
+    flex-direction:column;
+    margin-top:48px;
+    margin-left:60px;
+    margin-right:40px;
+}
+.apply_content > p{
+    font-size: 18px;
+}
+.ap_inpt{
+    margin-right: 5px;
+    font-size: 14px;
+    height: 38px;
+    padding: 0 10px;
+    border: 1px solid #b2b2b2;
+    line-height: 38px;
+}
+.apply_name{
+    width:178px;
+}
+.apply_birth{
+    width:128px;
+}
+.apply_email{
+    width:228px;
+}
+.ap_mydetail{
+    margin-top:10px;
+}
+.apply_gender{
+    width:80px;
+    padding-left:5px;
+}
+.apply_tel{
+    width:144px;
+}
+.apply_howfound{
+    width:260px;
+    padding-left:5px;
+}
+.ap_inpt2{
+    font-size: 14px;
+    height: 38px;
+    padding: 0 10px;
+    border: 1px solid #b2b2b2;
+    line-height: 38px;
+}
+.apply_cname{
+    width: 153px;
+}
+.apply_dname{
+    width:135px;
+}
+.apply_date{
+    width:103px;
+}
+.apply_duty{
+    width:104px;
+}
+.from_to {
+    color: #b2b2b2;
+}
+.apply_position{
+    width:100px;
+    padding-left:5px;
+}
+.apply_careerbtn{
+    margin-left:8px;
+    width:70px;
+}
+.text_area{
+    display: block;
+    overflow-x: hidden;
+    overflow-y: auto;
+    width: 828px;
+    height: 78px;
+    margin-top: 8px;
+    padding: 10px;
+    border: 1px solid #b2b2b2;
+    font-size: 12px;
+    line-height: 21px;
+    resize: none;
+}
+.cr_noti ul{
+    list-style-position: inside;
+    margin: 0;
+    padding: 0;
+    margin-top:10px;
+}
+.cr_noti li{
+    font-size: 12px;
+    line-height: 18px;
+    color: gray;
+    
+}
+.apply_edu{
+    width:131px;
+    padding-left:5px;
+}
+.apply_date2{
+    width:144px;
+}
+.apply_certi{
+    width:80px;
+    padding-left:5px;
+}
+.apply_type{
+    width:154px;
+}
+.apply_level{
+    width:96px;
+}
+.apply_cdate{
+    width:108px;
+}
+.apply_auth{
+    width:143px;
+}
+.apply_label{
+    font-size: 13px;
+}
+.filebox .upload-name {
+    /* display: inline-block; */
+    height: 30px;
+    padding: 0 10px;
+    vertical-align: middle;
+    border: 1px solid #dddddd;
+    width: 500px;
+    color: #999999;
+}
+.filebox label {
+    display: inline-block;
+    padding: 10px 20px;
+    color: #fff;
+    vertical-align: middle;
+    background-color: #999999;
+    cursor: pointer;
+    height: 40px;
+    margin-left: 10px;
+}
+.filebox input[type="file"] {
+    position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+}
+#apply_inquire{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.apply_mili{
+    width:228px;
+    padding-left:5px;
+}
+.apply_disorder{
+    width:138px;
+    padding-left:5px;
+}
+hr{
+    width:50%;
+    justify-content: center;
+}
+.apply_footer_button{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    margin-top: 75px;
+    padding: 60px 0 30px;
+    border-top: 1px solid #e6e6e6;
+    text-align: center;
+}
+.btn_size{
+    box-sizing: border-box;
+    width:180px;
+    height:60px;
+    margin-left: 20px;
+    font-size: 18px;
+}

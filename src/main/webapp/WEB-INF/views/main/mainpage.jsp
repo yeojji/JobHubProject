@@ -1,47 +1,21 @@
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../css/footer.css">
-    <link rel="stylesheet" href="../css/header.css">
+    <title>메인페이지</title>
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" 
     integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="  
     crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <link rel="stylesheet" href="../css/mainpage.css">
+    <link rel="stylesheet" href="css/mainpage.css">
 </head>
 <body>
     <!--헤더 -->
-    <header>
-        <div class="header_menu">
-            <div class="header_menu1">
-                <div class="header_title">
-                    <div class="">LINE CAREER</div>
-                </div>
-                <div class="header_menu1_list">
-                    <div class="header_menu1_list_item">People</div>
-                    <div class="header_menu1_list_item">Culture</div>
-                    <div class="header_menu1_list_item">Jobs</div>
-                    <div class="header_menu1_list_item">FAQs</div>
-                </div>
-            </div>
-            <div class="header_menu2">
-                <i class="fa-solid fa-globe header_menu2_list1_item"></i>
-                <select class="header_menu2_list1_item select_country">
-                    <option>KR</option>
-                    <option>EN</option>
-                </select>
-                <div class="line_bar header_menu2_list1_item"></div>
-                <div class="search_text header_menu2_list1_item"><i class="fa-solid fa-magnifying-glass"></i></div>
-                <div class="header_menu2_list2">
-                    <div class="member_scrap header_menu2_list2_item"><i class="fa-regular fa-heart"></i></div>
-                    <i class="fa-solid fa-user header_menu2_list2_item"></i>
-                </div>
-            </div>
-        </div>
-    </header>
+	<%@ include file="../header_footer/header.jsp" %>
 
     <!--메인페이지-->
     <div class="main_container">
@@ -186,50 +160,12 @@
                 </div>
             </div>
         </div>
-
-
-
-
     </div>
 
 
 
-
-
-
-
-
-
-
-
     <!--footer-->
-    <footer>
-        <div class="footer_box">
-            <div class="footer_menu">
-                <div class="company_icon">
-                    <span class="comapny_title"><i class="fa-regular fa-copyright"></i>JobHub Corporation</span>
-                </div>
-                <div class="personal_information_div">
-                    <span class="personal_information_text"> 개인정보처리방침 </span>
-                </div>
-            </div>
-            <div class="icon_box">
-                <div class="footer_icon">
-                    <i class="fa-brands fa-instagram"></i>
-                </div>
-                <div class="footer_icon">
-                    <i class="fa-brands fa-facebook"></i>
-                </div>
-                <div class="footer_icon">
-                    <i class="fa-brands fa-linkedin round"></i>
-                </div>
-                <div class="footer_icon">
-                    <i class="fa-brands fa-square-youtube round"></i>
-                </div>
-            </div>
-        </div>
-
-    </footer>
+        <%@ include file="../header_footer/footer.jsp" %>
 
 </body>
 </html>
