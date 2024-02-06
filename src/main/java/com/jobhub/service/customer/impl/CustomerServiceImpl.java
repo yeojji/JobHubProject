@@ -16,11 +16,11 @@ public class CustomerServiceImpl implements CustomerService {
 	CustomerDAO customerDAO;
 	
 	@Override
-	public List<Customer> findCustomerList() {
+	public Customer findCustomerInfo(String userId) {
 		// TODO Auto-generated method stub
-		List<Customer> customerList = customerDAO.findCustomerList();
+		Customer findCustomerInfo = customerDAO.findCustomerInfo(userId);
 		
-		return customerList;
+		return findCustomerInfo;
 	}
 
 	@Override
@@ -38,6 +38,33 @@ public class CustomerServiceImpl implements CustomerService {
 	public int saveUser(Customer customer) {
 		// TODO Auto-generated method stub
 		int result = customerDAO.saveUser(customer);
+		return result;
+	}
+
+	@Override
+	public int modifyCustomerInfo(Customer customer) {
+		// TODO Auto-generated method stub
+		
+		int result = customerDAO.modifyCustomerInfo(customer);
+		
+		
+		return result;
+	}
+
+	@Override
+	public int modifyCustomerPw(Customer customer) {
+		// TODO Auto-generated method stub
+		
+		int result = customerDAO.modifyCustomerPw(customer);
+		
+		return result;
+	}
+
+	@Override
+	public int removeCustomer(Customer customer) {
+		// TODO Auto-generated method stub
+		
+		int result = customerDAO.removeCustomer(customer);
 		return result;
 	}
 }

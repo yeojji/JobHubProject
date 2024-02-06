@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.jobhub.dto.customer.Customer;
 import com.jobhub.service.customer.CustomerService;
@@ -15,10 +16,7 @@ public class UserLoginController {
 	@Autowired
 	CustomerService customerService;
 
-	@GetMapping("/login")
-	public String login() {
-		return "login/login";
-	}
+
 	
 	@RequestMapping("/sign-up")
 	public String signUp() {

@@ -8,7 +8,13 @@ public interface CustomerDAO {
 
 	public int saveUser(Customer customer);
 
-	public List<Customer> findCustomerList();
+	public Customer findCustomerInfo(String userId);
 	
 	public Customer findLoginCustomer (Customer customer);
+	
+	public int modifyCustomerInfo(Customer customer);
+	
+	public int modifyCustomerPw(Customer customer);
+	
+	public int removeCustomer(Customer customer);
 }

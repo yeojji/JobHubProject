@@ -16,12 +16,12 @@ public class CustomerDAOImpl implements CustomerDAO{
 	SqlSessionTemplate sqlSessionTemplate;
 	
 	@Override
-	public List<Customer> findCustomerList() {
+	public Customer findCustomerInfo(String userId) {
 		// TODO Auto-generated method stub
 		
-		List<Customer> customerList = sqlSessionTemplate.selectList("user_mapper.findCustomerList");
+		Customer findCustomerInfo = sqlSessionTemplate.selectOne("user_mapper.findCustomerInfo", userId);
 		
-		return customerList;
+		return findCustomerInfo;
 	}
 	@Override
 	public int saveUser(Customer customer) {
@@ -37,6 +37,34 @@ public class CustomerDAOImpl implements CustomerDAO{
 		
 		Customer loginCustomer = sqlSessionTemplate.selectOne("user_mapper.findLoginCustomer", customer);
 		return loginCustomer;
+	}
+	
+	
+	@Override
+	public int modifyCustomerInfo(Customer customer) {
+		// TODO Auto-generated method stub
+		
+		int result = sqlSessionTemplate.update("user_mapper.modifyCustomerInfo",customer);
+		
+		
+		return result;
+	}
+	@Override
+	public int modifyCustomerPw(Customer customer) {
+		// TODO Auto-generated method stub
+		
+		int result = sqlSessionTemplate.update("user_mapper.modifyCustomerPw", customer);
+		
+		
+		return result;
+	}
+	@Override
+	public int removeCustomer(Customer customer) {
+		// TODO Auto-generated method stub
+		
+		int result = sqlSessionTemplate.delete("user_mapper.removeCustomer", customer);
+		
+		return result;
 	}
 
 

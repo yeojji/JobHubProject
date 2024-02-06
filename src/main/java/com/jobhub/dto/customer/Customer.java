@@ -8,7 +8,7 @@ import lombok.Data;
 public class Customer {
 
 	//고객(회원) 정보
-	
+
 	String userId;
 	String email;
 	String password;
