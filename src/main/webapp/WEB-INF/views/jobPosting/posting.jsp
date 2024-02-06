@@ -37,7 +37,7 @@
 					</c:when>
 				</c:choose>
 			</c:forEach>
-			<option>직무를 선택하세요.</option>
+			<option value="" selected>직무를 선택하세요.</option>
 		</select> 
 		
 		<br> 
@@ -120,7 +120,7 @@
 		<br> <label>보훈 취업지원 대상 및 장애인 서류 제출 안내 </label> <br>
 		<textarea name="submissionGuide" required>여기는 정해진 값이 있어서 그거로 고정하자 ~</textarea>
 		
-		<button type="submit">저장</button>
+		<button type="submit" >저장</button>
 
 	
 	</form>
@@ -152,10 +152,12 @@ $(document).ready(function(){
     	console.log(jobLevel1);
     	
         if (jobLevel1 != "") {
+        	
+        	
+        	
             jQuery.ajax({
                 type: "POST",
                 url: "/jobnameByPid",
-                cache: false,
                 data: {
                     jobLevel1: jobLevel1
                 },
@@ -176,6 +178,11 @@ $(document).ready(function(){
                     console.log("ERROR!!!", error); // 에러 로그 확인
                 }
             });
+            
+            $("select[name=jobLevel2]").attr("disabled", false);
+            
+            
+            
         } else {
             $("select[name=jobLevel2]").attr("disabled", true);
         }

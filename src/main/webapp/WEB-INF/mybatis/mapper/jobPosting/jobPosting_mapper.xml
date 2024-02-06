@@ -115,11 +115,37 @@
 		#{etc},
 		#{submissionGuide} )
 	</insert>
+	
+	
+	<insert id="saveFaqs" parameterType="FAQs">
+		insert into FAQs values
+		('FAQs'||seq_faqs_id.nextVal ,
+		#{category},
+		#{title},
+		#{content}
+		)
+	</insert>
 
 
-
-
-
+	<select id="findFaqsList" resultType="FAQs">
+		select * from faqs
+	</select>
+	
+	<select id="findFaqsbyId" resultType="FAQs">
+		select * from faqs 
+		where FAQs_id = #{FAQsId}
+	</select>
+	
+	<update	id="modifyFaqs" parameterType="FAQs">
+		update faqs
+		set	
+		faqs_id = #{FAQsId} ,
+		category = #{category},
+		title = #{title},
+		content = #{content}
+		WHERE
+		faqs_id = #{FAQsId}
+	</update>
 
 
 

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.jobhub.dao.jobposting.JobpostingDAO;
 import com.jobhub.dto.jobposting.Description;
+import com.jobhub.dto.jobposting.FAQs;
 import com.jobhub.dto.jobposting.Job;
 import com.jobhub.dto.jobposting.Jobposting;
 import com.jobhub.service.jobposting.JobpostingService;
@@ -63,5 +64,27 @@ public class JobpostingServiceImpl implements JobpostingService {
 		int result = jobpostingDAO.modifyDescription(description);
 		return result;
 	}
-
+	
+	public int saveFaqs(FAQs faqs) {
+		int result = jobpostingDAO.saveFaqs(faqs);
+		return result;
+	}
+	
+	public List<FAQs> findFaqsList(){
+		List<FAQs> faqsList = jobpostingDAO.findFaqsList();
+		return faqsList;
+	}
+	
+	public FAQs findFaqsbyId(String FAQsId){
+		FAQs faqs = jobpostingDAO.findFaqsbyId(FAQsId);
+		return faqs;
+	}
+	
+	public int modifyFaqs(FAQs faqs) {
+		int result = jobpostingDAO.modifyFaqs(faqs);
+		return result;
+	}
+	
+	
+	
 }

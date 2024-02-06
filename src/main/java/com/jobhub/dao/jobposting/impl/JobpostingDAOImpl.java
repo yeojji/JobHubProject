@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.jobhub.dao.jobposting.JobpostingDAO;
 import com.jobhub.dto.jobposting.Description;
+import com.jobhub.dto.jobposting.FAQs;
 import com.jobhub.dto.jobposting.Job;
 import com.jobhub.dto.jobposting.Jobposting;
 
@@ -61,4 +62,26 @@ public class JobpostingDAOImpl implements JobpostingDAO {
 		int result = sqlSessionTemplate.insert("jobPosting_mapper.modifyDescription", description);
 		return result;
 	}
+	
+	public int saveFaqs(FAQs faqs) {
+		int result = sqlSessionTemplate.insert("jobPosting_mapper.saveFaqs", faqs);
+		return result;
+	}
+	
+	public List<FAQs> findFaqsList(){
+		List<FAQs> faqsList = sqlSessionTemplate.selectList("jobPosting_mapper.findFaqsList");
+		return faqsList;
+	}
+	
+	public FAQs findFaqsbyId(String FAQsId){
+		FAQs faqs = sqlSessionTemplate.selectOne("jobPosting_mapper.findFaqsbyId", FAQsId);
+		return faqs;
+	}
+	
+	public int modifyFaqs(FAQs faqs){
+		int result = sqlSessionTemplate.insert("jobPosting_mapper.modifyFaqs", faqs);
+		return result;
+	}
+	
+	
 }

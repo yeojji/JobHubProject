@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jobhub.dto.jobposting.Description;
+import com.jobhub.dto.jobposting.FAQs;
 import com.jobhub.dto.jobposting.Job;
 import com.jobhub.dto.jobposting.Jobposting;
 import com.jobhub.service.jobposting.JobpostingService;
@@ -64,7 +65,7 @@ public class JobpostingController {
 
 		if(result > 0 && result2 > 0) { //저장이 성공
 			System.out.println("성공");
-			return "redirect:/jobposting/postingMain";   //main 요청 경로
+			return "redirect:/postingMain";   //main 요청 경로
 
 		} else { //저장 실패
 			System.out.println("실패");
@@ -137,7 +138,74 @@ public class JobpostingController {
 		
 	}
 	
+	@GetMapping("addFAQs")
+	public String addFAQs() {
+		System.out.println("get 요청");
+		return "FAQs/addFaqs";
+	}
 	
+	
+	@PostMapping("addFAQs")
+	public String addFAQsProcess(@ModelAttribute FAQs faqs) {
+		System.out.println("post 요청");
+		
+		System.out.println(faqs);
+		
+		int result = jobpostingService.saveFaqs(faqs);
+		
+		if(result > 0) { //저장이 성공
+			System.out.println("성공");
+			return "redirect:FAQs/faqsMain";  //main 요청 경로
+
+		} else { //저장 실패
+			System.out.println("실패");
+			return "FAQs/faqsMain"; //view 파일경로
+		}
+	}
+	
+	@RequestMapping("FAQsgMain")
+	public String faqsMain(Model model) {
+		List<FAQs> faqsList = jobpostingService.findFaqsList();
+		model.addAttribute("faqsList" , faqsList);
+		return "FAQs/faqsMain";
+	}
+	
+	@GetMapping("/modifyFaqs")
+	public String modifyFaqs(@RequestParam String FAQsId, Model model) {
+		
+		System.out.println("get요청");
+	
+		FAQs faqs = jobpostingService.findFaqsbyId(FAQsId);
+	
+		System.out.println(faqs);
+		
+		model.addAttribute("faqs", faqs);
+		
+		return "FAQs/modifyFaqs";
+	}
+	
+	
+	@PostMapping("/modifyFaqs")
+	public String  modifyFaqsProcess(@ModelAttribute FAQs faqs) {
+		System.out.println("post요청");
+
+		int result = jobpostingService.modifyFaqs(faqs);
+		
+		System.out.println(faqs);
+		
+		//저장
+
+		if(result > 0 ) { //저장이 성공
+			System.out.println("성공");
+			return "redirect:FAQs/faqsMain";  //main 요청 경로
+
+		} else { //저장 실패
+			System.out.println("실패");
+			return "FAQs/modifyFaqs"; //view 파일경로
+		}
+		
+		
+	}
 	
 	
 

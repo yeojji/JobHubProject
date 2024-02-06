@@ -3,6 +3,7 @@ package com.jobhub.dao.jobposting;
 import java.util.List;
 
 import com.jobhub.dto.jobposting.Description;
+import com.jobhub.dto.jobposting.FAQs;
 import com.jobhub.dto.jobposting.Job;
 import com.jobhub.dto.jobposting.Jobposting;
 
@@ -26,6 +27,13 @@ public interface JobpostingDAO {
 	
 	public int modifyDescription(Description description);
 	
+	public int saveFaqs(FAQs faqs);
+	
+	public List<FAQs> findFaqsList();
+	
+	public FAQs findFaqsbyId(String FAQsId);
+	
+	public int modifyFaqs(FAQs faqs);
 	
 	
 }
