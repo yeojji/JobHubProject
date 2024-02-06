@@ -146,6 +146,11 @@
 		WHERE
 		faqs_id = #{FAQsId}
 	</update>
+	
+	<delete id="removeFaqs" parameterType="String">
+		DELETE FROM faqs
+		WHERE faqs_id = #{FAQsId}
+	</delete>
 
 
 

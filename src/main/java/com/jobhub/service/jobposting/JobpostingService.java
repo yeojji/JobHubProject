@@ -38,6 +38,8 @@ public interface JobpostingService {
 	
 	public int modifyFaqs(FAQs faqs);
 	
+	public int removeFaqsById(String FAQsId);
+	
 	
 	
 

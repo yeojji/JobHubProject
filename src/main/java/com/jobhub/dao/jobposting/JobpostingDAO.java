@@ -35,5 +35,7 @@ public interface JobpostingDAO {
 	
 	public int modifyFaqs(FAQs faqs);
 	
+	public int removeFaqsById(String FAQsId);
+	
 	
 }
