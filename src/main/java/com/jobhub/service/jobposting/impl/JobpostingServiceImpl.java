@@ -85,6 +85,11 @@ public class JobpostingServiceImpl implements JobpostingService {
 		return result;
 	}
 	
+	public int removeFaqsById(String FAQsId) {
+		int result = jobpostingDAO.removeFaqsById(FAQsId);
+		return result;
+	}
+	
 	
 	
 }

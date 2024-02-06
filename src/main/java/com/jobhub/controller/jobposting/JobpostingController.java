@@ -163,7 +163,7 @@ public class JobpostingController {
 		}
 	}
 	
-	@RequestMapping("FAQsgMain")
+	@RequestMapping("FAQsMain")
 	public String faqsMain(Model model) {
 		List<FAQs> faqsList = jobpostingService.findFaqsList();
 		model.addAttribute("faqsList" , faqsList);
@@ -204,15 +204,32 @@ public class JobpostingController {
 			return "FAQs/modifyFaqs"; //view 파일경로
 		}
 		
+	}
+	
+	
+	@RequestMapping("/removeFaqs")
+	public String removeFaqsProcess(@RequestParam String FAQsId) {
+		System.out.println("삭제버튼누름");
+		System.out.println(FAQsId);
+		int result = jobpostingService.removeFaqsById(FAQsId);
 		
+		if(result > 0 ) {
+			System.out.println("성공");
+			return "redirect:FAQs/faqsMain";
+		} else {
+			System.out.println("실패");
+			return "FAQs/FAQsMain";	
+		}
 	}
+	
+}
 	
 	
 
 
 	
 	
-	}
+
 	
 	
 

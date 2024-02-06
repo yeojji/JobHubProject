@@ -83,5 +83,10 @@ public class JobpostingDAOImpl implements JobpostingDAO {
 		return result;
 	}
 	
+	public int removeFaqsById(String FAQsId) {
+		int result = sqlSessionTemplate.delete("jobPosting_mapper.removeFaqs", FAQsId);
+		return result;
+	}
+	
 	
 }

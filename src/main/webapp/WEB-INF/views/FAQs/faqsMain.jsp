@@ -14,6 +14,7 @@
 	<c:forEach var="faqsItem" items="${faqsList}">
 		<p>${faqsItem.title} </p>
 		<button onclick="location.href='/modifyFaqs?FAQsId=${faqsItem.FAQsId}'">수정</button>
+		<button onclick="location.href='/removeFaqs?FAQsId=${faqsItem.FAQsId}'">삭제</button>
 	</c:forEach> 
 </body>
 </html>
