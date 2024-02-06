@@ -202,7 +202,7 @@
 							</div>
 							<div class="mUtility">
 								<span class="gLeft"><span clas="RPB">관리자가 아니신가요?
-										&nbsp;</span><a href="/admin/adminJoinRequest" class="txtEmLink">계정 생성 요청</a></span> 
+										&nbsp;</span><a href="/admin/joinRequest" class="txtEmLink">계정 생성 요청</a></span> 
 										<span class="gRight"> <a href="#" class="txtLink" target="_blank">아이디/비밀번호 찾기</a>
 								</span>
 							</div>
@@ -215,7 +215,7 @@
 		<!-- footer -->
 		<footer id="footer">
 			<p class="jobhub_direct">
-				<a href="#">Jobhub 바로가기</a>
+				<a href="/login">Jobhub 바로가기</a>
 			</p>
 			<p class="copyright">&copy; Jobhub Corp. All Rights Reserved.</p>
 		</footer>

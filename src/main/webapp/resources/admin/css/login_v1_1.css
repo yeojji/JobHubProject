@@ -1065,13 +1065,13 @@ article, aside, details, figcaption, figure, footer, header, hgroup,
 
 .btnView.off:after {
 	background:
-		url('images/login/ico_pw_on.png')
+		url('/resources/admin/images/login/ico_pw_on.png')
 		no-repeat;
 }
 
 .btnView.on:after {
 	background:
-		url('images/login/ico_pw_off.png')
+		url('/resources/admin/images/login/ico_pw_off.png')
 		no-repeat;
 }
 

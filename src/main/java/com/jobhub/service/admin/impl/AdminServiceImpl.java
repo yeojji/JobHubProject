@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jobhub.dao.admin.AdminDAO;
-import com.jobhub.dao.user.UserDAO;
 import com.jobhub.dto.admin.Admin;
 import com.jobhub.dto.admin.AdminProfile;
 import com.jobhub.dto.admin.AdminSearchCondition;
