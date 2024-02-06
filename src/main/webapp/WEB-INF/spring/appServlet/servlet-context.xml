@@ -40,7 +40,7 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 		<interceptor>
 			<mapping path="/**" />
 			<exclude-mapping path="/resources/**" />
-			<exclude-mapping path="/admin/joinRequest" />
+			<exclude-mapping path="/admin/joinApproval" />
 			<exclude-mapping path="/admin/login" />
 			<exclude-mapping path="/admin/css/**" />
 			<exclude-mapping path="/admin/images/**" />

@@ -41,18 +41,17 @@ public class AdminController {
 
 	@RequestMapping
 	public String admin(HttpSession session) {
-
 //		if(session == null || session.getAttribute("loginId") == null){
 //			return "redirect:/admin/login";
 //		}
-		return "admin/adminMain";
+		return "admin/index";
 	}
 
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
 		loginManager.logout(session);
 
-		return "redirect:/main";
+		return "redirect:/index";
 	}
 
 	// 로그인
@@ -84,17 +83,9 @@ public class AdminController {
 		// session.setAttribute("loginId", loginAdmin.getId()); //로그인한 사용자의 id를 세션에 저장
 		loginManager.setSessionLogin(loginAdmin.getId(), session);
 		// log.info("로그인 성공");
-		return "redirect:/admin/index";
+		return "redirect:/index";
 	}
 
-	// 관리자 승인 요청
-	@GetMapping("/joinRequest")
-	public String adminJoinRequest() {
-		return "admin/joinRequest";
-	}
-
-	
-	
 	@GetMapping("/adminSetting")
 	public String adminSetting(Model model, @ModelAttribute AdminSearchCondition adminSearchCondition) {
 

@@ -31,7 +31,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 			return false; // 인터셉터에서 더 이상 진행X
 		}
 		*/
-		
+	    
 		if(loginManager.isLogin(request) == false) {
 			response.sendRedirect("/admin/login"); //redirect:경로
 			return false; // 인터셉터에서 더 이상 진행X

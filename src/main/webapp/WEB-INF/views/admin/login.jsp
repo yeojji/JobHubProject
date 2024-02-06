@@ -202,7 +202,7 @@
 							</div>
 							<div class="mUtility">
 								<span class="gLeft"><span clas="RPB">계정이 없다면?
-										&nbsp;</span><a href="/admin/joinRequest" class="txtEmLink">계정 생성 요청</a></span> 
+										&nbsp;</span><a href="/admin/joinApproval" class="txtEmLink">계정 생성 요청</a></span> 
 										<span class="gRight"> <a href="#" class="txtLink" target="_blank">아이디/비밀번호 찾기</a>
 								</span>
 							</div>
