@@ -13,6 +13,7 @@
 	
 	<typeAliases>
 		<typeAlias type="com.jobhub.dto.customer.Customer" alias="Customer"/>
+		<typeAlias type="com.jobhub.dto.resume.ResumeEducationForm" alias="educationForm"/>
 	</typeAliases>
 
 

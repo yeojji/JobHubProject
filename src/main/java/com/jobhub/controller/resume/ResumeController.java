@@ -24,10 +24,10 @@ public class ResumeController {
 		return "apply/apply";
 	}
 
-	@PostMapping("/apply")
-	public String applyProcess(@ModelAttribute Resume resume) {
-
-		System.out.println(resume);
+//	@PostMapping("/apply")
+//	public String applyProcess(@ModelAttribute Resume resume) {
+//
+//		System.out.println(resume);
 
 
 //		int result = customerService.saveUser(resume);
@@ -39,7 +39,7 @@ public class ResumeController {
 //		}
 
 
-		return "";
-	}
+//		return "";
+//	}
 
 }
