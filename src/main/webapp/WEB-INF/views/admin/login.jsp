@@ -24,7 +24,7 @@
 <!-- 	
 <script type="text/javascript" src="/_scripts/jquery-3.6.1.min.js"></script>
 <script type="text/javascript" src="/_scripts/ui_desktop.js?22032309"></script>
-<script type="text/javascript" src="/_scripts/mall_auth.js?24011709"></script>
+<script type="text/javascript" src="/_scripts/admin_auth.js?24011709"></script>
  -->
 <script type="text/javascript">
 	var correctCaptcha = function(response) {
@@ -179,7 +179,7 @@
 										<div class="gridPosition">
 											<input type="text" class="fText suffix"
 												placeholder="아이디를 입력해 주세요." title="아이디" name="id"
-												id="mall_id" value="" tabindex="1" maxlength="20">
+												id="admin_id" value="" tabindex="1" maxlength="20" autocomplete='off'>
 										</div>
 									</div>
 									<div class="column">
@@ -188,7 +188,7 @@
 											<input type="password" class="fText typePassword"
 												placeholder="비밀번호를 입력해 주세요." title="비밀번호" name="pw"
 												id="userpasswd" tabindex="3" maxlength="20">
-											<button type="button" class="btnView ePasswordClick off">현시하다</button>
+											<button type="button" class="btnView ePasswordClick off"></button>
 										</div>
 									</div>
 									<p id="normal_msg" class="message txtWarn typeLeft"
@@ -201,7 +201,7 @@
 									onclick="form_check();">로그인</button>
 							</div>
 							<div class="mUtility">
-								<span class="gLeft"><span clas="RPB">관리자가 아니신가요?
+								<span class="gLeft"><span clas="RPB">계정이 없다면?
 										&nbsp;</span><a href="/admin/joinRequest" class="txtEmLink">계정 생성 요청</a></span> 
 										<span class="gRight"> <a href="#" class="txtLink" target="_blank">아이디/비밀번호 찾기</a>
 								</span>

@@ -88,12 +88,13 @@ public class AdminController {
 	}
 
 	// 관리자 승인 요청
-	@GetMapping("/JoinRequest")
+	@GetMapping("/joinRequest")
 	public String adminJoinRequest() {
-
-		return "admin/JoinRequest";
+		return "admin/joinRequest";
 	}
 
+	
+	
 	@GetMapping("/adminSetting")
 	public String adminSetting(Model model, @ModelAttribute AdminSearchCondition adminSearchCondition) {
 
