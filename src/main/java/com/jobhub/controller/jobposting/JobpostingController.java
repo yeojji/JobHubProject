@@ -138,6 +138,11 @@ public class JobpostingController {
 		
 	}
 	
+	
+	
+	
+	//FAQs
+	
 	@GetMapping("addFAQs")
 	public String addFAQs() {
 		System.out.println("get 요청");
