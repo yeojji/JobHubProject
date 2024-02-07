@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -27,6 +28,7 @@
                     <div class="select_category_box">
                         <div>
                             <select class="select_region_menu">
+                            	<option selected disabled hidden>Region</option>
                                 <option>East Asia</option>
                                 <option>Southeast Asia</option>
                                 <option>North America</option>
@@ -34,6 +36,7 @@
                         </div>
                         <div>
                             <select class="select_city_menu">
+                            	<option selected disabled hidden>City</option>
                                 <option>Bundang</option>
                                 <option>Dalian</option>
                                 <option>Fukuoka</option>
@@ -122,39 +125,20 @@
                         <h2 class="career_title_text">Meet the Global JobHub</h2>
                     </div>
                 </div>
-                <div class="career_category_list">
-                    <div class="category_item">
-                        <!--부서별 직원 인터뷰 내용 반복-->
-                        <span class="category_title">부서명</span>
-                        <div class="employee_info">
-                            <span class="employee_name">부서별직원이름</span>
-                            <span class="employee_job">직무</span>
-                            <span class="employee_interview">
-                                직원별 인터뷰 내용
-                            </span>
-                        </div>
-                    </div>
-                    <div class="category_item">
-                        <span class="category_title">부서명</span>
-                        <div class="employee_info">
-                            <span class="employee_name">부서별직원이름</span>
-                            <span class="employee_job">직무</span>
-                            <span class="employee_interview">
-                                직원별 인터뷰 내용
-                            </span>
-                        </div>
-                    </div>
-                    <div class="category_item">
-                        <span class="category_title">부서명</span>
-                        <div class="employee_info">
-                            <span class="employee_name">부서별직원이름</span>
-                            <span class="employee_job">직무</span>
-                            <span class="employee_interview">
-                                직원별 인터뷰 내용
-                            </span>
-                        </div>
-                    </div>
-                </div>
+          
+	                <div class="career_category_list">
+	                    <div class="category_item">
+	                        <!--부서별 직원 인터뷰 내용 반복-->
+	                        <span class="category_title">부서명</span>
+	                        <div class="employee_info">
+	                            <span class="employee_name">부서별직원이름</span>
+	                            <span class="employee_job">직무</span>
+	                            <span class="employee_interview">
+	                                직원별 인터뷰 내용
+	                            </span>
+	                        </div>
+	                    </div>
+	                </div>
                 <div class="more_about_employee_info">
                     <span class="more_about_text2">More about our JobHub ></span>
                 </div>

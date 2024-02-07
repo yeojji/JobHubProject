@@ -62,7 +62,7 @@
         <div class="member_resume_status_box">
             <div class="member_resume_status_text">
                 <span class="member_modify_resume_title">나의 임시저장 지원서</span>
-                <span class="go_to_resume" onclick="location.href='/'">지원하기 ></span>
+                <span class="go_to_resume" onclick="location.href='/customer/notice_by_career'">지원하기 ></span>
             </div>
             <!--회원이 임시저장한 지원서가 있을 때-->
             <div class="member_write_resume_box">
@@ -76,7 +76,7 @@
                         <div class="write_resume_icon_box">
                             <div class="show_resume">
                                 <i class="fa-regular fa-newspaper icon_size"></i>
-                                <span class="resume_text">보기</span>
+                                <span class="resume_text show_resume">보기</span>
                             </div>
                             <div class="modify_resume">
                                 <i class="fa-solid fa-pen-to-square icon_size"></i>
@@ -84,7 +84,7 @@
                             </div>
                             <div class="delete_resume">
                                 <i class="fa-regular fa-trash-can icon_size"></i>
-                                <span class="resume_text">삭제</span>
+                                <span class="resume_text remove_resume">삭제</span>
                             </div>
                         </div>
                     </div>
@@ -133,7 +133,7 @@
         <div class="member_resume_status_box">
             <div class="member_resume_status_text">
                 <span class="member_status_title">나의 문의 내역</span>
-                <span class="go_to_resume">1:1문의 ></span>
+                <span class="go_to_resume" id="go_user_faq">1:1문의 ></span>
             </div>
             <!-- 회원의 1:1 문의내역이 있을 때 -->
             <div class="member_write_faq_box">
@@ -173,23 +173,24 @@
                 <div class="modify_box">
                     <input type="hidden" name="userId" value="${userId}">
                     <span class="modify_main_title">이름</span>
-                    <input type="text" placeholder="${name}" class="modify_info_name" name="name">
+                    <input type="text" placeholder="${name}" class="modify_info_name" name="name" value="${name}">
                 </div>
                 <div class="modify_box">
                     <span class="modify_main_title">생년월일</span>
                     <div class="two_modify_box">
-                        <input type="text" placeholder="${birth}" class="modify_info_birth" name="birth">
+                        <input type="text" placeholder="${birth}" class="modify_info_birth" name="birth" value="${birth}">
                         <div class="gender_btn">
-                            <select selected="${gender}" name ="gender">
-                                <option>남자</option>
-                                <option>여자</option>
+                            <select name ="gender" >
+                                <option value="남자" <c:if test="${gender == '남자'}">selected</c:if>>남자</option>
+                                <option value="여자" <c:if test="${gender == '여자'}">selected</c:if>>여자</option>
                             </select>
                         </div>
                     </div>
                 </div>
                 <div class="modify_box">
                     <span class="modify_main_title">휴대폰 번호</span>
-                    <input type="text" placeholder="회원 휴대폰 번호" class="modify_info_phone" name="phone">
+                    <input type="text" placeholder="회원 휴대폰 번호" 
+                    class="modify_info_phone" name="phone" value="${phone}" oninput="phone(this)" maxlength="13">
                 </div>
             </div>
             <span class="alert_text">입력한 정보가 정확하지 않을 경우 채용 시점에 불이익을 받을 수 있습니다.</span>
@@ -214,19 +215,19 @@
                 	<input type="hidden" name="userId" value="${userId}">
                 	<input type="hidden" value="${loginPw}" id="currentPw">
                     <span class="modify_main_title">현재 비밀번호</span>
-                    <input type="text" placeholder="현재 비밀번호를 입력해주세요." 
+                    <input type="password" placeholder="현재 비밀번호를 입력해주세요." 
                     class="modify_info" id="pw" oninput="checkPw()">
                     <span id="error_msg_pw" class="error_msg"></span>
                 </div>
                 <div class="modify_box">
                     <span class="modify_main_title">새 비밀번호</span>
-                    <input type="text" placeholder="새로 사용하실 비밀번호를 입력해주세요" 
-                    class="modify_info" id = "pw2">
-                    
+                    <input type="password" placeholder="새로 사용하실 비밀번호를 입력해주세요" 
+                    class="modify_info" id = "pw2" >
+                    <span id="validation" class="error_msg"></span>
                 </div>
                 <div class="modify_box">
                     <span class="modify_main_title">새 비밀번호 확인</span>
-                    <input type="text" placeholder="새 비밀번호를 한 번 더 입력해주세요" 
+                    <input type="password" placeholder="새 비밀번호를 한 번 더 입력해주세요" 
                     class="modify_info" id= "pw3" name="password" oninput="pwCheck()">
                        <span id="error_msg" class="error_msg"></span>
                 </div>
@@ -254,8 +255,9 @@
                 <div class="delete_box">
                 	<input type="hidden" name="userId" value="${userId}">
                     <input type="hidden" id="userPw" value="${loginPw}">
+                    <input type="hidden" name="customerStatus" value="${customerStatus}">
                     <span class="modify_main_title">비밀번호 입력</span>
-                    <input type="text" placeholder="현재 비밀번호를 입력해주세요." 
+                    <input type="password" placeholder="현재 비밀번호를 입력해주세요." 
                     class="modify_info" id="inputPw" oninput="removeUser()">
                     <span id="error_pw_msg" class="error_msg"></span>
                 </div>
@@ -269,7 +271,109 @@
     </div>
 </div>
 
+<!--임시저장 지원서 보는 모달창-->
+<div class="user_show_resume_modal">
+    <div class="user_show_resume_modal_body">
+        <div class="show_resume_modal_close_btn"><i class="fa-solid fa-xmark"></i></div>
+        <span class="show_resume_modal_title"> 지원한 공고 제목 </span>
+        <p>임시저장</p>
+        <div class="customer_info_box">
+            <span>회원이름</span>
+            <div class="member_info_box_footer">
+                <div class="member_email_box">
+                    <span class="member_info_title">이메일</span>
+                    <p class="member_email">${email}</p>
+                </div>
+                <div class="member_birth_box">
+                    <span class="member_info_title">생년월일</span>
+                    <p class="member_birth">${birth}</p>
+                </div>
+                <div class="member_tel_box">
+                    <span class="member_info_title">휴대폰 번호</span>
+                    <p class="member_tel">${phone}</p>
+                </div>
+            </div>
+            <!--필수 입력 사항을 입력 안 했을 때-->
+            <span>필수 입력 사항을 다시 한번 확인하고 작성해주세요</span>
+        
+        </div>
+        <div class="customer_veterans_disability_box">
+            <ul>보훈/장애
+                <li>보훈 여부 </li>
+                <li>장애 여부 </li>
+            </ul>
+        </div>
+        <div class="military_service_box">
+            <span>병역</span>
+            <span></span>
+            <!--필수 입력 사항을 입력 안 했을 때-->
+            <span>필수 입력 사항을 다시 한번 확인하고 작성해주세요</span>
+        </div>
+        <div class="attached_materials_box">
+            <ul>첨부자료
+                <li>경력기술서</li>
+                <li>포트폴리오</li>
+            </ul>
+            <!--필수 입력 사항을 입력 안 했을 때-->
+            <span>필수 입력 사항을 다시 한번 확인하고 작성해주세요</span>
+        </div>
+        <div class="self_introduce_box">
+            <span>자기소개서</span>
+            <span></span>
+        </div>
+        <div class="support_path_box">
+            <span>지원경로 및 세부사항</span>
+            <span></span>
+            <!--필수 입력 사항을 입력 안 했을 때-->
+            <span>필수 입력 사항을 다시 한번 확인하고 작성해주세요</span>
+        </div>
+        <div class="button_box">
+            <button class="show_resume_modal_close_btn">닫기</button>
+            <button >지원서 삭제</button>
+            <button >지원서 수정</button>
+        </div>
+    </div>
+</div>
 
+<!--1:1 문의 하는 모달창 form    만들어양댐 ㅁ아러;미나어린-->
+<div class="user_faq_modal">
+    <div class="user_faq_modal_body">
+        <div class="show_user_faq_modal_close_btn"><i class="fa-solid fa-xmark"></i></div>
+        <span class="show_user_faq_modal_title"> 1:1 문의 </span>
+        <form action="" method="post">
+            <div class="">
+                <span>문의 제목</span>
+                <input>
+            </div>
+            <div class="">
+                <span>문의 내용</span>
+                <input>
+            </div>
+            <div class="">
+                <div class="">
+                    <span>이메일</span>
+                    <input>
+                </div>
+                <div class="">
+                    <span>휴대폰 번호</span>
+                    <input>
+                </div>
+            </div>
+            <div class="">
+                <span>첨부파일</span>
+                <span>PDF, JPEG, JPG 파일 형식만 업로드 가능합니다.</span>
+                <button>파일 추가</button>
+                <span>추가한 파일 이름 </span><button>삭제</button>
+            </div>
+            <div class="">
+                <input type="checkbox">
+                <span>개인정보 수집 및 이용동의</span> <span>필수</span>
+                <textarea>텍스트</textarea>
+            </div>
+            <button >등록하기</button>
+        </form>
+    </div>
+</div>
 
 <script>
     const modal1 = document.querySelector('.user_info_modify_modal');
@@ -284,11 +388,21 @@
     const modalbody3 = document.querySelector('.user_delete_modal_body');
     const openModify_modal3 = document.querySelector('.member_modify_text3');
     
+    const modal4 = document.querySelector('.user_show_resume_modal');
+    const modalbody4 = document.querySelector('.user_show_resume_modal_body');
+    const openModify_modal4 = document.querySelector('.show_resume');
+
+    const modal5 = document.querySelector('.user_faq_modal');
+    const modalbody5 = document.querySelector('.user_faq_modal_body');
+    const openModify_modal5 = document.querySelector('#go_user_faq');
+
+
+
     const close1 = document.querySelector('.modal_close_btn');
     const close2 = document.querySelector('.modal_close_btn2');
     const close3 = document.querySelector('.modal_close_btn3');
-    
-   
+    const close4 = document.querySelector('.show_resume_modal_close_btn');
+    const close5 = document.querySelector('.show_user_faq_modal_close_btn');
     
     openModify_modal1.addEventListener("click",()=>{
         modal1.style.display = "flex";
@@ -303,6 +417,13 @@
         modal3.style.display = "flex";
     })
     
+    openModify_modal4.addEventListener("click",()=>{
+        modal4.style.display = "flex";
+    })
+
+    openModify_modal5.addEventListener("click",()=>{
+        modal5.style.display = "flex";
+    })
 
     close1.addEventListener("click",()=>{
         modal1.style.display ="none";
@@ -318,7 +439,16 @@
         modal3.style.display = "none";
         window.location.reload();
     })
+
+    close4.addEventListener("click",()=>{
+        modal4.style.display = "none";
+        window.location.reload();
+    })
     
+    close5.addEventListener("click",()=>{
+        modal5.style.display = "none";
+        window.location.reload();
+    })
     
     document.querySelector('.close_btn').addEventListener("click",()=>{
         if(confirm('취소하시겠습니까?')){
@@ -357,11 +487,9 @@
     
     function checkPw() {
     	var inputPw = document.getElementById('pw').value;
-    	console.log(inputPw);
     	var error_pw = document.getElementById('error_msg_pw');
     	
     	if(inputPw.trim() === ""){
-    		error_pw.innerHTML = '이거 에러다 ';
             return;
     	}	
 	    	if(inputPw !== currentPw){
@@ -377,21 +505,32 @@
     	
     }
     
+    const phone = (target) => {
+    	target.value = target.value
+        .replace(/[^0-9]/g, '')
+        .replace(/(^02.{0}|^01.{1}|[0-9]{3,4})([0-9]{3,4})([0-9]{4})/g, "$1-$2-$3")
+        .replace(/(\-{1,2})$/g, "");
+    	
+    }
+    
+    
     function pwCheck() {
         let pass1 = document.getElementById('pw2').value;
         let pass2 = document.getElementById('pw3').value;
         let error_msg = document.getElementById('error_msg');
 
         if (pass1 !== "" || pass2 !== "") {
-            if (pass1 === pass2) {
-                error_msg.innerHTML = '일치';
-                document.getElementById('pw3').style.borderColor = 'green';
-                error_msg.style.color = 'green';
-            } else {
-                error_msg.innerHTML = '불일치';
-                document.getElementById('pw3').style.borderColor = 'red';
-                error_msg.style.color = 'red';
-            }
+           
+                if (pass1 === pass2) {
+                    error_msg.innerHTML = '일치';
+                    document.getElementById('pw3').style.borderColor = 'green';
+                    error_msg.style.color = 'green';
+                } else {
+                    error_msg.innerHTML = '불일치';
+                    document.getElementById('pw3').style.borderColor = 'red';
+                    error_msg.style.color = 'red';
+                }
+           
         }
     }
     
@@ -412,9 +551,6 @@
     	}
     	
     	
-    	
-    	
-    	
     }
     
     
@@ -424,6 +560,12 @@
     	let pass1 = document.getElementById('pw2').value;
         let pass2 = document.getElementById('pw3').value;
         if(confirm('비밀번호를 수정하시겠습니까?')){
+        	
+        	if(!(pass1.length >= 8 && /(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-])/.test(pass1)) || 
+        	!(pass2.length >= 8 && /(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-])/.test(pass2))	){
+        		alert('비밀번호는 비밀번호는 최소 8자 이상이어야 하며, 특수문자를 적어도 하나 이상 포함해야 합니다.');
+        		return;
+        	}
         	if(inputPw !== currentPw){
         		alert('현재 비밀번호가 다릅니다.');
         		return;
@@ -432,6 +574,12 @@
         	if(pass1 !== pass2){
         		alert('새로운 비밀번호가 다릅니다. 다시 수정해주세요');
     			return;
+        	}
+        	
+        	if(pass1 === null || pass2 === null || pass1 === "" || pass2 === ""){
+        		
+        		alert('새로운 비밀번호를 입력해주세요');
+        		return;
         	}
         		document.querySelector('.modify_pw_form').submit();
         		alert('수정되었습니다');
@@ -460,16 +608,11 @@
 				alert('비밀번호가 다릅니다.');
 				return;
 			}
-			
-			
 			document.querySelector('.delete_user_form').submit();
 			alert('삭제되었습니다.');
 		}
 	})
 	
-    
-    
-   
    
 </script>
 

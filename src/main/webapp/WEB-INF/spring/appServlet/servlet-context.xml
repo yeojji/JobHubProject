@@ -33,9 +33,9 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 	</beans:bean>
 
 	<resources mapping="/**" location="/resources/" />
-
-
-
+	
+	
+<!--  
 	<interceptors>
 		<interceptor>
 			<mapping path="/**" />
@@ -56,5 +56,5 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 			<beans:bean class="com.jobhub.interceptor.LoginInterceptor" />
 		</interceptor>
 	</interceptors>
-
+-->
 </beans:beans>

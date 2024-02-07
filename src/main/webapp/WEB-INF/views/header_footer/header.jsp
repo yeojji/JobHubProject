@@ -17,7 +17,7 @@
         <div class="header_menu">
             <div class="header_menu1">
                 <div class="header_title">
-                	<div class="company_title" onclick="location.href='/'">Job Hub</div>
+                	<div class="company_title" onclick="location.href='/'"><img src="D:\fileStorage/logo_1500x211.png"></div>
                 </div>
                 <div class="header_menu1_list">
                     <div class="header_menu1_list_item">People</div>

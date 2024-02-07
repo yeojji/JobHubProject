@@ -1,7 +1,9 @@
 package com.jobhub.controller.customer;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -17,9 +19,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.jobhub.dto.customer.Customer;
+import com.jobhub.dto.employee.Employee;
+import com.jobhub.dto.jobposting.Job;
+import com.jobhub.service.admin.AdminService;
 import com.jobhub.service.customer.CustomerService;
 import com.jobhub.service.jobposting.JobpostingService;
 
@@ -35,14 +41,39 @@ public class CustomerController {
 	@Autowired
     private SqlSession sqlSession;
 	
+	@Autowired
+	AdminService adminService;
+	
 	@GetMapping("/login")
 	public String login() {
 		return "login/login";
 	}
 	
 	
+//	@GetMapping("/")
+//	public String main(Model model, Employee employee) {
+//		
+//		List<Employee> employeeList = adminService.findEmployeeList();
+//		
+//		List<Employee> randomEmployee = new ArrayList<>();
+//		Random random = new Random();
+//		int listSize = employeeList.size();
+//		
+//		for(int i=0; i<3 && i<listSize; i++) {
+//			int randomIndex = random.nextInt(listSize);
+//			randomEmployee.add(employeeList.get(randomIndex));
+//		}
+//		
+//		System.out.println(employee);
+//		model.addAttribute("employee", randomEmployee);
+//		
+//		return "main/mainpage";
+//	}
+	
 	@GetMapping("/")
 	public String main() {
+		 
+		
 		return "main/mainpage";
 	}
 	
@@ -52,7 +83,9 @@ public class CustomerController {
 		Customer loginUser = customerService.findLoginCustomer(customer);
 		
 		
-		if(loginUser == null || !(customer.getUserId().equals(loginUser.getUserId()))|| !(customer.getPassword().equals(loginUser.getPassword()))) {
+		if(loginUser == null || !(customer.getUserId().equals(loginUser.getUserId()))|| 
+				!(customer.getPassword().equals(loginUser.getPassword())) || loginUser.getCustomerStatus().equals("2")) {
+			
 			
 			model.addAttribute("msg", "로그인 정보가 맞지 않습니다");
 			
@@ -140,12 +173,13 @@ public class CustomerController {
 	
 	@PostMapping("/mypage/remove")
 	public String removeCustomer(HttpSession session, Customer customer, Model model, HttpServletRequest request) {
-		
+		customer.setCustomerStatus("2");
 		int result = customerService.removeCustomer(customer);
 		
 		if(result > 0) {
 			session.removeAttribute("loginId");
 			session.removeAttribute("loginPw");
+			
 			return "redirect:/";
 		}else {
 			model.addAttribute("msg", "삭제 실패");
@@ -155,12 +189,15 @@ public class CustomerController {
 		
 	}
 	
-	@GetMapping("/customer/notice_by_career")
+	@GetMapping("/notice_by_career")
 	public String showAllNotice() {
 		return "customer/notice_by_career";
 	}
 	
-	
+	@GetMapping("/notice_info")
+	public String showNoticeInfo() {
+		return "customer/notice_info";
+	}
 	
 
 }

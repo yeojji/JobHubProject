@@ -43,7 +43,7 @@
                     </div>
                     <div class="filter_box_item">
                         <nav>
-                        <ul> 필터제목
+                        <ul> 
                             <li>필터값</li>
                             <li>필터값</li>
                             <li>필터값</li>
@@ -57,7 +57,7 @@
                     </div>
                     <div class="filter_box_item">
                         <nav>
-                            <ul> 필터제목
+                            <ul> 
                                 <li>필터값</li>
                                 <li>필터값</li>
                                 <li>필터값</li>
@@ -69,7 +69,7 @@
                     </div>
                     <div class="filter_box_item">
                         <nav>
-                            <ul> 필터제목
+                            <ul> 
                                 <li>필터값</li>
                                 <li>필터값</li>
                                 <li>필터값</li>
