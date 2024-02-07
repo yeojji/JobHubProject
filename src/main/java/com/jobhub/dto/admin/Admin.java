@@ -14,8 +14,8 @@ public class Admin {
 	creation_code	datetime	생성일자
 	*/
 	
-	String id;
-	String pw;
+	String adminId;
+	String adminPw;
 	String employeeId;
 	String permissionCode;
 	String creationCode;

@@ -39,6 +39,7 @@ public class AdminController {
 		return "admin/admin";
 	}
 
+	
 	@RequestMapping
 	public String admin(HttpSession session) {
 //		if(session == null || session.getAttribute("loginId") == null){
@@ -51,7 +52,7 @@ public class AdminController {
 	public String logout(HttpSession session) {
 		loginManager.logout(session);
 
-		return "redirect:/index";
+		return "redirect:/admin";
 	}
 
 	// 로그인
@@ -61,29 +62,25 @@ public class AdminController {
 	}
 
 	@PostMapping("/login")
-	public String loginProcess(@ModelAttribute Admin admin, HttpSession session) {
-
+	public String loginProcess(@ModelAttribute Admin admin, HttpSession session, Model model) {
+	    Admin loginAdmin = adminService.isValidAdminLogin(admin);
 		System.out.println(admin);
 
 		// 로그인 정보 (id, pw)
 		// 로그인 로직처리 - Service
 		// log.debug("로그인 시도 : {}", admin);
 
-		Admin loginAdmin = adminService.isValidAdminLogin(admin); // id pw
-
-		if (loginAdmin == null /* || !(loginAdmin.getUserType().equals(CommonCode.USER_USERTYPE_ADMIN)) */ ) { // 정보가
-																												// 안맞는
-																												// 경우
+		if (loginAdmin == null) {
+	        model.addAttribute("error", "Invalid username or password. Please try again.");
+	        return "admin/login";
 			// log.info("로그인 실패");
 			// id pw 일치 X || 일치O 고객 아이디
-			return "admin/login"; // 로그인 실패
 		}
-
 		// 로그인 정보 처리
 		// session.setAttribute("loginId", loginAdmin.getId()); //로그인한 사용자의 id를 세션에 저장
-		loginManager.setSessionLogin(loginAdmin.getId(), session);
+		loginManager.setSessionLogin(loginAdmin.getAdminId(), session);
 		// log.info("로그인 성공");
-		return "redirect:/index";
+		return "redirect:/admin";
 	}
 
 	@GetMapping("/adminSetting")

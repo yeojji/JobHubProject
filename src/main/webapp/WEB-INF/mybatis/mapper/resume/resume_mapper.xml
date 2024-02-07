@@ -8,25 +8,21 @@
 	<!-- 이력서id res1, res2, res3 ... -->
 	<select id="selectNextResumeId" resultType="String">
 		SELECT 'res' ||
-		(SELECT NVL(MAX(resume_id), 0) + 1 FROM resume_info) FROM
-		dual
+		TO_CHAR(resume_id_seq.NEXTVAL) AS next_resume_id FROM dual;
 	</select>
 
 	<!-- 이력서 저장 -->
 	<insert id="saveResume" parameterType="Resume">
-		<selectKey keyProperty="resumeId" resultType="String"
-			order="BEFORE">
-			<!-- resume_id 생성 -->
-			<include refid="selectNextResumeId" />
-		</selectKey>
-		INSERT INTO resume_info
-		VALUES (#{resumeId}, #{userId}, #{jobsId},
-		#{careerId}, #{academicId},
-		#{certificateId}, #{supportPath},
-		#{military_serviceMatters},
-		#{veterans_targetStatus},
-		#{disorderStatus}, #{submissionStatus},
-		#{revisionDate})
+		INSERT INTO resume_info (resume_id, user_id, jobs_id, career_id,
+		academic_id, certificate_id, support_path, military_serviceMatters,
+		veterans_targetStatus, disorderStatus, submissionStatus, revisionDate)
+		VALUES (
+		'res' || TO_CHAR(resume_id_seq.NEXTVAL),
+		#{userId}, #{jobsId}, #{careerId}, #{academicId},
+		#{certificateId}, #{supportPath}, #{military_serviceMatters},
+		#{veterans_targetStatus}, #{disorderStatus}, #{submissionStatus},
+		#{revisionDate}
+		)
 	</insert>
 
 

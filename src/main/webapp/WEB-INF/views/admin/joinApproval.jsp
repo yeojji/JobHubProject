@@ -341,8 +341,8 @@
 							tabindex="15">가입 요청하기</a>
 					</div>
 					<div class="mUtility left">
-						이미 계정이 있으신가요? <a href="https://eclogin.jobhub.com/Shop/?mode="
-							class="txtEmLink" target="_blank">관리자 로그인하기</a>
+						이미 계정이 있으신가요? 
+						<a href="/admin/login" class="txtEmLink" target="_blank">관리자 로그인하기</a>
 					</div>
 				</div>
 				<!-- //contents -->
@@ -351,7 +351,7 @@
 			<!-- footer -->
 			<footer id="footer">
 				<p class="jobhub_direct">
-					<a href="#">Jobhub 바로가기</a>
+					<a href="/login">Jobhub 바로가기</a>
 				</p>
 				<p class="copyright">&copy; Jobhub Corp. All Rights Reserved.</p>
 			</footer>
