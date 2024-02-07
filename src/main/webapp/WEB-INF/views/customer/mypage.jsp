@@ -62,7 +62,7 @@
         <div class="member_resume_status_box">
             <div class="member_resume_status_text">
                 <span class="member_modify_resume_title">나의 임시저장 지원서</span>
-                <span class="go_to_resume">지원하기 ></span>
+                <span class="go_to_resume" onclick="location.href='/'">지원하기 ></span>
             </div>
             <!--회원이 임시저장한 지원서가 있을 때-->
             <div class="member_write_resume_box">

@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>공고페이지</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" 
     integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="  
     crossorigin="anonymous" referrerpolicy="no-referrer"/>
@@ -24,15 +25,14 @@
                 <div class="company_advertising_slide">
                     
                 </div>
-                <div class="career_category">
-                    <span class="category_item">All</span>
-                    <span class="category_item">Engineering</span>
-                    <span class="category_item">Design</span>
-                    <span class="category_item">Planning</span>
-                    <span class="category_item">Business & Sales</span>
-                    <span class="category_item">Marketing & Comms</span>
-                    <span class="category_item">Corporate</span>
+                
+                <div class="career_category" >
+	                <c:forEach var="job" items="${jobList}">
+	                    <span class="category_item"><c:out value="${job.jobsName}"/> </span>
+	                    
+	                </c:forEach>
                 </div>
+                
             </div>
             <div class="dividing_line"></div>
             <div class="notice_info_main">

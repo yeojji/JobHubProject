@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,12 +21,19 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.jobhub.dto.customer.Customer;
 import com.jobhub.service.customer.CustomerService;
+import com.jobhub.service.jobposting.JobpostingService;
 
 @Controller
 public class CustomerController {
 
 	@Autowired
 	CustomerService customerService;
+	
+	@Autowired
+	JobpostingService jobpostingService;
+	
+	@Autowired
+    private SqlSession sqlSession;
 	
 	@GetMapping("/login")
 	public String login() {
@@ -92,7 +100,7 @@ public class CustomerController {
 	}
 	
 	@GetMapping("/scrap_page")
-	public String scrap_page() {
+	public String scrap_page(HttpSession session) {
 		return "customer/scrap_page";
 	}
 	
@@ -147,7 +155,10 @@ public class CustomerController {
 		
 	}
 	
-	
+	@GetMapping("/customer/notice_by_career")
+	public String showAllNotice() {
+		return "customer/notice_by_career";
+	}
 	
 	
 	
