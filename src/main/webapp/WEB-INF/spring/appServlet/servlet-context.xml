@@ -17,15 +17,44 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 	<annotation-driven />
 
 	<!-- 스캔할 bean이 모여있는 패키지 지정 -->
-	<context:component-scan base-package="com.jobhub.controller"/>
-	<context:component-scan base-package="com.jobhub.service"/>
-	<context:component-scan base-package="com.jobhub.dao"/>
+	<context:component-scan
+		base-package="com.jobhub.controller" />
+	<context:component-scan
+		base-package="com.jobhub.service" />
+	<context:component-scan
+		base-package="com.jobhub.dao" />
+	<context:component-scan
+		base-package="com.jobhub.util" />
 
 	<beans:bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/"></beans:property>
 		<beans:property name="suffix" value=".jsp"></beans:property>
 	</beans:bean>
+
 	<resources mapping="/**" location="/resources/" />
+
+
+
+	<interceptors>
+		<interceptor>
+			<mapping path="/**" />
+			<exclude-mapping path="/resources/**" />
+			<exclude-mapping path="/admin/joinApproval" />
+			<exclude-mapping path="/admin/login" />
+			<exclude-mapping path="/admin/css/**" />
+			<exclude-mapping path="/admin/images/**" />
+			<exclude-mapping path="/admin/asset/**" />
+			<exclude-mapping path="/admin/js/**" />
+			<exclude-mapping path="/css/**" />
+			<exclude-mapping path="/js/**" />
+			<exclude-mapping path="/fileStorage/**" />
+			<exclude-mapping path="/image/**" />
+			<exclude-mapping path="/" />
+			<exclude-mapping path="/main" />
+			<exclude-mapping path="/login" />
+			<beans:bean class="com.jobhub.interceptor.LoginInterceptor" />
+		</interceptor>
+	</interceptors>
 
 </beans:beans>
