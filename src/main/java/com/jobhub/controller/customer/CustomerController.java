@@ -103,7 +103,7 @@ public class CustomerController {
 		
 		if(result >0) {
 			
-			return "redirect:/mypage";
+			return "redirect:/";
 		}else {
 			
 			
@@ -114,8 +114,7 @@ public class CustomerController {
 	@PostMapping("/mypage/modifyPw")
 	public String modifyCustomerPw(HttpSession session, Customer customer, Model model,HttpServletRequest request) {
 		
-		System.out.println("tlqkf");
-		System.out.println(customer);
+		
 		int result = customerService.modifyCustomerPw(customer);
 		
 		if(result > 0) {
@@ -134,14 +133,12 @@ public class CustomerController {
 	@PostMapping("/mypage/remove")
 	public String removeCustomer(HttpSession session, Customer customer, Model model, HttpServletRequest request) {
 		
-		String inputPw = request.getParameter("currentPw");
-		
-		String originalPw = (String)session.getAttribute("loginPw");
 		int result = customerService.removeCustomer(customer);
 		
-
 		if(result > 0) {
-			return "redirect:/mypage";
+			session.removeAttribute("loginId");
+			session.removeAttribute("loginPw");
+			return "redirect:/";
 		}else {
 			model.addAttribute("msg", "삭제 실패");
 			return "customer/mypage";

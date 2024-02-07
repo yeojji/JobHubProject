@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" 
     integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="  
     crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <link rel="stylesheet" href="../resources/css/footer.css">
-    <link rel="stylesheet" href="../resources/css/header.css">
-    <link rel="stylesheet" href="../resources/css/mainpage.css">
+    <link rel="stylesheet" href="../css/footer.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/mainpage.css">
 </head>
 <body>
     <!--헤더 -->
@@ -230,6 +230,23 @@
         </div>
 
     </footer>
+
+    <script>
+
+        const header = document.querySelector('.header_menu');
+        const headerHeight = header.offsetHeight; // top 속성 사용
+            console.log('헤더');
+        window.addEventListener("scroll", () => {
+            
+            if (window.scrollY > headerHeight) {
+                header.classList.add("scrolled"); // 스크롤이 내려갈 때 클래스 추가
+                console.log('외 않되');
+            } else {
+                header.classList.remove("scrolled"); // 스크롤이 위로 올라갈 때 클래스 제거
+                console.log('tlqkgf');
+            }
+        });
+    </script>
 
 </body>
 </html>

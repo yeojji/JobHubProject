@@ -32,7 +32,8 @@
 	
 	<delete id="removeCustomer" parameterType="Customer">
 		DELETE FROM "user"
-		WHERE password = #{password}
+		WHERE user_id = #{userId}
 	</delete>
+	
 	
 </mapper>

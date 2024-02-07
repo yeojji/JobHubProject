@@ -70,12 +70,25 @@
     
     
     	function logout(){
-    		
     		if(confirm('로그아웃 하시겠습니까?')){
     			document.getElementById("user_logout").submit();
     		}
     	}
-    
+    	
+    	const header = document.querySelector('.header_menu');
+        const headerHeight = header.offsetHeight; // top 속성 사용
+            console.log('헤더');
+        window.addEventListener("scroll", () => {
+            
+            if (window.scrollY > headerHeight) {
+                header.classList.add("scrolled"); // 스크롤이 내려갈 때 클래스 추가
+                console.log('위');
+            } else {
+                header.classList.remove("scrolled"); // 스크롤이 위로 올라갈 때 클래스 제거
+                console.log('아래');
+            }
+        });
+	
     
     </script>
     
