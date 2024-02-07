@@ -2,8 +2,156 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 					"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-					
+
 <mapper namespace="jobPosting_mapper">
+
+	<select id="findJobList" resultType="Job">
+		select * from jobs
+	</select>
+
+	<select id="findJobpostingList" resultType="Jobposting">
+		select * from job_posting
+	</select>
+
+
+	<select id="findJobNameListbyPid" resultType="Job"
+		parameterType="int">
+		SELECT * FROM jobs
+		WHERE jobs_Pid = #{jobLevel1} AND
+		jobs_Level = 2
+	</select>
+
+	<insert id="saveJobposting" parameterType="Jobposting">
+		insert into
+		job_posting values
+		(#{postingId} ,
+		#{title} ,
+		#{jobLevel2} ,
+		#{careerCondition},
+		#{employmentType} ,
+		sysdate,
+		#{postStartDate} ,
+		#{postEndDate} ,
+		#{applicationStart} ,
+		#{applicationDeadline} ,
+		#{postStatus} ,
+		sysdate,
+		'admiinId',
+		#{question1} ,
+		#{question2} ,
+		#{question3} )
+	</insert>
+
+	<insert id="saveDescription" parameterType="Description">
+		insert into
+		Description values
+		('desc'||seq_description_id.nextVal ,
+		#{postingId},
+		sysdate ,
+		#{assignedTask},
+		#{requirements} ,
+		#{preferentialTreatment} ,
+		#{screeningGuide} ,
+		#{workForm} ,
+		#{workPlace} ,
+		#{workingHours} ,
+		#{etc},
+		#{submissionGuide} )
+	</insert>
+
+	<select id="findJobpostingId" resultType="String">
+		select
+		'posting'||seq_posting_id.nextVal from dual
+	</select>
+
+	<select id="findPostingBypostingId" resultType="Jobposting" parameterType="String">
+		select jp.*, js.jobs_name jobsItemName , (select
+		jobs_name from jobs j where j.jobs_id = js.jobs_pid)jobsCateName
+		from
+		job_posting jp, jobs js
+		where jp.jobs_id = js.jobs_id and jp.posting_id
+		= #{postingId}
+	</select>
+	
+	<select id="findDescriptionBypostingId" resultType="Description" parameterType="String">
+		SELECT *
+		FROM description
+		WHERE posting_id = #{postingId}
+		ORDER BY creation_date ASC
+		FETCH FIRST 1 ROW ONLY  <!-- 결과 집합에서 첫 번째 행만 가져오는 예약어 -->
+	</select>
+
+	<update id="modifyJobposting" parameterType="Jobposting">
+		UPDATE job_posting
+		SET career_condition = #{careerCondition},
+		employment_type = #{employmentType},
+		post_start_date = #{postStartDate},
+		post_end_date = #{postEndDate},
+		application_start = #{applicationStart},
+		application_deadline = #{applicationDeadline},
+		post_status = #{postStatus},
+		modify_date = to_char(sysdate,'yy-mm-dd hh:mi:ss'),
+		admin_ID = 'admin2',
+		question_1 = #{question1},
+		question_2 = #{question2},
+		question_3 = #{question3}
+		WHERE
+		posting_id = #{postingId}
+	</update>
+	
+	<insert id="modifyDescription" parameterType="Description">
+		insert into
+		Description values
+		('desc'||seq_description_id.nextVal ,
+		#{postingId},
+		to_char(sysdate,'yy-mm-dd hh:mi:ss') ,
+		#{assignedTask},
+		#{requirements} ,
+		#{preferentialTreatment} ,
+		#{screeningGuide} ,
+		#{workForm} ,
+		#{workPlace} ,
+		#{workingHours} ,
+		#{etc},
+		#{submissionGuide} )
+	</insert>
+	
+	
+	<insert id="saveFaqs" parameterType="FAQs">
+		insert into FAQs values
+		('FAQs'||seq_faqs_id.nextVal ,
+		#{category},
+		#{title},
+		#{content}
+		)
+	</insert>
+
+
+	<select id="findFaqsList" resultType="FAQs">
+		select * from faqs
+	</select>
+	
+	<select id="findFaqsbyId" resultType="FAQs">
+		select * from faqs 
+		where FAQs_id = #{FAQsId}
+	</select>
+	
+	<update	id="modifyFaqs" parameterType="FAQs">
+		update faqs
+		set	
+		faqs_id = #{FAQsId} ,
+		category = #{category},
+		title = #{title},
+		content = #{content}
+		WHERE
+		faqs_id = #{FAQsId}
+	</update>
+	
+	<delete id="removeFaqs" parameterType="String">
+		DELETE FROM faqs
+		WHERE faqs_id = #{FAQsId}
+	</delete>
+
 
 
 </mapper>
