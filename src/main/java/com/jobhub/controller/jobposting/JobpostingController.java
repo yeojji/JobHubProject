@@ -168,7 +168,7 @@ public class JobpostingController {
 		}
 	}
 	
-	@RequestMapping("FAQsMain")
+	@RequestMapping("faqs")
 	public String faqsMain(Model model) {
 		List<FAQs> faqsList = jobpostingService.findFaqsList();
 		model.addAttribute("faqsList" , faqsList);
