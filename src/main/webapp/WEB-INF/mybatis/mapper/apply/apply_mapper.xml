@@ -5,65 +5,51 @@
 
 
 <mapper namespace="apply_mapper">
-	<!-- <insert id="saveEducationInfo" parameterType="educationForm">
-		INSERT INTO education
-		VALUES ( 1, 101, #{eduSortation}, #{schoolName}, #{admission}
-		, #{graduation}, #{major}, #{minor}, #{grade}, #{totalScore}, #{graduationStatus})
-	</insert> -->
-	
-	
-	
-	<!-- <insert id="saveEducationInfo" parameterType="HashMap">
 
-	<foreach collection="Map" item="item" separator=","
-		open="INSERT ALL" close="SELECT * FROM SYS.DUAL">
-		INTO education VALUES
-		(
-		edu_seq.nextval, resume_seq.nextval, #{item.eduSortation}, #{item.schoolName},
-		#{item.admission}, #{item.graduation}, #{item.major}, #{item.minor},
-		#{item.grade}, #{item.totalScore}, #{item.graduationStatus}
-		)
-	</foreach>
-	</insert> -->
-	
-	<!-- <insert id="saveEducationInfo" parameterType="educationForm">
-
-	<foreach collection="list" item="item" separator=","
-		open="INSERT ALL" close="SELECT * FROM SYS.DUAL">
-		INTO education VALUES
-		(
-		edu_seq.nextval, resume_seq.nextval, #{item.eduSortation}, #{item.schoolName},
-		#{item.admission}, #{item.graduation}, #{item.major}, #{item.minor},
-		#{item.grade}, #{item.totalScore}, #{item.graduationStatus}
-		)
-	</foreach>
-	</insert> -->
-	
-<!-- 	<insert id="saveEducationInfo" parameterType="educationForm"> -->
-	<!-- 여기가 되는코드 <insert id="saveEducationInfo" parameterType="hashmap">
-
-	<foreach collection="resumeList" item="item"
-		open="INSERT ALL" close="SELECT * FROM dual">
-		INTO education VALUES
-		(
-		edu_seq.nextval, resume_seq.nextval, #{item.eduSortation}, #{item.schoolName},
-		#{item.admission}, #{item.graduation}, #{item.major}, #{item.minor},
-		#{item.grade}, #{item.totalScore}, #{item.graduationStatus}
-		)
-	</foreach>
-	</insert> -->
-	
-	
 	<insert id="saveEducationInfo" parameterType="hashmap">
 
 	<foreach collection="resumeList" item="item"
 		open="INSERT ALL" close="SELECT * FROM dual">
 		INTO education VALUES
 		(
-		edu_seq.nextval, resume_seq.nextval, #{item.eduSortation}, #{item.schoolName},
+		edu_seq.nextval, 1, #{item.eduSortation}, #{item.schoolName},
 		#{item.admission}, #{item.graduation}, #{item.major}, #{item.minor},
 		#{item.grade}, #{item.totalScore}, #{item.graduationStatus}
 		)
+	</foreach>
+	</insert>
+	
+	<insert id="saveCareerInfo" parameterType="hashmap">
+	
+	<foreach collection="careerList" item="ca" 
+		open="INSERT ALL" close="SELECT * FROM dual">
+		INTO career VALUES
+		(
+		(SELECT NVL(MAX(career_id), 0) + 1 FROM career), 1, #{ca.companyName}, #{ca.departmentName}, #{ca.joinDate}, 
+		#{ca.resignationDate}, #{ca.duty}, #{ca.position}, #{ca.detailWork}
+		)
+	
+	</foreach>
+	</insert>
+
+	<insert id="saveCertificateInfo" parameterType="hashmap">
+	
+	<foreach collection="certList" item="cert" 
+		open="INSERT ALL" close="SELECT * FROM dual">
+		INTO certificate VALUES
+		(
+		(SELECT NVL(MAX(certificate_id), 0) + 1 FROM certificate), 
+		1, 
+		#{cert.certSortation}, 
+		#{cert.certType}, 
+		#{cert.certLevel}, 
+		#{cert.acquisition}, 
+		#{cert.lssuingAuthority}, 
+		#{cert.language}, 
+		#{cert.test}, 
+		#{cert.languageGrade}
+		)
+	
 	</foreach>
 	</insert>
 	

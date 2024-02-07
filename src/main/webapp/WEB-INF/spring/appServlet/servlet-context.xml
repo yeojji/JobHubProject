@@ -36,7 +36,7 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 
 
 
-	<interceptors>
+	<!-- <interceptors>
 		<interceptor>
 			<mapping path="/**" />
 			<exclude-mapping path="/resources/**" />
@@ -55,6 +55,6 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 			<exclude-mapping path="/login" />
 			<beans:bean class="com.jobhub.interceptor.LoginInterceptor" />
 		</interceptor>
-	</interceptors>
+	</interceptors> -->
 
 </beans:beans>
