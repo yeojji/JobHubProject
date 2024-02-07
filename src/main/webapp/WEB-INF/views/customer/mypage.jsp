@@ -62,7 +62,7 @@
         <div class="member_resume_status_box">
             <div class="member_resume_status_text">
                 <span class="member_modify_resume_title">나의 임시저장 지원서</span>
-                <span class="go_to_resume">지원하기 ></span>
+                <span class="go_to_resume" onclick="location.href='/'">지원하기 ></span>
             </div>
             <!--회원이 임시저장한 지원서가 있을 때-->
             <div class="member_write_resume_box">
@@ -252,16 +252,18 @@
         <form action="/mypage/remove" method="post" class="delete_user_form">
             <div class="delete_user_main">
                 <div class="delete_box">
-                    <input type="hidden" name="password" value="${password}">
+                	<input type="hidden" name="userId" value="${userId}">
+                    <input type="hidden" id="userPw" value="${loginPw}">
                     <span class="modify_main_title">비밀번호 입력</span>
                     <input type="text" placeholder="현재 비밀번호를 입력해주세요." 
-                    class="modify_info" id="currentPw" name="currentPw">
+                    class="modify_info" id="inputPw" oninput="removeUser()">
+                    <span id="error_pw_msg" class="error_msg"></span>
                 </div>
                 
             </div>
             <div class="complete_btn">
                 <button type="button" class="close_modal_delete">취소</button>
-                <button type="button" class="submitBtn2">지원자 등록 정보 삭제</button>
+                <button type="button" id="submitBtn2">지원자 등록 정보 삭제</button>
             </div>
         </form>
     </div>
@@ -393,6 +395,28 @@
         }
     }
     
+    function removeUser(){
+    	var currentPw = document.getElementById('userPw').value;
+    	var inputPw = document.getElementById('inputPw').value;
+    	
+    	if(inputPw !== ""){
+    		if(inputPw === currentPw){
+	    		error_pw_msg.innerHTML = '일치';
+		    	error_pw_msg.style.color = 'green';
+            
+	    	}else{
+	    		error_pw_msg.innerHTML = '불일치';
+    			error_pw_msg.style.color = 'red';
+	    		
+	    	}
+    	}
+    	
+    	
+    	
+    	
+    	
+    }
+    
     
     document.querySelector('.submitBtn').addEventListener('click',function(){
     	let inputPw = document.getElementById('pw').value;
@@ -421,14 +445,28 @@
     });
    
      
-    /*
-	document.querySelector('.submitBtn2').addEventListenr('click',function(){
+    
+	document.querySelector('#submitBtn2').addEventListener('click',function(){
+		let test1 = document.getElementById('userPw').value;
+    	let test2 = document.getElementById('inputPw').value;
 		if(confirm('회원님의 정보를 삭제하시겠습니까?')){
+			
+			if(test2 === null || test2 === ""){
+				alert('현재 비밀번호를 입력 해 주세요');
+				return;
+			}
+			
+			if(test1 !== test2){
+				alert('비밀번호가 다릅니다.');
+				return;
+			}
+			
+			
 			document.querySelector('.delete_user_form').submit();
 			alert('삭제되었습니다.');
 		}
 	})
-	*/
+	
     
     
    

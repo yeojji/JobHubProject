@@ -138,6 +138,11 @@ public class JobpostingController {
 		
 	}
 	
+	
+	
+	
+	//FAQs
+	
 	@GetMapping("addFAQs")
 	public String addFAQs() {
 		System.out.println("get 요청");
@@ -163,7 +168,7 @@ public class JobpostingController {
 		}
 	}
 	
-	@RequestMapping("FAQsMain")
+	@RequestMapping("faqs")
 	public String faqsMain(Model model) {
 		List<FAQs> faqsList = jobpostingService.findFaqsList();
 		model.addAttribute("faqsList" , faqsList);

@@ -54,8 +54,7 @@
 }
 
 .notice_info_main{
-    width: 80%;
-    margin: 0 auto;
+    width: 100%;
     display: flex;
     padding-top: 50px;
 }
@@ -64,8 +63,7 @@
     display: flex;
     flex-direction: column;
     width: 20%;
-    padding-right: 20px;
-    overflow-y: scroll;
+    padding-left: 50px;
 }
 
 .filter_box{
@@ -99,7 +97,7 @@
     flex-direction: column;
     width: 80%;
     padding-left: 70px;
-    
+    padding-right: 30px;
 }
 
 .search_jobs_box{
@@ -107,6 +105,11 @@
     align-items: center;
     border-bottom: 1px solid gray;
     padding: 10px;
+}
+
+.search_btn{
+    border: none;
+    cursor: pointer;
 }
 
 .search_icon{

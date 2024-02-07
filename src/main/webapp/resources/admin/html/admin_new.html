@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Jobhub 관리자 페이지</title>
+        <link rel="stylesheet" href="./sources/admin/css/admin.css">
+        <link rel="shortcut icon" href="./sources/icon/jobhub_favicon.ico" type="image/x-icon">
+        <script src="./sources/common/js/jquery-1.8.3.min.js"></script>
+        <script src="./sources/common/js/jquery-ui-1.10.3.custom.js"></script>
+        <script src="./sources/common/js/common.js"></script>
+        <script src="./sources/common/js/categorylist.js"></script>
+
+        <!-- Bootstrap core CSS -->
+        <link href="./sources/admin/css/bootstrap.min.css" rel="stylesheet">
+        <link href="./sources/admin/css/bootstrap-reset.css" rel="stylesheet">
+
+        <!--Animation css-->
+        <link href="./sources/admin/css/animate.css" rel="stylesheet">
+
+        <!--Icon-fonts css-->
+        <link href="./sources/admin/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+
+
+        <!-- Custom styles for this template -->
+        <link href="./sources/admin/css/style.css" rel="stylesheet">
+        <link href="./sources/admin/css/helper.css" rel="stylesheet">
+        <link href="./sources/admin/css/style-responsive.css" rel="stylesheet" />
+
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
+        <!--[if lt IE 9]>
+          <script src="js/html5shiv.js"></script>
+          <script src="js/respond.min.js"></script>
+        <![endif]-->
+
+    </head>
+
+
+    <body>
+
+        <!-- header -->
+                <!-- Aside Start-->
+        <aside class="left-panel">
+
+            <!-- brand -->
+                <div id="logo">
+                    <a href="/admin/adminMain">
+                    <img src="./sources/admin/img/logo_wh_250x35.png" alt="Jobhub logo">
+                </a>
+                </div>
+        <div id="tnb">
+            </div>
+            <!-- / brand -->
+        
+            <!-- Navbar Start -->
+            <nav class="navigation">
+                <ul class="list-unstyled">
+                    <li class="has-submenu active"><a href="index.php"><i class="fa fa-picture-o"></i> <span class="nav-label">홈관리</span></a>
+                    </li>
+                    <li class="has-submenu"><a href="shortcut_icon.php"><i class="fa fa-sun-o"></i> <span class="nav-label">단축아이콘관리</span></a>
+                    </li>
+                    <li class="has-submenu"><a href="#"><i class="fa fa-folder-open-o"></i> <span class="nav-label">카테고리 관리</span><i class="fa pull-right fa-angle-down"></i></a>
+                        <ul class="list-unstyled">
+                            <li><a href="#">제품별 카테고리관리</a></li>
+                            <li><a href="#">브랜드별 카테고리관리</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-submenu"><a href="#"><i class="fa fa-clipboard"></i> <span class="nav-label">상품관리</span><i class="fa pull-right fa-angle-down"></i></a>
+                    	<ul class="list-unstyled">
+                            <li><a href="mcd_management.php">상품관리</a></li>
+                            <li><a href="#">쇼핑몰관리</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-submenu"><a href="#"><i class="fa fa-leaf"></i> <span class="nav-label">무료체험 관리</span><i class="fa pull-right fa-angle-down"></i></a>
+                        <ul class="list-unstyled">
+                            <li><a href="free_trialA.php">무료정품체험 관리</a></li>
+                            <li><a href="free_applicant.php">무료정품 신청자 관리</a></li>
+                            <li><a href="free_trialB.php">무료샘플체험 관리</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-submenu"><a href="#"><i class="fa fa-eye"></i> <span class="nav-label">뷰티랩 관리</span><i class="fa pull-right fa-angle-down"></i></a>
+                         <ul class="list-unstyled">
+                            <li><a href="beuty_video.php">동영상 관리</a></li>
+                            <li><a href="beuty_blog.php">블로그 관리</a></li>
+                            <li><a href="bookmark.php">책갈피</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-submenu"><a href="planing.php"><i class="fa fa-gift"></i> <span class="nav-label">기획전 관리</span></a>
+                    </li>
+                    <li class="has-submenu"><a href="searching.php"><i class="fa fa-search"></i> <span class="nav-label">인기검색어 관리</span></a>
+                    </li>
+                    <li class="has-submenu"><a href="notice.php"><i class="fa fa-bell-o"></i> <span class="nav-label">공지 관리</span></a>
+                    </li>
+                    <li class="has-submenu"><a href="event.php"><i class="fa fa-gift"></i> <span class="nav-label">이벤트 관리</span></a>
+                    </li>
+                    <li class="has-submenu"><a href="news.php"><i class="fa fa-newspaper-o"></i> <span class="nav-label">뉴스 관리</span></a>
+                    </li>
+                </ul>
+            </nav>
+                
+        </aside>
+        <!-- Aside Ends-->
+
+
+        <!--Main Content Start -->
+        <section class="content">
+            
+            <!-- Header -->
+            <header class="top-head container-fluid">
+                <button type="button" class="navbar-toggle pull-left">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                
+                <!-- Left navbar -->
+                <h2 class="title_info pull-left fs18 navbar-left" style=" margin-top:15px;">
+                </h2>
+                
+                <!-- Right navbar -->
+                <ul class="list-inline navbar-right top-menu top-right-menu">  
+                    <!-- user login dropdown start-->
+                    <li class="dropdown text-center">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <img alt="" src="../images/ico65_bg.jpg" class="img-circle profile-img thumb-sm">
+                            <span class="username">sample님 </span> <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu extended pro-menu fadeInUp animated" tabindex="5003" style="overflow: hidden; outline: none;">
+                            <li><a href="#"><i class="fa fa-sign-out"></i> Log Out</a></li>
+                        </ul>
+                    </li>
+                    <!-- user login dropdown end -->       
+                </ul>
+                <!-- End right navbar -->
+
+            </header>
+            <!-- Header Ends -->
+
+
+            <!-- Page Content Start -->
+            <!-- ================== -->
+
+            <div class="wraper container-fluid">
+                <div class="page-title"> 
+                    <h3 class="title"><i class="fa fa-file-text-o"></i>&nbsp;파일목록&nbsp;</h3> 
+                </div>
+
+                         <div class="row">
+            <div class="col-md-6" style="float:none !important; margin:0 auto; text-align:center;">
+                <div class="list-group" style="margin:0 auto;">
+                  <a href="http://narigom.co.kr/accio/page/login.php" class="list-group-item" target="_blank">로그인</a>
+                  <a href="http://narigom.co.kr/accio/page/index.php" class="list-group-item" target="_blank">홈관리</a>
+                  <a href="http://narigom.co.kr/accio/page/banner_register.php" class="list-group-item" target="_blank">홈배너 등록 및 수정</a>
+                  <a href="http://narigom.co.kr/accio/page/mcd_management.php" class="list-group-item" target="_blank">상품관리</a>
+                  <a href="http://narigom.co.kr/accio/page/mcd_register.php" class="list-group-item" target="_blank">상품등록</a>
+                  <a href="http://narigom.co.kr/accio/page/free_trialA.php" class="list-group-item" target="_blank">무료정품체험 관리</a>
+                  <a href="http://narigom.co.kr/accio/page/trialA_register.php" class="list-group-item" target="_blank">무료정품체험 등록</a>
+                  <a href="http://narigom.co.kr/accio/page/free_applicant.php" class="list-group-item" target="_blank">무료정품 신청자 관리</a>
+                  <a href="http://narigom.co.kr/accio/page/free_trialB.php" class="list-group-item" target="_blank">무료샘플체험 관리</a>
+                  <a href="http://narigom.co.kr/accio/page/trialB_register.php" class="list-group-item" target="_blank">무료샘플체험 등록</a>
+                  <a href="http://narigom.co.kr/accio/page/beuty_video.php" class="list-group-item" target="_blank">동영상관리</a>
+                  <a href="http://narigom.co.kr/accio/page/video_register.php" class="list-group-item" target="_blank">동영상등록</a>
+                  <a href="http://narigom.co.kr/accio/page/beuty_blog.php" class="list-group-item" target="_blank">블로그관리</a>
+                  <a href="http://narigom.co.kr/accio/page/blog_register.php" class="list-group-item" target="_blank">블로그등록</a>
+                  <a href="http://narigom.co.kr/accio/page/planing.php" class="list-group-item" target="_blank">기획전관리</a>
+                  <a href="http://narigom.co.kr/accio/page/planing_register.php" class="list-group-item" target="_blank">기획전등록</a>
+                  <a href="http://narigom.co.kr/accio/page/searching.php" class="list-group-item" target="_blank">인기검색어 관리</a>
+                  <a href="http://narigom.co.kr/accio/page/notice.php" class="list-group-item" target="_blank">공지 관리</a>
+                  <a href="http://narigom.co.kr/accio/page/notice_register.php" class="list-group-item" target="_blank">공지 등록</a> 
+                  <a href="http://narigom.co.kr/accio/page/shortcut_icon.php" class="list-group-item" target="_blank">단축아이콘관리</a> 
+                  <a href="http://narigom.co.kr/accio/page/event.php" class="list-group-item" target="_blank">이벤트</a>
+                  <a href="http://narigom.co.kr/accio/page/event_register.php" class="list-group-item" target="_blank">이벤트 등록</a>
+                  <a href="http://narigom.co.kr/accio/page/event_modify.php" class="list-group-item" target="_blank">이벤트 수정</a>
+                  <a href="http://narigom.co.kr/accio/page/event_img_register.php" class="list-group-item" target="_blank">이벤트 이미지 리스트</a>
+                  <a href="http://narigom.co.kr/accio/page/event_img_modify.php" class="list-group-item" target="_blank">이벤트 이미지 수정</a> 
+                  <a href="http://narigom.co.kr/accio/page/bookmark.php" class="list-group-item" target="_blank">책갈피</a>
+                  <a href="http://narigom.co.kr/accio/page/cardtype.php" class="list-group-item" target="_blank">카드타입 이미지</a>  
+                  <a href="http://narigom.co.kr/accio/page/cardtype_modify.php" class="list-group-item" target="_blank">카드타입 이미지 수정</a> 
+                  <a href="http://narigom.co.kr/accio/page/news.php" class="list-group-item" target="_blank">뉴스</a> 
+                  <a href="http://narigom.co.kr/accio/page/news_register.php" class="list-group-item" target="_blank">뉴스등록</a>                 
+                </div>
+            </div>
+        </div>
+
+
+
+
+            </div>
+            <!-- Page Content Ends -->
+            <!-- ================== -->
+            <!-- Footer Start -->
+            <footer class="footer text_nor">
+               2016 © gmccoms. All rights reserved.
+            </footer>
+            <!-- Footer Ends -->
+
+
+
+        </section>
+        <!-- Main Content Ends -->
+        
+
+
+        <!-- js placed at the end of the document so the pages load faster -->
+        <script src="../js/jquery.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script src="../js/modernizr.min.js"></script>
+		<script src="../js/jquery.scrollTo.min.js"></script>
+        <script src="../js/jquery.nicescroll.js" type="text/javascript"></script>
+
+
+
+
+
+        <script src="../js/jquery.app.js"></script>
+        
+        <!-- Dashboard -->
+        <script src="../js/jquery.dashboard.js"></script>
+
+
+
+    
+
+    </body>
+</html>

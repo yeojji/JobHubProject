@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>Jobhub 관리자 페이지</title>
+    <link rel="stylesheet" href="./sources/admin/css/admin.css">
+    <link rel="shortcut icon" href="./sources/icon/jobhub_favicon.ico" type="image/x-icon">
+    <script src="./sources/common/js/jquery-1.8.3.min.js"></script>
+    <script src="./sources/common/js/jquery-ui-1.10.3.custom.js"></script>
+    <script src="./sources/common/js/common.js"></script>
+    <script src="./sources/common/js/categorylist.js"></script>
+</head>
+
+<body>
+    <!-- header -->
+    <header id="hd">
+        <div id="hd_wrap">
+            <h1>Jobhub 관리자 페이지</h1>
+            <div id="logo"><a href="/admin/adminMain"><img src="./sources/admin/img/logo_wh_250x35.png"
+                        alt="Jobhub logo"></a></div>
+            <div id="tnb">
+                <ul>
+                    <li>${adminName}님</li>
+                    <li><a href="#" target="_blank">Jobhub바로가기</a></li>
+                    <li><a href="/admin/mypage">마이페이지</a></li>
+                    <li id="tnb_logout"><a href="#">로그아웃</a></li>
+                </ul>
+            </div>
+            <!-- gnb -->
+            <nav id="gnb">
+                <h2>관리자 메뉴</h2>
+                <ul id="gnb_1dul">
+                    <li class="gnb_1dli active">
+                        <a href="#" class="gnb_1da">회원관리</a>
+                    </li>
+                    <li class="gnb_1dli">
+                        <a href="#" class="gnb_1da">직원관리</a>
+                    </li>
+                    <li class="gnb_1dli">
+                        <a href="#" class="gnb_1da">이력서관리</a>
+                    </li>
+                    <li class="gnb_1dli">
+                        <a href="#" class="gnb_1da">채용공고 관리</a>
+                    </li>
+                    <li class="gnb_1dli">
+                        <a href="#" class="gnb_1da">관리자설정</a>
+                    </li>
+                    <li class="gnb_1dli">
+                        <a href="#" class="gnb_1da">고객지원</a>
+                    </li>
+                    <li class="gnb_1dli">
+                        <a href="#" class="gnb_1da">마이페이지</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div id="snb">
+        <dl>
+            <dt class="g10">회원관리</dt>
+            <dd class="g10 active"><a href="#">회원정보 조회<em>2</em></a></dd>
+            <dd class="g10"><a href="#">신규회원 등록</a></dd>
+            <dd class="g10"><a href="#">탈퇴자 조회</a></dd>
+        </dl>
+    </div>
+    <div id="wrapper">
+        <div id="content">
+            <div class="s_wrap">
+                <h1>회원정보 조회</h1>
+
+                <!-- 검색 -->
+                <h2>검색</h2>
+                <form name="fsearch" id="fsearch" method="get">
+                    <input type="hidden" name="code" value="list">
+                    <div class="tbl_frm01">
+                        <table class="tablef">
+                            <colgroup>
+                                <col class="w100">
+                                <col>
+                                <col class="w100">
+                                <col>
+                            </colgroup>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">검색어</th>
+                                    <td colspan="3">
+                                        <select name="sfl">
+                                            <option value="id">아이디</option>
+                                            <option value="name">회원명</option>
+                                            <option value="phone">핸드폰</option>
+                                            <option value="email">이메일</option>
+                                        </select>
+                                        <input type="text" name="stx" value="" class="frm_input" size="30">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">기간검색</th>
+                                    <td colspan="3">
+                                        <select name="spt">
+                                            <option value="reg_time">가입일자</option>
+                                            <option value="user_birth">생년월일</option>
+                                        </select>
+                                        <label for="fr_date" class="sound_only">시작일</label>
+                                        <input type="date" name="fr_date" value="" id="fr_date" class="frm_input w100"
+                                            maxlength="10">
+                                        ~
+                                        <label for="to_date" class="sound_only">종료일</label>
+                                        <input type="date" name="to_date" value="" id="to_date" class="frm_input w100"
+                                            maxlength="10">
+                                        <span class="btn_group"><input type="button"
+                                                onclick="search_date('fr_date','to_date',this.value);"
+                                                class="btn_small white" value="오늘"><input type="button"
+                                                onclick="search_date('fr_date','to_date',this.value);"
+                                                class="btn_small white" value="어제"><input type="button"
+                                                onclick="search_date('fr_date','to_date',this.value);"
+                                                class="btn_small white" value="일주일"><input type="button"
+                                                onclick="search_date('fr_date','to_date',this.value);"
+                                                class="btn_small white" value="지난달"><input type="button"
+                                                onclick="search_date('fr_date','to_date',this.value);"
+                                                class="btn_small white" value="1개월"><input type="button"
+                                                onclick="search_date('fr_date','to_date',this.value);"
+                                                class="btn_small white" value="3개월"><input type="button"
+                                                onclick="search_date('fr_date','to_date',this.value);"
+                                                class="btn_small white" value="전체"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">성별</th>
+                                    <td>
+                                        <label><input type="radio" name="gender" value="" checked="checked"> 전체</label>
+                                        <label><input type="radio" name="gender" value="female"> 여성</label>
+                                        <label><input type="radio" name="gender" value="male"> 남성</label>
+                                    </td>
+                                    <th scope="row">나이</th>
+                                    <td>
+                                        <label for="start_age" class="sound_only">시작일</label>
+                                        <input type="text" name="start_age" value="" id="start_age"
+                                            class="frm_input w80" maxlength="10"> 세
+                                        ~
+                                        <label for="end_age" class="sound_only">종료일</label>
+                                        <input type="text" name="end_age" value="" id="end_age" class="frm_input w80"
+                                            maxlength="10"> 세
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="btn_confirm">
+                        <input type="submit" value="검색" class="btn_medium">
+                        <input type="button" value="초기화" id="frmRest" class="btn_medium grey">
+                    </div>
+                </form>
+                <!-- //검색 -->
+
+
+                <!-- 검색결과 리스트 -->
+                <div class="local_ov mart30">
+                    총 회원수 : <b class="fc_red">3</b>명
+                </div>
+                <div class="local_frm01">
+                    <a href="./member.php?code=register_form" class="fr btn_lsmall green">신규회원 등록</a>
+                </div>
+                <div class="tbl_head01">
+                    <table>
+                        <colgroup>
+                            <col class="w50">
+                            <col class="w130">
+                            <col class="w150">
+                            <col>
+                            <col class="w130">
+                            <col>
+                            <col class="w130">
+                            <col>
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th scope="col">번호</th>
+                                <th scope="col"><a href="/admin/member.php?code=list&page=&filed=id&orderby=asc">아이디</a>
+                                </th>
+                                <th scope="col"><a
+                                        href="/admin/member.php?code=list&page=&filed=name&orderby=asc">이름</a></th>
+                                <th scope="col"><a
+                                        href="/admin/member.php?code=list&page=&filed=grade&orderby=asc">성별</a></th>
+                                <th scope="col">휴대폰번호</th>
+                                <th scope="col">이메일</th>
+                                <th scope="col">생년월일</th>
+                                <th scope="col"><a href="/admin/member.php?code=list&page=&filed=reg_time&orderby=asc">가입일시</a>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="list">
+                            <tr class="list0">
+                                <td>3</td>
+                                <td><span class="sv_wrap">
+                                        <a href="javascript:void(0);" class="sv_member">test01</a>
+                                        <span class="sv">
+                                            <a href="/admin/useredit"
+                                                onclick="win_open(this,'win_member','1200','600','yes');return false;">회원정보수정</a>
+                                        </span>
+
+                                        <noscript class="sv_nojs"><span class="sv">
+                                                <a href="/admin/useredit"
+                                                    onclick="win_open(this,'win_member','1200','600','yes');return false;">회원정보수정</a>
+                                            </span>
+                                        </noscript></span></td>
+                                <td>홍길동</td>
+                                <td>남성</td>
+                                <td>010-0000-0000</td>
+                                <td>test01@test.com</td>
+                                <td>1990-10-04</td>
+                                <td>2024-02-05 23:56:22</td>
+                            </tr>
+                            <tr class="list1">
+                                <td>2</td>
+                                <td><span class="sv_wrap">
+                                        <a href="javascript:void(0);" class="sv_member">test02</a>
+                                        <span class="sv">
+                                            <a href="http://demofran.com/admin/pop_memberform.php?mb_id=tubeweb2"
+                                                onclick="win_open(this,'win_member','1200','600','yes');return false;">회원정보수정</a>
+                                        </span>
+                                        <noscript class="sv_nojs"><span class="sv">
+                                                <a href="http://demofran.com/admin/pop_memberform.php?mb_id=tubeweb2"
+                                                    onclick="win_open(this,'win_member','1200','600','yes');return false;">회원정보수정</a>
+                                            </span>
+                                        </noscript></span></td>
+                                <td>테스트</td>
+                                <td>여성</td>
+                                <td>010-2222-2222</td>
+                                <td>test02@test.com</td>
+                                <td>1980-11-04</td>
+                                <td>2024-02-05 23:40:44</td>
+                            </tr>
+                            <tr class="list0">
+                                <td>1</td>
+                                <td><span class="sv_wrap">
+                                        <a href="javascript:void(0);" class="sv_member">test03</a>
+                                        <span class="sv">
+                                            <a href="http://demofran.com/admin/pop_memberform.php?mb_id=tubeweb1"
+                                                onclick="win_open(this,'win_member','1200','600','yes');return false;">회원정보수정</a>
+                                        </span>
+
+                                        <noscript class="sv_nojs"><span class="sv">
+                                                <a href="http://demofran.com/admin/pop_memberform.php?mb_id=tubeweb1"
+                                                    onclick="win_open(this,'win_member','1200','600','yes');return false;">회원정보수정</a>
+                                            </span>
+                                        </noscript></span></td>
+                                <td>김길동</td>
+                                <td>남성</td>
+                                <td>010-1111-1111</td>
+                                <td>test03@test.com</td>
+                                <td>1993-05-11</td>
+                                <td>2023-10-04 18:05:42</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="local_frm02">
+                    <a href="./member.php?code=register_form" class="fr btn_lsmall green">신규회원 등록</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- //검색결과 리스트 -->
+
+
+
+    <div id="ft">
+        <p>Copyright &copy; Jobhub. All rights reserved.</p>
+    </div>
+    <div id="ajax-loading"><img src="./sources/common/img/ajax-loader.gif"></div>
+    <div id="anc_header"><a href="#anc_hd"><span></span>TOP</a></div>
+    <script src="./sources/admin/js/admin.js"></script>
+    <script src="./sources/common/js/wrest.js"></script>
+</body>
+</html>

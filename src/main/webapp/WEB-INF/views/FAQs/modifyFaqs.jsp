@@ -22,7 +22,7 @@
 	</select> <br>
 	
 	<label>제목</label> <input type="text" name="title" value="${faqs.title}" required> <br>
-	<label>내용</label><br> <textarea name="content" value="${faqs.content}" required ></textarea><br>
+	<label>내용</label><br> <textarea name="content" required >${faqs.content}</textarea><br>
 	
 	
 	<button type="submit">수정하기</button>
