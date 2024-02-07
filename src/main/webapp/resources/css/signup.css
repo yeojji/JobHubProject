@@ -128,3 +128,10 @@ ul{
 .signup_submit{
     margin-top: 40px;
 }
+
+.warning {
+    margin-top:5px;
+    color: red;
+    font-size: 13px;
+    display: none;
+}
