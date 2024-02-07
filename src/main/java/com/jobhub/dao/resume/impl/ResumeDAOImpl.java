@@ -26,6 +26,9 @@ public class ResumeDAOImpl implements ResumeDAO {
 		System.out.println("이력서DAO에서 보내는 출력문");
 		int result = sqlSessionTemplate.insert("apply_mapper.saveEducationInfo", eduMap);
 		
+		return result;
+	}
+		
 	public int saveResume(Resume resume) {
 		// TODO Auto-generated method stub
 		int result = sqlSessionTemplate.insert("resume_mapper.saveResume", resume);
