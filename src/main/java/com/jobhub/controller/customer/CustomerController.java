@@ -1,9 +1,11 @@
 package com.jobhub.controller.customer;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -24,6 +26,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.jobhub.dto.customer.Customer;
 import com.jobhub.dto.employee.Employee;
+import com.jobhub.dto.employee.EmployeeJobsInfo;
 import com.jobhub.dto.jobposting.Job;
 import com.jobhub.service.admin.AdminService;
 import com.jobhub.service.customer.CustomerService;
@@ -36,46 +39,58 @@ public class CustomerController {
 	CustomerService customerService;
 	
 	@Autowired
+	AdminService adminService;
+	
+	@Autowired
 	JobpostingService jobpostingService;
 	
 	@Autowired
     private SqlSession sqlSession;
 	
-	@Autowired
-	AdminService adminService;
 	
 	@GetMapping("/login")
 	public String login() {
 		return "login/login";
 	}
 	
-	
-//	@GetMapping("/")
-//	public String main(Model model, Employee employee) {
-//		
-//		List<Employee> employeeList = adminService.findEmployeeList();
-//		
-//		List<Employee> randomEmployee = new ArrayList<>();
-//		Random random = new Random();
-//		int listSize = employeeList.size();
-//		
-//		for(int i=0; i<3 && i<listSize; i++) {
-//			int randomIndex = random.nextInt(listSize);
-//			randomEmployee.add(employeeList.get(randomIndex));
-//		}
-//		
-//		System.out.println(employee);
-//		model.addAttribute("employee", randomEmployee);
-//		
-//		return "main/mainpage";
-//	}
-	
-	@GetMapping("/")
-	public String main() {
-		 
-		
-		return "main/mainpage";
+	private List<EmployeeJobsInfo> getRandomEmployeeJobsInfos(List<EmployeeJobsInfo> employeeList, int count) {
+	    List<EmployeeJobsInfo> randomEmployeeInfos = new ArrayList<>();
+	    Random random = new Random();
+	    int listSize = employeeList.size();
+	    
+	    // 중복된 인덱스를 방지하기 위한 Set
+	    Set<Integer> selectedIndices = new HashSet<>();
+	    
+	    for (int i = 0; i < count && i < listSize; i++) {
+	        int randomIndex;
+
+	        do {
+	            randomIndex = random.nextInt(listSize);
+	        } while (selectedIndices.contains(randomIndex));
+
+	        selectedIndices.add(randomIndex);
+
+	        randomEmployeeInfos.add(employeeList.get(randomIndex));
+	    }
+	    return randomEmployeeInfos;
 	}
+
+	@GetMapping("/")
+	public String main(Model model) {
+	    List<EmployeeJobsInfo> employeeJobsInfoList = jobpostingService.findEmployeeJobsInfoList();
+	    List<EmployeeJobsInfo> randomEmployeeInfos = getRandomEmployeeJobsInfos(employeeJobsInfoList, 3);
+	    
+	    List<Job> findJobsNameByLevel1List = jobpostingService.findJobsNameByLevel1List();
+	    
+	    model.addAttribute("employeeInfoList",  randomEmployeeInfos);
+	    
+	    model.addAttribute("findJobsName", findJobsNameByLevel1List);
+
+	    return "main/mainpage";
+	}
+	
+	
+
 	
 	@PostMapping("/login")
 	public String loginProcess(@ModelAttribute Customer customer, HttpSession session,  Model model) {
@@ -189,7 +204,9 @@ public class CustomerController {
 		
 	}
 	
-	@GetMapping("/notice_by_career")
+	
+	
+	@GetMapping("/customer/notice_by_career")
 	public String showAllNotice() {
 		return "customer/notice_by_career";
 	}

@@ -54,12 +54,10 @@
                         </div>
                         <div>
                             <select class="select_jobunit_menu">
-                                <option>Engineering</option>
-                                <option>Design</option>
-                                <option>Planning</option>
-                                <option>Business & Sales</option>
-                                <option>Marketing & Common</option>
-                                <option>Corporate</option>
+                                <option selected disabled hidden>Jobs</option>
+                                <c:forEach var="findJobsName" items="${findJobsName}">
+                                	<option>${findJobsName.jobsName}</option>
+                                </c:forEach>
                             </select>
                         </div>
                     </div>
@@ -125,19 +123,20 @@
                         <h2 class="career_title_text">Meet the Global JobHub</h2>
                     </div>
                 </div>
-          
-	                <div class="career_category_list">
+          		<div class="career_category_list">
+	                <c:forEach var="employeeInfoList" items="${employeeInfoList}">
 	                    <div class="category_item">
-	                        <!--부서별 직원 인터뷰 내용 반복-->
-	                        <span class="category_title">부서명</span>
+                        <!--부서별 직원 인터뷰 내용 3번 반복-->
+                         <span class="category_title">${employeeInfoList.rootName}</span>
 	                        <div class="employee_info">
-	                            <span class="employee_name">부서별직원이름</span>
-	                            <span class="employee_job">직무</span>
+	                            <span class="employee_name">${employeeInfoList.name}</span>
+	                            <span class="employee_job">${employeeInfoList.jobsName}</span>
 	                            <span class="employee_interview">
 	                                직원별 인터뷰 내용
 	                            </span>
 	                        </div>
 	                    </div>
+	                </c:forEach>
 	                </div>
                 <div class="more_about_employee_info">
                     <span class="more_about_text2">More about our JobHub ></span>

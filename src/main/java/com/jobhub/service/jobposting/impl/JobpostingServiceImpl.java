@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jobhub.dao.jobposting.JobpostingDAO;
+import com.jobhub.dto.employee.EmployeeJobsInfo;
 import com.jobhub.dto.jobposting.Description;
 import com.jobhub.dto.jobposting.FAQs;
 import com.jobhub.dto.jobposting.Job;
@@ -88,6 +89,21 @@ public class JobpostingServiceImpl implements JobpostingService {
 	public int removeFaqsById(String FAQsId) {
 		int result = jobpostingDAO.removeFaqsById(FAQsId);
 		return result;
+	}
+
+	@Override
+	public List<EmployeeJobsInfo> findEmployeeJobsInfoList() {
+		// TODO Auto-generated method stub
+		List<EmployeeJobsInfo> findEmployeeJobsInfoList = jobpostingDAO.findEmployeeJobsInfoList();
+		
+		return findEmployeeJobsInfoList;
+	}
+
+	@Override
+	public List<Job> findJobsNameByLevel1List() {
+		// TODO Auto-generated method stub
+		List<Job> findJobsNameByLevel1List = jobpostingDAO.findJobsNameByLevel1();
+		return findJobsNameByLevel1List;
 	}
 	
 	

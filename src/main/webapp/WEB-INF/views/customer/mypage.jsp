@@ -278,7 +278,7 @@
         <span class="show_resume_modal_title"> 지원한 공고 제목 </span>
         <p>임시저장</p>
         <div class="customer_info_box">
-            <span>회원이름</span>
+            <span>${name}</span>
             <div class="member_info_box_footer">
                 <div class="member_email_box">
                     <span class="member_info_title">이메일</span>
@@ -294,7 +294,7 @@
                 </div>
             </div>
             <!--필수 입력 사항을 입력 안 했을 때-->
-            <span>필수 입력 사항을 다시 한번 확인하고 작성해주세요</span>
+            <span class="error_msg">필수 입력 사항을 다시 한번 확인하고 작성해주세요</span>
         
         </div>
         <div class="customer_veterans_disability_box">
@@ -307,7 +307,7 @@
             <span>병역</span>
             <span></span>
             <!--필수 입력 사항을 입력 안 했을 때-->
-            <span>필수 입력 사항을 다시 한번 확인하고 작성해주세요</span>
+            <span class="error_msg">필수 입력 사항을 다시 한번 확인하고 작성해주세요</span>
         </div>
         <div class="attached_materials_box">
             <ul>첨부자료
@@ -315,7 +315,7 @@
                 <li>포트폴리오</li>
             </ul>
             <!--필수 입력 사항을 입력 안 했을 때-->
-            <span>필수 입력 사항을 다시 한번 확인하고 작성해주세요</span>
+            <span class="error_msg">필수 입력 사항을 다시 한번 확인하고 작성해주세요</span>
         </div>
         <div class="self_introduce_box">
             <span>자기소개서</span>
@@ -325,7 +325,7 @@
             <span>지원경로 및 세부사항</span>
             <span></span>
             <!--필수 입력 사항을 입력 안 했을 때-->
-            <span>필수 입력 사항을 다시 한번 확인하고 작성해주세요</span>
+            <span class="error_msg">필수 입력 사항을 다시 한번 확인하고 작성해주세요</span>
         </div>
         <div class="button_box">
             <button class="show_resume_modal_close_btn">닫기</button>
@@ -335,43 +335,45 @@
     </div>
 </div>
 
-<!--1:1 문의 하는 모달창 form    만들어양댐 ㅁ아러;미나어린-->
+<!--1:1 문의 하는 모달창 form -->
 <div class="user_faq_modal">
     <div class="user_faq_modal_body">
         <div class="show_user_faq_modal_close_btn"><i class="fa-solid fa-xmark"></i></div>
         <span class="show_user_faq_modal_title"> 1:1 문의 </span>
-        <form action="" method="post">
-            <div class="">
-                <span>문의 제목</span>
-                <input>
-            </div>
-            <div class="">
-                <span>문의 내용</span>
-                <input>
-            </div>
-            <div class="">
-                <div class="">
-                    <span>이메일</span>
-                    <input>
+        <div class="user_faq_main">
+            <form action="" method="post" enctype="multipart/form-data">
+                <div class="faq_title_box">
+                    <span class="faq_title_text">문의 제목</span>
+                    <input name="faqTitle" class="input_faq">
                 </div>
-                <div class="">
-                    <span>휴대폰 번호</span>
-                    <input>
+                <div class="faq_content_box">
+                    <span class="faq_title_text">문의내용</span>
+                    <textarea type="input" name="faqContent" class="input_faq"></textarea>
                 </div>
-            </div>
-            <div class="">
-                <span>첨부파일</span>
-                <span>PDF, JPEG, JPG 파일 형식만 업로드 가능합니다.</span>
-                <button>파일 추가</button>
-                <span>추가한 파일 이름 </span><button>삭제</button>
-            </div>
-            <div class="">
-                <input type="checkbox">
-                <span>개인정보 수집 및 이용동의</span> <span>필수</span>
-                <textarea>텍스트</textarea>
-            </div>
-            <button >등록하기</button>
-        </form>
+                <div class="faq_customer_info_box">
+                    <div class="faq_email_box">
+                        <span class="faq_title_text input_faq2">이메일</span>
+                        <input value="${email}" name="email">
+                    </div>
+                    <div class="faq_phone_box">
+                        <span class="faq_title_text input_faq2">휴대폰 번호</span>
+                        <input value="${phone}" name="phone">
+                    </div>
+                </div>
+                <div class="faq_file_box">
+                    <span class="faq_title_text">첨부파일</span>
+                    <span>PDF, JPEG, JPG 파일 형식만 업로드 가능합니다.</span>
+                    <input type="file">
+                    <span>추가한 파일 이름</span><button>삭제</button>
+                </div>
+                <div class="faq_checkbox">
+                    <input type="checkbox">
+                    <span>개인정보 수집 및 이용동의</span> <span>필수</span>
+                    <textarea>텍스트</textarea>
+                </div>
+                <button >등록하기</button>
+            </form>
+        </div>
     </div>
 </div>
 
@@ -406,47 +408,57 @@
     
     openModify_modal1.addEventListener("click",()=>{
         modal1.style.display = "flex";
+        document.body.style.overflowY = "hidden";
         
     })
 
     openModify_modal2.addEventListener("click",()=>{
         modal2.style.display = "flex";
+        document.body.style.overflowY = "hidden";
     })
     
      openModify_modal3.addEventListener("click",()=>{
         modal3.style.display = "flex";
+        document.body.style.overflowY = "hidden";
     })
     
     openModify_modal4.addEventListener("click",()=>{
         modal4.style.display = "flex";
+        document.body.style.overflowY = "hidden";
     })
 
     openModify_modal5.addEventListener("click",()=>{
         modal5.style.display = "flex";
+        document.body.style.overflowY = "hidden";
     })
 
     close1.addEventListener("click",()=>{
         modal1.style.display ="none";
+        document.body.style.overflowY = "auto";
         window.location.reload();
     })
     
     close2.addEventListener("click",()=>{
         modal2.style.display = "none";
+        document.body.style.overflowY = "auto";
         window.location.reload();
     })
     
     close3.addEventListener("click",()=>{
         modal3.style.display = "none";
+        document.body.style.overflowY = "auto";
         window.location.reload();
     })
 
     close4.addEventListener("click",()=>{
         modal4.style.display = "none";
+        document.body.style.overflowY = "auto";
         window.location.reload();
     })
     
     close5.addEventListener("click",()=>{
         modal5.style.display = "none";
+        document.body.style.overflowY = "auto";
         window.location.reload();
     })
     

@@ -282,6 +282,8 @@
     overflow-y: none;
     padding: 60px;
     z-index: 100;
+    overflow-y: auto;
+
 }
 
 .user_info_modify_modal_body,
@@ -300,6 +302,7 @@
     overflow-y: none;
     padding: 60px;
     z-index: 100;
+    overflow-y: auto;
 }
 
 
@@ -347,4 +350,39 @@
 
 .error_msg{
 	font-size: 12px;
+}
+
+.user_faq_main{
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    
+}
+
+.faq_customer_info_box{
+    display: flex;
+    justify-content: space-around;
+}
+
+.faq_title_box{
+    display: flex;
+
+}
+
+.faq_title_text{
+    font-size: 17px;
+
+}
+
+.input_faq{
+    width: 100%;
+
+}
+
+.faq_content{
+    height: 300px;
+}
+
+.input_faq2{
+    width: 50%;
 }

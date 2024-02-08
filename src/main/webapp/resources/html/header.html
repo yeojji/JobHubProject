@@ -75,13 +75,16 @@
     	}
     	
     	const header = document.querySelector('.header_menu');
-        const headerHeight = header.offsetHeight; // top 속성 사용
-
+    	const color = document.querySelector('.white_font');
+        const headerHeight = 0; 
         window.addEventListener("scroll", () => {
+            
             if (window.scrollY > headerHeight) {
                 header.classList.add("scrolled"); // 스크롤이 내려갈 때 클래스 추가
+                color.style.color = 'black';
             } else {
                 header.classList.remove("scrolled"); // 스크롤이 위로 올라갈 때 클래스 제거
+                color.style.color = 'white';
             }
         });
 	
