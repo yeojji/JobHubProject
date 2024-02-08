@@ -145,17 +145,6 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
-    $(document).on("click", "#ap_submit", function () {
-        let form = $("#apply_form");
-        form.action = "";
-        form.submit();
-    })
-})
-
-
-
-
-$(document).ready(function () {
     $(document).on("click", "button[name='career']", function () {
         let companyName = $("#companyName").val();
         let departmentName = $("#departmentName").val();
@@ -306,5 +295,12 @@ $(document).ready(function(){
                 alert('잘못된 접근입니다')
             }
         }
+    })
+})
+
+$(document).ready(function () {
+    $(document).on("click", "#ap_submit", function () {
+        let form = $("#apply_form");
+        form.submit();
     })
 })

@@ -7,7 +7,6 @@
 <mapper namespace="apply_mapper">
 
 	<insert id="saveEducationInfo" parameterType="hashmap">
-
 	<foreach collection="resumeList" item="item"
 		open="INSERT ALL" close="SELECT * FROM dual">
 		INTO education VALUES
@@ -19,8 +18,8 @@
 	</foreach>
 	</insert>
 	
-	<insert id="saveCareerInfo" parameterType="hashmap">
-	
+
+	<!-- <insert id="saveCareerInfo" parameterType="hashmap">
 	<foreach collection="careerList" item="ca" 
 		open="INSERT ALL" close="SELECT * FROM dual">
 		INTO career VALUES
@@ -30,10 +29,21 @@
 		)
 	
 	</foreach>
+	</insert> -->
+	
+	<!-- 2/8현재 성공한 쿼리문 이걸로 전부 수정해야됨!!!!!!!!!!!!!!!!!!!! -->
+	<insert id="saveCareerInfo">
+	<selectKey keyProperty="maxSeq" resultType="int" order="BEFORE">
+		SELECT NVL(MAX(career_id) + 1, 0) FROM career
+	</selectKey> 
+	INSERT INTO career
+	<foreach collection="careerList" item="ca" index="idx" separator="UNION ALL">
+		SELECT #{maxSeq} + #{idx}, 1, #{ca.companyName}, #{ca.departmentName}, #{ca.joinDate}, 
+		#{ca.resignationDate}, #{ca.duty}, #{ca.position}, #{ca.detailWork} FROM DUAL
+	</foreach>
 	</insert>
 
 	<insert id="saveCertificateInfo" parameterType="hashmap">
-	
 	<foreach collection="certList" item="cert" 
 		open="INSERT ALL" close="SELECT * FROM dual">
 		INTO certificate VALUES
@@ -49,8 +59,13 @@
 		#{cert.test}, 
 		#{cert.languageGrade}
 		)
-	
 	</foreach>
+	</insert>
+	
+	<insert id="saveFileInfo" parameterType="FileInfo">
+		INSERT INTO attached_data
+		VALUES ( (SELECT NVL(MAX(file_id) + 1 , 0) FROM attached_data), #{fileName}, #{originalFileName}, #{filePath}
+		, #{fileExtension}, #{fileSize}, '1999.01.01')
 	</insert>
 	
 </mapper>

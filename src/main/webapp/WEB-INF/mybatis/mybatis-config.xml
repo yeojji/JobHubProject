@@ -25,7 +25,7 @@
 		<typeAlias type="com.jobhub.dto.employee.Employee" alias="Employee"/>
 		<typeAlias type="com.jobhub.dto.employee.EmployeeProfile" alias="EmployeeProfile"/>
 		<typeAlias type="com.jobhub.dto.employee.EmployeeSearchCondition" alias="EmployeeSearchCondition"/>
-		<!-- <typeAlias type="com.jobhub.dto.util.FileInfo" alias="FileInfo"/> -->
+		<typeAlias type="com.jobhub.dto.util.FileInfo" alias="FileInfo"/>
 		<typeAlias type="com.jobhub.dto.customer.Customer" alias="Customer"/>
 		<typeAlias type="com.jobhub.dto.resume.Resume" alias="Resume"/>
 		<typeAlias type="com.jobhub.dto.resume.ResumeSearchCondition" alias="ResumeSearchCondition"/>

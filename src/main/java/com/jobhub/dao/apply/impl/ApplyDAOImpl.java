@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.jobhub.dao.apply.ApplyDAO;
+import com.jobhub.dto.util.FileInfo;
 
 @Repository
 public class ApplyDAOImpl implements ApplyDAO{
@@ -28,6 +29,15 @@ public class ApplyDAOImpl implements ApplyDAO{
 		// TODO Auto-generated method stub
 		
 		int result = sqlSessionTemplate.insert("apply_mapper.saveCertificateInfo", hashMap);
+		
+		return result;
+	}
+
+	@Override
+	public int saveFileInfo(FileInfo fileInfo) {
+		// TODO Auto-generated method stub
+		
+		int result = sqlSessionTemplate.insert("apply_mapper.saveFileInfo", fileInfo);
 		
 		return result;
 	}

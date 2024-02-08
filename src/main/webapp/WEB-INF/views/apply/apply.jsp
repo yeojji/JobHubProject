@@ -25,7 +25,7 @@
 				</div>
 			</div>
 			<div class="apply_main">
-				<form action="" id="apply_form" method="post">
+				<form action="" id="apply_form" method="post" enctype="multipart/form-data">
 					<div class="apply_content">
 						<p>
 							기본 인적사항 <em>필수</em>
@@ -57,36 +57,7 @@
 							학력사항 <em>필수</em>
 						</p>
 						<div class="eduinput">
-							<div id="edu_info">
-								<div id="edu_school">서울고등학교</div>
-								<div id="edu_date">1999.01~2000.01</div>
-								<div id="edu_state">졸업</div>
-								<button type="button" id="edu_remove">삭제</button>
-								<input type="hidden" name="eduSortation" value="고등학교">
-								<input type="hidden" name="schoolName" value="서울고등학교">
-								<input type="hidden" name="admission" value="1999.01">
-								<input type="hidden" name="graduation" value="2000.01">
-								<input type="hidden" name="major" value="null">
-								<input type="hidden" name="minor" value="null">
-								<input type="hidden" name="grade" value="null">
-								<input type="hidden" name="totalScore" value="null">
-								<input type="hidden" name="graduationStatus" value="졸업">
-							</div>
-							<div id="edu_info">
-								<div id="edu_school">인천고등학교</div>
-								<div id="edu_date">1999.01~2000.01</div>
-								<div id="edu_state">졸업</div>
-								<button type="button" id="edu_remove">삭제</button>
-								<input type="hidden" name="eduSortation" value="고등학교">
-								<input type="hidden" name="schoolName" value="인천고등학교">
-								<input type="hidden" name="admission" value="1999.01">
-								<input type="hidden" name="graduation" value="2000.01">
-								<input type="hidden" name="major" value="null">
-								<input type="hidden" name="minor" value="null">
-								<input type="hidden" name="grade" value="null">
-								<input type="hidden" name="totalScore" value="null">
-								<input type="hidden" name="graduationStatus" value="졸업">
-							</div>
+							
 						</div>
 						<div class="ap_mydetail ap_grade">
 							<select id="eduSortation" class="ap_inpt apply_edu">
@@ -137,36 +108,7 @@
 					<div class="apply_content">
 						<p>경력사항 <em>필수</em></p>
 						<div class="careerinput">
-							<div id="car_info">
-								<div id="car_companyName">삼성전자</div>
-								<div id="car_departmentName">부서이름</div>
-								<div id="car_date">1999.01.01~2000.01.01</div>
-								<div id="car_duty">담당업무</div>
-								<div id="car_position">정규</div>
-								<button type="button" id="car_remove">삭제</button>
-								<input type="hidden" name="companyName" value="삼성전자">
-								<input type="hidden" name="departmentName" value="부서이름">
-								<input type="hidden" name="joinDate" value="1999.01.01">
-								<input type="hidden" name="resignationDate" value="2000.01.01">
-								<input type="hidden" name="duty" value="담당업무">
-								<input type="hidden" name="position" value="정규">
-								<input type="hidden" name="detailWork" value="ㅋㅋ">
-							</div>
-							<div id="car_info">
-								<div id="car_companyName">LG전자</div>
-								<div id="car_departmentName">부서이름</div>
-								<div id="car_date">1999.01.01~2000.01.01</div>
-								<div id="car_duty">담당업무</div>
-								<div id="car_position">계약</div>
-								<button type="button" id="car_remove">삭제</button>
-								<input type="hidden" name="companyName" value="LG전자">
-								<input type="hidden" name="departmentName" value="부서이름">
-								<input type="hidden" name="joinDate" value="1999.01.01">
-								<input type="hidden" name="resignationDate" value="2000.01.01">
-								<input type="hidden" name="duty" value="담당업무">
-								<input type="hidden" name="position" value="계약">
-								<input type="hidden" name="detailWork" value="ㅋㅋ">
-							</div>
+							
 						</div>
 						<div class="ap_mydetail">
 							<input type="text" id="companyName" placeholder="회사명" class="ap_inpt apply_cname">
@@ -179,8 +121,8 @@
 								<option value="" disabled selected hidden>고용형태</option>
 								<option value="정규">정규</option>
 								<option value="계약">계약</option>
-								<option value="계약">무기계약</option>
-								<option value="계약">인턴</option>
+								<option value="무기계약">무기계약</option>
+								<option value="인턴">인턴</option>
 							</select>
 							<button type="button" class="ap_inpt2 apply_careerbtn" name="career">완료</button>
 						</div>

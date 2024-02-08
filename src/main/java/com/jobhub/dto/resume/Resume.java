@@ -51,7 +51,12 @@ public class Resume {
 	String content2;
 	String content3;
 	
-	MultipartFile data;   //일단 파일은 좀더 생각해봐야할듯
+	int fileId;
+	String fileName;
+	String originalFileName;
+	String filePath;
+	String fileExtension;
+	long fileSize;
 	
 	String military;		//병역사항
 	String veternas;		//보훈대상 여부
