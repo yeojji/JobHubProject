@@ -32,11 +32,19 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 		<beans:property name="suffix" value=".jsp"></beans:property>
 	</beans:bean>
 
+	
+	<resources mapping="/icon/admin/*" location="/resources/admin/icon/" />
+	<resources mapping="/img/admin/*" location="/resources/admin/img/" />
+	<resources mapping="/img/common/*" location="/resources/common/img/" />
+	<resources mapping="/css/admin/*" location="/resources/admin/css/" />
+	<resources mapping="/css/common/*" location="/resources/common/css/" />
+	<resources mapping="/js/admin/*" location="/resources/admin/js/" />
+	<resources mapping="/js/common/*" location="/resources/common/js/" />
 	<resources mapping="/**" location="/resources/" />
 
 
 
-	<interceptors>
+<!-- 	<interceptors>
 		<interceptor>
 			<mapping path="/**" />
 			<exclude-mapping path="/resources/**" />
@@ -55,6 +63,6 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 			<exclude-mapping path="/login" />
 			<beans:bean class="com.jobhub.interceptor.LoginInterceptor" />
 		</interceptor>
-	</interceptors>
+	</interceptors> -->
 
 </beans:beans>

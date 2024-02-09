@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.jobhub.dto.customer.Customer;
+import com.jobhub.dto.jobposting.Job;
+import com.jobhub.dto.jobposting.Jobposting;
 import com.jobhub.service.customer.CustomerService;
 import com.jobhub.service.jobposting.JobpostingService;
 
@@ -156,7 +158,17 @@ public class CustomerController {
 	}
 	
 	@GetMapping("/customer/notice_by_career")
-	public String showAllNotice() {
+	public String showAllNotice(Model model) {
+		System.out.println("get 요청");
+		
+		List<Job> jobList = jobpostingService.findJobList();
+		List<Jobposting> jobpostingList = jobpostingService.findJobpostingList();
+		
+		model.addAttribute("jobList" , jobList);
+		model.addAttribute("jobpostingList" , jobpostingList);
+		
+		model.addAttribute("postingCount",sqlSession.selectOne("jobPosting_mapper.findPostingCount"));
+		
 		return "customer/notice_by_career";
 	}
 	
