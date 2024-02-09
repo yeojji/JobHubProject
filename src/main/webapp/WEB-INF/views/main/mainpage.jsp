@@ -35,21 +35,11 @@
                             </select>
                         </div>
                         <div>
-                            <select class="select_city_menu">
-                            	<option selected disabled hidden>City</option>
-                                <option>Bundang</option>
-                                <option>Dalian</option>
-                                <option>Fukuoka</option>
-                                <option>Hong Kong</option>
-                                <option>Kyoto</option>
-                                <option>Seoul</option>
-                                <option>Shanghai</option>
-                                <option>Taipei</option>
-                                <option>Tokyo</option>
-                                <option>Bangkok</option>
-                                <option>Jakarta</option>
-                                <option>New York</option>
-                                <option>Palo Alto</option>
+                            <select class="select_career_condition">
+                            	<option selected disabled hidden>Career Condition</option>
+                                <c:forEach var="career_condi" items="">
+                                	<option>Bundang</option>
+                                </c:forEach>
                             </select>
                         </div>
                         <div>
@@ -145,7 +135,64 @@
         </div>
     </div>
 
+<script>
+$(document).ready(function(){
+	
+    if($("select[name=jobLevel1]").val() == "") {
+        $("select[name=jobLevel2]").attr("disabled", true);
+    }
+    console.log('file loading');	    
+    
+    $(jobLevel1).on('change', function () {
+    	console.log('select chagned');
+    	jobLevel1 = $(this).val();
+    	console.log(jobLevel1);
+    	
+        if (jobLevel1 != "") {
+        	
+        	
+        	
+            jQuery.ajax({
+                type: "POST",
+                url: "/jobnameByPid",
+                data: {
+                    jobLevel1: jobLevel1
+                },
+                //datatype: "text",
+                datatype: "json",
+                success: function (jobNameList) {
+                    //var data = JSON.parse(jobNameList); 
+                    console.log(jobNameList); // 콘솔에 데이터가 제대로 나오는지 확인
+                    $('#jobLevel2').empty(); 	//자식 테이블 한번 지우기
+                    $.each(jobNameList, function (index, job) {	 //index, Object
+                        console.log(index); // 콘솔에 각각의 키와 값이 제대로 나오는지 확인
+                        console.log(job); // 콘솔에 각각의 키와 값이 제대로 나오는지 확인
+                        //index: 현재 요소의 인덱스(걍 자리채우기용) //job 현재 요소의 값
+                        $('<option></option>').val(job.jobsId).text(job.jobsName).appendTo($('#jobLevel2'));
+                    });
+                },
+                error: function (xhr, status, error) {
+                    console.log("ERROR!!!", error); // 에러 로그 확인
+                }
+            });
+            
+            $("select[name=jobLevel2]").attr("disabled", false);
+            
+            
+            
+        } else {
+            $("select[name=jobLevel2]").attr("disabled", true);
+        }
 
+     
+    });
+});
+
+
+
+
+
+</script>
 
     <!--footer-->
         <%@ include file="../header_footer/footer.jsp" %>

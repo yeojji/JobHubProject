@@ -8,6 +8,8 @@
 	<select id="findJobList" resultType="Job">
 		select * from jobs
 	</select>
+	
+	
 
 
 	<select id="findEmployeeJobsInfoList" resultType="EmployeeJobsInfo">
