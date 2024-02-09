@@ -5,145 +5,284 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-	integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-	<style>
-		.container-box{
-			width: 80%;
-			border: 1px solid black;
-		}
-	</style>
-
+<meta charset="utf-8">
+<title>Jobhub 신규공고</title>
+<link rel="stylesheet" href="css/admin/admin.css">
+<link rel="shortcut icon" href="common/icon/jobhub_favicon.ico"
+	type="image/x-icon">
+<script src="common/js/jquery-1.8.3.min.js"></script>
+<script src="common/js/jquery-ui-1.10.3.custom.js"></script>
+<script src="common/js/common.js"></script>
+<script src="common/js/categorylist.js"></script>
+<script src="https://kit.fontawesome.com/b158a20f5c.js"
+	crossorigin="anonymous"></script>
+	
 </head>
 <body>
-	<h1>jobPosting page</h1>
 
-	<div class="container-box"> 
-	<form method="post" action="/jobposting">
+ <header id="hd">
+        <div id="hd_wrap">
+            <h1>Jobhub 관리자 페이지</h1>
+            <div id="logo"><a href="/admin/adminMain"><img src="./sources/admin/img/logo_wh_250x35.png"
+                        alt="Jobhub logo"></a></div>
+            <div id="tnb">
+                <ul>
+                    <li>${adminName}님</li>
+                    <li><a href="#" target="_blank">Jobhub바로가기</a></li>
+                    <li><a href="/admin/mypage">마이페이지</a></li>
+                    <li id="tnb_logout"><a href="#">로그아웃</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    
+     <div id="snb">
+        <dl>
+            <dt class="g10"><i class="fa-solid fa-people-group"></i>회원관리</dt>
+            <dd class="g10"><a href="#">회원정보 조회<em>2</em></a></dd>
+            <dd class="g10"><a href="#">신규회원 등록</a></dd>
+            <dd class="g10"><a href="#">탈퇴자 조회</a></dd>
+            <dt class="g10"><i class="fa-solid fa-people-roof"></i>직원관리</dt>
+            <dd class="g10"><a href="#">직원정보 조회<em>2</em></a></dd>
+            <dd class="g10"><a href="#">신규직원 등록</a></dd>
+            <dt class="g10"><i class="fa-solid fa-file-lines"></i>이력서관리</dt>
+            <dd class="g10"><a href="#">이력서 조회</a></dd>
+            <dd class="g10"><a href="#">면접지원자 관리</a></dd>
+            <dt class="g10"><i class="fa-solid fa-pen-to-square"></i>채용공고 관리</dt>
+            <dd class="g10 active"><a href="../jobposting">신규공고 등록</a></dd>
+            <dd class="g10 "><a href="../jobpostingMain">채용공고 조회</a></dd>
+            <dt class="g10"><i class="fa-regular fa-circle-question"></i>FAQs 관리</dt>
+            <dd class="g10 "><a href="../faqs">FAQs 조회</a></dd>
+            <dt class="g10"><i class="fa-solid fa-gears"></i>관리자설정</dt>
+            <dd class="g10"><a href="#">관리자 조회</a></dd>
+            <dd class="g10"><a href="#">신규계정 생성</a></dd>
+            <dd class="g10"><a href="#">계정승인요청 조회</a></dd>
+        </dl>
+    </div>
+    
+     <div id="wrapper">
+        <div id="content">
+            <div class="s_wrap">
+                <h1>신규공고 등록</h1>
 
-		<label>제목</label> <input type="text" name="title" required> <br>
-
-		<label>직무</label> <select name="jobLevel1" id="jobLevel1" required>
-			<c:forEach var="jobItem" items="${jobList}">
-				<c:choose>
-					<c:when test="${jobItem.jobsLevel == 1}">
-						<option value="${jobItem.jobsId}">${jobItem.jobsName}</option>
-					</c:when>
-				</c:choose>
-			</c:forEach>
-			<option value="" selected>직무를 선택하세요.</option>
+                <!-- 등록  -->
+                <h2>*표시는 필수 입력 항목입니다.</h2>
+                <form  method="post" action="/jobposting">
+                    <input type="hidden" name="code" value="list">
+                    <div class="tbl_frm01">
+                        <table class="tablef">
+                            <colgroup>
+                                <col class="w100">
+                                <col>
+                                <col class="w100">
+                                <col>
+                            </colgroup>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">제목</th>
+                                    <td colspan="3">
+                                        <input type="text" name="title" required value="" class="frm_input" size="100">
+                                    </td>
+                                </tr>
+                                
+                                <tr>
+                                    <th scope="row">직무</th>
+                                    <td>
+                                        <select name="jobLevel1"
+										id="jobLevel1" required>
+										<option value="" selected disabled="disabled">직무를 선택하세요.</option>
+											<c:forEach var="jobItem" items="${jobList}">
+												<c:choose>
+													<c:when test="${jobItem.jobsLevel == 1}">
+														<option value="${jobItem.jobsId}">${jobItem.jobsName}</option>
+													</c:when>
+												</c:choose>
+											</c:forEach>
+											
+									</select>
+									</td>
+									
+                                    <th scope="row">직무명</th>
+                                    <td>
+                                    <select name="jobLevel2" id="jobLevel2" required>
+	
+									</select>
+									</td>
+                                </tr>
+                                
+                                <tr>
+                                    <th scope="row">경력조건</th>
+                                    <td>
+                                    <select name="careerCondition" required>
+											<option value="신입">신입</option>
+											<option value="경력">경력</option>
+											<option value="무관">무관</option>
+									</select>
+									</td>
+									
+                                    <th scope="row">고용형태</th>
+                                    <td>
+                                        <select name="employmentType" required>
+			<option value="정규직">정규직</option>
+			<option value="계약직">계약직</option>
+			<option value="무기계약직">무기계약직</option>
+			<option value="인턴">인턴</option>
 		</select> 
-		
-		<br> 
-		
-		<label>직무명</label> 
-		<select name="jobLevel2" id="jobLevel2" required>
-			<c:forEach var="jobItem" items="${jobList}">
-				<c:choose>
-					<c:when test="${jobItem.jobsLevel == 2}">
-						<option value="${jobItem.jobsId}">${jobItem.jobsName}</option>
-					</c:when>
-				</c:choose>
-			</c:forEach>
-		</select> 
-		
-		<br> 
-		
-		<label>경력조건</label> 
-		<select name="careerCondition" required>
-			<option>신입</option>
-			<option>경력</option>
-			<option>무관</option>
-		</select> 
-		
-		<br> 
-		
-		<label>고용형태</label> 
-		<select name="employmentType" required>
-			<option>정규직</option>
-			<option>계약직</option>
-			<option>무기계약직</option>
-			<option>인턴</option>
-		</select> 
-		
-		<br> 
-		
-		<label>노출 시작일</label> 
-		<input type="datetime-local" name="postStartDate" required /> 
-		<label>노출 종료일</label> 
-		<input type="datetime-local" name="postEndDate" required /> 
-		<br> 
-		<label>지원 시작일</label> <input type="datetime-local" name="applicationStart" required />
-		<label>지원 마감일</label> <input type="datetime-local" name="applicationDeadline" required /> 
-		<br> 
-		<label><input type="radio" name="postStatus" value="O">노출</label> 
-		<label><input type="radio" name="postStatus" value="X">비노출</label> 
-		<label><input type="radio" name="postStatus" value="S">임시저장</label> 
-		<br> 
-		<label>질문1 *필수</label> <input type="text" name="question1" required> 
-		<br> 
-		<label>질문2</label> <input type="text" name="question2"> 
-		<br> 
-		<label>질문3</label> <input type="text" name="question3">
-		
+                                    </td>
+                                </tr>
 
-		<br> <label>담당업무</label> <br>
-		<textarea name="assignedTask" required></textarea>
+                                <tr>
+    <th scope="row">노출일</th>
+    <td>
+        <label for="post_fr_date" class="sound_only">시작일</label>
+        <input type="date" name="postStartDate" required value="" id="post_fr_date" class="frm_input w160" maxlength="10">
+        ~
+        <label for="post_to_date" class="sound_only">종료일</label>
+        <input type="date" name="postEndDate" id="post_to_date" required value="" id="post_to_date" class="frm_input w160">
+    </td>
+    <th scope="row">지원일</th>
+    <td>
+        <label for="app_fr_date" class="sound_only">시작일</label>
+        <input type="date" name="applicationStart" required value="" id="app_fr_date" class="frm_input w160" maxlength="10">
+        ~
+        <label for="app_to_date" class="sound_only">종료일</label>
+        <input type="date" name="applicationDeadline" required value="" id="app_to_date" class="frm_input w160">
+    </td>
+</tr>
 
-		<br> <label>자격요건</label> <br>
-		<textarea name="requirements" required></textarea>
+                                <tr>
+                                    <th scope="row">노출 상태</th>
+                                    <td colspan="3">
+                                        <label><input type="radio" name="postStatus" value="O">노출</label> 
+		                                <label><input type="radio" name="postStatus" value="X">비노출</label> 
+		                                <label><input type="radio" name="postStatus" value="S">임시저장</label> 
+                                    </td>
+                                </tr>
 
-		<br> <label>우대사항</label> <br>
-		<textarea name="preferentialTreatment" required></textarea>
+                                <tr>
+                                    <th scope="row">질문1 *필수</th>
+                                    <td colspan="3"> 
+                                        <input type="text" name="question1" required value="" class="frm_input" size="100">
+                                    </td>
+                                </tr>
 
-		<br> <label>전형안내</label> <br>
-		<textarea name="screeningGuide" required></textarea>
+                                <tr>
+                                    <th scope="row">질문2</th>
+                                    <td colspan="3">
+                                        <input type="text" name="question2" value="" class="frm_input" size="100">
+                                    </td>
+                                </tr>
 
-		<br> <label>근무형태</label> <br>
-		<textarea name="workForm" required></textarea>
+                                <tr>
+                                    <th scope="row">질문3</th>
+                                    <td colspan="3">
+                                        <input type="text" name="question3" value="" class="frm_input" size="100">
+                                    </td>
+                                </tr>
 
-		<br> <label>근무지</label> <br>
-		<textarea name="workPlace" required></textarea>
+                                <tr>
+                                    <th scope="row">채용 공고</th>
+                                    <td colspan="3">
+                                        <div style="height: 1300px;" class="descriptionContainer">
+                                            <label>담당업무</label> <br>
+		                                    <textarea name="assignedTask" class="frm_textarea"required  ></textarea>
+                                            
+                                            <br> <label>자격요건</label> <br>
+                                            <textarea name="requirements"  class="frm_textarea"required></textarea>
+                                    
+                                            <br> <label>우대사항</label> <br>
+                                            <textarea name="preferentialTreatment"  class="frm_textarea"required></textarea>
+                                    
+                                            <br> <label>전형안내</label> <br>
+                                            <textarea name="screeningGuide"  class="frm_textarea"required></textarea>
+                                    
+                                            <br> <label>근무형태</label> <br>
+                                            <textarea name="workForm" class="frm_textarea" required></textarea>
+                                    
+                                            <br> <label>근무지</label> <br>
+                                            <textarea name="workPlace" class="frm_textarea" required ></textarea>
+                                    
+                                            <br> <label>근무시간</label> <br>
+                                            <textarea name="workingHours" class="frm_textarea" required ></textarea>
+                                    
+                                            <br> <label>기타</label> <br>
+                                            <textarea name="etc" class="frm_textarea" required ></textarea>
+                                    
+                                            <br> <label>보훈 취업지원 대상 및 장애인 서류 제출 안내 </label> <br>
+                                            <textarea name="submissionGuide" class="frm_textarea" required >여기는 정해진 값이 있어서 그거로 고정하자 ~</textarea>
 
-		<br> <label>근무시간</label> <br>
-		<textarea name="workingHours" required></textarea>
+                                        </div>
+                                        
+                                    </td>
 
-		<br> <label>기타</label> <br>
-		<textarea name="etc" required></textarea>
+                                </tr>
 
-		<br> <label>보훈 취업지원 대상 및 장애인 서류 제출 안내 </label> <br>
-		<textarea name="submissionGuide" required>여기는 정해진 값이 있어서 그거로 고정하자 ~</textarea>
-		
-		<button type="submit" >저장</button>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="btn_confirm">
+                        <input type="submit" value="등록" class="btn_medium" id="saveBtn">
+                    </div>
+                </form>
+
+            
+            </div>
+        </div>
+    </div>
+
+    <!-- footer -->
+    <div id="ft">
+        <p>Copyright &copy; Jobhub. All rights reserved.</p>
+    </div>
+    <div id="ajax-loading"><img src="./sources/common/img/ajax-loader.gif"></div>
+    <div id="anc_header"><a href="#anc_hd"><span></span>TOP</a></div>
+    <script src="./sources/admin/js/admin.js"></script>
+    <script src="./sources/common/js/wrest.js"></script>
+    
+    
+    
+    
+    <script>
 
 	
-	</form>
+	document.getElementById("saveBtn").addEventListener("click", function(event) {
+	    var confirmation = confirm("등록하겠습니까?");
+	    
+	    // 확인을 눌렀을 경우
+	    if (confirmation) {
+	        alert("등록되었습니다.");
+	        // 폼 제출
+	        return true;
+	    } else {
+	        // 취소를 눌렀을 경우
+	        // 폼 제출 취소
+	        event.preventDefault();
+	        return false;
+	    }
+	});
+	
+	
+	
+        document.addEventListener('DOMContentLoaded', function () {
+            var chkAll = document.querySelector('input[name="chkall"]');
+            chkAll.addEventListener('change', function () {
+                var checkboxes = document.querySelectorAll('input[name="chk[]"]');
+                checkboxes.forEach(function (checkbox) {
+                    checkbox.checked = chkAll.checked;
+                });
+            });
+        });
 
-	</div>
-<script>
-
-/* function save() {
-    if (confirm('저장하시겠습니까?')) {
-    	alert('저장되었습니다!');
-    	
-    	 window.location.href = 'jobpostingMain';
-    }
-} */
 
 
 
 	
 $(document).ready(function(){
 	
-    if($("select[name=jobLevel1]").val() == "") {
-        $("select[name=jobLevel2]").attr("disabled", true);
-    }
+    
+	$("select[name=jobLevel2]").attr("disabled", true);
+    
     console.log('file loading');	    
     
     $(jobLevel1).on('change', function () {
@@ -179,7 +318,7 @@ $(document).ready(function(){
                 }
             });
             
-            $("select[name=jobLevel2]").attr("disabled", false);
+            $("select[name=jobLevel2]").attr("disabled", false); //코드 한줄한줄 따로 생각할 것
             
             
             
@@ -191,7 +330,30 @@ $(document).ready(function(){
     });
 });
 
-	    
+	    //달력1
+	  // 노출일 시작일과 종료일
+    var postStartDateInput = document.getElementById("post_fr_date");
+    var postEndDateInput = document.getElementById("post_to_date");
+
+    postStartDateInput.addEventListener("change", function() {
+        postEndDateInput.min = postStartDateInput.value;
+        if (postEndDateInput.value < postStartDateInput.value) {
+            postEndDateInput.value = postStartDateInput.value;
+        }
+    });
+    postEndDateInput.min = postStartDateInput.value;
+
+    // 지원일 시작일과 종료일
+    var appStartDateInput = document.getElementById("app_fr_date");
+    var appEndDateInput = document.getElementById("app_to_date");
+
+    appStartDateInput.addEventListener("change", function() {
+        appEndDateInput.min = appStartDateInput.value;
+        if (appEndDateInput.value < appStartDateInput.value) {
+            appEndDateInput.value = appStartDateInput.value;
+        }
+    });
+    appEndDateInput.min = appStartDateInput.value;
 
 	
 	</script>

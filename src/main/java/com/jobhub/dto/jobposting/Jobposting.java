@@ -31,4 +31,6 @@ public class Jobposting {
 	String jobsCateName;
 	String jobsItemName;
 	
+	int postingCount;
+	
 }
