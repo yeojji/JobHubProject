@@ -10,7 +10,17 @@
 	</select>
 
 	<select id="findJobpostingList" resultType="Jobposting">
-		select * from job_posting
+		SELECT *
+		FROM job_posting
+		ORDER BY TO_NUMBER(SUBSTR(posting_id, 8)) DESC
+	</select>
+	
+	<select id="findPostingAndJobNameList" resultType="Jobposting">
+		select jp.*, js.jobs_name jobsItemName , (select
+		jobs_name from jobs j where j.jobs_id = js.jobs_pid)jobsCateName
+		from
+		job_posting jp, jobs js
+		where jp.jobs_id = js.jobs_id
 	</select>
 
 
@@ -62,6 +72,22 @@
 	<select id="findJobpostingId" resultType="String">
 		select
 		'posting'||seq_posting_id.nextVal from dual
+	</select>
+	
+	<select id="findFaqsCount" resultType="int">
+		SELECT COUNT(*) FROM faqs
+	</select>
+	
+	<select id="findPostingCount" resultType="int">
+		SELECT COUNT(*) FROM job_posting
+	</select>
+	
+	<select id="findPostingCountbycateName" resultType="String" parameterType="String">
+		SELECT COUNT(*) 
+		FROM ( select jp.*, js.jobs_name jobsItemName , (select
+		jobs_name from jobs j where j.jobs_id = js.jobs_pid)jobsCateName
+		from job_posting jp, jobs js
+		where jp.jobs_id = js.jobs_id) where jobsCateName = #{jobsCateName}
 	</select>
 
 	<select id="findPostingBypostingId" resultType="Jobposting" parameterType="String">
@@ -128,7 +154,7 @@
 
 
 	<select id="findFaqsList" resultType="FAQs">
-		select * from faqs
+		select * from faqs ORDER BY TO_NUMBER(SUBSTR(faqs_id, 5)) ASC
 	</select>
 	
 	<select id="findFaqsbyId" resultType="FAQs">

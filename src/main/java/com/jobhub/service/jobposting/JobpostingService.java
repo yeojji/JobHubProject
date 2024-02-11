@@ -16,6 +16,8 @@ public interface JobpostingService {
 	
 	public List<Jobposting> findJobpostingList();
 	
+	public List<Jobposting> findPostingAndJobNameList();
+	
 	public List<Job> findJobNameListbyPid(int jobLevel1);
 	
 	public int saveJobposting(Jobposting jobposting);

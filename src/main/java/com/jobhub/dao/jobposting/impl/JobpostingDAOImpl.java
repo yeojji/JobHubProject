@@ -28,6 +28,11 @@ public class JobpostingDAOImpl implements JobpostingDAO {
 		return jobpostingList;
 	}
 	
+	public List<Jobposting> findPostingAndJobNameList(){
+		List<Jobposting> jobpostingNameList = sqlSessionTemplate.selectList("jobPosting_mapper.findPostingAndJobNameList");
+		return jobpostingNameList;
+	}
+	
 	public List<Job> findJobNameListbyPid(int jobLevel1) {
 		List<Job> jobNameList = sqlSessionTemplate.selectList("jobPosting_mapper.findJobNameListbyPid", jobLevel1);
 		return jobNameList;

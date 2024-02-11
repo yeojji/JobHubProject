@@ -1,13 +1,6 @@
 package com.jobhub.dto.jobposting;
 
-
-import lombok.Data;
-
-@Data
-public class Jobposting {
-
-		//채용공고 관련 내용
-	
+public class postingSearchCondition {
 	String postingId;
 	String title;
 	String jobsId;
@@ -33,4 +26,6 @@ public class Jobposting {
 	
 	int postingCount;
 	
+	
+	String searchKeyword;
 }

@@ -37,5 +37,7 @@ public interface JobpostingDAO {
 	
 	public int removeFaqsById(String FAQsId);
 	
+	public List<Jobposting> findPostingAndJobNameList();
+	
 	
 }
