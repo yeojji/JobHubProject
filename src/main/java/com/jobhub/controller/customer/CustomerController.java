@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.jobhub.dto.customer.Customer;
+import com.jobhub.dto.jobposting.Description;
+import com.jobhub.dto.jobposting.FAQs;
 import com.jobhub.dto.jobposting.Job;
 import com.jobhub.dto.jobposting.Jobposting;
 import com.jobhub.service.customer.CustomerService;
@@ -158,18 +160,41 @@ public class CustomerController {
 	}
 	
 	@GetMapping("/customer/notice_by_career")
-	public String showAllNotice(Model model) {
-		System.out.println("get 요청");
+	public String showAllNotice(Model model/*, String jobsCateName*/) {
 		
 		List<Job> jobList = jobpostingService.findJobList();
 		List<Jobposting> jobpostingList = jobpostingService.findJobpostingList();
+		List<Jobposting> jobpostingNameList = jobpostingService.findPostingAndJobNameList();
+		
 		
 		model.addAttribute("jobList" , jobList);
 		model.addAttribute("jobpostingList" , jobpostingList);
+		model.addAttribute("jobpostingNameList" , jobpostingNameList);
 		
 		model.addAttribute("postingCount",sqlSession.selectOne("jobPosting_mapper.findPostingCount"));
+		//model.addAttribute("postingCountByName",sqlSession.selectOne("jobPosting_mapper.findPostingCountbycateName", jobsCateName ));
+		
 		
 		return "customer/notice_by_career";
+	}
+	
+	@GetMapping("/cus/faqs")
+	public String showFaqs(Model model) {
+		List<FAQs> faqsList = jobpostingService.findFaqsList();
+		model.addAttribute("faqsList" , faqsList);
+		return "customer/faqs";
+	}
+	
+	@GetMapping("/jobsDescription")
+	public String jobsDescription(@RequestParam String postingId, Model model) {
+		
+		Jobposting jobposting = jobpostingService.findPostingBypostingId(postingId);
+		Description description = jobpostingService.findDescriptionBypostingId(postingId);
+		
+		model.addAttribute("jobposting", jobposting);
+		model.addAttribute("description", description);
+		
+		return "customer/jobsDescription";
 	}
 	
 	
