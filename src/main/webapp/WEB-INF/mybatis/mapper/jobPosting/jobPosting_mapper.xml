@@ -87,7 +87,7 @@
 		FROM ( select jp.*, js.jobs_name jobsItemName , (select
 		jobs_name from jobs j where j.jobs_id = js.jobs_pid)jobsCateName
 		from job_posting jp, jobs js
-		where jp.jobs_id = js.jobs_id) where jobsCateName = #{jobsCateName}
+		where jp.jobs_id = js.jobs_id) where jobsCateName = #{jobsCateName} and posting_status ='O'
 	</select>
 
 	<select id="findPostingBypostingId" resultType="Jobposting" parameterType="String">
@@ -177,6 +177,40 @@
 		DELETE FROM faqs
 		WHERE faqs_id = #{FAQsId}
 	</delete>
+	
+	
+	
+<!-- <select id="findJobpostingListBySearchCondition" resultType="jobposting" parameterType="searchKeyword">
+    SELECT * FROM job_posting
+    WHERE 1=1
+    <if test="searchKeyword != null and searchKeyword != ''">
+        AND title LIKE '%' || #{searchKeyword} || '%'
+    </if>
+</select> -->
+
+
+<select id="findPostingListBySearchCondition" resultType="Jobposting" parameterType="PostingSearchCondition">
+    SELECT jp.*, js.jobs_name AS jobsItemName, (SELECT jobs_name FROM jobs j WHERE j.jobs_id = js.jobs_pid) AS jobsCateName
+    FROM job_posting jp
+    JOIN jobs js ON jp.jobs_id = js.jobs_id
+    WHERE 1=1
+    <if test="title != null and title != ''">
+        AND title = #{searchKeyword}
+    </if>
+    <if test="job_name != null and job_name != ''">
+        AND job_name = #{searchKeyword}
+    </if>
+    <if test="status_type != null and status_type != ''">
+        AND status_type = #{searchKeyword}
+    </if>
+    <if test="employment_type != null and employment_type != ''">
+        AND employment_type = #{searchKeyword}
+    </if>
+</select>
+
+
+
+
 
 
 

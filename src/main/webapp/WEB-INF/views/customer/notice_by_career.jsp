@@ -52,10 +52,14 @@
                 
                 
                 <div class="notice_list_box">
-                    <div class="search_jobs_box">
-                        <i class="fa-solid fa-magnifying-glass search_icon"></i>
-                        <input type="text" placeholder="Search Jobs" class="search_jobs" name="searchKeyword">
-                    </div>
+            <!-- notice_by_career.jsp -->
+<form action="/customer/notice_by_career" method="get">
+    <div class="search_jobs_box">
+        <i class="fa-solid fa-magnifying-glass search_icon"></i>
+        <input type="text" placeholder="Search Jobs" class="search_jobs" name="searchKeyword">
+        <button type="submit">검색</button>
+    </div>
+</form>
                     <span class="notice_guide_text">${postingCount}개의 채용공고가 있습니다</span>
                     <!--  바꿔야대 ,, -->  
                     

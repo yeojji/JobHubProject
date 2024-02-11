@@ -10,6 +10,7 @@ import com.jobhub.dto.jobposting.Description;
 import com.jobhub.dto.jobposting.FAQs;
 import com.jobhub.dto.jobposting.Job;
 import com.jobhub.dto.jobposting.Jobposting;
+import com.jobhub.dto.jobposting.PostingSearchCondition;
 import com.jobhub.service.jobposting.JobpostingService;
 
 @Service
@@ -33,6 +34,20 @@ public class JobpostingServiceImpl implements JobpostingService {
 		List<Jobposting> jobpostingNameList = jobpostingDAO.findPostingAndJobNameList();
 		return jobpostingNameList;
 }
+	
+/*
+ * public List<Jobposting> findJobpostingListBySearchCondition(String
+ * searchKeyword){ List<Jobposting> jobpostingList =
+ * jobpostingDAO.findJobpostingListBySearchCondition(searchKeyword); return
+ * jobpostingList; }
+ */
+	
+	public List<Jobposting> findPostingListBySearchCondition(PostingSearchCondition postingSearchCondition){
+		
+		List<Jobposting> jobpostingList = jobpostingDAO.findPostingListBySearchCondition(postingSearchCondition);
+		return jobpostingList;
+		
+	}
 	
 	
 
@@ -96,6 +111,9 @@ public class JobpostingServiceImpl implements JobpostingService {
 		int result = jobpostingDAO.removeFaqsById(FAQsId);
 		return result;
 	}
+	
+	
+	
 	
 	
 	

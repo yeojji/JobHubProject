@@ -24,6 +24,7 @@ import com.jobhub.dto.jobposting.Description;
 import com.jobhub.dto.jobposting.FAQs;
 import com.jobhub.dto.jobposting.Job;
 import com.jobhub.dto.jobposting.Jobposting;
+import com.jobhub.dto.jobposting.PostingSearchCondition;
 import com.jobhub.service.customer.CustomerService;
 import com.jobhub.service.jobposting.JobpostingService;
 
@@ -160,11 +161,14 @@ public class CustomerController {
 	}
 	
 	@GetMapping("/customer/notice_by_career")
-	public String showAllNotice(Model model/*, String jobsCateName*/) {
+	public String showAllNotice(Model model/*, String jobsCateName*/, PostingSearchCondition postingSearchCondition) {
 		
+		System.out.println("get요청");
 		List<Job> jobList = jobpostingService.findJobList();
 		List<Jobposting> jobpostingList = jobpostingService.findJobpostingList();
 		List<Jobposting> jobpostingNameList = jobpostingService.findPostingAndJobNameList();
+		
+	
 		
 		
 		model.addAttribute("jobList" , jobList);
@@ -196,6 +200,8 @@ public class CustomerController {
 		
 		return "customer/jobsDescription";
 	}
+	
+	
 	
 	
 	

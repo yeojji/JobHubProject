@@ -22,6 +22,7 @@ import com.jobhub.dto.jobposting.Description;
 import com.jobhub.dto.jobposting.FAQs;
 import com.jobhub.dto.jobposting.Job;
 import com.jobhub.dto.jobposting.Jobposting;
+import com.jobhub.dto.jobposting.PostingSearchCondition;
 import com.jobhub.service.jobposting.JobpostingService;
 
 
@@ -233,6 +234,19 @@ public class JobpostingController {
 			System.out.println("실패");
 			return "FAQs/faqsMain";	
 		}
+	}
+	
+	
+	@GetMapping("/postings")
+	public String postings(Model model,PostingSearchCondition postingSearchCondition ) {
+		System.out.println("get요청");
+		System.out.println(postingSearchCondition);
+		
+		List<Jobposting> postingList = jobpostingService.findPostingListBySearchCondition(postingSearchCondition);
+		
+		model.addAttribute("postingList",postingList);
+		
+		return "jobPosting/postings";
 	}
 	
 }
