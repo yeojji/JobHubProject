@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.jobhub.dao.jobposting.JobpostingDAO;
+import com.jobhub.dto.employee.EmployeeJobsInfo;
 import com.jobhub.dto.jobposting.Description;
 import com.jobhub.dto.jobposting.FAQs;
 import com.jobhub.dto.jobposting.Job;
@@ -91,6 +92,20 @@ public class JobpostingDAOImpl implements JobpostingDAO {
 	public int removeFaqsById(String FAQsId) {
 		int result = sqlSessionTemplate.delete("jobPosting_mapper.removeFaqs", FAQsId);
 		return result;
+	}
+
+	@Override
+	public List<EmployeeJobsInfo> findEmployeeJobsInfoList() {
+		// TODO Auto-generated method stub
+		List<EmployeeJobsInfo> findEmployeeJobsInfoList = sqlSessionTemplate.selectList("jobPosting_mapper.findEmployeeJobsInfoList");
+		return findEmployeeJobsInfoList;
+	}
+
+	@Override
+	public List<Job> findJobsNameByLevel1() {
+		// TODO Auto-generated method stub
+		List<Job> findJobsNameByLevel1List = sqlSessionTemplate.selectList("jobPosting_mapper.findJobsNameByLevel1");
+		return findJobsNameByLevel1List;
 	}
 	
 	

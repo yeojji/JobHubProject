@@ -17,4 +17,5 @@ public class Customer {
 	String phone;
 	Timestamp createdDate;
 	String gender;
+	String customerStatus;
 }

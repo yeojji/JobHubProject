@@ -7,15 +7,15 @@
 	
 	
 	<select id="findLoginCustomer" parameterType="Customer" resultType="Customer">
-		SELECT * FROM "user" WHERE user_id=#{userId} and password=#{password}
+		SELECT * FROM job_customer WHERE user_id=#{userId} and password=#{password}
 	</select>
 
 	<select id="findCustomerInfo" parameterType="String" resultType="Customer">
-		SELECT * FROM "user" WHERE user_id = #{userId}
+		SELECT * FROM job_customer WHERE user_id = #{userId}
 	</select>
 	
 	<update id="modifyCustomerInfo" parameterType="Customer">
-		UPDATE "user"
+		UPDATE job_customer
 		SET name = #{name} ,
 			birth = #{birth},
 			phone = #{phone}
@@ -24,16 +24,21 @@
 	</update>
 	
 	<update id="modifyCustomerPw" parameterType="Customer">
-		UPDATE "user"
+		UPDATE job_customer
 		SET password = #{password}
 		WHERE user_id = #{userId}
 	
 	</update>
 	
-	<delete id="removeCustomer" parameterType="Customer">
-		DELETE FROM "user"
+	<update id="removeCustomer" parameterType="Customer">
+		UPDATE job_customer
+		SET customer_status = #{customerStatus}
 		WHERE user_id = #{userId}
-	</delete>
+	</update>
 	
 	
 </mapper>
+
+	
+
+

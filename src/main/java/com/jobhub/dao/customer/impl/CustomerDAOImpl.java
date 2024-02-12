@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.jobhub.dao.customer.CustomerDAO;
 import com.jobhub.dto.customer.Customer;
+import com.jobhub.dto.jobposting.Job;
 
 @Repository
 public class CustomerDAOImpl implements CustomerDAO{
@@ -62,10 +63,11 @@ public class CustomerDAOImpl implements CustomerDAO{
 	public int removeCustomer(Customer customer) {
 		// TODO Auto-generated method stub
 		
-		int result = sqlSessionTemplate.delete("user_mapper.removeCustomer", customer);
+		int result = sqlSessionTemplate.update("user_mapper.removeCustomer", customer);
 		
 		return result;
 	}
+	
 
 
 }

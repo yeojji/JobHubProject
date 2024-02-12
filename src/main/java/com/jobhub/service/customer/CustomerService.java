@@ -2,6 +2,7 @@ package com.jobhub.service.customer;
 import java.util.List;
 
 import com.jobhub.dto.customer.Customer;
+import com.jobhub.dto.jobposting.Job;
 public interface CustomerService {
 
 	//customer 계정생성, 로그인, 목록, 검색, 비밀번호 찾기, 정보 수정
@@ -17,5 +18,7 @@ public interface CustomerService {
 	public int modifyCustomerPw(Customer customer);
 	
 	public int removeCustomer(Customer customer);
+	
+
 
 }

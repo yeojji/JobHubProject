@@ -5,6 +5,169 @@
 <mapper namespace="resume_mapper">
 
 
-	
+	<!-- 이력서id res1, res2, res3 ... -->
+	<select id="selectNextResumeId" resultType="String">
+		SELECT 'res' ||
+		(SELECT NVL(MAX(resume_id), 0) + 1 FROM resume_info) FROM
+		dual
+	</select>
 
-</mapper>
+	<!-- 이력서 저장 -->
+	<insert id="saveResume" parameterType="Resume">
+		<selectKey keyProperty="resumeId" resultType="String"
+			order="BEFORE">
+			<!-- resume_id 생성 -->
+			<include refid="selectNextResumeId" />
+		</selectKey>
+		INSERT INTO resume_info
+		VALUES (#{resumeId}, #{userId}, #{jobsId},
+		#{careerId}, #{academicId},
+		#{certificateId}, #{supportPath},
+		#{military_serviceMatters},
+		#{veterans_targetStatus},
+		#{disorderStatus}, #{submissionStatus},
+		#{revisionDate})
+	</insert>
+
+
+	<!-- 이력서ID로 검색 -->
+	<select id="findResumeByResumeId" resultType="Resume"
+		parameterType="int">
+		SELECT * FROM resume_info
+		WHERE resume_id = #{resumeId}
+	</select>
+
+	<!-- 이력서 검색 -->
+	<select id="findResumeList" resultType="Resume">
+		SELECT * FROM resume_info
+	</select>
+
+	<!-- 이력서 목록 가져오기 -->
+	<select id="findResumesByUserId" resultType="Resume"
+		parameterType="String">
+		SELECT *
+		FROM resume_info
+		WHERE user_id = #{userId}
+	</select>
+
+
+	<!-- 이력서 수정 -->
+	<update id="modifyResume" parameterType="Resume">
+		UPDATE resume_info
+		<!-- 제출여부 -->
+		SET submission_status = #{submissionStatus},
+		revision_date =
+		#{revisionDate}
+		WHERE
+		resume_id = #{resumeId}
+	</update>
+
+
+	<!-- 직무아이디로 찾기 -->
+	<select id="findResumesByCareerId" resultType="Resume"
+		parameterType="String">
+		SELECT *
+		FROM resume_info
+		WHERE careerId = #{careerId}
+	</select>
+
+
+	<!-- 이력서 관리 검색조건 -->
+	<select id="findResumeListBySearchCondition" resultType="Resume"
+		parameterType="ResumeSearchCondition">
+		SELECT *
+		FROM resume_info r
+		JOIN "user" u ON r.user_id = u.user_id
+		JOIN
+		job_posting jp ON r.jobs_id = jp.jobs_id
+		JOIN career c ON r.career_id =
+		c.career_id
+		JOIN education e ON r.academic_id = e.academic_id
+		JOIN
+		certificate cer ON r.certificate_id = cer.certificate_id
+
+		WHERE 1=1
+
+		<!-- 검색어 sfl -->
+		<!-- 1) 채용공고 (job_posting테이블의 title) 2) 아이디 (resume_info테이블의 user_id) 3) 
+			이름 (user테이블의 name) 4) 휴대전화번호 (user테이블의 phone) 5) 이메일 (user테이블의 email) -->
+		<if test="searchKeyword != null and !searchKeyword.isEmpty()">
+			AND (
+			jp.title LIKE '%' || #{searchKeyword} || '%'
+			OR
+			u.user_id = #{searchKeyword}
+			OR u.name LIKE '%' || #{searchKeyword} ||
+			'%'
+			OR u.phone = #{searchKeyword}
+			OR u.email LIKE '%' ||
+			#{searchKeyword} || '%'
+			)
+		</if>
+
+		<!-- 지원일자(application_date) apply테이블의 applied_date가 설정한 시작일fr_date부터 종료일to_date까지의 
+			기간 내 포함되는 이력서 노출 지원마감일(application_deadline)이 설정한 시작일fr_date부터 종료일to_date까지의 
+			기간 내 포함되는 이력서 노출 -->
+		<if test="startDate != null">
+			AND r.revision_date &gt;= #{startDate}
+		</if>
+		<if test="endDate != null">
+			AND r.revision_date &lt;= #{endDate}
+		</if>
+
+		<!-- 성별(user테이블의 gender. user테이블의 user_id = resume_info테이블의 user_id ) -->
+		<!-- 전체를 선택한 경우 남녀 모두 -->
+		<if test="gender != null and !gender.isEmpty()">
+			AND u.gender = #{gender}
+		</if>
+
+		<!-- 생년월일로 나이 계산 -->
+		<if
+			test="(startAge != null and endAge != null) or (startAge != null and endAge == null) or (startAge == null and endAge != null)">
+			AND TIMESTAMPDIFF(YEAR, u.birth, CURRENT_DATE())
+			BETWEEN
+			<choose>
+				<when test="startAge != null and endAge != null">
+					#{startAge} AND #{endAge}
+				</when>
+				<when test="startAge != null and endAge == null">
+					#{startAge} AND TIMESTAMPDIFF(YEAR, u.birth,
+					CURRENT_DATE())
+				</when>
+				<when test="startAge == null and endAge != null">
+					TIMESTAMPDIFF(YEAR, u.birth, CURRENT_DATE()) AND
+					#{endAge}
+				</when>
+			</choose>
+		</if>
+
+
+		<!-- 지원경로(resume_info테이블 support_path) -->
+		<if test="findOutPath != null and findOutPath != ''">
+			AND r.support_path = #{findOutPath}
+		</if>
+
+		<!-- 경력조건 -->
+		<if test="careerCondition != null and careerCondition != ''">
+			<choose>
+				<!-- 신입 -->
+				<when test="careerCondition == '0'">
+					AND TIMESTAMPDIFF(YEAR, career.join_date_of_company,
+					career.resignation_date_of_company) &lt; 1
+				</when>
+				<otherwise>
+					AND TIMESTAMPDIFF(YEAR, career.join_date_of_company,
+					career.resignation_date_of_company) = #{career_condition}
+				</otherwise>
+			</choose>
+		</if>
+	</select>
+
+
+	<!-- 이력서 삭제 -->
+	<delete id="deleteResume" parameterType="String">
+		DELETE FROM resume_info
+		WHERE resume_id = #{resumeId}
+	</delete>
+
+
+	</mapper>

@@ -9,6 +9,7 @@
     flex-direction: column;
     justify-content: center;
     align-content: space-between;
+    padding-top: 300px;
     padding: 50px;
     width: 100%;
     height: 800px;
@@ -38,7 +39,7 @@
     border-bottom: 1px solid white;
 }
 
-.select_region_menu, .select_city_menu, .select_jobunit_menu{
+.select_region_menu, .select_career_condition, .select_jobunit_menu{
     border: none;
     color: white;
     background-color:rgb(97, 97, 97);

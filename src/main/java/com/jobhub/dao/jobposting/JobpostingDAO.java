@@ -2,6 +2,7 @@ package com.jobhub.dao.jobposting;
 
 import java.util.List;
 
+import com.jobhub.dto.employee.EmployeeJobsInfo;
 import com.jobhub.dto.jobposting.Description;
 import com.jobhub.dto.jobposting.FAQs;
 import com.jobhub.dto.jobposting.Job;
@@ -10,6 +11,10 @@ import com.jobhub.dto.jobposting.Jobposting;
 public interface JobpostingDAO {
 
 	public List<Job> findJobList();
+	
+	public List<Job> findJobsNameByLevel1();
+	
+	public List<EmployeeJobsInfo> findEmployeeJobsInfoList();
 	
 	public List<Jobposting> findJobpostingList();
 	

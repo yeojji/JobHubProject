@@ -51,8 +51,7 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 
 
 
-
-<!-- 	<interceptors>
+	<!--<interceptors>
 		<interceptor>
 			<mapping path="/**" />
 			<exclude-mapping path="/resources/**" />
