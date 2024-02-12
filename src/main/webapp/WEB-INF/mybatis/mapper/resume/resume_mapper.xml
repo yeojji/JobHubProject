@@ -73,7 +73,7 @@
 		parameterType="ResumeSearchCondition">
 		SELECT *
 		FROM resume_info r
-		JOIN "user" u ON r.user_id = u.user_id
+		JOIN job_customer u ON r.user_id = u.user_id
 		JOIN
 		job_posting jp ON r.jobs_id = jp.jobs_id
 		JOIN career c ON r.career_id =
@@ -86,7 +86,7 @@
 
 		<!-- 검색어 sfl -->
 		<!-- 1) 채용공고 (job_posting테이블의 title) 2) 아이디 (resume_info테이블의 user_id) 3) 
-			이름 (user테이블의 name) 4) 휴대전화번호 (user테이블의 phone) 5) 이메일 (user테이블의 email) -->
+			이름 (job_customer테이블의 name) 4) 휴대전화번호 (user테이블의 phone) 5) 이메일 (user테이블의 email) -->
 		<if test="searchKeyword != null and !searchKeyword.isEmpty()">
 			AND (
 			jp.title LIKE '%' || #{searchKeyword} || '%'
@@ -117,24 +117,21 @@
 		</if>
 
 		<!-- 생년월일로 나이 계산 -->
-		<if
-			test="(startAge != null and endAge != null) or (startAge != null and endAge == null) or (startAge == null and endAge != null)">
-			AND TIMESTAMPDIFF(YEAR, u.birth, CURRENT_DATE())
-			BETWEEN
-			<choose>
-				<when test="startAge != null and endAge != null">
-					#{startAge} AND #{endAge}
-				</when>
-				<when test="startAge != null and endAge == null">
-					#{startAge} AND TIMESTAMPDIFF(YEAR, u.birth,
-					CURRENT_DATE())
-				</when>
-				<when test="startAge == null and endAge != null">
-					TIMESTAMPDIFF(YEAR, u.birth, CURRENT_DATE()) AND
-					#{endAge}
-				</when>
-			</choose>
-		</if>
+		<if test="(startAge != null and endAge != null) or (startAge != null and endAge == null) or (startAge == null and endAge != null)">
+    AND MONTHS_BETWEEN(CURRENT_DATE, u.birth) / 12
+    BETWEEN
+    <choose>
+        <when test="startAge != null and endAge != null">
+            #{startAge} AND #{endAge}
+        </when>
+        <when test="startAge != null and endAge == null">
+            #{startAge} AND MONTHS_BETWEEN(CURRENT_DATE, u.birth) / 12
+        </when>
+        <when test="startAge == null and endAge != null">
+            MONTHS_BETWEEN(CURRENT_DATE, u.birth) / 12 AND #{endAge}
+        </when>
+    </choose>
+</if>
 
 
 		<!-- 지원경로(resume_info테이블 support_path) -->

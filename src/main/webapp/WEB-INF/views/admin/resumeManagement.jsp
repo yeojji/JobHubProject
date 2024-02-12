@@ -7,8 +7,8 @@
 <meta charset="utf-8">
 <title>Jobhub 관리자 페이지</title>
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="./sources/admin/css/admin.css">
-<link rel="shortcut icon" href="./sources/icon/jobhub_favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="css/admin/admin.css">
+<link rel="shortcut icon" href="icon/common/jobhub_favicon.ico" type="image/x-icon">
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://kit.fontawesome.com/b158a20f5c.js" crossorigin="anonymous"></script>
@@ -29,7 +29,7 @@
 			</div>
 			<div id="tnb">
 				<ul>
-					<li>${adminName}님</li>
+					<li>${adminId}님</li>
 					<li><a href="#" target="_blank">Jobhub바로가기</a></li>
 					<li><a href="/admin/mypage">마이페이지</a></li>
 					<li id="tnb_logout"><a href="#">로그아웃</a></li>

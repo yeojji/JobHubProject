@@ -9,64 +9,21 @@
 <meta name="viewport"
 	content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width">
 <meta name="format-detection" content="telephone=no">
-<meta name="description" content="Jobhub 관리자 로그인 바로가기!">
+<meta name="description" content="Jobhub 관리자 로그인">
 <meta property="og:title" content="관리자 로그인 - Jobhub">
 <meta property="og:description" content="Jobhub 관리자 로그인 바로가기">
 <meta property="og:type" content="website">
 <title>관리자 로그인 - Jobhub</title>
-<link rel="stylesheet" type="text/css" href="css/notosans.css"
+<link rel="stylesheet" type="text/css" href="css/admin/notosans.css"
 	media="all">
 <link rel="stylesheet" type="text/css" href="css/login_v1_1.css"
 	media="all">
-
-
-
-<!-- 	
-<script type="text/javascript" src="/_scripts/jquery-3.6.1.min.js"></script>
-<script type="text/javascript" src="/_scripts/ui_desktop.js?22032309"></script>
-<script type="text/javascript" src="/_scripts/admin_auth.js?24011709"></script>
- -->
-<script type="text/javascript">
-	var correctCaptcha = function(response) {
-	};
-	var onloadCallback = function() {
-		grecaptcha.render('html_element', {
-			'sitekey' : '6LehBQQTAAAAADqgKwu7R9xDHt3FB8VPiZnk0iK-',
-			'callback' : correctCaptcha,
-			'size' : 'normal'
-		});
-	};
-	$(function() {
-		$(document).bind("keydown", function(e) {
-			if ((window.event && event.keyCode === 13) || (e.keyCode === 13)) {
-				form_check();
-			}
-		});
-	});
-	$(function() {
-		$('.ePasswordClick').click(function() {
-			var passwordInput = $(this).parent().find('.typePassword');
-			if (passwordInput.attr('type') === "password") {
-				passwordInput.attr('type', 'text');
-				$(this).removeClass("off").addClass("on");
-			} else {
-				passwordInput.attr('type', 'password');
-				$(this).removeClass("on").addClass("off");
-			}
-		})
-	});
-	function ipBlockLayer(url) {
-		$("#shadow").show();
-		$("#blockFrame").attr('src', url).show();
-	}
-</script>
-
 </head>
 <body>
 	<!-- header -->
 	<header id="header">
 		<h1 class="logo">
-			<a href="#" title="jobhub 관리자 바로가기"> <img class="jobhubLogo"
+			<a href="/admin/login" title="jobhub 관리자 바로가기"> <img class="jobhubLogo"
 				src="images/logo_250x35.png" alt="jobhub">
 			</a>
 		</h1>
@@ -79,23 +36,8 @@
 			<div class="section">
 				<div class="mTab eTab themeSolid"></div>
 				<form name="frm_admin" id="frm_admin" action="" method="post">
-					<input type="hidden" name="url" id="idUrl" value=""> <input
-						type="hidden" name="login_mode" id="login_mode" value="1">
-					<input type="hidden" id="mobile" name="mobile" value="F"> <input
-						type="hidden" name="onnode" value=""> <input type="hidden"
-						name="menu" value="" data-param="true"> <input
-						type="hidden" name="submenu" value="" data-param="true"> <input
-						type="hidden" name="mode" value=""> <input type="hidden"
-						name="c_name" value=""> <input type="hidden"
-						name="loan_type" value=""> <input type="hidden"
-						name="addsvc_suburl" value=""> <input type="hidden"
-						name="appID" value=""> <input type="hidden" name="userid"
-						id="userid" value=""> <input type="hidden" name="EncData"
-						id="idEncData" value="" /> <input type="hidden" name="EncKey"
-						id="idEncKey" value="" />
 					<div class="tabCont" style="display: block;">
 						<div style="display: block;">
-							<!-- 참고: 2차 인증 display 대응을 위한 div -->
 							<div class="mFormBox">
 								<div class="column">
 									<strong class="title">관리자 아이디</strong>
@@ -115,9 +57,8 @@
 										<button type="button" class="btnView ePasswordClick off"></button>
 									</div>
 								</div>
-								<p id="normal_msg" class="message txtWarn typeLeft"
-									style="display: none;">${error}</p>
-								<!-- 참고: 오류 -->
+								<!-- 오류 -->
+								<p id="normal_msg" class="message txtWarn typeLeft">${error}</p>
 							</div>
 						</div>
 						<div class="mButton">
@@ -145,7 +86,34 @@
 		<p class="copyright">&copy; Jobhub Corp. All Rights Reserved.</p>
 	</footer>
 	<!-- //footer -->
-	</div>
-
+	
+<script type="text/javascript">
+	//엔터 키 누를 때 폼 확인 
+	$(function() {
+		$(document).bind("keydown", function(e) {
+			if ((window.event && event.keyCode === 13) || (e.keyCode === 13)) {
+				form_check();
+			}
+		});
+	});
+	
+	$(function() {
+		$('.ePasswordClick').click(function() {
+			var passwordInput = $(this).parent().find('.typePassword');
+			if (passwordInput.attr('type') === "password") {
+				passwordInput.attr('type', 'text');
+				$(this).removeClass("off").addClass("on");
+			} else {
+				passwordInput.attr('type', 'password');
+				$(this).removeClass("on").addClass("off");
+			}
+		})
+	});
+	function ipBlockLayer(url) {
+		$("#shadow").show();
+		$("#blockFrame").attr('src', url).show();
+	}
+	
+</script>
 </body>
 </html>

@@ -29,16 +29,6 @@ public class AdminController {
 
 	@Autowired
 	LoginManager loginManager;
-
-	@RequestMapping("/test")
-	public String testDI() {
-
-		System.out.println("test경로 요청 들어옴");
-		// log.info("로그 test경로 요청 들어옴");
-
-		return "admin/admin";
-	}
-
 	
 	@RequestMapping
 	public String admin(HttpSession session) {
@@ -71,7 +61,7 @@ public class AdminController {
 		// log.debug("로그인 시도 : {}", admin);
 
 		if (loginAdmin == null) {
-	        model.addAttribute("error", "Invalid username or password. Please try again.");
+	        model.addAttribute("error", "아이디 또는 비밀번호를 확인해주세요.");
 	        return "admin/login";
 			// log.info("로그인 실패");
 			// id pw 일치 X || 일치O 고객 아이디
