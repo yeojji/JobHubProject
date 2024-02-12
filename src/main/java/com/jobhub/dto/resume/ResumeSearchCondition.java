@@ -7,18 +7,36 @@ public class ResumeSearchCondition {
 	String resumeId;
 	String userId;
 	int jobsId;
+	String postingId;
 	String careerId;
 	String academicId;
 	String certificateId;
+	String answerId;
 	String supportPath;
-	String military_serviceMatters;
-	String veterans_targetStatus;
+	String militaryServiceMatters;
+	String veteransTargetStatus;
 	String disorderStatus;
+	String revisionDate;
 	
 	String searchKeyword;
 	
-//	String startDate;
-//	String endDate;
-//	String gender;
+	String title;
+	String name;
+	String phone;
+	String email;
+	String gender;
+	String birth;
+	
+	String resignationDateOfCompany;
+	String joinedDateOfCompany;
+	
+	String startDate;
+	String endDate;
+	String startAge;
+	String endAge;
+	String findOutPath;
+	String careerCondition;
+
+	
 	
 }
