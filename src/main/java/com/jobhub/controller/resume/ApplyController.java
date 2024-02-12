@@ -8,12 +8,16 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.jobhub.dto.resume.ApplyAnswerForm;
 import com.jobhub.dto.resume.ApplyCareerForm;
 import com.jobhub.dto.resume.ApplyCertificateForm;
-import com.jobhub.dto.resume.ApplyFileForm;
-import com.jobhub.dto.resume.ApplyResumeForm;
+import com.jobhub.dto.resume.ApplyEducationForm;
 import com.jobhub.dto.resume.Resume;
 import com.jobhub.dto.util.FileInfo;
 import com.jobhub.service.apply.ApplyService;
@@ -32,46 +36,67 @@ public class ApplyController {
 	@Autowired
 	FileManager fileManager;
 
+
+	@GetMapping("/apply")
+	public String apply(@RequestParam String postingId, Model model) {
+		System.out.println(postingId);
+		model.addAttribute("postingId", postingId);
+		return "apply/apply";
+	}
+
 	@PostMapping("/apply")
-	public String applyProcess(ApplyResumeForm applyForm, ApplyCareerForm careerForm, 
-			ApplyCertificateForm certForm, ApplyFileForm fileForm) {
+	public String applyProcess(@RequestParam String postingId, ApplyEducationForm eduForm, ApplyCareerForm careerForm, 
+			ApplyCertificateForm certForm, ApplyAnswerForm answerForm,@RequestParam("data") List<MultipartFile> files, Resume resume) {
 
 		//여기는 학력 정보를 테이블에 저장하는 코드입니다.
-		List<Resume> resumeList = new ArrayList<Resume>();
-		for(int i=0; i<applyForm.getSchoolName().length; i++) {
+		List<Resume> eduList = new ArrayList<Resume>();
+		for(int i=0; i<eduForm.getSchoolName().length; i++) {
 			Resume rsm = new Resume();
-			rsm.setSchoolName(applyForm.getSchoolName()[i]);
-			rsm.setEduSortation(applyForm.getEduSortation()[i]);
-			rsm.setAdmission(applyForm.getAdmission()[i]);
-			rsm.setGraduation(applyForm.getGraduation()[i]);
-			rsm.setMajor(applyForm.getMajor()[i]);
-			rsm.setMinor(applyForm.getMinor()[i]);
-			rsm.setGrade(applyForm.getGrade()[i]);
-			rsm.setTotalScore(applyForm.getTotalScore()[i]);
-			rsm.setGraduationStatus(applyForm.getGraduationStatus()[i]);
+			rsm.setSchoolName(eduForm.getSchoolName()[i]);
+			rsm.setEduSortation(eduForm.getEduSortation()[i]);
+			rsm.setAdmission(eduForm.getAdmission()[i]);
+			rsm.setGraduation(eduForm.getGraduation()[i]);
+			rsm.setMajor(eduForm.getMajor()[i]);
+			rsm.setMinor(eduForm.getMinor()[i]);
+			rsm.setGrade(eduForm.getGrade()[i]);
+			rsm.setTotalScore(eduForm.getTotalScore()[i]);
+			rsm.setGraduationStatus(eduForm.getGraduationStatus()[i]);
 
-			resumeList.add(rsm);
+			eduList.add(rsm);
 		}
 
 		Map<String, Object> hashMap = new HashMap<String, Object>();
-		hashMap.put("resumeList", resumeList);
+		hashMap.put("eduList", eduList);
 
-		int result = resumeService.saveEducationInfo(hashMap);
+		int eduresult = applyService.saveEducationInfo(hashMap);
 
 
 
-		//여기서부터 경력사항 저장하는 부분^^^^^^^^^^^^^^^^^^^^^^^^^^^
+		//여기는 경력 정보를 테이블에 저장하는 코드입니다.
 		List<Resume> careerList = new ArrayList<Resume>();
 
-		for(int i=0; i<careerForm.getCompanyName().length; i++) {
+		if (careerForm.getCompanyName() != null) {
+			for (int i=0; i<careerForm.getCompanyName().length; i++) {
+				Resume rsm = new Resume();
+				rsm.setCompanyName(careerForm.getCompanyName()[i]);
+				rsm.setDepartmentName(careerForm.getDepartmentName()[i]);
+				rsm.setJoinDate(careerForm.getJoinDate()[i]);
+				rsm.setResignationDate(careerForm.getResignationDate()[i]);
+				rsm.setDuty(careerForm.getDuty()[i]);
+				rsm.setPosition(careerForm.getPosition()[i]);
+				rsm.setDetailWork(careerForm.getDetailWork()[i]);
+
+				careerList.add(rsm);
+			}
+		} else {
 			Resume rsm = new Resume();
-			rsm.setCompanyName(careerForm.getCompanyName()[i]);
-			rsm.setDepartmentName(careerForm.getDepartmentName()[i]);
-			rsm.setJoinDate(careerForm.getJoinDate()[i]);
-			rsm.setResignationDate(careerForm.getResignationDate()[i]);
-			rsm.setDuty(careerForm.getDuty()[i]);
-			rsm.setPosition(careerForm.getPosition()[i]);
-			rsm.setDetailWork(careerForm.getDetailWork()[i]);
+			rsm.setCompanyName("null");
+			rsm.setDepartmentName("null");
+			rsm.setJoinDate("null");
+			rsm.setResignationDate("null");
+			rsm.setDuty("null");
+			rsm.setPosition("null");
+			rsm.setDetailWork("null");
 
 			careerList.add(rsm);
 		}
@@ -83,19 +108,33 @@ public class ApplyController {
 		int careerResult = applyService.saveCareerInfo(hashMap);
 
 
-		//여긴 자격사항이다@@@@@@@@@@@@@@@@@@@
+		//여기는 자격 정보를 테이블에 저장하는 코드입니다.
 		List<Resume> certList = new ArrayList<Resume>();
 
-		for(int i=0; i<certForm.getCertSortation().length; i++) {
+		if (certForm.getCertSortation() != null) {
+			for(int i=0; i<certForm.getCertSortation().length; i++) {
+				Resume rsm = new Resume();
+				rsm.setCertSortation(certForm.getCertSortation()[i]);
+				rsm.setCertType(certForm.getCertType()[i]);
+				rsm.setCertLevel(certForm.getCertLevel()[i]);
+				rsm.setAcquisition(certForm.getAcquisition()[i]);
+				rsm.setLssuingAuthority(certForm.getLssuingAuthority()[i]);
+				rsm.setLanguage(certForm.getLanguage()[i]);
+				rsm.setTest(certForm.getTest()[i]);
+				rsm.setLanguageGrade(certForm.getLanguageGrade()[i]);
+
+				certList.add(rsm);
+			}
+		}else {
 			Resume rsm = new Resume();
-			rsm.setCertSortation(certForm.getCertSortation()[i]);
-			rsm.setCertType(certForm.getCertType()[i]);
-			rsm.setCertLevel(certForm.getCertLevel()[i]);
-			rsm.setAcquisition(certForm.getAcquisition()[i]);
-			rsm.setLssuingAuthority(certForm.getLssuingAuthority()[i]);
-			rsm.setLanguage(certForm.getLanguage()[i]);
-			rsm.setTest(certForm.getTest()[i]);
-			rsm.setLanguageGrade(certForm.getLanguageGrade()[i]);
+			rsm.setCertSortation("null");
+			rsm.setCertType("null");
+			rsm.setCertLevel("null");
+			rsm.setAcquisition("null");
+			rsm.setLssuingAuthority("null");
+			rsm.setLanguage("null");
+			rsm.setTest("null");
+			rsm.setLanguageGrade("null");
 
 			certList.add(rsm);
 		}
@@ -105,45 +144,70 @@ public class ApplyController {
 
 		int certResult = applyService.saveCertificateInfo(hashMap);
 
-		
+		//여기는 직무질문 정보를 테이블에 저장하는 코드입니다.
+		List<Resume> ansList = new ArrayList<Resume>();
+		if (answerForm.getContent1() != null) {
+			for(int i=0; i<answerForm.getContent1().length; i++) {
+				Resume rsm = new Resume();
+				rsm.setContent1(answerForm.getContent1()[i]);
+				rsm.setContent2(answerForm.getContent2()[i]);
+				rsm.setContent3(answerForm.getContent3()[i]);
 
-		
-		//!!!!!!!!!!!!!!!!여기서부터 파일 삽입 코드!!!!!!!!!!!!!!!!!!!!!!!
-		
-		System.out.println(fileForm);
+				ansList.add(rsm);
+			}
+		}else {
+				Resume rsm = new Resume();
+				rsm.setContent1("null");
+				rsm.setContent2("null");
+				rsm.setContent3("null");
 
-		try {
-			//1. 파일정보 추출 + 파일 실제 폴더에 저장
-			FileInfo fileInfo = fileManager.storeFile(fileForm.getData());
+				certList.add(rsm);
+			}
 
-			//2. DB에 파일 정보 저장
-			int fileResult = applyService.saveFileInfo(fileInfo);
+			hashMap.clear();
+			hashMap.put("ansList", ansList);
 
-			// 파일저장 실패? -> 그냥 다 실패
-			// 파일저장 실패? -> 첨부파일 없는걸로 치고, 프로파일 정보만 저장!
-			//			if(result > 0) {
-			//				
-			//				FileInfo savedFileInfo = applyService.findFileInfoByFileName(fileInfo.getFileName());
-			//				
-			//				//3. UserProfile 정보 저장
-			//				UserProfile userProfile = new UserProfile();
-			//				userProfile.setName(requestForm.getName());
-			//				userProfile.setNickname(requestForm.getNickname());
-			//				userProfile.setFileId(savedFileInfo.getFileId()); //DB에 저장된 fileId를 획득!! 세팅
-			//				int result2 = userService.saveUserProfile(userProfile);
-			//				
-			//			}
+			int ansResult = applyService.saveAnswerInfo(hashMap);
 
-		} catch (IllegalStateException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+
+
+
+
+			//일단 이력서 테이블 저장 시도해보겠습니다..
+			System.out.println(resume);
+
+			int resumeResult = applyService.saveResumeInfo(resume);
+
+
+			//여기는 첨부파일 정보를 테이블에 저장하는 코드입니다.
+			if(files != null) {
+				try {
+
+					List<FileInfo> fileList = fileManager.storeFiles(files);
+
+					for (FileInfo fileInfo : fileList) {
+						int result = applyService.saveFileInfo(fileInfo);
+					}
+				} catch (IllegalStateException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}else {
+				FileInfo fileInfo = new FileInfo();
+				fileInfo.setFileName("null");
+				fileInfo.setOriginalFileName("null");
+				fileInfo.setFilePath("null");
+				fileInfo.setFileExtension("null");
+				fileInfo.setFileSize(0);
+			}
+
+			return "redirect:/";
+
+
+
 		}
 
-		return "redirect:/";
-		
 	}
-
-}

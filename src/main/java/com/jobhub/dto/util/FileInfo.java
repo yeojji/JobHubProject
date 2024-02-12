@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class FileInfo {
-
+	int maxSeq;
 	int fileId;
 	String fileName;
 	String originalFileName;

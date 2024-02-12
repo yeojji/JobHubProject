@@ -1,14 +1,11 @@
 package com.jobhub.service.resume.impl;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jobhub.dao.resume.ResumeDAO;
-import com.jobhub.dto.resume.ApplyResumeForm;
 import com.jobhub.dto.resume.Resume;
 import com.jobhub.dto.resume.ResumeSearchCondition;
 import com.jobhub.service.resume.ResumeService;
@@ -20,30 +17,6 @@ public class ResumeServiceImpl implements ResumeService {
 	@Autowired
 	ResumeDAO resumeDAO;
 	
-	
-	@Override
-	public int saveEducationInfo(Map<String, Object> eduMap) {
-		// TODO Auto-generated method stub
-		
-		int result = resumeDAO.saveEducationInfo(eduMap);
-		
-		return result;
-		
-	}
-
-
-//	@Override
-//	public int saveEducationInfo(List<ApplyResumeForm> educationForm) {
-//		// TODO Auto-generated method stub
-//		//service
-//		for(Resume rsm : resumeList) {
-//			dao.saveResume(rsm);
-//		}
-//		
-//		int result = resumeDAO.saveEducationInfo(educationForm);
-//		
-//		return result;
-//	}
 	
 	@Override
 	public int saveResume(Resume resume) {

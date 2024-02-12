@@ -1,18 +1,10 @@
 package com.jobhub.dao.resume;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import com.jobhub.dto.resume.ApplyResumeForm;
 import java.util.List;
 
 import com.jobhub.dto.resume.Resume;
 import com.jobhub.dto.resume.ResumeSearchCondition;
 
 public interface ResumeDAO {
-	
-	public int saveEducationInfo(Map<String, Object> eduMap);
-
 	
 	// 이력서id 생성
 	public String selectNextResumeId();
