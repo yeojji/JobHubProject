@@ -14,7 +14,22 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 
 
 	<!-- 스캔 패키지에 있는 클래스 중 Controller 어노테이션 있으면 Controller 로 로딩 -->
-	<annotation-driven />
+	<annotation-driven>
+		<message-converters>
+			<!-- @ResponseBody로 String 처리할때 한글처리 -->
+			<beans:bean
+				class="org.springframework.http.converter.StringHttpMessageConverter">
+				<beans:property name="supportedMediaTypes">
+					<beans:list>
+						<beans:value>text/html;charset=UTF-8</beans:value>
+						<beans:value>application/text;charset=UTF-8</beans:value>
+						<beans:value>text/plain;charset=UTF-8</beans:value>
+						<beans:value>application/json;charset=UTF-8</beans:value>
+					</beans:list>
+				</beans:property>
+			</beans:bean>
+		</message-converters>
+	</annotation-driven>
 
 	<!-- 스캔할 bean이 모여있는 패키지 지정 -->
 	<context:component-scan
@@ -41,12 +56,14 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 	<resources mapping="/js/admin/*" location="/resources/admin/js/" />
 	<resources mapping="/js/common/*" location="/resources/common/js/" />
 	<resources mapping="/**" location="/resources/" />
+	
+	
 
 
 <!-- 
 	<interceptors>
 		<interceptor>
-			<mapping path="/**" />
+			<mapping path="/**"/>
 			<exclude-mapping path="/resources/**" />
 			<exclude-mapping path="/admin/joinApproval" />
 			<exclude-mapping path="/admin/login" />
@@ -56,6 +73,7 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 			<exclude-mapping path="/admin/js/**" />
 			<exclude-mapping path="/css/**" />
 			<exclude-mapping path="/js/**" />
+			<exclude-mapping path="/img/**" />
 			<exclude-mapping path="/fileStorage/**" />
 			<exclude-mapping path="/image/**" />
 			<exclude-mapping path="/" />

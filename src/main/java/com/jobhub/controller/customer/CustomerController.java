@@ -27,13 +27,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.jobhub.dto.customer.Customer;
-import com.jobhub.dto.customer.Scrap;
-import com.jobhub.dto.employee.Employee;
-import com.jobhub.dto.employee.EmployeeJobsInfo;
 import com.jobhub.dto.jobposting.Job;
 import com.jobhub.service.admin.AdminService;
 import com.jobhub.dto.jobposting.Jobposting;
-import com.jobhub.dto.jobposting.Notice;
 import com.jobhub.service.customer.CustomerService;
 import com.jobhub.service.jobposting.JobpostingService;
 
@@ -299,24 +295,74 @@ public class CustomerController {
 	
 	
 	
+	
+	
+	
+	
+	//jobs
+	//jobsMain
 	@GetMapping("/customer/notice_by_career")
-	public String showAllNotice(Model model, HttpServletRequest request) {
+	public String showAllNotice(Model model) {
 		System.out.println("get 요청");
 		
 		List<Job> jobList = jobpostingService.findJobList();
 		List<Jobposting> jobpostingList = jobpostingService.findJobpostingList();
+		List<Jobposting> jobpostingNameList = jobpostingService.findPostingAndJobNameList();
 		
 		model.addAttribute("jobList" , jobList);
 		model.addAttribute("jobpostingList" , jobpostingList);
 		
-		
-		System.out.println(model.getAttribute("jobpostingList"));
-		
-		
-		model.addAttribute("postingCount",sqlSession.selectOne("jobPosting_mapper.findPostingCount"));
+		model.addAttribute("postingCount",sqlSession.selectOne("jobPosting_mapper.findPostingCountOpen"));
 		
 		return "customer/notice_by_career";
 	}
+	
+	//jobs category 별로 화면 바뀌는 거
+	@GetMapping("/list")
+	public String list(@RequestParam String jobsCateName, Model model) {
+			
+		List<Jobposting>  jobpostingList = jobpostingService.findPostingListByjobscatename(jobsCateName);
+		List<Job> jobList = jobpostingService.findJobList();
+		List<Jobposting> jobpostingNameList = jobpostingService.findPostingAndJobNameList();
+		
+		model.addAttribute("postingCount",sqlSession.selectOne("jobPosting_mapper.findPostingCountByCate",jobsCateName));
+		
+		model.addAttribute("jobpostingList",jobpostingList);
+		model.addAttribute("jobList" , jobList);
+		model.addAttribute("jobpostingNameList" , jobpostingNameList);
+		
+		return "customer/list";
+	}
+	
+	//jobs 제목 누르면 상세보기 페이지
+	@GetMapping("/jobsDescription")
+	public String jobsDescription(@RequestParam String postingId, Model model) {
+		
+		Jobposting jobposting = jobpostingService.findPostingBypostingId(postingId);
+		Description description = jobpostingService.findDescriptionBypostingId(postingId);
+		
+		model.addAttribute("jobposting", jobposting);
+		model.addAttribute("description", description);
+		
+		return "customer/jobsDescription";
+	}
+		
+	
+	//faqs
+	//faqs 메인
+	@GetMapping("/cus/faqs")
+	public String showFaqs(Model model) {
+		List<FAQs> faqsList = jobpostingService.findFaqsList();
+		model.addAttribute("faqsList" , faqsList);
+		return "customer/faqs";
+	}
+	
+
+
+	
+
+	
+	
 	
 
 	

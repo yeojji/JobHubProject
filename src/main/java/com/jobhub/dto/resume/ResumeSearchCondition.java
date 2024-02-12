@@ -17,5 +17,8 @@ public class ResumeSearchCondition {
 	
 	String searchKeyword;
 	
+//	String startDate;
+//	String endDate;
+//	String gender;
 	
 }

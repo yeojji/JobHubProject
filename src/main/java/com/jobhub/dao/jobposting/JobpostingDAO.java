@@ -7,6 +7,7 @@ import com.jobhub.dto.jobposting.Description;
 import com.jobhub.dto.jobposting.FAQs;
 import com.jobhub.dto.jobposting.Job;
 import com.jobhub.dto.jobposting.Jobposting;
+import com.jobhub.dto.jobposting.PostingSearchCondition;
 
 public interface JobpostingDAO {
 
@@ -42,5 +43,16 @@ public interface JobpostingDAO {
 	
 	public int removeFaqsById(String FAQsId);
 	
+	public List<Jobposting> findPostingAndJobNameList();
 	
+	//public List<Jobposting> findJobpostingListBySearchCondition(PostingSearchCondition postingSearchCondition);
+	
+	//public List<Jobposting> findJobpostingListBySearchCondition(String SearchCondition);
+	
+	//public List<Jobposting> findPostingListBySearchCondition(PostingSearchCondition postingSearchCondition);
+
+	public List<Jobposting> findPostingListBySearchCondition(String keyword);
+	
+	
+	public List<Jobposting> findPostingListByjobscatename(String jobsCateName);
 }

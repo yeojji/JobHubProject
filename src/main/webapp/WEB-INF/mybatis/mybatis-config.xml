@@ -32,6 +32,10 @@
 		<typeAlias type="com.jobhub.dto.customer.Customer" alias="Customer"/>
 		<typeAlias type="com.jobhub.dto.resume.Resume" alias="Resume"/>
 		<typeAlias type="com.jobhub.dto.resume.ResumeSearchCondition" alias="ResumeSearchCondition"/>
+
+   		<typeAlias type="com.jobhub.dto.jobposting.PostingSearchCondition" alias="PostingSearchCondition"/>
+
+		
 	</typeAliases>
 
 

@@ -34,12 +34,18 @@
 
 				<div class="career_category">
 				
-				<span class="category_item">ALL</span>
+				<span class="category_item"><a href="../customer/notice_by_career">ALL</a></span>
 
 					<c:forEach var="jobItem" items="${jobList}">
 						<c:choose>
 							<c:when test="${jobItem.jobsLevel == 1}">
-								<span class="category_item">${jobItem.jobsName}</span>
+								
+								<%-- <span class="category_item" ><a href="../list?cateName=${jobItem.jobsName}">${jobItem.jobsName}</a></span>
+								 --%>
+								<%-- <span class="category_item"><a href="../list?cateName=${jobItem.jobsCateName}">${jobItem.jobsName}</a></span> --%>
+								
+								<span class="category_item"><a href="../list?jobsCateName=${jobItem.jobsName}">${jobItem.jobsName}</a></span>
+								
 							</c:when>
 						</c:choose>
 					</c:forEach>
@@ -52,25 +58,48 @@
                 
                 
                 <div class="notice_list_box">
-                    <div class="search_jobs_box">
-                        <i class="fa-solid fa-magnifying-glass search_icon"></i>
-                        <input type="text" placeholder="Search Jobs" class="search_jobs">
-                    </div>
+            <!-- notice_by_career.jsp -->
+<form action="/customer/notice_by_career" method="get">
+    <div class="search_jobs_box">
+        <i class="fa-solid fa-magnifying-glass search_icon"></i>
+        <input type="text" placeholder="Search Jobs" class="search_jobs" name="searchKeyword">
+        <button type="submit">검색</button>
+    </div>
+</form>
                     <span class="notice_guide_text">${postingCount}개의 채용공고가 있습니다</span>
+                    <!--  바꿔야대 ,, -->  
+                    <%--                            ${postingCountByName} postingCountByName
+ --%>                        
                     
                     
-            <c:forEach var="jobpostingItem" items="${jobpostingList}"> 
-
-            	<div class="notice_list_item">
-                        <div class="notice_info_title">
-                            <span class="notice_title_text">${jobpostingItem.title}</span>
-                            <div class="notice_filter">
-                                <span class="notice_filter_text">${jobpostingItem.employmentType} |</span>
-                                <span class="notice_filter_text">카테고리 |</span>
-                                <span class="notice_filter_text">직무명 |</span>
-                                <span class="notice_filter_text">${jobpostingItem.careerCondition}</span>
-                            </div>
-                        </div>
+<<<<<<< HEAD
+<c:forEach var="jobpostingNameItem" items="${jobpostingNameList}"> 
+    <c:if test="${jobpostingNameItem.postStatus == 'O'}">
+        <div class="notice_list_item">
+            <div class="notice_info_title">
+                <a href="../jobsDescription?postingId=${jobpostingNameItem.postingId}" >${jobpostingNameItem.title}</a>
+                <div class="notice_filter">
+                    <span class="notice_filter_text">${jobpostingNameItem.employmentType} |</span>
+                    <span class="notice_filter_text">${jobpostingNameItem.jobsCateName} |</span>
+                    <span class="notice_filter_text">${jobpostingNameItem.jobsItemName} |</span>
+                    <span class="notice_filter_text">${jobpostingNameItem.careerCondition}</span>
+                </div>
+            </div>
+            <div class="">
+                <c:if test="${sessionScope.loginId != null}">
+                    <input type="hidden" value="${scrapId}">
+                    <input type="hidden" value="${jobpostingItem.postingId}" name="postingId">
+                    <input type="hidden" value="${sessionScope.loginId}" name="userId">
+                    <c:choose>
+                        <c:when test="${scrap.equals('1')}">
+                            <i class="fa-solid fa-heart notice_filter_text scrap" onclick="scrapCancle('${jobpostingItem.postingId}',${userId})"></i>
+                        </c:when>
+                        <c:otherwise>
+                            <i class="fa-regular fa-heart notice_filter_text scrap" onclick="scrap('${jobpostingItem.postingId}',${userId})"></i>
+                        </c:otherwise>
+                    
+                    </c:choose>
+                </c:if>
                         <div class="">
                         <c:if test="${sessionScope.loginId != null}">
 	                        <input type="hidden" value="${scrapId}">
@@ -90,9 +119,36 @@
                         </div>
                 </div>
              </c:forEach>   
+=======
+                        
+                            
+<%--                            ${postingCountByName} postingCountByName
+ --%>                        
+                    
+                    
+<c:forEach var="jobpostingNameItem" items="${jobpostingNameList}"> 
+    <c:if test="${jobpostingNameItem.postStatus == 'O'}">
+        <div class="notice_list_item">
+            <div class="notice_info_title">
+                <a href="../jobsDescription?postingId=${jobpostingNameItem.postingId}" >${jobpostingNameItem.title}</a>
+                <div class="notice_filter">
+                    <span class="notice_filter_text">${jobpostingNameItem.employmentType} |</span>
+                    <span class="notice_filter_text">${jobpostingNameItem.jobsCateName} |</span>
+                    <span class="notice_filter_text">${jobpostingNameItem.jobsItemName} |</span>
+                    <span class="notice_filter_text">${jobpostingNameItem.careerCondition}</span>
+                </div>
+            </div>
+            <span class="notice_deadline">${jobpostingNameItem.applicationStart} ~ ${jobpostingNameItem.applicationDeadline}</span>
+        </div>
+    </c:if>   
+</c:forEach>
+ 
+>>>>>>> 46042fe48b4d91aee437767406480bf9cc32a821
             
 
+     
             
+                    
                     
                     
                     
@@ -101,7 +157,7 @@
                 </div>
             </div>
         </div>
-    </div>
+  
 
     <script>
         
