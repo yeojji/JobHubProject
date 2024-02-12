@@ -11,7 +11,7 @@
 <title>Jobhub 계정 생성 요청</title>
 <link rel="stylesheet" type="text/css" href="css/notosans.css" media="all">
 <link rel="stylesheet" type="text/css" href="css/user_v1_1.css" media="all">
-
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <!--  <script type="text/javascript" src="/kr/_resource/js/jquery/jquery-3.5.1.min.js"></script>
 	<script type="text/javascript" src="/kr/_resource/js/jquery/jquery.capslockstate.js"></script>
 	<script type="text/javascript" src="/kr/_resource/js/common_init.js"></script>
@@ -154,125 +154,34 @@
             }
         });
     });
+    
+    $(document).ready(function () {
+        // 툴팁 표시
+        $(".icoHelp").on("click", function () {
+            $(this).closest('.mTooltip').find('.tooltip').toggle();
+        });
 
-
+        // 툴팁 닫기
+        $(".close").on("click", function () {
+            $(this).closest('.tooltip').hide();
+        });
+    });
     </script>
 </head>
 
 
 <body>
-
-	<!-- 참고: 미지원 브라우저 -->
-	<div class="unsupported">
-		<div class="info">
-			<h1>서비스 이용 안내</h1>
-			<p class="desc">
-				본 사이트는 <br>
-				<strong>Internet explorer 10 이상, Chrome, Safari, Firefox
-					최신버전</strong>에 최적화되어 있습니다. <br>최적화된 브라우저에서 서비스를 이용해 주시기 바랍니다.<br>
-				브라우저 설치하기를 진행하시면 해당 브라우저의 최신버전을 설치하실 수 있습니다.
-			</p>
-			<ul class="browser">
-				<li><img
-					src="//img.jobhub.com/images/common/browser/img_browser_chrome.jpg"
-					alt="Chrome"><a
-					href="https://www.google.com/intl/ko/chrome/browser/desktop/index.html"
-					class="btnInstall">설치하기</a></li>
-				<li><img
-					src="//img.jobhub.com/images/common/browser/img_browser_firefox.jpg"
-					alt="Firefox"><a
-					href="https://www.mozilla.org/en-US/firefox/new/"
-					class="btnInstall">설치하기</a></li>
-				<li><img
-					src="//img.jobhub.com/images/common/browser/img_browser_IE.jpg"
-					alt="Internet Explorer"><a
-					href="https://support.microsoft.com/ko-kr/help/17621/internet-explorer-downloads"
-					class="btnInstall">설치하기</a></li>
-			</ul>
-			<div class="footer">
-				<label class="today">오늘하루열지않음<input type="checkbox"
-					class="check"></label>
-				<button type="button" class="close">닫기</button>
-			</div>
-		</div>
-		<div class="dimmed"></div>
-	</div>
-	<!-- //참고 -->
 	<div id="wrap">
 		<!-- container -->
 		<div id="container">
 			<form name="frmRegister" id="frmRegister" action="" method="post"
 				enctype="multipart/form-data">
-
-				<!-- biz document file upload
-		<input type="file" name="bizDocFile" id="bizDocFile" accept=".jpg,.jpeg,.png,.gif,.doc,.docx,.pdf">
-	-->
-				<!-- SNS join -->
-				<!--<a href="#none" class="btnFacebookLogin" id="snsFacebook">FACEBOOK 회원가입</a>-->
-				<input type="hidden" name="snsType" id="snsType" value=""> <input
-					type="hidden" name="snsUid" id="snsUid" value=""> <input
-					type="hidden" name="snsName" id="snsName" value=""> <input
-					type="hidden" name="snsEmail" id="snsEmail" value=""> <input
-					type="hidden" name="snsToken" id="snsToken" value="">
-				<!-- SNS join -->
-
-
-				<input type="hidden" name="regiTimeStamp" id="regiTimeStamp"
-					value="1706769461"> <input type="hidden" name="authExist"
-					id="authExist" value=""> <input type="hidden"
-					name="userTypeChgAbleFlag" id="userTypeChgAbleFlag" value="">
-
-				<input type="hidden" name="cloud" id="cloud" value=""> <input
-					type="hidden" name="mode" id="mode" value=""> <input
-					type="hidden" name="extMode" id="extMode" value=""> <input
-					type="hidden" name="httpReferer" id="httpReferer" value="">
-
-				<input type="hidden" name="new_design_name" id="new_design_name"
-					value=""> <input type="hidden" name="mobile_design_name"
-					id="mobile_design_name" value=""> <input type="hidden"
-					name="editor_type" id="editor_type" value=""> <input
-					type="hidden" name="kcpAuthed" id="kcpAuthed"> <input
-					type="hidden" name="bizRegNoAuthed" id="bizRegNoAuthed"> <input
-					type="hidden" name="hpSnoAuthed" id="hpSnoAuthed"> <input
-					type="hidden" name="isValidUserEmail" id="isValidUserEmail" /> <input
-					type="hidden" name="isValidUserHp" id="isValidUserHp" /> <input
-					type="hidden" name="loginAuthedFlag" id="loginAuthedFlag">
-				<input type="hidden" id="parentConsentInfo" name="parentConsentInfo">
-
-
-				<input type="hidden" id="bizNoDupChecked" name="bizNoDupChecked">
-
-				<input type="hidden" id="bizName" name="bizName"> <input
-					type="hidden" id="corpRegNo" name="corpRegNo"> <input
-					type="hidden" id="bizZipcode" name="bizZipcode"> <input
-					type="hidden" id="bizAddr1" name="bizAddr1"> <input
-					type="hidden" id="bizAddr2" name="bizAddr2"> <input
-					type="hidden" id="hpName" name="hpName"> <input
-					type="hidden" id="hpBirthYear" name="hpBirthYear"> <input
-					type="hidden" id="hpBirthMonth" name="hpBirthMonth"> <input
-					type="hidden" id="hpBirthDay" name="hpBirthDay"> <input
-					type="hidden" id="hpGender" name="hpGender"> <input
-					type="hidden" name="publicKeyN" id="publicKeyN" value=""> <input
-					type="hidden" name="publicKeyE" id="publicKeyE" value=""> <input
-					type="hidden" name="returnUrl" id="returnUrl" value=""> <input
-					type="hidden" id="userType" name="userType" value="K"> <input
-					type="hidden" name="testGroup" id="testGroup" value="MB"> <input
-					type="hidden" name="initLandDateTime" id="initLandDateTime"
-					value="1706769461">
-
 				<!-- contents -->
 				<div id="contents">
 					<!-- header -->
-					<!--
-<div id="header">
-	<div class="inner">
-		<h1 class="logo"><a href="https://www.jobhub.com"><img src="//img.jobhub.com/img/user/images/h1_login.png" alt="jobhub" class="RW"><img src="//img.jobhub.com/img/user/images/h1_login_m.png" alt="jobhub" class="RMB"></a></h1>
-	</div>
-</div>
--->
 					<div class="headingArea">
 						<h1 class="logo">
-							<a href="https://www.jobhub.com" title="jobhub 바로가기"> <img class="jobhubLogo"
+							<a href="/admin/joinApproval" title="jobhubLogo"> <img class="jobhubLogo"
 					src="images/logo_250x35.png" alt="jobhub">
 							</a>
 						</h1>
@@ -287,14 +196,12 @@
 									<strong class="title" id="kcpTitleName">이름</strong>
 									<div class="mTooltip gMedium ePosTarget" id="divHelpTooltip">
 										<button type="button" class="icon icoHelp ePosHover eTip">도움말</button>
-										<div class="tooltip ePosLayer posTop" style="display: none;">
+										<div class="tooltip posTop" style="display: none;">
 											<div class="content">
 												<strong class="titleEm" id="tooltipTitle">가입 안내</strong>
 												<ul id="tooltipText">
-													<li>이력서에 기재한</li>
-													<li>휴대폰 번호로 본인 인증이 가능한 경우 '휴대폰 번호 인증'으로 가입해 주세요.</li>
-													<li>휴대폰 번호 인증이 불가능한 경우 화면 아래에 '여권 번호로 가입하기'를 통해 가입해
-														주세요.</li>
+													<li>Jobhub 직원만 이용이 가능합니다.</li>
+													<li>가입 요청 시 확인 절차를 거친 후 계정을 생성합니다. </li>
 												</ul>
 											</div>
 											<button type="button" class="close eClose">닫기</button>
@@ -341,8 +248,8 @@
 							tabindex="15">가입 요청하기</a>
 					</div>
 					<div class="mUtility left">
-						이미 계정이 있으신가요? <a href="https://eclogin.jobhub.com/Shop/?mode="
-							class="txtEmLink" target="_blank">관리자 로그인하기</a>
+						이미 계정이 있으신가요? 
+						<a href="/admin/login" class="txtEmLink" target="_blank">관리자 로그인하기</a>
 					</div>
 				</div>
 				<!-- //contents -->
@@ -351,71 +258,14 @@
 			<!-- footer -->
 			<footer id="footer">
 				<p class="jobhub_direct">
-					<a href="#">Jobhub 바로가기</a>
+					<a href="/login">Jobhub 바로가기</a>
 				</p>
 				<p class="copyright">&copy; Jobhub Corp. All Rights Reserved.</p>
 			</footer>
 			<!-- //footer -->
 		</div>
 		<!-- //container -->
-
-
-
-		<!-- 참고: 기존 회원가입정보 있을 때 -->
-		<div class="mLayer" style="width: 370px;" id="divDupOngoingView">
-			<h2>회원 인증</h2>
-			<div class="wrap">
-				<p class="txtLight">기존에 본인인증된 회원가입 정보가 있어 회원가입 유형은 기존 정보로 유지됩니다.</p>
-				<p class="txtLight gTriple">확인 선택 시 가입이 계속 진행됩니다.</p>
-				<!--
-			<p class="txtEm" id="dupOngoingUserInfo" style="text-align:left;margin-left:110px;"></p>
-            <small>개인정보 보호를 위해 끝자리를 *로 표시됩니다.</small>					
--->
-			</div>
-			<div class="footer">
-				<a href="#none" class="btnEm medium eClose"><span>취소</span></a> <a
-					href="#none" class="btnSubmit medium eClose" id="btnOngoingConfirm"><span>확인</span></a>
-			</div>
-			<button type="button" class="btnClose eClose"
-				id="btnCloseDivDupOngoingView">닫기</button>
-		</div>
-		<!-- //참고 -->
-		<!-- 참고: 개인사업자 기가입 안내 -->
-		<div class="mLayer" style="width: 370px;"
-			id="divQuiescenceEcLoginView">
-			<h2>회원 인증</h2>
-			<div class="wrap">
-				<p class="txtLight">
-					회원님은 이미 가입되어 있습니다.<br>
-					<br>
-					<strong class="txtEm" id="dupQuiescenceEcLoginUserInfo"></strong><br>
-					<br>휴면 해제를 위해 로그인 하시겠습니까?
-
-				</p>
-				<!--<p class="txtLight gTriple">개인정보 보호를 위해 끝자리는 *로 표시됩니다.</p>-->
-			</div>
-			<div class="footer">
-				<a href="#none" class="btnEm medium eClose"
-					onClick="DupQuiescenceEcLoginView.close();"><span>취소</span></a> <a
-					href="#none" class="btnSubmit medium" id="btnQuiescenceLoginLayer"><span>로그인</span></a>
-			</div>
-			<button type="button" class="btnClose eClose"
-				onClick="DupQuiescenceEcLoginView.close();">닫기</button>
-		</div>
-		<!-- //참고 -->
-
-		<script>
-
-$('#btnQuiescenceLoginLayer').click(function() {
-	if (opener == null) {
-		window.parent.location = "https://www.jobhub.com/Login/?sReturnUrl=/Member/?url=Regist";
-	} else {
-		window.opener.location = "https://www.jobhub.com/Login/?sReturnUrl=/Member/?url=Regist";
-		window.close();
-	}
-});
-
-</script>
+</div>
 </body>
 </html>
 
