@@ -7,10 +7,8 @@
 <meta charset="utf-8">
 <title>Jobhub 관리자 페이지</title>
 <link rel="stylesheet" href="/admin/css/admin.css">
-<link rel="shortcut icon" href="/common/icon/jobhub_favicon.ico"
-	type="image/x-icon">
-<link rel="stylesheet"
-	href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="shortcut icon" href="/common/icon/jobhub_favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://kit.fontawesome.com/b158a20f5c.js"
@@ -156,13 +154,11 @@
 											<option value="기타">기타</option>
 									</select></td> -->
 									<th scope="row">경력조건</th>
-									<td colspan="3">
-									<select name="career" class="w100">
+									<td colspan="3"><select name="career" class="w100">
 											<option value="">전체</option>
 											<option value="신입">신입</option>
 											<option value="경력">경력</option>
-									</select>
-									</td>
+									</select></td>
 
 								</tr>
 							</tbody>
@@ -192,9 +188,9 @@
 						<colgroup>
 							<col class="w30">
 							<col class="w30">
-							<col class="w50">
+							<col class="w100">
 							<col class="w120">
-							<col class="w120">
+							<col class="w70">
 							<col class="w70">
 							<col class="w30">
 							<col class="w70">
@@ -206,7 +202,7 @@
 						<thead>
 							<tr>
 								<th scope="col"><input type="checkbox" name="chkall"
-									value="1" onclick="check_all(this.form);"></th>
+									value="1" class="chk-all"></th>
 								<th scope="col">번호</th>
 								<th scope="col">채용부서</th>
 								<th scope="col" colspan="2">채용공고</th>
@@ -219,25 +215,12 @@
 							</tr>
 						</thead>
 						<tbody class="list">
-							<%-- <tr class="list0">
-								<td><input type="checkbox" name="chk[]" value="1"
-									id="chk_1"></td>
-								<td>${rowStat.index + 1}</td>
-								<td>${resumeItem.user.userId}</td>
-								<td class="tal" colspan="2"><a href="#">${resumeItem.title}</a></td>
-								<td>${resumeItem.name}</td>
-								<td>${resumeItem.age}</td>
-								<td>${resumeItem.sortation}</td>
-								<td>${resumeItem.employmentType}</td>
-								<td>${resumeItem.revisionDate}</td>
-								<td><p>Size of resumeList: ${resumeList.size()}</p>서류합격</td>
-							</tr> --%>
 							<c:if test="${empty resumeList}">
 								<tr>
 									<td colspan="11">검색 결과가 없습니다.</td>
 								</tr>
 							</c:if>
-							
+
 							<c:forEach var="resumeItem" items="${resumeList}"
 								varStatus="rowStat">
 								<tr class="${rowStat.index % 2 == 0 ? 'list0' : 'list1'}">
@@ -246,8 +229,8 @@
 										value="${rowStat.index + 1}" id="chk_${rowStat.index + 1}"></td>
 									<td>${rowStat.index + 1}</td>
 									<td>${resumeItem.jobsName}</td>
-									<td class="tal" colspan="2"><a href="#">${resumeItem.title}</a></td>
-									<td>${resumeItem.name}</td>
+									<td class="tal" colspan="2">${resumeItem.title}</td>
+									<td><a href="/admin/resumeDetail?resumeId=${resumeItem.resumeId}">${resumeItem.name}</a></td>
 									<td>${resumeItem.age}</td>
 									<td>${resumeItem.education}</td>
 									<td>${resumeItem.career}</td>
@@ -273,7 +256,55 @@
 	<div id="anc_header">
 		<a href="#anc_hd"><span></span>TOP</a>
 	</div>
-	<script
-		src="https://rawgit.com/jquery/jquery-ui/master/ui/i18n/jquery.ui.datepicker-ko.js"></script>
+	<script type="text/javascript">
+    // 페이지 로드 시 sessionStorage에 저장된 검색 조건이 있는지 확인
+    $(document).ready(function() {
+        var savedSearchCondition = JSON.parse(sessionStorage.getItem('searchCondition'));
+        if (savedSearchCondition) {
+            $('#sfl').val(savedSearchCondition.sfl);
+            $('#searchKeyword').val(savedSearchCondition.searchKeyword);
+            $('#spt').val(savedSearchCondition.spt);
+            $('#startDate').val(savedSearchCondition.startDate);
+            $('#endDate').val(savedSearchCondition.endDate);
+            $('input[name="gender"][value="' + savedSearchCondition.gender + '"]').prop('checked', true);
+            $('#startAge').val(savedSearchCondition.startAge);
+            $('#endAge').val(savedSearchCondition.endAge);
+            $('#career').val(savedSearchCondition.career);
+        }
+    });
+
+    // 검색 폼 제출 시 검색 조건을 sessionStorage에 저장
+    $('#fsearch').submit(function() {
+        var searchCondition = {
+            sfl: $('#sfl').val(),
+            searchKeyword: $('#searchKeyword').val(),
+            spt: $('#spt').val(),
+            startDate: $('#startDate').val(),
+            endDate: $('#endDate').val(),
+            gender: $('input[name="gender"]:checked').val(),
+            startAge: $('#startAge').val(),
+            endAge: $('#endAge').val(),
+            career: $('#career').val(),
+        };
+        sessionStorage.setItem('searchCondition', JSON.stringify(searchCondition));
+    });
+    
+ 	// "재설정" 버튼 클릭 시 검색 조건을 초기화
+    $('#frmRest').click(function() {
+        // 폼 내의 입력 값 초기화
+        $('#sfl').val('');
+        $('#searchKeyword').val('');
+        $('#spt').val('');
+        $('#startDate').val('');
+        $('#endDate').val('');
+        $('input[name="gender"]').prop('checked', false);
+        $('#startAge').val('');
+        $('#endAge').val('');
+        $('#career').val('');
+
+        // sessionStorage에서도 검색 조건 제거
+        sessionStorage.removeItem('searchCondition');
+    });
+</script>
 </body>
 </html>

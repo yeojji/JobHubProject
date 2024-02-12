@@ -4,7 +4,6 @@
 
 <mapper namespace="resume_mapper">
 
-
 	<!-- 이력서id res1, res2, res3 ... -->
 	<select id="selectNextResumeId" resultType="String">
 		SELECT 'res' ||
@@ -35,7 +34,7 @@
 
 	<!-- 이력서ID로 검색 -->
 	<select id="findResumeByResumeId" resultType="Resume"
-		parameterType="int">
+		parameterType="String">
 		SELECT * FROM resume_info
 		WHERE resume_id = #{resumeId}
 	</select>
@@ -44,6 +43,7 @@
 	<select id="findResumeList" resultType="Resume">
 		<![CDATA[
     SELECT
+      r.resume_id AS resume_id,
       js.jobs_name AS jobs_name,
       jp.title AS title,
       u.name AS name,
@@ -118,6 +118,7 @@
 		parameterType="ResumeSearchCondition"> 
 	<![CDATA[
     SELECT
+      r.resume_id AS resume_id,    
       js.jobs_name AS jobs_name,
       jp.title AS title,
       u.name AS name,

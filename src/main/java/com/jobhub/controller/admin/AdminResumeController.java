@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.jobhub.dto.resume.Resume;
 import com.jobhub.dto.resume.ResumeSearchCondition;
@@ -57,8 +59,28 @@ public class AdminResumeController {
 
 	// 이력서 상세 조회
 	@GetMapping("/resumeDetail")
-	public String resumeDetailInquiry() {
-		return "admin/resumeDetail";
+    public String resumeDetailInquiry(@RequestParam String resumeId, Model model) {
+		
+        // 이력서 상세 조회 로직
+        Resume resume = resumeService.findResumeByResumeId(resumeId);
+        // 모델에 이력서 정보 추가
+        model.addAttribute("resume", resume);
+
+        return "admin/resumeDetail";
+    }
+	
+	@PostMapping("/resumeDetail")
+	public String modifyresumeDetail(Resume resume) {
+		
+		System.out.println(resume);
+		
+		int result = resumeService.modifyResume(resume);
+		
+		if( result > 0 ) {
+			return "redirect:/admin/resume";	
+		} else {
+			return "admin/resumeDetail";	
+		}
 	}
 
 }
