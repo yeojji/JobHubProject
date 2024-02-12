@@ -143,8 +143,8 @@
 										class="frm_input w80" maxlength="3"> 세</td>
 
 								</tr>
-								<!-- <tr>
-									<th scope="row">지원경로</th>
+								<tr>
+									<!-- <th scope="row">지원경로</th>
 									<td><select name="findOutPath" class="w100">
 											<option value="지원경로">지원경로</option>
 											<option value="공식홈페이지">공식홈페이지</option>
@@ -154,35 +154,17 @@
 											<option value="취업카페">취업카페</option>
 											<option value="사내추천">사내추천</option>
 											<option value="기타">기타</option>
-									</select></td>
+									</select></td> -->
 									<th scope="row">경력조건</th>
-									<td><select name="careerCondition" class="w100">
+									<td colspan="3">
+									<select name="career" class="w100">
 											<option value="">전체</option>
-											<option value="0">신입</option>
-											<option value="1~1">1년</option>
-											<option value="2~2">2년</option>
-											<option value="3~3">3년</option>
-											<option value="4~4">4년</option>
-											<option value="5~5">5년</option>
-											<option value="6~6">6년</option>
-											<option value="7~7">7년</option>
-											<option value="8~8">8년</option>
-											<option value="9~9">9년</option>
-											<option value="10~10">10년</option>
-											<option value="11~11">11년</option>
-											<option value="12~12">12년</option>
-											<option value="13~13">13년</option>
-											<option value="14~14">14년</option>
-											<option value="15~15">15년</option>
-											<option value="16~16">16년</option>
-											<option value="17~17">17년</option>
-											<option value="18~18">18년</option>
-											<option value="19~19">19년</option>
-											<option value="20~20">20년</option>
-											<option value="20~99">20년~</option>
-									</select></td>
+											<option value="신입">신입</option>
+											<option value="경력">경력</option>
+									</select>
+									</td>
 
-								</tr> -->
+								</tr>
 							</tbody>
 						</table>
 					</div>

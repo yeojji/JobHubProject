@@ -36,7 +36,7 @@ public class ResumeSearchCondition {
 	String endAge;
 	String findOutPath;
 	String careerCondition;
-
+	String career;
 	
 	
 }
