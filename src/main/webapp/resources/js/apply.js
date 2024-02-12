@@ -295,22 +295,6 @@ $(document).ready(function () {
         }
     })
 
-    // $(document).on("click", "#ap_submit", function (e) {
-    //     e.preventDefault();
-    //     let form = $("#apply_form");
-    //     let supportPath = $("#supportPath");
-    //     let military = $("#military");
-    //     if (supportPath.val() === '') {
-    //         alert('지원경로를 선택해주세요');
-    //         e.preventDefault();
-    //     } else if (military.val() === '') {
-    //         alert('병역사항을 선택해주세요');
-    //         e.preventDefault();
-    //     } else {
-    //         form.submit();
-    //     }
-    // });
-
 })
 
 
@@ -320,13 +304,23 @@ document.getElementById('ap_submit').addEventListener('click', function(e) {
     let form = document.getElementById('apply_form');
         let supportPath = document.getElementById("supportPath").value;
         let military = document.getElementById("military").value;
+        let eduSortation = document.getElementById("eduSortation").value;
+        let highName = document.getElementById("highName").value;
+        let highAdmis = document.getElementById("high_admis").value;
+        let highGrad = document.getElementById("high_grad").value;
+        let content1 = document.getElementById("content1").value;
+        
         if (supportPath === '') {
             alert('지원경로를 선택해주세요');
             e.preventDefault();
+        } else if(eduSortation === '' || highName === '' || highAdmis === '' || highGrad === ''){
+            alert('고등학교 학력사항은 필수 입력입니다')
+        } else if(content1 === ''){
+            alert('직무질문에 대한 답변은 필수 입력입니다')
         } else if (military === '') {
             alert('병역사항을 선택해주세요');
             e.preventDefault();
-        } else {
+        } else{
             form.submit();
         }
 });

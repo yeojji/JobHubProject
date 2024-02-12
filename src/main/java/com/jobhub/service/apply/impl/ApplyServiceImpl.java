@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jobhub.dao.apply.ApplyDAO;
+import com.jobhub.dto.employee.Employee;
 import com.jobhub.dto.resume.Resume;
 import com.jobhub.dto.util.FileInfo;
 import com.jobhub.service.apply.ApplyService;
@@ -106,6 +107,13 @@ public class ApplyServiceImpl implements ApplyService{
 int result = applyDAO.saveFileInfo(hashMap);
 		
 		return result;
+	}
+
+	@Override
+	public List<Employee> findEmployeeList() {
+		// TODO Auto-generated method stub
+		List<Employee> employeeList = applyDAO.findEmployeeList();
+		return employeeList;
 	}
 
 }

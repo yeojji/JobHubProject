@@ -130,7 +130,7 @@
                                     <p>개인정보 수집 이용에 동의하지 않으실 수 있으며, 동의하지 않는 경우 지원자 등록이 제한됩니다.</p>
                                 </div>
                             </div>
-                            <button type="submit" class="signup_btn" onclick="submit()" disabled="disabled">등록하기</button>
+                            <button type="button" class="signup_btn" disabled="disabled" id="submitBtn">등록하기</button>
                         </div>
                     </div>
                 </form>
@@ -138,7 +138,7 @@
         </div>
     </div>
 
-	<script type="text/javascript" src="javascript/signup.js" ></script> 
+	<script type="text/javascript" src="js/signup.js" ></script> 
     <%@ include file="../header_footer/footer.jsp" %>
 </body>
 </html>

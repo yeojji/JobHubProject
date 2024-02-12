@@ -3,6 +3,7 @@ package com.jobhub.service.apply;
 import java.util.List;
 import java.util.Map;
 
+import com.jobhub.dto.employee.Employee;
 import com.jobhub.dto.resume.Resume;
 import com.jobhub.dto.util.FileInfo;
 
@@ -22,4 +23,7 @@ public interface ApplyService {
 	public int saveFileInfo(Map<String, Object> hashMap);
 	
 	public int saveFileInfo(List<FileInfo> fileInfo);
+	
+	
+	public List<Employee> findEmployeeList();
 }
