@@ -8,7 +8,9 @@ import org.springframework.stereotype.Repository;
 
 import com.jobhub.dao.customer.CustomerDAO;
 import com.jobhub.dto.customer.Customer;
+import com.jobhub.dto.customer.Scrap;
 import com.jobhub.dto.jobposting.Job;
+import com.jobhub.dto.jobposting.Notice;
 
 @Repository
 public class CustomerDAOImpl implements CustomerDAO{
@@ -67,6 +69,59 @@ public class CustomerDAOImpl implements CustomerDAO{
 		
 		return result;
 	}
+//	@Override
+//	public int savePosting(Scrap scarpId) {
+//		// TODO Auto-generated method stub
+//		int result = sqlSessionTemplate.insert("user_mapper.scrap",scarpId);
+//		return result;
+//	}
+	
+	@Override
+	public List<Scrap> customerScarpList(String userId) {
+		// TODO Auto-generated method stub
+		List<Scrap> scrapList = sqlSessionTemplate.selectList("user_mapper.customerScarpList",  userId);
+		
+		return scrapList;
+	}
+	@Override
+	public int removeCustomerScrapList(String userId) {
+		// TODO Auto-generated method stub
+		int result = sqlSessionTemplate.delete("user_mapper.removeCustomerScrapList", userId);
+		
+		return result;
+	}
+	@Override
+	public List<Notice> scrapNoticeInfo(String scrapId) {
+		// TODO Auto-generated method stub
+		List<Notice> noticeList = sqlSessionTemplate.selectList("user_mapper.scrapNoticeInfo",scrapId);
+		
+		return noticeList;
+	}
+	@Override
+	public int removeCustomerScrapItem(String scrapId) {
+		// TODO Auto-generated method stub
+		
+		int result = sqlSessionTemplate.delete("user_mapper.removeCustomerScrapItem", scrapId);
+		
+		return result;
+	}
+	@Override
+	public int removeCustomerScrapItemByPostingId(String postingId) {
+		// TODO Auto-generated method stub
+		
+		int result = sqlSessionTemplate.delete("user_mapper.removeCustomerScrapItemByPostingId", postingId);
+		
+		return result;
+	}
+	@Override
+	public int scrapNotice(Scrap scrapId) {
+		// TODO Auto-generated method stub
+		
+		int result = sqlSessionTemplate.insert("user_mapper.scrapNotice", scrapId);
+		
+		return result;
+	}
+	
 	
 
 

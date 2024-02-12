@@ -3,7 +3,9 @@ package com.jobhub.dao.customer;
 import java.util.List;
 
 import com.jobhub.dto.customer.Customer;
+import com.jobhub.dto.customer.Scrap;
 import com.jobhub.dto.jobposting.Job;
+import com.jobhub.dto.jobposting.Notice;
 
 public interface CustomerDAO {
 
@@ -18,6 +20,22 @@ public interface CustomerDAO {
 	public int modifyCustomerPw(Customer customer);
 	
 	public int removeCustomer(Customer customer);
+	
+	public int scrapNotice(Scrap scrapId);
+	
+	public List<Scrap> customerScarpList(String userId);
+	
+	public int removeCustomerScrapList(String userId);
+	
+	public int removeCustomerScrapItem(String scrapId);
+	
+	public int removeCustomerScrapItemByPostingId(String postingId);
+	
+	public List<Notice> scrapNoticeInfo(String scrapId);
+	
+//	public int scrapCheck(String id, String postingId);
+//	
+//	public int scrapCancel(String id, String postingId);
 	
 
 }

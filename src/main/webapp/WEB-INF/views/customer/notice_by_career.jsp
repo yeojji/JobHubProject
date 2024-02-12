@@ -59,12 +59,6 @@
                     <span class="notice_guide_text">${postingCount}개의 채용공고가 있습니다</span>
                     
                     
-                        
-                            
-                            
-                        
-                    
-                    
             <c:forEach var="jobpostingItem" items="${jobpostingList}"> 
 
             	<div class="notice_list_item">
@@ -77,8 +71,24 @@
                                 <span class="notice_filter_text">${jobpostingItem.careerCondition}</span>
                             </div>
                         </div>
+                        <div class="">
+                        <c:if test="${sessionScope.loginId != null}">
+	                        <input type="hidden" value="${scrapId}">
+	                        <input type="hidden" value="${jobpostingItem.postingId}" name="postingId">
+	                        <input type="hidden" value="${sessionScope.loginId}" name="userId">
+	                        <c:choose>
+		                        <c:when test="${scrap.equals('1')}">
+		                        	<i class="fa-solid fa-heart notice_filter_text scrap" onclick="scrapCancle('${jobpostingItem.postingId}',${userId})"></i>
+		                        </c:when>
+		                        <c:otherwise>
+		                        	<i class="fa-regular fa-heart notice_filter_text scrap" onclick="scrap('${jobpostingItem.postingId}',${userId})"></i>
+		                        </c:otherwise>
+	                        
+	                        </c:choose>
+                        </c:if>
                         <span class="notice_deadline">${jobpostingItem.applicationStart} ~ ${jobpostingItem.applicationDeadline}</span>
-                    </div>
+                        </div>
+                </div>
              </c:forEach>   
             
 
@@ -93,6 +103,32 @@
         </div>
     </div>
 
+    <script>
+        
+	
+        function scrap(postingId, userId){
+        	console.log('스크랩 눌림');
+        	if(confirm('스크랩 하시겠습니까?')){
+        		
+        		window.location.href='/scrapNotice?postingId=' + postingId
+        				+ '&userId=' + userId;
+        		
+        	}
+        	
+        }
+        
+        function scrapCancle(scrapId,postingId){
+    		if(confirm('공고를 삭제하시겠습니까?')){
+    			
+    			window.location.href='/deleteScrapItem?scrapId1=' + scrapId
+    					+ '&postingId1=' + postingId;
+    		}
+    		
+    	}
+        
+        
+
+    </script>
 
 
      <!--footer-->

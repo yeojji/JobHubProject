@@ -36,6 +36,40 @@
 		WHERE user_id = #{userId}
 	</update>
 	
+	<insert id="scrapNotice" parameterType="Scrap">
+		insert into scrap VALUES 
+		(seq_scrap_id.nextVal ,
+		#{userId} ,
+		#{postingId},
+		#{scrapStatus}
+		)
+	</insert>
+	
+	
+	<select id="customerScarpList" parameterType="String" resultType="Scrap">
+		select * 
+		from scrap s, job_posting j
+		where s.posting_id = j.posting_id
+		and user_id = #{userId}
+	</select>
+	
+	<select id="scrapNoticeInfo" parameterType="String" resultType="Notice">
+		select * from description d , scrap s, job_posting j
+		where d.posting_id = s.posting_id and s.posting_id = j.posting_id and
+		s.user_id = #{userId}
+	</select>
+	
+	<delete id="removeCustomerScrapList" parameterType="String" >
+		delete from scrap where user_id = #{userId}
+	</delete>
+	
+	<delete id="removeCustomerScrapItem" parameterType="String" >
+		delete from scrap where scrap_id = #{scrapId}
+	</delete>
+	
+	<delete id="removeCustomerScrapItemByPostingId" parameterType="String">
+		delete from scrap where posting_id = #{postingId}
+	</delete>
 	
 </mapper>
 

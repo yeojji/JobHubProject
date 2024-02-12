@@ -2,7 +2,9 @@ package com.jobhub.service.customer;
 import java.util.List;
 
 import com.jobhub.dto.customer.Customer;
+import com.jobhub.dto.customer.Scrap;
 import com.jobhub.dto.jobposting.Job;
+import com.jobhub.dto.jobposting.Notice;
 public interface CustomerService {
 
 	//customer 계정생성, 로그인, 목록, 검색, 비밀번호 찾기, 정보 수정
@@ -19,6 +21,16 @@ public interface CustomerService {
 	
 	public int removeCustomer(Customer customer);
 	
-
+	public int scrapNotice(Scrap scrapId);
+	
+	public List<Scrap> customerScarpList(String userId);
+	
+	public int removeCustomerScrapList(String userId);
+	
+	public int removeCustomerScrapItem(String scrapId);
+	
+	public int removeCustomerScrapItemByPostingId(String postingId);
+	
+	public List<Notice> scrapNoticeInfo(String scrapId);
 
 }
