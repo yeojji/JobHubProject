@@ -10,6 +10,9 @@
     align-items: center;
     background-color: #ececec;
 }
+.margin50px{
+    margin-top: 50px;
+}
 .apply_title{
     width:100%;
     background-color: #ececec;
@@ -74,9 +77,11 @@
     margin-left:60px;
     margin-right:40px;
 }
-.apply_content > p{
+.apply_content > p,
+.ap_div3 > p{
     font-size: 18px;
 }
+
 .ap_inpt{
     font-size: 14px;
     height: 38px;
@@ -247,6 +252,16 @@
 .apply_label{
     font-size: 13px;
 }
+.warning_label{
+    margin-top: 10px;
+    color:#2dc26b;
+}
+.ap_profile{
+    margin-top: 20px;
+}
+.apply_profile{
+    font-size: 14px;
+}
 .filebox .upload-name {
     /* display: inline-block; */
     height: 30px;
@@ -326,7 +341,7 @@ hr{
     margin-top:5px;
 }
 
-.carrerinput{
+.careerinput{
     display:none;
     flex-direction: column;
     margin-top: 5px;
@@ -358,6 +373,7 @@ hr{
 #cert_acquisition,
 #cert_lssuingAuthority,
 #cert_test,
-#cert_grade{
+#cert_grade,
+#cert_remove{
     margin-left: 20px;
 }

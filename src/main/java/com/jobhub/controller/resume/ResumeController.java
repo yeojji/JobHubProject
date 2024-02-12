@@ -17,13 +17,6 @@ public class ResumeController {
 	@Autowired
 	ResumeService resumeService;
 
-
-	
-	@GetMapping("/apply")
-	public String apply() {
-		return "apply/apply";
-	}
-
 //	@PostMapping("/apply")
 //	public String applyProcess(@ModelAttribute Resume resume) {
 //

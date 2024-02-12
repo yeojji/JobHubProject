@@ -9,13 +9,13 @@ public class Resume {
 	//이력서 관련 내용
 	String resumeId;
 	String userId;
-	int jobsId;
-	String careerId;
-	String academicId;
-	String certificateId;
+	String postingId;
+	int careerId;
+	int academicId;
+	int certificateId;
 	String supportPath;
-	String military_serviceMatters;
-	String veterans_targetStatus;
+	String militaryServiceMatters;
+	String veteransTargetStatus;
 	String disorderStatus;
 	String submissionStatus;
 	String revisionDate;
@@ -60,9 +60,6 @@ public class Resume {
 	String fileExtension;
 	long fileSize;
 	
-	String military;		//병역사항
-	String veternas;		//보훈대상 여부
-	String disorder;		//장애사항
 	
 	/*
 	resume_id					varchar2	이력서ID

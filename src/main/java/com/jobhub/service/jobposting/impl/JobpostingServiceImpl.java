@@ -28,6 +28,13 @@ public class JobpostingServiceImpl implements JobpostingService {
 		List<Jobposting> jobposting = jobpostingDAO.findJobpostingList();
 		return jobposting;
 	}
+	
+	public List<Jobposting> findPostingAndJobNameList(){
+		List<Jobposting> jobpostingNameList = jobpostingDAO.findPostingAndJobNameList();
+		return jobpostingNameList;
+}
+	
+	
 
 	public List<Job> findJobNameListbyPid(int jobLevel1) {
 		List<Job> jobNameList = jobpostingDAO.findJobNameListbyPid(jobLevel1);

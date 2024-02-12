@@ -1,16 +1,12 @@
 package com.jobhub.dao.resume.impl;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.jobhub.dao.resume.ResumeDAO;
-import com.jobhub.dto.resume.ApplyResumeForm;
-
 import com.jobhub.dto.resume.Resume;
 import com.jobhub.dto.resume.ResumeSearchCondition;
 
@@ -20,15 +16,6 @@ public class ResumeDAOImpl implements ResumeDAO {
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;
 
-	@Override
-	public int saveEducationInfo(Map<String, Object> eduMap) {
-		// TODO Auto-generated method stub
-		
-		int result = sqlSessionTemplate.insert("apply_mapper.saveEducationInfo", eduMap);
-		
-		return result;
-	}
-		
 	public int saveResume(Resume resume) {
 		// TODO Auto-generated method stub
 		int result = sqlSessionTemplate.insert("resume_mapper.saveResume", resume);

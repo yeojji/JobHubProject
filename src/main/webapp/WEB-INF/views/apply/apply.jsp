@@ -4,7 +4,7 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<title>Insert title here</title>
+		<title>JobHub</title>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
 			integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
 			crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -13,22 +13,23 @@
 
 	<body>
 		<!-- 헤더박을부분 -->
+		<%@ include file="../header_footer/header.jsp" %>
+		
 		<div class="apply_title">지원서 작성하기</div>
 		<div class="container">
 			<div class="apply_header">
 				<div class="apply_header_title">2024 LINE ADS AI/ML Internship</div>
 				<div class="apply_header_button">
-					<button class="apply_header_btn">임시저장</button>
-					<!-- a태그로 할지 생각ㄱ-->
-					<button class="apply_header_btn">미리보기</button>
-					<button class="apply_header_submit">지원하기</button>
+					<button type="button" class="apply_header_btn">임시저장</button>
+					<button type="button" class="apply_header_btn">미리보기</button>
+					<button type="button" class="apply_header_submit">지원하기</button>
 				</div>
 			</div>
 			<div class="apply_main">
 				<form action="" id="apply_form" method="post" enctype="multipart/form-data">
 					<div class="apply_content">
 						<p>
-							기본 인적사항 <em>필수</em>
+							기본 인적사항
 						</p>
 						<div>
 							<div class="ap_mydetail">
@@ -43,18 +44,22 @@
 									<option value="여성">여성</option>
 								</select> <input type="text" name="phone" value="010-0000-0000"
 									class="ap_inpt apply_tel margin5px"> <select name="supportPath"
-									class="ap_inpt apply_howfound">
+									class="ap_inpt apply_howfound" id="supportPath">
 									<option value="" disabled selected hidden>지원경로(공고를 처음
 										알게 된 경로)</option>
 									<option value="사람인">사람인</option>
-									<option value="SNS">SNS광고</option>
+									<option value="원티드">원티드</option>
+									<option value="링크드인">링크드인</option>
+									<option value="잡코리아">잡코리아</option>
+									<option value="SNS광고">SNS광고</option>
+									<option value="기타">기타</option>
 								</select>
 							</div>
 						</div>
 					</div>
 					<div class="apply_content">
 						<p>
-							학력사항 <em>필수</em>
+							학력사항
 						</p>
 						<div class="eduinput">
 							
@@ -106,7 +111,7 @@
 						</div>
 					</div>
 					<div class="apply_content">
-						<p>경력사항 <em>필수</em></p>
+						<p>경력사항</p>
 						<div class="careerinput">
 							
 						</div>
@@ -144,7 +149,7 @@
 					<div class="apply_content">
 						<p>자격/어학 사항</p>
 						<div class="certinput">
-
+							
 						</div>
 						<div class="ap_mydetail ap_certi">
 							<select id="certSortation" class="ap_inpt apply_certi">
@@ -177,37 +182,38 @@
 					<div class="apply_content">
 						<!--여기 for문을 따로 또 줘야되나?-->
 						<p>
-							직무질문 <em>필수</em>
+							직무질문
 						</p>
 						<div class="ap_mydetail">
 							<label class="apply_label">자신을 자유롭게 소개해 주세요.</label>
 							<div>
 								<textarea name="content1" id="" cols="100" rows="14" class="text_area"></textarea>
 							</div>
+							<input type="hidden" name="content2" value="null">
+							<input type="hidden" name="content3" value="null">
 						</div>
 					</div>
 					<div class="apply_content">
-						<!--여기 for문을 따로 또 줘야되나?-->
 						<p>
-							첨부자료 <em>필수</em>
+							첨부자료
 						</p>
-						<label class="apply_label">* 타사의 영업비밀에 해당하거나, 이에 해당될 수 있는
+						<label class="apply_label warning_label">* 타사의 영업비밀에 해당하거나, 이에 해당될 수 있는
 							것으로 오해할 수 있는 자료는 경력기술서 또는 포트폴리오에 포함하여서는 안됩니다.</label>
-						<div class="ap_mydetail">
-							<label class="apply_label">포트폴리오 혹은 경력기술서(200MB까지 가능, 대표적인
-								프로젝트 결과물 PPT, 초과시 작업물 확인 가능한 URL을 PPT에 작성하여 제출)</label>
+						<div class="ap_mydetail ap_profile">
+							<label class="apply_label apply_profile">포트폴리오 혹은 경력기술서</label>
 							<div class="filebox">
 								<input class="upload-name" value="" placeholder="첨부파일"> <label for="file">파일찾기</label>
-								<input type="file" name="data" id="file">
+								<input type="file" name="data" id="file" onchange="handleFileSelect(event)" multiple>
+								<ul id="fileList"></ul>
 							</div>
 						</div>
 					</div>
 					<div class="apply_content" id="apply_inquire">
-						<div>
+						<div class="ap_div3">
 							<p>
 								병역사항 <em>필수</em>
 							</p>
-							<select name="military" class="ap_inpt apply_mili">
+							<select name="militaryServiceMatters" id="military" class="ap_inpt apply_mili">
 								<option value="" disabled selected hidden>병역구분</option>
 								<option value="ED">만기제대</option>
 								<option value="제대 기타">제대 기타</option>
@@ -219,19 +225,19 @@
 								<option value="NONE">해당없음</option>
 							</select>
 						</div>
-						<div>
+						<div class="ap_div3">
 							<p>
 								보훈대상 여부 <em>필수</em>
 							</p>
-							<input type="radio" name="veternas" value="대상">대상 <input type="radio" name="veternas"
-								value="비대상" checked>비대상
+							<input type="radio" name="veteransTargetStatus" value="대상">대상
+							<input type="radio" name="veteransTargetStatus" value="비대상" checked>비대상
 						</div>
-						<div>
+						<div class="ap_div3">
 							<p>
 								장애사항 <em>필수</em>
 							</p>
-							<select name="disorder" class="ap_inpt apply_disorder">
-								<option value="해당없음">해당없음</option>
+							<select name="disorderStatus" class="ap_inpt apply_disorder">
+								<option value="해당없음" selected>해당없음</option>
 								<option value="일반">일반</option>
 								<option value="산재">산재</option>
 								<option value="보훈">보훈</option>
@@ -239,17 +245,36 @@
 						</div>
 					</div>
 					<div class="apply_footer_button">
-						<button class="apply_header_btn btn_size">임시저장</button>
-						<!-- a태그로 할지 생각ㄱ-->
-						<button class="apply_header_btn btn_size">미리보기</button>
+						<button type="button" class="apply_header_btn btn_size">임시저장</button>
+						<button type="button" class="apply_header_btn btn_size">미리보기</button>
 						<button type="button" id="ap_submit" class="apply_header_submit btn_size">지원하기</button>
 					</div>
 				</form>
 			</div>
 		</div>
+
 		<!-- 푸터박을부분 -->
+		<%@ include file="../header_footer/footer.jsp" %>
 
 		<script src="javascript/apply.js"></script>
+		<script>
+			function handleFileSelect(event) {
+				var files = event.target.files;
+			
+				var fileList = document.getElementById('fileList');
+			
+				for (var i = 0; i < files.length; i++) {
+					var file = files[i];
+			
+					var listItem = document.createElement('li');
+					listItem.textContent = file.name;
+					fileList.appendChild(listItem);
+				}
+			
+			}
+			
+			
+			</script>
 	</body>
 
 	</html>

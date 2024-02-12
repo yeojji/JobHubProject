@@ -46,7 +46,6 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 		<beans:property name="prefix" value="/WEB-INF/views/"></beans:property>
 		<beans:property name="suffix" value=".jsp"></beans:property>
 	</beans:bean>
-	
 	<beans:bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<beans:property name="maxUploadSize" value="10485760" />
@@ -61,13 +60,23 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 	<resources mapping="/js/admin/*" location="/resources/admin/js/" />
 	<resources mapping="/js/common/*" location="/resources/common/js/" />
 	<resources mapping="/fileStorage/**" location="file:///D:/fileStorage/" />
+	
+	<resources mapping="/icon/admin/*" location="/resources/admin/icon/" />
+	<resources mapping="/img/admin/*" location="/resources/admin/img/" />
+	<resources mapping="/img/common/*" location="/resources/common/img/" />
+	<resources mapping="/css/admin/*" location="/resources/admin/css/" />
+	<resources mapping="/css/common/*" location="/resources/common/css/" />
+	<resources mapping="/js/admin/*" location="/resources/admin/js/" />
+	<resources mapping="/js/common/*" location="/resources/common/js/" />
+
 	<resources mapping="/**" location="/resources/" />
 	
 	
 
 
 
-	<!-- <interceptors>
+
+<!-- 	<interceptors>
 		<interceptor>
 			<mapping path="/**"/>
 			<exclude-mapping path="/resources/**" />

@@ -22,10 +22,7 @@ $(document).ready(function () {
             $('.apply_edu_highschool').show();
         }
     });
-});
 
-
-$(document).ready(function () {
     $('.apply_certi').change(function () {
         var result = $('.apply_certi option:selected').val();
         if (result == '어학') {
@@ -39,9 +36,9 @@ $(document).ready(function () {
             $('.apply_qualification').show();
         }
     });
-});
 
-$(document).ready(function () {
+
+
     $(document).on("click", "button[name='edu']", function () {
         var result = $("#eduSortation").val();
         if (result == null) {
@@ -142,9 +139,9 @@ $(document).ready(function () {
             }
         }
     });
-});
 
-$(document).ready(function () {
+
+
     $(document).on("click", "button[name='career']", function () {
         let companyName = $("#companyName").val();
         let departmentName = $("#departmentName").val();
@@ -172,18 +169,18 @@ $(document).ready(function () {
                 <input type="hidden" name="detailWork" value=${careerdetail}>
                 </div>
                 `;
-        
-        if(companyName == ""){
+
+        if (companyName == "") {
             alert('회사명을 입력해주세요')
-        }else if(joinDate == ""){
+        } else if (joinDate == "") {
             alert('입사일을 입력해주세요')
-        }else if(duty == ""){
+        } else if (duty == "") {
             alert('담당업무를 입력해주세요')
-        }else if(position == ""){
+        } else if (position == "") {
             alert('고용형태를 선택해주세요')
-        }else if(careerdetail == ""){
+        } else if (careerdetail == "") {
             alert('상세 업무내용을 입력해주세요')
-        }else{
+        } else {
             $('.careerinput').show();
             $('.careerinput').css({ "display": "flex" });
             $('.careerinput').append(careerContent);
@@ -193,26 +190,21 @@ $(document).ready(function () {
 
         }
     })
-})
 
-$(document).ready(function(){
+
     $(document).on("click", "button[name='cert']", function () {
         var result = $("#certSortation").val();
-        if(result == null){
+        if (result == null) {
             alert('자격/어학 구분을 선택해주세요')
-        }else{
-            
-            let certSortation = $("#certSortation").val();
-            let certType = $("#certType").val();
+        } else {
 
-            let language = $("#language").val();
-            let test = $("#test").val();
-            let languageGrade = $("#languageGrade").val();
-            
-            if(result == '자격'){
-                let certLevel = $("#qual_certLevel").val();
+            let certSortation = $("#certSortation").val();
+
+            if (result == '자격') {
+                let certType = $("#certType").val();
                 let acquisition = $("#qual_acquisition").val();
                 let lssuingAuthority = $("#qual_lssuingAuthority").val();
+                let certLevel = $("#qual_certLevel").val();
 
                 let certContent = `
                     <div id="cert_info">
@@ -232,15 +224,15 @@ $(document).ready(function(){
                     </div>
                 `;
 
-                if(certType == ""){
+                if (certType == "") {
                     alert('자격/면허종류를 입력해주세요');
-                }else if(certLevel == ""){
+                } else if (certLevel == "") {
                     alert('등급을 입력해주세요');
-                }else if(acquisition == ""){
+                } else if (acquisition == "") {
                     alert('취득/응시일을 입력해주세요');
-                }else if(lssuingAuthority == ""){
+                } else if (lssuingAuthority == "") {
                     alert('발급기관을 입력해주세요');
-                }else{
+                } else {
                     $('.certinput').show();
                     $('.certinput').css({ "display": "flex" });
                     $('.certinput').append(certContent);
@@ -248,12 +240,17 @@ $(document).ready(function(){
                         $(this).closest("#cert_info").remove();
                     });
                 }
-                
-            }else if(result == '어학'){
 
+            } else if (result == '어학') {
+                let language = $("#language").val();
+                let test = $("#test").val();
                 let certLevel = $("#lang_certLevel").val();
                 let acquisition = $("#lang_acquisition").val();
                 let lssuingAuthority = $("#lang_lssuingAuthority").val();
+                let certLevelValue = certLevel ? certLevel : 'null';
+                let languageGrade = $("#languageGrade").val();
+                let languageGradeValue = languageGrade ? languageGrade : 'null';
+
 
                 let certContent = `
                 <div id="cert_info">
@@ -264,25 +261,26 @@ $(document).ready(function(){
                     <div id="cert_acquisition">${acquisition}</div>
                     <div id="cert_lssuingAuthority">${lssuingAuthority}</div>
                     <button type="button" id="cert_remove">삭제</button>
+
                     <input type="hidden" name="certSortation" value=${certSortation}>
-                    <input type="hidden" name="certType" value=${certType}>
-                    <input type="hidden" name="certLevel" value=${certLevel}>
+                    <input type="hidden" name="certType" value="null">
+                    <input type="hidden" name="certLevel" value=${certLevelValue}>
                     <input type="hidden" name="acquisition" value=${acquisition}>
                     <input type="hidden" name="lssuingAuthority" value=${lssuingAuthority}>
                     <input type="hidden" name="language" value=${language}>
                     <input type="hidden" name="test" value=${test}>
-                    <input type="hidden" name="languageGrade" value=${languageGrade}>
+                    <input type="hidden" name="languageGrade" value=${languageGradeValue}>
                 </div>
                 `;
-                if(language == ""){
+                if (language == "") {
                     alert('언어를 입력해주세요');
-                }else if(test == ""){
+                } else if (test == "") {
                     alert('시험을 입력해주세요');
-                }else if(acquisition == ""){
+                } else if (acquisition == "") {
                     alert('취득/응시일을 입력해주세요');
-                }else if(lssuingAuthority == ""){
+                } else if (lssuingAuthority == "") {
                     alert('발급기관을 입력해주세요');
-                }else{
+                } else {
                     $('.certinput').show();
                     $('.certinput').css({ "display": "flex" });
                     $('.certinput').append(certContent);
@@ -291,16 +289,44 @@ $(document).ready(function(){
                     });
                 }
 
-            }else{
+            } else {
                 alert('잘못된 접근입니다')
             }
         }
     })
+
+    // $(document).on("click", "#ap_submit", function (e) {
+    //     e.preventDefault();
+    //     let form = $("#apply_form");
+    //     let supportPath = $("#supportPath");
+    //     let military = $("#military");
+    //     if (supportPath.val() === '') {
+    //         alert('지원경로를 선택해주세요');
+    //         e.preventDefault();
+    //     } else if (military.val() === '') {
+    //         alert('병역사항을 선택해주세요');
+    //         e.preventDefault();
+    //     } else {
+    //         form.submit();
+    //     }
+    // });
+
 })
 
-$(document).ready(function () {
-    $(document).on("click", "#ap_submit", function () {
-        let form = $("#apply_form");
-        form.submit();
-    })
-})
+
+
+document.getElementById('ap_submit').addEventListener('click', function(e) {
+    e.preventDefault();
+    let form = document.getElementById('apply_form');
+        let supportPath = document.getElementById("supportPath").value;
+        let military = document.getElementById("military").value;
+        if (supportPath === '') {
+            alert('지원경로를 선택해주세요');
+            e.preventDefault();
+        } else if (military === '') {
+            alert('병역사항을 선택해주세요');
+            e.preventDefault();
+        } else {
+            form.submit();
+        }
+});
