@@ -67,8 +67,8 @@
 
                 <!-- 검색 -->
                 <h2>검색</h2>
-                <form name="fsearch" id="fsearch" method="get">
-                    <input type="hidden" name="code" value="list">
+                <form name="keyword" id="fsearch" method="get" action ="">
+                    <!-- <input type="hidden" name="code" value="list"> -->
                     <div class="tbl_frm01">
                         <table class="tablef">
                             <colgroup>
@@ -81,16 +81,16 @@
                                 <tr>
                                     <th scope="row">제목</th>
                                     <td colspan="3">
-                                        <select name="sfl" class="w120">
+                                       <!--  <select name="sfl" class="w120">
                                             <option value="title">제목</option>
                                             <option value="job_name">직무</option>
                                             <option >고용형태</option>
                                             
-                                        </select>
-                                        <input type="text" name="stx" value="" class="frm_input" size="30">
+                                        </select> -->
+                                        <input type="text" name="keyword" value="" class="frm_input" size="100">
                                     </td>
                                 </tr>
-                                <tr>
+                              <!--   <tr>
                                     <th scope="row">작성일</th>
                                     <td colspan="3">
                                         
@@ -110,16 +110,16 @@
                                             <option value="2">X</option>
                                             <option value="3">S</option>
                                         </select>
-                                    </td>
+                                    </td> 
                                     
 
-                                </tr>
+                                </tr>-->
                             </tbody>
                         </table>
                     </div>
                     <div class="btn_confirm">
                         <input type="submit" value="검색" class="btn_medium">
-                        <input type="button" value="초기화" id="frmRest" class="btn_medium grey">
+                        <input type="button" value="초기화" id="frmRest" class="btn_medium grey"  onclick="reset()">
                     </div>
                 </form>
                 <!-- //검색 -->
@@ -189,6 +189,8 @@
     <div id="anc_header"><a href="#anc_hd"><span></span>TOP</a></div>
     <script src="./sources/admin/js/admin.js"></script>
     <script src="./sources/common/js/wrest.js"></script>
+    
+    
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             var chkAll = document.querySelector('input[name="chkall"]');
@@ -199,6 +201,13 @@
                 });
             });
         });
+        
+        
+        function reset() {
+            document.getElementById("frmRest").value = "";
+        }
+        
+        
     </script>
 
 

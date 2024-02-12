@@ -46,9 +46,13 @@ public interface JobpostingService {
 	//public List<Jobposting> findJobpostingListBySearchCondition(PostingSearchCondition postingSearchCondition);
 	//public List<Jobposting> findJobpostingListBySearchCondition(String searchKeyword);
 	
-	public List<Jobposting> findPostingListBySearchCondition(PostingSearchCondition postingSearchCondition);
+	//public List<Jobposting> findPostingListBySearchCondition(PostingSearchCondition postingSearchCondition);
+	
+	public List<Jobposting> findPostingListBySearchCondition(String keyword);
 	
 	
+	
+	public List<Jobposting> findPostingListByjobscatename(String jobscatename);
 
 	
 }

@@ -7,7 +7,7 @@ public class PostingSearchCondition {
 	
 	String postingId;
 	String title;
-	String jobsId;
+	int jobsId;
 	String careerCondition;
 	String employmentType;
 	String postWrittenDate;
@@ -21,7 +21,11 @@ public class PostingSearchCondition {
 	String jobsItemName;
 	
 	
-	String SearchKeyword;
+	String keyword;
+	String searchKeyword;
+	
+	
+	
 
 
 

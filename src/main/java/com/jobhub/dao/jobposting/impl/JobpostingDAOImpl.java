@@ -37,9 +37,24 @@ public class JobpostingDAOImpl implements JobpostingDAO {
 	 * return jobpostingList; }
 	 */
 	
-	public List<Jobposting> findPostingListBySearchCondition(PostingSearchCondition postingSearchCondition){
-		List<Jobposting> jobpostingList = sqlSessionTemplate.selectList("jobPosting_mapper.findPostingListBySearchCondition",postingSearchCondition);
+	/*
+	 * public List<Jobposting>
+	 * findPostingListBySearchCondition(PostingSearchCondition
+	 * postingSearchCondition){ List<Jobposting> jobpostingList =
+	 * sqlSessionTemplate.selectList(
+	 * "jobPosting_mapper.findPostingListBySearchCondition",postingSearchCondition);
+	 * return jobpostingList; }
+	 */
+	
+	public List<Jobposting> findPostingListBySearchCondition(String keyword){
+		List<Jobposting> jobpostingList = sqlSessionTemplate.selectList("jobPosting_mapper.findPostingListBySearchCondition",keyword);
 		return jobpostingList;
+	}
+	
+	public List<Jobposting> findPostingListByjobscatename(String jobsCateName){
+		List<Jobposting> jobpostingList = sqlSessionTemplate.selectList("jobPosting_mapper.findPostingListByjobscatename",jobsCateName);
+		return jobpostingList;
+	
 	}
 	
 	

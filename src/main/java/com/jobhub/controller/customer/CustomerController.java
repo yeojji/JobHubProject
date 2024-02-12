@@ -160,35 +160,46 @@ public class CustomerController {
 		
 	}
 	
+	
+	
+	
+	
+	//jobs
+	//jobsMain
 	@GetMapping("/customer/notice_by_career")
-	public String showAllNotice(Model model/*, String jobsCateName*/, PostingSearchCondition postingSearchCondition) {
+	public String showAllNotice(Model model, PostingSearchCondition postingSearchCondition) {
 		
-		System.out.println("get요청");
 		List<Job> jobList = jobpostingService.findJobList();
 		List<Jobposting> jobpostingList = jobpostingService.findJobpostingList();
 		List<Jobposting> jobpostingNameList = jobpostingService.findPostingAndJobNameList();
-		
-	
-		
 		
 		model.addAttribute("jobList" , jobList);
 		model.addAttribute("jobpostingList" , jobpostingList);
 		model.addAttribute("jobpostingNameList" , jobpostingNameList);
 		
-		model.addAttribute("postingCount",sqlSession.selectOne("jobPosting_mapper.findPostingCount"));
-		//model.addAttribute("postingCountByName",sqlSession.selectOne("jobPosting_mapper.findPostingCountbycateName", jobsCateName ));
-		
+		model.addAttribute("postingCount",sqlSession.selectOne("jobPosting_mapper.findPostingCountOpen"));
 		
 		return "customer/notice_by_career";
 	}
 	
-	@GetMapping("/cus/faqs")
-	public String showFaqs(Model model) {
-		List<FAQs> faqsList = jobpostingService.findFaqsList();
-		model.addAttribute("faqsList" , faqsList);
-		return "customer/faqs";
+	//jobs category 별로 화면 바뀌는 거
+	@GetMapping("/list")
+	public String list(@RequestParam String jobsCateName, Model model) {
+			
+		List<Jobposting>  jobpostingList = jobpostingService.findPostingListByjobscatename(jobsCateName);
+		List<Job> jobList = jobpostingService.findJobList();
+		List<Jobposting> jobpostingNameList = jobpostingService.findPostingAndJobNameList();
+		
+		model.addAttribute("postingCount",sqlSession.selectOne("jobPosting_mapper.findPostingCountByCate",jobsCateName));
+		
+		model.addAttribute("jobpostingList",jobpostingList);
+		model.addAttribute("jobList" , jobList);
+		model.addAttribute("jobpostingNameList" , jobpostingNameList);
+		
+		return "customer/list";
 	}
 	
+	//jobs 제목 누르면 상세보기 페이지
 	@GetMapping("/jobsDescription")
 	public String jobsDescription(@RequestParam String postingId, Model model) {
 		
@@ -200,6 +211,21 @@ public class CustomerController {
 		
 		return "customer/jobsDescription";
 	}
+		
+	
+	//faqs
+	//faqs 메인
+	@GetMapping("/cus/faqs")
+	public String showFaqs(Model model) {
+		List<FAQs> faqsList = jobpostingService.findFaqsList();
+		model.addAttribute("faqsList" , faqsList);
+		return "customer/faqs";
+	}
+	
+
+
+	
+
 	
 	
 	

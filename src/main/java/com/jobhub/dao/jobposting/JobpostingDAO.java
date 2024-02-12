@@ -44,5 +44,10 @@ public interface JobpostingDAO {
 	
 	//public List<Jobposting> findJobpostingListBySearchCondition(String SearchCondition);
 	
-	public List<Jobposting> findPostingListBySearchCondition(PostingSearchCondition postingSearchCondition);
+	//public List<Jobposting> findPostingListBySearchCondition(PostingSearchCondition postingSearchCondition);
+
+	public List<Jobposting> findPostingListBySearchCondition(String keyword);
+	
+	
+	public List<Jobposting> findPostingListByjobscatename(String jobsCateName);
 }

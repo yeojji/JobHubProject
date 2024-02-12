@@ -34,6 +34,7 @@
 
 				<div class="career_category">
 				
+			
 				<span class="category_item"><a href="../customer/notice_by_career">ALL</a></span>
 
 					<c:forEach var="jobItem" items="${jobList}">
@@ -76,19 +77,19 @@
  --%>                        
                     
                     
-<c:forEach var="jobpostingNameItem" items="${jobpostingNameList}"> 
-    <c:if test="${jobpostingNameItem.postStatus == 'O'}">
+				<c:forEach var="jobpostingListItem" items="${jobpostingList}"> 
+    <c:if test="${jobpostingListItem.postStatus == 'O'}">
         <div class="notice_list_item">
             <div class="notice_info_title">
-                <a href="../jobsDescription?postingId=${jobpostingNameItem.postingId}" >${jobpostingNameItem.title}</a>
+                <a href="../jobsDescription?postingId=${jobpostingListItem.postingId}" >${jobpostingListItem.title}</a>
                 <div class="notice_filter">
-                    <span class="notice_filter_text">${jobpostingNameItem.employmentType} |</span>
-                    <span class="notice_filter_text">${jobpostingNameItem.jobsCateName} |</span>
-                    <span class="notice_filter_text">${jobpostingNameItem.jobsItemName} |</span>
-                    <span class="notice_filter_text">${jobpostingNameItem.careerCondition}</span>
+                    <span class="notice_filter_text">${jobpostingListItem.employmentType} |</span>
+                    <span class="notice_filter_text">${jobpostingListItem.jobsCateName} |</span>
+                    <span class="notice_filter_text">${jobpostingListItem.jobsItemName} |</span>
+                    <span class="notice_filter_text">${jobpostingListItem.careerCondition}</span>
                 </div>
             </div>
-            <span class="notice_deadline">${jobpostingNameItem.applicationStart} ~ ${jobpostingNameItem.applicationDeadline}</span>
+            <span class="notice_deadline">${jobpostingListItem.applicationStart} ~ ${jobpostingListItem.applicationDeadline}</span>
         </div>
     </c:if>   
 </c:forEach>

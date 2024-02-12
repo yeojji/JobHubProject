@@ -33,6 +33,9 @@ public class Jobposting {
 	
 	int postingCount;
 	
+	String jobsName;
+	int jobLevel;
+	
 	
 	
 	

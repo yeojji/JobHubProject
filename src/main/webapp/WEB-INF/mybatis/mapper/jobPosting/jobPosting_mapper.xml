@@ -22,7 +22,7 @@
 		job_posting jp, jobs js
 		where jp.jobs_id = js.jobs_id
 	</select>
-
+	
 
 	<select id="findJobNameListbyPid" resultType="Job"
 		parameterType="int">
@@ -82,6 +82,18 @@
 		SELECT COUNT(*) FROM job_posting
 	</select>
 	
+	<select id="findPostingCountOpen" resultType="int">
+		SELECT COUNT(*) FROM job_posting where post_status='O'
+	</select>
+	
+	<select id="findPostingCountByCate" resultType="int" parameterType="String">
+		SELECT COUNT(*) FROM ( select jp.*, js.jobs_name jobsItemName , (select
+		jobs_name from jobs j where j.jobs_id = js.jobs_pid)jobsCateName
+		from
+		job_posting jp, jobs js
+		where jp.jobs_id = js.jobs_id) where jobscatename = #{jobscatename} and post_status='O'
+	</select>
+	
 	<select id="findPostingCountbycateName" resultType="String" parameterType="String">
 		SELECT COUNT(*) 
 		FROM ( select jp.*, js.jobs_name jobsItemName , (select
@@ -98,6 +110,28 @@
 		where jp.jobs_id = js.jobs_id and jp.posting_id
 		= #{postingId}
 	</select>
+	
+<!-- 		<select id="findPostingListByjobscatename" resultType="Jobposting" parameterType="String">
+		select jp.*, js.jobs_name jobsItemName , (select
+		jobs_name from jobs j where j.jobs_id = js.jobs_pid)jobsCateName
+		from
+		job_posting jp, jobs js
+		where jp.jobs_id = js.jobs_id
+		and jobsCateName = #{jobsCateName}
+	</select> -->
+	
+	<select id="findPostingListByjobscatename" resultType="Jobposting" parameterType="String">
+    select * FROM ( select jp.*, js.jobs_name jobsItemName , 
+(select jobs_name from jobs j where j.jobs_id = js.jobs_pid)jobsCateName
+		from
+		job_posting jp, jobs js
+		where jp.jobs_id = js.jobs_id)  
+       where jobscatename =#{jobsCateName}
+</select>
+	
+	
+	
+	
 	
 	<select id="findDescriptionBypostingId" resultType="Description" parameterType="String">
 		SELECT *
@@ -188,26 +222,54 @@
     </if>
 </select> -->
 
-
-<select id="findPostingListBySearchCondition" resultType="Jobposting" parameterType="PostingSearchCondition">
+<!-- 
+ <select id="findPostingListBySearchCondition" resultType="String" parameterType="PostingSearchCondition">
     SELECT jp.*, js.jobs_name AS jobsItemName, (SELECT jobs_name FROM jobs j WHERE j.jobs_id = js.jobs_pid) AS jobsCateName
     FROM job_posting jp
     JOIN jobs js ON jp.jobs_id = js.jobs_id
     WHERE 1=1
     <if test="title != null and title != ''">
-        AND title = #{searchKeyword}
+        AND title like concat('%',#{keyword},'%' )
     </if>
-    <if test="job_name != null and job_name != ''">
-        AND job_name = #{searchKeyword}
+    
+    SELECT jp.*, 
+       js.jobs_name AS jobsItemName, 
+       (SELECT jobs_name FROM jobs j WHERE j.jobs_id = js.jobs_pid) AS jobsCateName
+FROM job_posting jp
+JOIN jobs js ON jp.jobs_id = js.jobs_id
+WHERE 1=1
+<if test="title != null and title != ''">
+AND title like CONCAT('%', #{keyword}, '%')
+   </if> 
+    
+
+</select> -->
+
+
+
+<!-- <select id="findPostingListBySearchCondition" resultType="Jobposting" parameterType="PostingSearchCondition">
+    SELECT jp.*, 
+           js.jobs_name AS jobsItemName, 
+           (SELECT jobs_name FROM jobs j WHERE j.jobs_id = js.jobs_pid) AS jobsCateName
+    FROM job_posting jp
+    JOIN jobs js ON jp.jobs_id = js.jobs_id
+    WHERE 1=1
+    <if test="keyword != null and keyword != ''">
+        AND title like concat('%', #{keyword}, '%')
     </if>
-    <if test="status_type != null and status_type != ''">
-        AND status_type = #{searchKeyword}
-    </if>
-    <if test="employment_type != null and employment_type != ''">
-        AND employment_type = #{searchKeyword}
+</select> -->
+
+<select id="findPostingListBySearchCondition" resultType="Jobposting" parameterType="PostingSearchCondition">
+    SELECT jp.*, 
+           js.jobs_name AS jobsItemName, 
+           (SELECT jobs_name FROM jobs j WHERE j.jobs_id = js.jobs_pid) AS jobsCateName
+    FROM job_posting jp
+    JOIN jobs js ON jp.jobs_id = js.jobs_id
+    WHERE 1=1
+    <if test="keyword != null and keyword != ''">
+        AND title like concat('%', #{keyword}, '%')
     </if>
 </select>
-
 
 
 
