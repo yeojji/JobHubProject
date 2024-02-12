@@ -111,7 +111,6 @@
 }
 .apply_gender{
     width:80px;
-    padding-left:5px;
 }
 .apply_major{
     width:78px;
@@ -325,4 +324,40 @@ hr{
 #edu_info{
     display: flex;
     margin-top:5px;
+}
+
+.carrerinput{
+    display:none;
+    flex-direction: column;
+    margin-top: 5px;
+}
+
+#car_departmentName,
+#car_date,
+#car_duty,
+#car_position,
+#car_remove
+{
+    margin-left: 20px;
+}
+#car_info{
+    display: flex;
+    margin-top:5px;
+}
+
+.certinput{
+    display:none;
+    flex-direction: column;
+    margin-top: 5px;
+}
+#cert_info{
+    display: flex;
+    margin-top:5px;
+}
+#cert_level,
+#cert_acquisition,
+#cert_lssuingAuthority,
+#cert_test,
+#cert_grade{
+    margin-left: 20px;
 }
