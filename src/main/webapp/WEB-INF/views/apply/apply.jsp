@@ -202,7 +202,7 @@
 						<div class="ap_mydetail ap_profile">
 							<label class="apply_label apply_profile">포트폴리오 혹은 경력기술서</label>
 							<div class="filebox">
-								<input class="upload-name" value="" placeholder="첨부파일"> <label for="file">파일찾기</label>
+								<input class="upload-name" value="" placeholder="첨부파일" readonly> <label for="file">파일찾기</label>
 								<input type="file" name="data" id="file" onchange="handleFileSelect(event)" multiple>
 								<ul id="fileList"></ul>
 							</div>
