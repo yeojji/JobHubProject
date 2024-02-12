@@ -95,10 +95,19 @@
 		</foreach>
 	</insert>
 
-	
 	<insert id="saveAnswerInfo">
-    
-</insert>
+		<selectKey keyProperty="maxSeq" resultType="int" order="BEFORE">
+			SELECT NVL(MAX(answer_id) + 1, 1) FROM job_question
+		</selectKey>
+		INSERT INTO job_question
+		<foreach collection="ansList" item="ans" index="idx"
+			separator="UNION ALL">
+			SELECT #{maxSeq} + #{idx},
+			REPLACE(#{ans.content1}, 'null', ''),
+			REPLACE(#{ans.content2}, 'null', ''),
+			REPLACE(#{ans.content3}, 'null', '') FROM DUAL
+		</foreach>
+	</insert>
 
 	<!-- <insert id="saveCertificateInfo" parameterType="hashmap"> <foreach 
 		collection="certList" item="cert" open="INSERT ALL" close="SELECT * FROM 
@@ -120,10 +129,6 @@
 		</insert> -->
 
 	
-
-
-
-
 
 	<insert id="saveResume" parameterType="Resume">
 		INSERT INTO resume_info
@@ -162,19 +167,11 @@
 		ORDER BY answer_id DESC
 		)
 		WHERE ROWNUM = 1),
-		(SELECT
-		file_id
-		FROM (
-		SELECT file_id
-		FROM attached_data
-		ORDER BY file_id DESC
-		)
-		WHERE ROWNUM = 1),
 		#{supportPath},
 		#{militaryServiceMatters},
 		#{veteransTargetStatus},
 		#{disorderStatus},
-		'F',
+		'T',
 		SYSDATE
 		)
 	</insert>
