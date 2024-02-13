@@ -10,6 +10,7 @@ import com.jobhub.dto.customer.Customer;
 import com.jobhub.dto.customer.Scrap;
 import com.jobhub.dto.jobposting.Job;
 import com.jobhub.dto.jobposting.Notice;
+import com.jobhub.dto.resume.Resume;
 import com.jobhub.service.customer.CustomerService;
 
 @Service
@@ -118,6 +119,28 @@ public class CustomerServiceImpl implements CustomerService {
 		int result = customerDAO.scrapNotice(scrapId);
 		
 		return result;
+	}
+
+	@Override
+	public List<Resume> customerResumeList(String userId) {
+		// TODO Auto-generated method stub
+		
+		List<Resume> resumeList = customerDAO.customerResumeList(userId);
+		return resumeList;
+	}
+
+	@Override
+	public String pwCheck(String memberId) throws Exception {
+		// TODO Auto-generated method stub
+		String pwCheck = customerDAO.pwCheck(memberId);
+		return pwCheck;
+	}
+
+	@Override
+	public void pwUpdate(String memberId, String hashedPw) throws Exception {
+		// TODO Auto-generated method stub
+		customerDAO.pwUpdate(memberId, hashedPw);
+		
 	}
 	
 	

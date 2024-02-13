@@ -6,6 +6,7 @@ import com.jobhub.dto.customer.Customer;
 import com.jobhub.dto.customer.Scrap;
 import com.jobhub.dto.jobposting.Job;
 import com.jobhub.dto.jobposting.Notice;
+import com.jobhub.dto.resume.Resume;
 
 public interface CustomerDAO {
 
@@ -16,6 +17,11 @@ public interface CustomerDAO {
 	public Customer findLoginCustomer (Customer customer);
 	
 	public int modifyCustomerInfo(Customer customer);
+	
+	public String pwCheck(String userId)throws Exception;
+	
+	public void pwUpdate(String userId, String hashedPw)throws Exception;
+	
 	
 	public int modifyCustomerPw(Customer customer);
 	
@@ -32,6 +38,8 @@ public interface CustomerDAO {
 	public int removeCustomerScrapItemByPostingId(String postingId);
 	
 	public List<Notice> scrapNoticeInfo(String scrapId);
+	
+	public List<Resume> customerResumeList(String userId);
 	
 //	public int scrapCheck(String id, String postingId);
 //	

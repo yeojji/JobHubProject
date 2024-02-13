@@ -1,6 +1,8 @@
 package com.jobhub.dao.customer.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import com.jobhub.dto.customer.Customer;
 import com.jobhub.dto.customer.Scrap;
 import com.jobhub.dto.jobposting.Job;
 import com.jobhub.dto.jobposting.Notice;
+import com.jobhub.dto.resume.Resume;
 
 @Repository
 public class CustomerDAOImpl implements CustomerDAO{
@@ -120,6 +123,31 @@ public class CustomerDAOImpl implements CustomerDAO{
 		int result = sqlSessionTemplate.insert("user_mapper.scrapNotice", scrapId);
 		
 		return result;
+	}
+	@Override
+	public List<Resume> customerResumeList(String userId) {
+		// TODO Auto-generated method stub
+		
+		List<Resume> resumeList = sqlSessionTemplate.selectList("resume_mapper.findResumesByUserId", userId);
+		
+		return resumeList;
+	}
+	@Override
+	public String pwCheck(String userId) throws Exception {
+		// TODO Auto-generated method stub
+		
+		String pwCheck = sqlSessionTemplate.selectOne("user_mapper.pwCheck", userId);
+		
+		return pwCheck;
+	}
+	@Override
+	public void pwUpdate(String userId, String hashedPw) throws Exception {
+		// TODO Auto-generated method stub
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("userId", userId);
+		map.put("userPw", hashedPw);
+		sqlSessionTemplate.update("user_mapper.pwUpdate", map);
+		
 	}
 	
 	

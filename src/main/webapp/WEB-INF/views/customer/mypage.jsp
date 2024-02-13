@@ -101,33 +101,41 @@
                 <span class="member_status_title">나의 지원 현황</span>
             </div>
             <!--회원이 지원한 공고가 있을 때-->
-            <div class="member_write_resume_box">
-                <span class="submitted_resume_text">제출완료</span>
-                <div class="member_write_resume_content">
-                    <div class="notice_title_box">
-                        <div class="notice_title">[Tech] IT감사/내부통제 담당자</div>
-                        <div class="submission_resume_date">작성일 2024.01.30</div>
-                    </div>
-                    <div class="show_acceptance_status">
-                        <!--합격시-->
-                        <span class="acceptance_box">
-                            합격
-                        </span>
-                        <!--불합격시-->
-                        <span class="failed_box">
-                            불합격
-                        </span>
-                        <!--진행중-->
-                        <span class="ongoing_box">
-                            진행중
-                        </span>
-                    </div>
-                </div>      
-            </div>
-            <!--회원이 지원한 공고가 없을 때-->
-            <div class="not_resume_box">
-                <span class="none_content_text">지원한 공고 내역이 없습니다</span>
-            </div>
+            <c:choose>
+	            <c:when test="${not empty resumeList}">
+		            <div class="member_write_resume_box">
+		            	<c:forEach var="resumeitem" items="${resumeList}">
+		                <span class="submitted_resume_text">제출완료</span>
+		                <div class="member_write_resume_content">
+		                    <div class="notice_title_box">
+		                        <div class="notice_title">${resumeitem.title}</div>
+		                        <div class="submission_resume_date">${resumeitem.revisionDate}</div>
+		                    </div>
+		                    <div class="show_acceptance_status">
+		                        <!--합격시-->
+		                        <span class="acceptance_box">
+		                            합격
+		                        </span>
+		                        <!--불합격시-->
+		                        <span class="failed_box">
+		                            불합격
+		                        </span>
+		                        <!--진행중-->
+		                        <span class="ongoing_box">
+		                            진행중
+		                        </span>
+		                    </div>
+		                </div>  
+		                </c:forEach>    
+		            </div>
+	            </c:when>
+	            <c:otherwise>
+		            <!--회원이 지원한 공고가 없을 때-->
+		            <div class="not_resume_box">
+		                <span class="none_content_text">지원한 공고 내역이 없습니다</span>
+		            </div>
+	            </c:otherwise>
+            </c:choose>
         </div>
         <!--1:1 문의글 리스트-->
         <div class="member_resume_status_box">
@@ -178,7 +186,9 @@
                 <div class="modify_box">
                     <span class="modify_main_title">생년월일</span>
                     <div class="two_modify_box">
-                        <input type="text" placeholder="${birth}" class="modify_info_birth" name="birth" value="${birth}">
+                        <input type="text" placeholder="${birth}" id="modify_info_birth" class="modify_info_birth" name="birth" value="${birth}" maxlength="8" oninput="checkValidDate()">
+                        <span class="warningBirth">생일은 필수 입력값입니다.</span>
+                        <span class="warning">잘못된 생년월일 형식입니다. 생년월일을 정확하게 입력해주세요.</span>
                         <div class="gender_btn">
                             <select name ="gender" >
                                 <option value="남자" <c:if test="${gender == '남자'}">selected</c:if>>남자</option>
@@ -190,7 +200,8 @@
                 <div class="modify_box">
                     <span class="modify_main_title">휴대폰 번호</span>
                     <input type="text" placeholder="회원 휴대폰 번호" 
-                    class="modify_info_phone" name="phone" value="${phone}" oninput="phone(this)" maxlength="13">
+                    class="modify_info_phone" name="phone" value="${phone}" oninput="onInputPhone(this)" maxlength="13" oninput="onInputPhone()">
+                	<span class="warningPhone">휴대전화는 필수 입력값입니다.</span>
                 </div>
             </div>
             <span class="alert_text">입력한 정보가 정확하지 않을 경우 채용 시점에 불이익을 받을 수 있습니다.</span>
@@ -236,7 +247,6 @@
             <div class="complete_btn">
                 <button type="button" class="close_modal_pw">취소</button>
                 <button type="button" class="submitBtn" id="subminBtn">완료</button>
-                
             </div>
         </form>
     
@@ -341,23 +351,24 @@
         <div class="show_user_faq_modal_close_btn"><i class="fa-solid fa-xmark"></i></div>
         <span class="show_user_faq_modal_title"> 1:1 문의 </span>
         <div class="user_faq_main">
-            <form action="" method="post" enctype="multipart/form-data">
+            <form action="" method="post" enctype="multipart/form-data" class="faqForm">
                 <div class="faq_title_box">
                     <span class="faq_title_text">문의 제목</span>
-                    <input name="faqTitle" class="input_faq">
+                    <input name="faqTitle" class="input_faq" id="faq_title">
                 </div>
                 <div class="faq_content_box">
                     <span class="faq_title_text">문의내용</span>
-                    <textarea type="input" name="faqContent" class="input_faq"></textarea>
+                    <textarea type="input" name="faqContent" class="input_faq" id="faq_content"></textarea>
                 </div>
                 <div class="faq_customer_info_box">
                     <div class="faq_email_box">
                         <span class="faq_title_text input_faq2">이메일</span>
-                        <input value="${email}" name="email">
+                        <input value="${email}" name="email" id="email">
                     </div>
                     <div class="faq_phone_box">
                         <span class="faq_title_text input_faq2">휴대폰 번호</span>
-                        <input value="${phone}" name="phone">
+                        <input value="${phone}" name="phone" id="phone">
+                        <span class="warningPhone">휴대전화는 필수 입력값입니다.</span>
                     </div>
                 </div>
                 <div class="faq_file_box">
@@ -367,11 +378,11 @@
                     <span>추가한 파일 이름</span><button>삭제</button>
                 </div>
                 <div class="faq_checkbox">
-                    <input type="checkbox">
+                    <input type="checkbox" id="checkbox">
                     <span>개인정보 수집 및 이용동의</span> <span>필수</span>
                     <textarea>텍스트</textarea>
                 </div>
-                <button >등록하기</button>
+                <button type="button" id="faqBtn">등록하기</button>
             </form>
         </div>
     </div>
@@ -517,12 +528,56 @@
     	
     }
     
-    const phone = (target) => {
-    	target.value = target.value
-        .replace(/[^0-9]/g, '')
-        .replace(/(^02.{0}|^01.{1}|[0-9]{3,4})([0-9]{3,4})([0-9]{4})/g, "$1-$2-$3")
-        .replace(/(\-{1,2})$/g, "");
-    	
+    const onInputPhone = (target) => {
+        let number = target.value.replace(/[^0-9]/g, '');
+        let phoneNum = '';
+
+        if (number.length >= 4) {
+            if (number.length >= 11) {
+                phoneNum = number.substring(0, 3) + '-' + number.substring(3, 7) + '-' + number.substring(7, 11);
+            } else {
+                phoneNum = number.substring(0, 3) + '-' + number.substring(3, 6);
+                if (number.length > 6) {
+                    phoneNum += '-' + number.substring(6);
+                }
+            }
+        } else {
+            phoneNum = number;
+        }
+
+        target.value = phoneNum;
+
+        let warningPhones = document.querySelectorAll('.warningPhone');
+        let inputPhone = document.getElementById('signup_input_phone');
+        let phone = inputPhone.value.trim();
+        
+        if (phone === '') {
+            warningPhones.forEach(warningPhone => {
+                warningPhone.style.display = "block";
+            });
+            inputPhone.style.borderColor = "red";
+        } else {
+            warningPhones.forEach(warningPhone => {
+                warningPhone.style.display = "none";
+            });
+            inputPhone.style.borderColor = "";
+        }
+    }
+    
+    const checkValidDate = (value) => {
+        let result = true;
+        try {
+            let date = value.split("-");
+            let y = parseInt(date[0], 10),
+                m = parseInt(date[1], 10),
+                d = parseInt(date[2], 10);
+
+            let dateRegex = /^(?=\d)(?:(?:31(?!.(?:0?[2469]|11))|(?:30|29)(?!.0?2)|29(?=.0?2.(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00)))(?:\x20|$))|(?:2[0-8]|1\d|0?[1-9]))([-.\/])(?:1[012]|0?[1-9])\1(?:1[6-9]|[2-9]\d)?\d\d(?:(?=\x20\d)\x20|$))?(((0?[1-9]|1[012])(:[0-5]\d){0,2}(\x20[AP]M))|([01]\d|2[0-3])(:[0-5]\d){1,2})?$/;
+            result = dateRegex.test(d + '-' + m + '-' + y);
+        } catch (err) {
+            result = false;
+        }
+        return result;
     }
     
     
@@ -582,14 +637,11 @@
         		alert('현재 비밀번호가 다릅니다.');
         		return;
         	}
-        	
         	if(pass1 !== pass2){
         		alert('새로운 비밀번호가 다릅니다. 다시 수정해주세요');
     			return;
         	}
-        	
         	if(pass1 === null || pass2 === null || pass1 === "" || pass2 === ""){
-        		
         		alert('새로운 비밀번호를 입력해주세요');
         		return;
         	}
@@ -597,10 +649,8 @@
         		alert('수정되었습니다');
         		
         	if(alert('다시 로그인 해 주세요')){
-        		
         		return;
         	}
-        	
         }
     });
    
@@ -625,7 +675,28 @@
 		}
 	})
 	
-   
+   document.querySelector('#faqBtn').addEventListener('click',function(){
+	 let title =  document.querySelector('#faq_title');
+     let content = document.querySelector('#faq_content');
+     let email = document.querySelector('#email');
+     let phone = document.querySelector('#phone');
+     let checkbox = document.querySelector('#checkbox');
+     
+     console.log('눌림');
+	   
+	   if(confirm('등록하시겠습니까?')){
+            if(title == null || content == null || email == null || phone == null || checkbox.checked == false){
+                alert('필수 입력항목을 입력해주세요');
+                return;
+            }
+
+			alert('등록되었습니다.');
+		   document.quertSelector('.faqBtn').submit();
+           window.location.reload();
+
+		   
+	   }
+   })
 </script>
 
 

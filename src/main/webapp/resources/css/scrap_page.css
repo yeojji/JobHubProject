@@ -3,6 +3,7 @@
 }
 
 .scrap_main{
+	padding-top:100px;
     display: flex;
     flex-direction: column;
 }
@@ -104,7 +105,7 @@
 
 .scrap-heart{
     font-size: 21px;
-    background-color:red;
+   	color: red;
 }
 
 .scrap_notice_right{
@@ -127,6 +128,11 @@
     border: 1px solid rgb(230, 230, 230);
     padding: 40px;
     background-color: white;
+}
+
+.notice_detail_box.selected {
+    background-color: #3498db; /* 파란색 */
+    color: #fff; /* 흰색 텍스트 (선택에 따라 조절 가능) */
 }
 
 
@@ -156,13 +162,8 @@
 
 .notice_heart{
     margin-right: 15px;
-    background-color:red;
-}
-
-.liked{
 	color : red;
 }
-
 
 
 .notice_hire_type_box{

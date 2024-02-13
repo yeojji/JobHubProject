@@ -20,6 +20,7 @@
 		<typeAlias type="com.jobhub.dto.jobposting.FAQs" alias="FAQs"/>
 		<typeAlias type="com.jobhub.dto.customer.Customer" alias="Customer"/>
 		<typeAlias type="com.jobhub.dto.customer.Scrap" alias="Scrap"/>
+		<typeAlias type="com.jobhub.dto.customer.CustomerFaq" alias="CustomerFaq"/>
 		<typeAlias type="com.jobhub.dto.resume.ApplyEducationForm" alias="ApplyEducationForm"/>
 		<typeAlias type="com.jobhub.dto.resume.ApplyFileForm" alias="ApplyFileForm"/>
 		<typeAlias type="com.jobhub.dto.resume.ApplyCareerForm" alias="ApplyCareerForm"/>

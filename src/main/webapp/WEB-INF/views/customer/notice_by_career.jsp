@@ -124,15 +124,12 @@
         
 	
         function scrap(postingId, userId){
-        	console.log('스크랩 눌림');
         	if(confirm('스크랩 하시겠습니까?')){
-        		
         		window.location.href='/scrapNotice?postingId=' + postingId
         				+ '&userId=' + userId;
-        		
         	}
-        	
         }
+        
         
         function scrapCancle(postingId,scrapId){
     		if(confirm('공고를 삭제하시겠습니까?')){

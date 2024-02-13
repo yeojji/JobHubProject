@@ -35,6 +35,8 @@
 		ORDER BY TO_NUMBER(SUBSTR(posting_id, 8)) DESC
 	</select>
 	
+
+	
 	<select id="findPostingAndJobNameList" resultType="Jobposting">
 		select jp.*, js.jobs_name jobsItemName , (select
 		jobs_name from jobs j where j.jobs_id = js.jobs_pid)jobsCateName

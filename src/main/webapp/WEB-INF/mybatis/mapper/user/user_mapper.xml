@@ -23,6 +23,14 @@
 		
 	</update>
 	
+	<select id="pwCheck" resultType="String">
+	select password from job_customer where user_id = #{userId}
+	</select>
+	
+	<update id="pwUpdate">
+	update job_customer set password = #{password} where user_id = #{userId}
+	</update>
+	
 	<update id="modifyCustomerPw" parameterType="Customer">
 		UPDATE job_customer
 		SET password = #{password}
@@ -45,6 +53,18 @@
 		)
 	</insert>
 	
+	<!-- 1:1 faq -->
+	<insert id="customerFaq" parameterType="CustomerFaq">
+		insert into customer_faq VALUES
+		(seq_cus_faq_id.nextVal,
+		#{customerFaqId},
+		#{faqTitle},
+		#{faqContent},
+		#{userId},
+		#{faqStatus}
+		)
+		
+	</insert>
 	
 	<select id="customerScarpList" parameterType="String" resultType="Scrap">
 		select * 
@@ -56,7 +76,7 @@
 	<select id="scrapNoticeInfo" parameterType="String" resultType="Notice">
 		select * from description d , scrap s, job_posting j
 		where d.posting_id = s.posting_id and s.posting_id = j.posting_id and
-		s.user_id = #{userId}
+		s.posting_id = #{postingId}
 	</select>
 	
 	<delete id="removeCustomerScrapList" parameterType="String" >

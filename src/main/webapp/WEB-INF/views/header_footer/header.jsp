@@ -40,7 +40,7 @@
 	                		  <i class="fa-regular fa-heart white_font" onclick="login()"></i>
 	                	</c:if>
 	                	<c:if test="${sessionScope.loginId != null}">
-	                		  <i class="fa-regular fa-heart white_font" onclick="location.href='/scrap_page'"></i>
+	                		  <i class="fa-regular fa-heart white_font red" onclick="location.href='/scrap_page'"></i>
 	                	</c:if>
                     	
                     </div>
@@ -76,7 +76,7 @@
     	}
     	
     	const header = document.querySelector('.header_menu');
-    	const color = document.querySelector('.white_font');
+    	const color = document.querySelectorAll('.white_font');
         const headerHeight = 0; 
         window.addEventListener("scroll", () => {
             

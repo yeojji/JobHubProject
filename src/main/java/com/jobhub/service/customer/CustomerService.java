@@ -5,6 +5,7 @@ import com.jobhub.dto.customer.Customer;
 import com.jobhub.dto.customer.Scrap;
 import com.jobhub.dto.jobposting.Job;
 import com.jobhub.dto.jobposting.Notice;
+import com.jobhub.dto.resume.Resume;
 public interface CustomerService {
 
 	//customer 계정생성, 로그인, 목록, 검색, 비밀번호 찾기, 정보 수정
@@ -16,6 +17,10 @@ public interface CustomerService {
 	public int saveUser(Customer customer);
 	
 	public int modifyCustomerInfo(Customer customer);
+	
+	public String pwCheck(String memberId)throws Exception;
+	
+	public void pwUpdate(String memberId, String hashedPw)throws Exception;
 	
 	public int modifyCustomerPw(Customer customer);
 	
@@ -32,5 +37,7 @@ public interface CustomerService {
 	public int removeCustomerScrapItemByPostingId(String postingId);
 	
 	public List<Notice> scrapNoticeInfo(String scrapId);
+	
+	public List<Resume> customerResumeList(String userId);
 
 }

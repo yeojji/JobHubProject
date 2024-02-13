@@ -27,6 +27,7 @@ import com.jobhub.dto.jobposting.Job;
 import com.jobhub.dto.jobposting.Jobposting;
 import com.jobhub.dto.jobposting.Notice;
 import com.jobhub.dto.jobposting.PostingSearchCondition;
+import com.jobhub.dto.resume.Resume;
 import com.jobhub.service.admin.AdminService;
 import com.jobhub.service.customer.CustomerService;
 import com.jobhub.service.jobposting.JobpostingService;
@@ -96,7 +97,6 @@ public class CustomerController {
 		
 		Customer loginUser = customerService.findLoginCustomer(customer);
 		
-		
 		if(loginUser == null || !(customer.getUserId().equals(loginUser.getUserId()))|| 
 				!(customer.getPassword().equals(loginUser.getPassword())) || loginUser.getCustomerStatus().equals("2")) {
 			
@@ -133,7 +133,9 @@ public class CustomerController {
 		
 		Customer customerInfo = customerService.findCustomerInfo(findCustomer);
 
+		List<Resume> resumeList = customerService.customerResumeList(findCustomer);
 		
+		model.addAttribute("resumeList", resumeList);
 		model.addAttribute("userId", customerInfo.getUserId());
 		model.addAttribute("name", customerInfo.getName());
 		model.addAttribute("email", customerInfo.getEmail());
@@ -146,20 +148,12 @@ public class CustomerController {
 		
 	}
 	
-	@GetMapping("/notice_info")
-	public String noticeInfo(HttpSession session, Model model, Jobposting jobposting) {
-		
-		// notice_by_career에서 선택한 공고 가져와서 공고 정보 보여주기~~~~~~~~~
-		
-		
-		
-		
-		return "/customer/notice_info";
-	}
+	
 	
 	
 	@GetMapping("/scrap_page")
-	public String scrap_page(HttpSession session,Customer customer, Model model) {
+	public String scrap_page(HttpSession session,Customer customer, 
+			Model model,Scrap scrap) {
 		
 		String findCustomer = (String)session.getAttribute("loginId");
 		
@@ -167,23 +161,43 @@ public class CustomerController {
 		
 		List<Scrap> scrapList = customerService.customerScarpList(findCustomer);
 		System.out.println(scrapList);
-		List<Notice> noticeList = customerService.scrapNoticeInfo(findCustomer);
+		if (!scrapList.isEmpty()) {
+		    Scrap firstScrap = scrapList.get(0); 
+		    String postingId = firstScrap.getPostingId(); 
+		    List<Notice> noticeList = customerService.scrapNoticeInfo(postingId);
+		    model.addAttribute("noticeList", noticeList);
+		} else {
+			
+		}
 		model.addAttribute("scrapList",scrapList);
-		model.addAttribute("noticeList", noticeList);
-		
 		
 		return "customer/scrap_page";
 	}
 	
 	
+	@GetMapping("/showScrapNoticeInfo")
+	public String scrapNoticeInfo(@RequestParam(name="postingId")String postingId, HttpSession session, Customer customer, Model model) {
+		
+		String findCustomer = (String)session.getAttribute("loginId");
+		
+		session.getAttribute(findCustomer);
+		
+		List<Scrap> scrapList = customerService.customerScarpList(findCustomer);
+		List<Notice> noticeList = customerService.scrapNoticeInfo(postingId);
+		model.addAttribute("scrapList",scrapList);
+		model.addAttribute("noticeList", noticeList);
+		
+		return "customer/scrap_page";
+	}
+	
 	@GetMapping("/scrapNotice")
 	public String scrapNotice(@RequestParam(name="postingId")String postingId,
-			@RequestParam(name="userId")String userId, Scrap scrap, 
-			Customer customer, Model model) {
+			@RequestParam(name="userId")String userId, Scrap scrap) {
 
 		scrap.setPostingId(postingId);
 		scrap.setUserId(userId);
 		scrap.setScrapStatus("1");
+		
 		int result = customerService.scrapNotice(scrap);
 		
 		if(result >0) {
@@ -191,7 +205,6 @@ public class CustomerController {
 		}else {
 			return "/";
 		}
-		
 		
 	}
 	
@@ -205,7 +218,7 @@ public class CustomerController {
 
 	    
 	    if (result > 0) {
-	        return "redirect:/scrap_page";
+	        return "redirect:/customer/notice_by_career";
 	    } else {
 	    	
 	        return "/"; 
@@ -225,7 +238,7 @@ public class CustomerController {
 		if(result > 0) {
 			customerService.removeCustomerScrapItemByPostingId(postingId);
 			
-			return "redirect:/scrap_page";
+			return "redirect:/customer/notice_by_career";
 		}else {
 			return "/";
 		}
@@ -250,7 +263,8 @@ public class CustomerController {
 	}
 	
 	@PostMapping("/mypage/modifyPw")
-	public String modifyCustomerPw(HttpSession session, Customer customer, Model model,HttpServletRequest request) {
+	public String modifyCustomerPw(HttpSession session, Customer customer, Model model,
+			HttpServletRequest request) {
 		
 		
 		int result = customerService.modifyCustomerPw(customer);
@@ -288,13 +302,10 @@ public class CustomerController {
 	
 	
 	
-<<<<<<<<< Temporary merge branch 1
-	
-	
+
 	//jobs
 	//jobsMain
-=========
->>>>>>>>> Temporary merge branch 2
+
 @GetMapping("/customer/notice_by_career")
 public String showAllNotice(HttpSession session, Jobposting postingId,
 		 Customer userId, Model model, PostingSearchCondition postingSearchCondition,Scrap scrap) {
@@ -342,6 +353,10 @@ public String jobsDescription(@RequestParam String postingId, Model model) {
    
    Jobposting jobposting = jobpostingService.findPostingBypostingId(postingId);
    Description description = jobpostingService.findDescriptionBypostingId(postingId);
+   
+   System.out.println(jobposting + "공고");
+   System.out.println(description + "공고상세");
+   
    
    model.addAttribute("jobposting", jobposting);
    model.addAttribute("description", description);
