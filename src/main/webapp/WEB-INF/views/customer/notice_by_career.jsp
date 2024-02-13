@@ -9,7 +9,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>공고페이지</title>
+    <title>공고메인페이지</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" 
     integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="  
     crossorigin="anonymous" referrerpolicy="no-referrer"/>
@@ -39,11 +39,7 @@
 					<c:forEach var="jobItem" items="${jobList}">
 						<c:choose>
 							<c:when test="${jobItem.jobsLevel == 1}">
-								
-								<%-- <span class="category_item" ><a href="../list?cateName=${jobItem.jobsName}">${jobItem.jobsName}</a></span>
-								 --%>
-								<%-- <span class="category_item"><a href="../list?cateName=${jobItem.jobsCateName}">${jobItem.jobsName}</a></span> --%>
-								
+							
 								<span class="category_item"><a href="../list?jobsCateName=${jobItem.jobsName}">${jobItem.jobsName}</a></span>
 								
 							</c:when>
@@ -67,13 +63,9 @@
     </div>
 </form>
                     <span class="notice_guide_text">${postingCount}개의 채용공고가 있습니다</span>
-                    <!--  바꿔야대 ,, -->  
+                   
                     
-                    
-                        
-                            
-<%--                            ${postingCountByName} postingCountByName
- --%>                        
+                                               
                     
                     
 <c:forEach var="jobpostingNameItem" items="${jobpostingNameList}"> 
@@ -96,11 +88,7 @@
             
 
      
-            
-                    
-                    
-                    
-                    
+   
                    
                   
                 </div>
