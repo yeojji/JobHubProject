@@ -7,6 +7,7 @@ public class Resume {
 	//이력서 관련 내용
 	String resumeId;
 	String userId;
+	String userPw;
 	String postingId;
 	int careerId;
 	int academicId;

@@ -1,13 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-		<div id="ft">
-			<p>Copyright &copy; Jobhub. All rights reserved.</p>
-		</div>
-		<div id="ajax-loading"><img src="../../../resources/common/img/ajax-loader.gif"></div>
-		<div id="anc_header"><a href="#anc_hd"><span></span>TOP</a></div>
-		<script src="../../../resources/admin/js/admin.js"></script>
-		<script src="../../../resources/common/js/wrest.js"></script>
-		<script>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<div id="ft">
+	<p>Copyright &copy; Jobhub. All rights reserved.</p>
+</div>
+<div id="ajax-loading">
+	<img src="common/img/ajax-loader.gif">
+</div>
+<div id="anc_header">
+	<a href="#anc_hd"><span></span>TOP</a>
+</div>
+<script src="admin/js/admin.js"></script>
+<script src="common/js/wrest.js"></script>
+<script>
 			document.addEventListener('DOMContentLoaded', function () {
 				var chkAll = document.querySelector('input[name="chkall"]');
 				chkAll.addEventListener('change', function () {
@@ -34,5 +38,5 @@
 				});
 			});
 		</script>
-		</body>
-		</html>
+</body>
+</html>
