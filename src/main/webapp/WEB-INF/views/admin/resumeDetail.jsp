@@ -104,8 +104,7 @@
 						<tbody>
 							<tr>
 								<th scope="row">이름</th>
-								<td><input type="text" name="name" value="${resume.name}" required
-									itemname="이름" class="frm_input required"></td>
+								<td>${resume.name}</td>
 								<th scope="row">아이디</th>
 								<td>${resume.userId}</td>
 							</tr>
@@ -113,26 +112,28 @@
 								<th scope="row">비밀번호</th>
 								<td><input type="text" name="password" value=""
 									class="frm_input"></td>
-								<th scope="row">추천인아이디</th>
-								<td><input type="text" name="pt_id" value="admin" required
-									memberid itemname="추천인아이디" class="frm_input required"></td>
-							</tr>
-							<tr>
-								<th scope="row">생년월일</th>
-								<td><input type="text" name="mb_birth" value=""
-									class="frm_input" placeholder="예)19750101"></td>
 								<th scope="row">이메일</th>
 								<td><input type="text" name="email"
-									value="${resume.email}" email itemname="E-Mail"
+									value="${resume.email}" email itemname="email"
 									class="frm_input" size="30"></td>
 							</tr>
 							<tr>
+								<th scope="row">생년월일</th>
+								<td><input type="text" name="mb_birth" value="${resume.birth}"
+									class="frm_input"></td>
+								<th scope="row">성별</th>
+								<td><input type="radio" name="gender" value="남성"
+									id="gender1" checked="checked"> <label for="gender1">남성</label>
+									<input type="radio" name="gender" value="여성" id="gender2">
+									<label for="gender2">여성</label></td>
+							</tr>
+							<tr>
 								<th scope="row">전화번호</th>
-								<td><input type="text" name="telephone" value=""
+								<td><input type="text" name="phone" value=""
 									class="frm_input"></td>
 								<th scope="row">휴대전화</th>
-								<td><input type="text" name="cellphone"
-									value="010-1111-1111" class="frm_input"></td>
+								<td><input type="text" name="phone"
+									value="${resume.phone}" class="frm_input"></td>
 							</tr>
 							<tr>
 								<th scope="row">주소</th>

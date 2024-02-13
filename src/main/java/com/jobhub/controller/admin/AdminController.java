@@ -42,7 +42,7 @@ public class AdminController {
 	public String logout(HttpSession session) {
 		loginManager.logout(session);
 
-		return "redirect:/admin";
+		return "redirect:/admin/login";
 	}
 
 	// 로그인
