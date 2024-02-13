@@ -52,15 +52,15 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 		<beans:property name="defaultEncoding" value="utf-8" />
 	</beans:bean>
 
-	<resources mapping="/fileStorage/**" location="file:///D:/fileStorage/" />
-	
-	<resources mapping="/icon/admin/*" location="/resources/admin/icon/" />
+	<resources mapping="/icon/common/*" location="/resources/common/icon/" />
 	<resources mapping="/img/admin/*" location="/resources/admin/img/" />
 	<resources mapping="/img/common/*" location="/resources/common/img/" />
 	<resources mapping="/css/admin/*" location="/resources/admin/css/" />
 	<resources mapping="/css/common/*" location="/resources/common/css/" />
 	<resources mapping="/js/admin/*" location="/resources/admin/js/" />
 	<resources mapping="/js/common/*" location="/resources/common/js/" />
+	<resources mapping="/fileStorage/**" location="file:///D:/fileStorage/" />
+
 
 	<resources mapping="/**" location="/resources/" />
 	

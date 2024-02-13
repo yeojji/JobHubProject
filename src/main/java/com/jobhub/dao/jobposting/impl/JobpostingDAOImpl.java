@@ -129,19 +129,16 @@ public class JobpostingDAOImpl implements JobpostingDAO {
 
 	@Override
 	public List<EmployeeJobsInfo> findEmployeeJobsInfoList() {
-		// TODO Auto-generated method stub
 		List<EmployeeJobsInfo> findEmployeeJobsInfoList = sqlSessionTemplate.selectList("jobPosting_mapper.findEmployeeJobsInfoList");
 		return findEmployeeJobsInfoList;
 	}
 
 	@Override
 	public List<Job> findJobsNameByLevel1() {
-		// TODO Auto-generated method stub
 		List<Job> findJobsNameByLevel1List = sqlSessionTemplate.selectList("jobPosting_mapper.findJobsNameByLevel1");
 		return findJobsNameByLevel1List;
 	}
-
-
+>>>>>>>>> Temporary merge branch 2
 	
 	
 }

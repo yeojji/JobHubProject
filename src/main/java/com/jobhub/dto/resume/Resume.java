@@ -1,7 +1,5 @@
 package com.jobhub.dto.resume;
 
-import org.springframework.web.multipart.MultipartFile;
-
 import lombok.Data;
 
 @Data
@@ -9,10 +7,12 @@ public class Resume {
 	//이력서 관련 내용
 	String resumeId;
 	String userId;
+	String userPw;
 	String postingId;
 	int careerId;
 	int academicId;
 	int certificateId;
+	int answerId;
 	String supportPath;
 	String militaryServiceMatters;
 	String veteransTargetStatus;
@@ -20,6 +20,8 @@ public class Resume {
 	String submissionStatus;
 	String revisionDate;
 	
+	//11번 라인부터 41번라인까지는 dto 다 따로따로
+	//테이블에서 가져오는 dto하나 테이블에 저장하는 dto 하나
 	String eduSortation;	//학력사항 구분
 	String schoolName;		//학교명
 	String admission;		//입학년도
@@ -58,14 +60,35 @@ public class Resume {
 	String fileExtension;
 	long fileSize;
 	
+	String career;
+	String education;
+	String age;
+	String name;
+	String jobsName;
+	
+	String title;
+	String phone;
+	String email;
+	String gender;
+	String birth;
+	
+	String resignationDateOfCompany;
+	String joinedDateOfCompany;
+	
+	String startDate;
+	String endDate;
+	String startAge;
+	String endAge;
+	String findOutPath;
+	String careerCondition;
 	
 	/*
 	resume_id					varchar2	이력서ID
 	user_id						varchar2	회원ID
 	jobs_id						varchar2	직무ID
-	career_id					varchar2	경력ID
-	academic_id					varchar2	학력ID
-	certificate_id				varchar2	자격ID
+	career_id					NUMBER		경력ID
+	academic_id					NUMBER		학력ID
+	certificate_id				NUMBER		자격ID
 	support_path				varchar2	지원경로
 	military_service_matters	varchar2	병역사항
 	veterans_target_status		varchar2	보훈대상여부

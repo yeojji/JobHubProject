@@ -3,6 +3,8 @@ package com.jobhub.controller.jobposting;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -44,10 +46,14 @@ public class JobpostingController {
 	}
 
 	@PostMapping("/jobposting")
-	public String jobpostingProcess(@ModelAttribute Jobposting jobposting, @ModelAttribute Description description) {
+	public String jobpostingProcess(@ModelAttribute Jobposting jobposting, @ModelAttribute Description description /*HttpSession session*/) {
 
 		String jobpostingId = sqlSession.selectOne("jobPosting_mapper.findJobpostingId"); //posting id 값 맞춘거
+		//String adminId = (String) session.getAttribute("admin_id");
+		
 		jobposting.setPostingId(jobpostingId);
+		//jobposting.setAdminID(adminId);
+		
 		int result = jobpostingService.saveJobposting(jobposting);
 
 		description.setPostingId(jobpostingId);

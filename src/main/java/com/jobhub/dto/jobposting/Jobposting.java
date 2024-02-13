@@ -10,7 +10,7 @@ public class Jobposting {
 	
 	String postingId;
 	String title;
-	String jobsId;
+	int jobsId;
 	String careerCondition;
 	String employmentType;
 	String postWrittenDate;
