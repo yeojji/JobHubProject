@@ -1,5 +1,6 @@
 package com.jobhub.dao.apply.impl;
 
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.jobhub.dao.apply.ApplyDAO;
+import com.jobhub.dto.employee.Employee;
 import com.jobhub.dto.resume.Resume;
 import com.jobhub.dto.util.FileInfo;
 
@@ -76,6 +78,13 @@ public class ApplyDAOImpl implements ApplyDAO{
 int result = sqlSessionTemplate.insert("apply_mapper.saveFileInfo", hashMap);
 		
 		return result;
+	}
+
+	@Override
+	public List<Employee> findEmployeeList() {
+		// TODO Auto-generated method stub
+		List<Employee> employeeList = sqlSessionTemplate.selectList("apply_mapper.findEmployeeList");
+		return employeeList;
 	}
 
 }

@@ -18,26 +18,26 @@
         <div class="header_menu">
             <div class="header_menu1">
                 <div class="header_title">
-                    <div class="">LINE CAREER</div>
+                    <div class="white_font">LINE CAREER</div>
                 </div>
                 <div class="header_menu1_list">
-                    <div class="header_menu1_list_item">People</div>
-                    <div class="header_menu1_list_item">Culture</div>
-                    <div class="header_menu1_list_item">Jobs</div>
-                    <div class="header_menu1_list_item">FAQs</div>
+                    <div class="header_menu1_list_item white_font">People</div>
+                    <div class="header_menu1_list_item white_font">Culture</div>
+                    <div class="header_menu1_list_item white_font">Jobs</div>
+                    <div class="header_menu1_list_item white_font">FAQs</div>
                 </div>
             </div>
             <div class="header_menu2">
-                <i class="fa-solid fa-globe header_menu2_list1_item"></i>
+                <i class="fa-solid fa-globe header_menu2_list1_item white_font"></i>
                 <select class="header_menu2_list1_item select_country">
                     <option>KR</option>
                     <option>EN</option>
                 </select>
-                <div class="line_bar header_menu2_list1_item"></div>
-                <div class="search_text header_menu2_list1_item"><i class="fa-solid fa-magnifying-glass"></i></div>
+                <div class="line_bar header_menu2_list1_item white_font"></div>
+                <div class="search_text header_menu2_list1_item"><i class="fa-solid fa-magnifying-glass  white_font"></i></div>
                 <div class="header_menu2_list2">
-                    <div class="member_scrap header_menu2_list2_item"><i class="fa-regular fa-heart"></i></div>
-                    <i class="fa-solid fa-user header_menu2_list2_item"></i>
+                    <div class="member_scrap header_menu2_list2_item"><i class="fa-regular fa-heart white_font"></i></div>
+                    <i class="fa-solid fa-user header_menu2_list2_item white_font"></i>
                 </div>
             </div>
         </div>
@@ -234,16 +234,16 @@
     <script>
 
         const header = document.querySelector('.header_menu');
-        const headerHeight = header.offsetHeight; // top 속성 사용
-            console.log('헤더');
+    	const color = document.querySelector('.white_font');
+        const headerHeight = 0; 
         window.addEventListener("scroll", () => {
             
             if (window.scrollY > headerHeight) {
                 header.classList.add("scrolled"); // 스크롤이 내려갈 때 클래스 추가
-                console.log('외 않되');
+                color.style.color = 'black';
             } else {
                 header.classList.remove("scrolled"); // 스크롤이 위로 올라갈 때 클래스 제거
-                console.log('tlqkgf');
+                color.style.color = 'white';
             }
         });
     </script>

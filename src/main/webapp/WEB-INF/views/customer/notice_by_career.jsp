@@ -2,8 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +14,6 @@
     <link rel="stylesheet" href="/css/notice_by_career.css">
     <link rel="stylesheet" href="/css/header.css">
      <link rel="stylesheet" href="/css/footer.css">
-   
 </head>
 <body>
     <!--헤더 -->
@@ -50,9 +47,51 @@
 
 			</div>
             <div class="dividing_line"></div>
-            <div class="notice_info_main"> </div>
-                
-                
+            <div class="notice_info_main">
+                <div class="filter_box_container">
+                    <div class="filter_box">
+                        <span class="filter_text">Filters</span>
+                        <button class="clear_filter_btn">Clear filters</button>
+                    </div>
+                    <div class="filter_box_item">
+                        <nav>
+                        <ul> 
+                            <li>필터값</li>
+                            <li>필터값</li>
+                            <li>필터값</li>
+                            <li>필터값</li>
+                            <li>필터값</li>
+                            <li>필터값</li>
+                            <li>필터값</li>
+                            
+                        </ul>
+                        </nav>
+                    </div>
+                    <div class="filter_box_item">
+                        <nav>
+                            <ul> 
+                                <li>필터값</li>
+                                <li>필터값</li>
+                                <li>필터값</li>
+                                <li>필터값</li>
+                                <li>필터값</li>
+                                <li>필터값</li>
+                            </ul>
+                            </nav>
+                    </div>
+                    <div class="filter_box_item">
+                        <nav>
+                            <ul> 
+                                <li>필터값</li>
+                                <li>필터값</li>
+                                <li>필터값</li>
+                                <li>필터값</li>
+                                <li>필터값</li>
+                                <li>필터값</li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
                 <div class="notice_list_box">
             <!-- notice_by_career.jsp -->
 <form action="/customer/notice_by_career" method="get">
@@ -94,7 +133,7 @@
                 </div>
             </div>
         </div>
-  
+    </div>
 
 
 

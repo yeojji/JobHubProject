@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 	<!DOCTYPE html>
 	<html>
-
 	<head>
 		<meta charset="UTF-8">
 		<title>JobHub</title>
@@ -10,11 +9,10 @@
 			crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 		<link href="css/apply.css" rel="stylesheet">
 	</head>
-
 	<body>
 		<!-- 헤더박을부분 -->
 		<%@ include file="../header_footer/header.jsp" %>
-		
+
 		<div class="apply_title">지원서 작성하기</div>
 		<div class="container">
 			<div class="apply_header">
@@ -33,20 +31,15 @@
 						</p>
 						<div>
 							<div class="ap_mydetail">
-								<input type="text" name="name" value="내이름" class="ap_inpt apply_name margin5px"> <input
-									type="text" name="birth" value="1999.01.01" class="ap_inpt apply_birth margin5px">
-								<input type="text" name="email" value="abc@gmail.com" class="ap_inpt apply_email">
+								<input type="text" name="name" value="${name}" class="ap_inpt apply_name margin5px" readonly>
+								<input type="text" name="birth" value="${birth}" class="ap_inpt apply_birth margin5px" readonly>
+								<input type="text" name="email" value="${email}" class="ap_inpt apply_email" readonly>
 							</div>
 							<div class="ap_mydetail">
-								<select name="gender" class="ap_inpt apply_gender margin5px">
-									<option value="" disabled selected hidden>성별</option>
-									<option value="남성">남성</option>
-									<option value="여성">여성</option>
-								</select> <input type="text" name="phone" value="010-0000-0000"
-									class="ap_inpt apply_tel margin5px"> <select name="supportPath"
-									class="ap_inpt apply_howfound" id="supportPath">
-									<option value="" disabled selected hidden>지원경로(공고를 처음
-										알게 된 경로)</option>
+							<input type="text" name="gender" value="${gender}" class="ap_inpt apply_gender margin5px" readonly>
+							<input type="text" name="phone" value="${phone}" class="ap_inpt apply_tel margin5px" readonly>
+							<select name="supportPath" class="ap_inpt apply_howfound" id="supportPath">
+									<option value="" disabled selected hidden>지원경로(공고를 처음 알게 된 경로)</option>
 									<option value="사람인">사람인</option>
 									<option value="원티드">원티드</option>
 									<option value="링크드인">링크드인</option>
@@ -62,7 +55,7 @@
 							학력사항
 						</p>
 						<div class="eduinput">
-							
+
 						</div>
 						<div class="ap_mydetail ap_grade">
 							<select id="eduSortation" class="ap_inpt apply_edu">
@@ -74,20 +67,21 @@
 								<option value="대학원(박사)">대학원(박사)</option>
 							</select>
 							<div class="apply_edu_highschool">
-								<input type="text" placeholder="학교명" class="ap_inpt apply_shcname" id="highName"> <input
-									type="text" placeholder="입학년월" class="ap_inpt apply_date2" id="high_admis"> <span
-									class="from_to">~</span> <input type="text" placeholder="졸업년월"
+								<input type="text" placeholder="학교명" class="ap_inpt apply_shcname" id="highName">
+								<input type="text" placeholder="입학년월" class="ap_inpt apply_date2" id="high_admis">
+								<span class="from_to">~</span> <input type="text" placeholder="졸업년월"
 									class="ap_inpt apply_date2" id="high_grad">
 								<button type="button" class="ap_inpt2 apply_careerbtn" name="edu">완료</button>
 							</div>
 							<div class="apply_edu_university">
-								<input type="text" placeholder="학교명" class="apply_shcname2 ap_inpt" id="uniName"> <input
-									type="text" placeholder="전공" class="apply_major ap_inpt" id="uni_major"> <input
-									type="text" placeholder="(세)부전공" class="apply_major ap_inpt" id="uni_minor"> <input
-									type="text" placeholder="평점" class="apply_grade ap_inpt" id="uni_grade"> <input
-									type="text" placeholder="총점" class="apply_grade apply_total ap_inpt" id="uni_total">
-								<input type="text" placeholder="입학년월" class="ap_inpt apply_date3" id="uni_admis"> <span
-									class="from_to">~</span> <input type="text" placeholder="졸업년월"
+								<input type="text" placeholder="학교명" class="apply_shcname2 ap_inpt" id="uniName">
+								<input type="text" placeholder="전공" class="apply_major ap_inpt" id="uni_major">
+								<input type="text" placeholder="(세)부전공" class="apply_major ap_inpt" id="uni_minor">
+								<input type="text" placeholder="평점" class="apply_grade ap_inpt" id="uni_grade">
+								<input type="text" placeholder="총점" class="apply_grade apply_total ap_inpt"
+									id="uni_total">
+								<input type="text" placeholder="입학년월" class="ap_inpt apply_date3" id="uni_admis">
+								<span class="from_to">~</span> <input type="text" placeholder="졸업년월"
 									class="ap_inpt apply_date3" id="uni_grad"> <select id="graduationStatus"
 									class="ap_inpt apply_grade_status">
 									<option value="졸업">졸업</option>
@@ -113,7 +107,7 @@
 					<div class="apply_content">
 						<p>경력사항</p>
 						<div class="careerinput">
-							
+
 						</div>
 						<div class="ap_mydetail">
 							<input type="text" id="companyName" placeholder="회사명" class="ap_inpt apply_cname">
@@ -149,7 +143,7 @@
 					<div class="apply_content">
 						<p>자격/어학 사항</p>
 						<div class="certinput">
-							
+
 						</div>
 						<div class="ap_mydetail ap_certi">
 							<select id="certSortation" class="ap_inpt apply_certi">
@@ -170,7 +164,8 @@
 								<input type="text" id="language" placeholder="언어" class="ap_inpt apply_language">
 								<input type="text" id="test" placeholder="시험" class="ap_inpt apply_language">
 								<input type="text" id="lang_certLevel" placeholder="등급" class="ap_inpt apply_level">
-								<input type="text" id="languageGrade" placeholder="점수" class="ap_inpt apply_langGrade">
+								<input type="text" id="languageGrade" placeholder="점수"
+									class="ap_inpt apply_langGrade">
 								<input type="text" id="lang_acquisition" placeholder="취득/응시일"
 									class="ap_inpt apply_cdate">
 								<input type="text" id="lang_lssuingAuthority" placeholder="발급기관"
@@ -187,7 +182,8 @@
 						<div class="ap_mydetail">
 							<label class="apply_label">자신을 자유롭게 소개해 주세요.</label>
 							<div>
-								<textarea name="content1" id="" cols="100" rows="14" class="text_area"></textarea>
+								<textarea name="content1" id="content1" cols="100" rows="14"
+									class="text_area"></textarea>
 							</div>
 							<input type="hidden" name="content2" value="null">
 							<input type="hidden" name="content3" value="null">
@@ -202,8 +198,10 @@
 						<div class="ap_mydetail ap_profile">
 							<label class="apply_label apply_profile">포트폴리오 혹은 경력기술서</label>
 							<div class="filebox">
-								<input class="upload-name" value="" placeholder="첨부파일" readonly> <label for="file">파일찾기</label>
-								<input type="file" name="data" id="file" onchange="handleFileSelect(event)" multiple>
+								<input class="upload-name" value="" placeholder="첨부파일" readonly> <label
+									for="file">파일찾기</label>
+								<input type="file" name="data" id="file" onchange="handleFileSelect(event)"
+									multiple>
 								<ul id="fileList"></ul>
 							</div>
 						</div>
@@ -256,24 +254,24 @@
 		<!-- 푸터박을부분 -->
 		<%@ include file="../header_footer/footer.jsp" %>
 
-		<script src="javascript/apply.js"></script>
-		<script>
-			function handleFileSelect(event) {
-				var files = event.target.files;
-			
-				var fileList = document.getElementById('fileList');
-			
-				for (var i = 0; i < files.length; i++) {
-					var file = files[i];
-			
-					var listItem = document.createElement('li');
-					listItem.textContent = file.name;
-					fileList.appendChild(listItem);
+			<script src="js/apply.js"></script>
+			<script>
+				function handleFileSelect(event) {
+					var files = event.target.files;
+
+					var fileList = document.getElementById('fileList');
+
+					for (var i = 0; i < files.length; i++) {
+						var file = files[i];
+
+						var listItem = document.createElement('li');
+						listItem.textContent = file.name;
+						fileList.appendChild(listItem);
+					}
+
 				}
-			
-			}
-			
-			
+
+
 			</script>
 	</body>
 

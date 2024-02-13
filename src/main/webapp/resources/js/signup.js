@@ -238,7 +238,39 @@ document.getElementById('signup_check').addEventListener('change', function() {
     }
 });
 
-document.getElementById('signupForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    alert('회원가입 되었습니다');
+
+document.getElementById('submitBtn').addEventListener('click', function(e) {
+
+    let id = document.getElementById("signup_input_id").value;
+    let pw = document.getElementById("signup_input_pw").value;
+    let pwChk = document.getElementById("signup_input_pwchk").value;
+    let name = document.getElementById("signup_input_name").value;
+    let birth = document.getElementById("signup_input_birth").value;
+    let email = document.getElementById("signup_input_email").value;
+    let phone = document.getElementById("signup_input_phone").value;
+
+    if(id == ''){
+        alert('아이디를 입력해주세요');
+        e.preventDefault();
+    }else if(pw == ''){
+        alert('비밀번호를 입력해주세요');
+        e.preventDefault();
+    }else if(pwChk == ''){
+        alert('비밀번호 확인을 해주세요');
+        e.preventDefault();
+    }else if(name == ''){
+        alert('이름을 입력해주세요');
+        e.preventDefault();
+    }else if(birth == ''){
+        alert('생일을 입력해주세요');
+        e.preventDefault();
+    }else if(email == ''){
+        alert('이메일을 입력해주세요');
+        e.preventDefault();
+    }else if(phone == ''){
+        alert('전화번호를 입력해주세요');
+        e.preventDefault();
+    }else {
+        alert('회원가입 되었습니다');
+    }
 });

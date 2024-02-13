@@ -24,7 +24,7 @@
                 </form>
             </div>
             <div class="login_option">
-                <div class="login_option_1"><span class="text">· 잠깐! 혹시 지원이 처음이신가요?</span><a href="" class="link">신규 지원자 등록</a></div>
+                <div class="login_option_1"><span class="text">· 잠깐! 혹시 지원이 처음이신가요?</span><a href="/sign-up" class="link">신규 지원자 등록</a></div>
                 <div class="login_option_2"><span class="text">· 로그인 정보를 잊어버리셨나요?</span><a href="" class="link2">이메일/비밀번호 찾기</a></div>
 
             </div>

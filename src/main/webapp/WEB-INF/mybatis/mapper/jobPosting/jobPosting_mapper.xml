@@ -8,6 +8,26 @@
 	<select id="findJobList" resultType="Job">
 		select * from jobs
 	</select>
+	
+	
+
+
+	<select id="findEmployeeJobsInfoList" resultType="EmployeeJobsInfo">
+	
+		SELECT DISTINCT e.name, LEVEL, j.jobs_name, CONNECT_BY_ROOT j.jobs_name AS root_name
+		FROM employee e
+		JOIN jobs j ON e.jobs_id = j.jobs_id
+		WHERE CONNECT_BY_ISLEAF = 1
+		START WITH j.jobs_pid IS NULL
+		CONNECT BY PRIOR j.jobs_id = j.jobs_pid
+
+	</select>
+
+	<select id="findJobsNameByLevel1" resultType="Job">
+		SELECT jobs_name FROM jobs
+		WHERE jobs_level = 1
+	</select>
+
 
 	<select id="findJobpostingList" resultType="Jobposting">
 		SELECT *

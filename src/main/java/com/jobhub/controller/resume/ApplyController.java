@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.jobhub.dto.customer.Customer;
 import com.jobhub.dto.resume.ApplyAnswerForm;
 import com.jobhub.dto.resume.ApplyCareerForm;
 import com.jobhub.dto.resume.ApplyCertificateForm;
@@ -21,6 +24,7 @@ import com.jobhub.dto.resume.ApplyEducationForm;
 import com.jobhub.dto.resume.Resume;
 import com.jobhub.dto.util.FileInfo;
 import com.jobhub.service.apply.ApplyService;
+import com.jobhub.service.customer.CustomerService;
 import com.jobhub.service.resume.ResumeService;
 import com.jobhub.util.FileManager;
 
@@ -35,11 +39,25 @@ public class ApplyController {
 
 	@Autowired
 	FileManager fileManager;
+	
+	@Autowired
+	CustomerService customerService;
 
 
 	@GetMapping("/apply")
-	public String apply(@RequestParam String postingId, Model model) {
-		System.out.println(postingId);
+	public String apply(@RequestParam String postingId, Model model, HttpSession session, Customer customer) {
+		
+		String loginId = (String)session.getAttribute("loginId");
+		
+		Customer customerInfo = customerService.findCustomerInfo(loginId);
+		
+		model.addAttribute("userId", customerInfo.getUserId());
+		model.addAttribute("name", customerInfo.getName());
+		model.addAttribute("email", customerInfo.getEmail());
+		model.addAttribute("birth", customerInfo.getBirth());
+		model.addAttribute("phone", customerInfo.getPhone());
+		model.addAttribute("gender", customerInfo.getGender());
+
 		model.addAttribute("postingId", postingId);
 		return "apply/apply";
 	}

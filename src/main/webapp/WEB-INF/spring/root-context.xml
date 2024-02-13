@@ -3,10 +3,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<!-- <bean id="userDAO" class="com.rsrvapp.dao.user.impl.UserDAOImpl"></bean> 
-		<bean id="userService" class="com.rsrvapp.service.user.impl.UserServiceImpl"> 
-		<constructor-arg ref="userDAO"></constructor-arg> <property name="userDAO" 
-		ref="userDAO"></property> </bean> -->
+	
 
 	<bean class="org.apache.commons.dbcp2.BasicDataSource"
 		id="data_source">

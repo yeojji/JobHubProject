@@ -96,16 +96,19 @@
 	</insert>
 
 	<insert id="saveAnswerInfo">
-		<selectKey keyProperty="maxSeq" resultType="int" order="BEFORE">
+		<selectKey keyProperty="maxSeq" resultType="int"
+			order="BEFORE">
 			SELECT NVL(MAX(answer_id) + 1, 1) FROM job_question
 		</selectKey>
 		INSERT INTO job_question
 		<foreach collection="ansList" item="ans" index="idx"
 			separator="UNION ALL">
 			SELECT #{maxSeq} + #{idx},
-			REPLACE(#{ans.content1}, 'null', ''),
+			REPLACE(#{ans.content1}, 'null',
+			''),
 			REPLACE(#{ans.content2}, 'null', ''),
-			REPLACE(#{ans.content3}, 'null', '') FROM DUAL
+			REPLACE(#{ans.content3},
+			'null', '') FROM DUAL
 		</foreach>
 	</insert>
 
@@ -128,7 +131,7 @@
 		'null', ''), REPLACE(#{f.fileSize} , 'null', ''), SYSDATE FROM DUAL </foreach> 
 		</insert> -->
 
-	
+
 
 	<insert id="saveResume" parameterType="Resume">
 		INSERT INTO resume_info
@@ -175,12 +178,13 @@
 		SYSDATE
 		)
 	</insert>
-	
-	
-	<insert id="saveFileInfo" parameterType="FileInfo"> 
-	INSERT INTO attached_data VALUES 
+
+
+	<insert id="saveFileInfo" parameterType="FileInfo">
+		INSERT INTO attached_data VALUES
 		( (SELECT NVL(MAX(file_id) + 1 , 1) FROM attached_data),
-		(SELECT resume_id
+		(SELECT
+		resume_id
 		FROM (
 		SELECT resume_id
 		FROM resume_info
@@ -193,8 +197,17 @@
 		#{filePath},
 		#{fileExtension},
 		#{fileSize},
-		SYSDATE) 
-		</insert>
+		SYSDATE)
+	</insert>
+
+
+
+	<select id="findEmployeeList" resultType="Employee">
+		SELECT e.name,
+		jobs_name, e.email
+		FROM employee e, jobs j
+		WHERE e.jobs_id = j.jobs_id
+	</select>
 
 </mapper>
 

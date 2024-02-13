@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -27,36 +28,26 @@
                     <div class="select_category_box">
                         <div>
                             <select class="select_region_menu">
+                            	<option selected disabled hidden>Region</option>
                                 <option>East Asia</option>
                                 <option>Southeast Asia</option>
                                 <option>North America</option>
                             </select>
                         </div>
                         <div>
-                            <select class="select_city_menu">
-                                <option>Bundang</option>
-                                <option>Dalian</option>
-                                <option>Fukuoka</option>
-                                <option>Hong Kong</option>
-                                <option>Kyoto</option>
-                                <option>Seoul</option>
-                                <option>Shanghai</option>
-                                <option>Taipei</option>
-                                <option>Tokyo</option>
-                                <option>Bangkok</option>
-                                <option>Jakarta</option>
-                                <option>New York</option>
-                                <option>Palo Alto</option>
+                            <select class="select_career_condition">
+                            	<option selected disabled hidden>Career Condition</option>
+                                <c:forEach var="career_condi" items="">
+                                	<option>Bundang</option>
+                                </c:forEach>
                             </select>
                         </div>
                         <div>
                             <select class="select_jobunit_menu">
-                                <option>Engineering</option>
-                                <option>Design</option>
-                                <option>Planning</option>
-                                <option>Business & Sales</option>
-                                <option>Marketing & Common</option>
-                                <option>Corporate</option>
+                                <option selected disabled hidden>Jobs</option>
+                                <c:forEach var="findJobsName" items="${findJobsName}">
+                                	<option>${findJobsName.jobsName}</option>
+                                </c:forEach>
                             </select>
                         </div>
                     </div>
@@ -122,39 +113,21 @@
                         <h2 class="career_title_text">Meet the Global JobHub</h2>
                     </div>
                 </div>
-                <div class="career_category_list">
-                    <div class="category_item">
-                        <!--부서별 직원 인터뷰 내용 반복-->
-                        <span class="category_title">부서명</span>
-                        <div class="employee_info">
-                            <span class="employee_name">부서별직원이름</span>
-                            <span class="employee_job">직무</span>
-                            <span class="employee_interview">
-                                직원별 인터뷰 내용
-                            </span>
-                        </div>
-                    </div>
-                    <div class="category_item">
-                        <span class="category_title">부서명</span>
-                        <div class="employee_info">
-                            <span class="employee_name">부서별직원이름</span>
-                            <span class="employee_job">직무</span>
-                            <span class="employee_interview">
-                                직원별 인터뷰 내용
-                            </span>
-                        </div>
-                    </div>
-                    <div class="category_item">
-                        <span class="category_title">부서명</span>
-                        <div class="employee_info">
-                            <span class="employee_name">부서별직원이름</span>
-                            <span class="employee_job">직무</span>
-                            <span class="employee_interview">
-                                직원별 인터뷰 내용
-                            </span>
-                        </div>
-                    </div>
-                </div>
+          		<div class="career_category_list">
+	                <c:forEach var="employeeInfoList" items="${employeeInfoList}">
+	                    <div class="category_item">
+                        <!--부서별 직원 인터뷰 내용 3번 반복-->
+                         <span class="category_title">${employeeInfoList.rootName}</span>
+	                        <div class="employee_info">
+	                            <span class="employee_name">${employeeInfoList.name}</span>
+	                            <span class="employee_job">${employeeInfoList.jobsName}</span>
+	                            <span class="employee_interview">
+	                                직원별 인터뷰 내용
+	                            </span>
+	                        </div>
+	                    </div>
+	                </c:forEach>
+	                </div>
                 <div class="more_about_employee_info">
                     <span class="more_about_text2">More about our JobHub ></span>
                 </div>
@@ -162,7 +135,64 @@
         </div>
     </div>
 
+<script>
+$(document).ready(function(){
+	
+    if($("select[name=jobLevel1]").val() == "") {
+        $("select[name=jobLevel2]").attr("disabled", true);
+    }
+    console.log('file loading');	    
+    
+    $(jobLevel1).on('change', function () {
+    	console.log('select chagned');
+    	jobLevel1 = $(this).val();
+    	console.log(jobLevel1);
+    	
+        if (jobLevel1 != "") {
+        	
+        	
+        	
+            jQuery.ajax({
+                type: "POST",
+                url: "/jobnameByPid",
+                data: {
+                    jobLevel1: jobLevel1
+                },
+                //datatype: "text",
+                datatype: "json",
+                success: function (jobNameList) {
+                    //var data = JSON.parse(jobNameList); 
+                    console.log(jobNameList); // 콘솔에 데이터가 제대로 나오는지 확인
+                    $('#jobLevel2').empty(); 	//자식 테이블 한번 지우기
+                    $.each(jobNameList, function (index, job) {	 //index, Object
+                        console.log(index); // 콘솔에 각각의 키와 값이 제대로 나오는지 확인
+                        console.log(job); // 콘솔에 각각의 키와 값이 제대로 나오는지 확인
+                        //index: 현재 요소의 인덱스(걍 자리채우기용) //job 현재 요소의 값
+                        $('<option></option>').val(job.jobsId).text(job.jobsName).appendTo($('#jobLevel2'));
+                    });
+                },
+                error: function (xhr, status, error) {
+                    console.log("ERROR!!!", error); // 에러 로그 확인
+                }
+            });
+            
+            $("select[name=jobLevel2]").attr("disabled", false);
+            
+            
+            
+        } else {
+            $("select[name=jobLevel2]").attr("disabled", true);
+        }
 
+     
+    });
+});
+
+
+
+
+
+</script>
 
     <!--footer-->
         <%@ include file="../header_footer/footer.jsp" %>
