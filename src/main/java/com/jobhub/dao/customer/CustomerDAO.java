@@ -3,6 +3,7 @@ package com.jobhub.dao.customer;
 import java.util.List;
 
 import com.jobhub.dto.customer.Customer;
+import com.jobhub.dto.jobposting.Job;
 
 public interface CustomerDAO {
 
@@ -17,4 +18,6 @@ public interface CustomerDAO {
 	public int modifyCustomerPw(Customer customer);
 	
 	public int removeCustomer(Customer customer);
+	
+
 }

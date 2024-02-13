@@ -1,21 +1,10 @@
 package com.jobhub.service.resume;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import com.jobhub.dto.resume.ResumeEducationForm;
-import java.util.List;
-
 
 import com.jobhub.dto.resume.Resume;
 import com.jobhub.dto.resume.ResumeSearchCondition;
 
 public interface ResumeService {
-
-	public int saveEducationInfo(Map<String, Object> eduMap);
-	
-	public int saveEducationInfo(ResumeEducationForm educationForm);
-	
-	public int saveEducationInfo(List<ResumeEducationForm> educationForm);
 
 	// 이력서 저장
 	public int saveResume(Resume resume);

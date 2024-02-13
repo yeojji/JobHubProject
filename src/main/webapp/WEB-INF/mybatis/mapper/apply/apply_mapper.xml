@@ -5,68 +5,210 @@
 
 
 <mapper namespace="apply_mapper">
-	<!-- <insert id="saveEducationInfo" parameterType="educationForm">
+
+	<!-- <insert id="saveEducationInfo" parameterType="hashmap"> <foreach collection="resumeList" 
+		item="item" open="INSERT ALL" close="SELECT * FROM dual"> INTO education 
+		VALUES ( edu_seq.nextval, edu_seq.nextval, #{item.eduSortation}, #{item.schoolName}, 
+		#{item.admission}, #{item.graduation}, REPLACE(#{item.major}, 'null', ''), 
+		REPLACE(#{item.minor}, 'null', ''), REPLACE(#{item.grade}, 'null', ''), REPLACE(#{item.totalScore}, 
+		'null', ''), REPLACE(#{item.graduationStatus} , 'null', '') ) </foreach> 
+		</insert> -->
+
+	<!-- <insert id="saveCareerInfo" parameterType="hashmap"> <foreach collection="careerList" 
+		item="ca" open="INSERT ALL" close="SELECT * FROM dual"> INTO career VALUES 
+		( (SELECT NVL(MAX(career_id), 0) + 1 FROM career), 1, #{ca.companyName}, 
+		#{ca.departmentName}, #{ca.joinDate}, #{ca.resignationDate}, #{ca.duty}, 
+		#{ca.position}, #{ca.detailWork} ) </foreach> </insert> -->
+
+
+	<insert id="saveEducationInfo">
+		<selectKey keyProperty="maxSeq" resultType="int"
+			order="BEFORE">
+			SELECT NVL(MAX(edu_id) + 1, 1) FROM education
+		</selectKey>
 		INSERT INTO education
-		VALUES ( 1, 101, #{eduSortation}, #{schoolName}, #{admission}
-		, #{graduation}, #{major}, #{minor}, #{grade}, #{totalScore}, #{graduationStatus})
-	</insert> -->
-	
-	
-	
-	<!-- <insert id="saveEducationInfo" parameterType="HashMap">
-
-	<foreach collection="Map" item="item" separator=","
-		open="INSERT ALL" close="SELECT * FROM SYS.DUAL">
-		INTO education VALUES
-		(
-		edu_seq.nextval, resume_seq.nextval, #{item.eduSortation}, #{item.schoolName},
-		#{item.admission}, #{item.graduation}, #{item.major}, #{item.minor},
-		#{item.grade}, #{item.totalScore}, #{item.graduationStatus}
-		)
-	</foreach>
-	</insert> -->
-	
-	<!-- <insert id="saveEducationInfo" parameterType="educationForm">
-
-	<foreach collection="list" item="item" separator=","
-		open="INSERT ALL" close="SELECT * FROM SYS.DUAL">
-		INTO education VALUES
-		(
-		edu_seq.nextval, resume_seq.nextval, #{item.eduSortation}, #{item.schoolName},
-		#{item.admission}, #{item.graduation}, #{item.major}, #{item.minor},
-		#{item.grade}, #{item.totalScore}, #{item.graduationStatus}
-		)
-	</foreach>
-	</insert> -->
-	
-<!-- 	<insert id="saveEducationInfo" parameterType="educationForm"> -->
-	<!-- 여기가 되는코드 <insert id="saveEducationInfo" parameterType="hashmap">
-
-	<foreach collection="resumeList" item="item"
-		open="INSERT ALL" close="SELECT * FROM dual">
-		INTO education VALUES
-		(
-		edu_seq.nextval, resume_seq.nextval, #{item.eduSortation}, #{item.schoolName},
-		#{item.admission}, #{item.graduation}, #{item.major}, #{item.minor},
-		#{item.grade}, #{item.totalScore}, #{item.graduationStatus}
-		)
-	</foreach>
-	</insert> -->
-	
-	
-	<insert id="saveEducationInfo" parameterType="hashmap">
-
-	<foreach collection="resumeList" item="item"
-		open="INSERT ALL" close="SELECT * FROM dual">
-		INTO education VALUES
-		(
-		edu_seq.nextval, resume_seq.nextval, #{item.eduSortation}, #{item.schoolName},
-		#{item.admission}, #{item.graduation}, #{item.major}, #{item.minor},
-		#{item.grade}, #{item.totalScore}, #{item.graduationStatus}
-		)
-	</foreach>
+		<foreach collection="eduList" item="item" index="idx"
+			separator="UNION ALL">
+			SELECT #{maxSeq} + #{idx},
+			(SELECT NVL(MAX(edu_id) + 1, 1)
+			FROM education),
+			#{item.eduSortation},
+			#{item.schoolName},
+			#{item.admission},
+			#{item.graduation},
+			REPLACE(#{item.major}, 'null',
+			''),
+			REPLACE(#{item.minor}, 'null', ''),
+			REPLACE(#{item.grade}, 'null',
+			''),
+			REPLACE(#{item.totalScore}, 'null', ''),
+			REPLACE(#{item.graduationStatus} , 'null', '') FROM DUAL
+		</foreach>
 	</insert>
-	
+
+
+	<!-- 2/8현재 성공한 쿼리문 이걸로 전부 수정해야됨!!!!!!!!!!!!!!!!!!!! -->
+	<insert id="saveCareerInfo">
+		<selectKey keyProperty="maxSeq" resultType="int"
+			order="BEFORE">
+			SELECT NVL(MAX(car_id) + 1, 1) FROM career
+		</selectKey>
+		INSERT INTO career
+		<foreach collection="careerList" item="ca" index="idx"
+			separator="UNION ALL">
+			SELECT #{maxSeq} + #{idx},
+			(SELECT NVL(MAX(car_id) + 1, 1)
+			FROM career),
+			REPLACE(#{ca.companyName}, 'null', ''),
+			REPLACE(#{ca.departmentName}, 'null', ''),
+			REPLACE(#{ca.joinDate},
+			'null', ''),
+			REPLACE(#{ca.resignationDate}, 'null', ''),
+			REPLACE(#{ca.duty}, 'null', ''),
+			REPLACE(#{ca.position}, 'null', ''),
+			REPLACE(#{ca.detailWork}, 'null', '') FROM DUAL
+		</foreach>
+	</insert>
+
+
+	<insert id="saveCertificateInfo">
+		<selectKey keyProperty="maxSeq" resultType="int"
+			order="BEFORE">
+			SELECT NVL(MAX(cert_id) + 1, 1) FROM certificate
+		</selectKey>
+		INSERT INTO certificate
+		<foreach collection="certList" item="cert" index="idx"
+			separator="UNION ALL">
+			SELECT #{maxSeq} + #{idx},
+			(SELECT NVL(MAX(cert_id) + 1, 1)
+			FROM certificate),
+			REPLACE(#{cert.certSortation}, 'null', ''),
+			REPLACE(#{cert.certType}, 'null', ''),
+			REPLACE(#{cert.certLevel},
+			'null', ''),
+			REPLACE(#{cert.acquisition}, 'null', ''),
+			REPLACE(#{cert.lssuingAuthority}, 'null', ''),
+			REPLACE(#{cert.language}, 'null', ''),
+			REPLACE(#{cert.test}, 'null',
+			''),
+			REPLACE(#{cert.languageGrade}, 'null', '') FROM DUAL
+		</foreach>
+	</insert>
+
+	<insert id="saveAnswerInfo">
+		<selectKey keyProperty="maxSeq" resultType="int"
+			order="BEFORE">
+			SELECT NVL(MAX(answer_id) + 1, 1) FROM job_question
+		</selectKey>
+		INSERT INTO job_question
+		<foreach collection="ansList" item="ans" index="idx"
+			separator="UNION ALL">
+			SELECT #{maxSeq} + #{idx},
+			REPLACE(#{ans.content1}, 'null',
+			''),
+			REPLACE(#{ans.content2}, 'null', ''),
+			REPLACE(#{ans.content3},
+			'null', '') FROM DUAL
+		</foreach>
+	</insert>
+
+	<!-- <insert id="saveCertificateInfo" parameterType="hashmap"> <foreach 
+		collection="certList" item="cert" open="INSERT ALL" close="SELECT * FROM 
+		dual"> INTO certificate VALUES ( (SELECT NVL(MAX(certificate_id), 0) + 1 
+		FROM certificate), certificate_seq.nextval, REPLACE(#{cert.certSortation}, 
+		'null', ''), REPLACE(#{cert.certType}, 'null', ''), REPLACE(#{cert.certLevel}, 
+		'null', ''), REPLACE(#{cert.acquisition}, 'null', ''), REPLACE(#{cert.lssuingAuthority}, 
+		'null', ''), REPLACE(#{cert.language}, 'null', ''), REPLACE(#{cert.test}, 
+		'null', ''), REPLACE(#{cert.languageGrade}, 'null', '') ) </foreach> </insert> -->
+
+
+	<!-- <insert id="saveFileInfo"> <selectKey keyProperty="maxSeq" resultType="int" 
+		order="BEFORE"> SELECT NVL(MAX(f_id) + 1, 1) FROM attached_data </selectKey> 
+		INSERT INTO attached_data <foreach collection="fileList" item="f" index="idx" 
+		separator="UNION ALL"> SELECT #{maxSeq} + #{idx}, (SELECT NVL(MAX(f_id) + 
+		1, 1) FROM attached_data), REPLACE(#{f.fileName}, 'null', ''), REPLACE(#{f.originalFileName}, 
+		'null', ''), REPLACE(#{f.filePath}, 'null', ''), REPLACE(#{f.fileExtension}, 
+		'null', ''), REPLACE(#{f.fileSize} , 'null', ''), SYSDATE FROM DUAL </foreach> 
+		</insert> -->
+
+
+
+	<insert id="saveResume" parameterType="Resume">
+		INSERT INTO resume_info
+		VALUES (
+		'res' || TO_CHAR(resume_id_seq.NEXTVAL),
+		'유저아이디',
+		#{postingId},
+		(SELECT academic_id
+		FROM (
+		SELECT academic_id
+		FROM education
+		ORDER BY
+		edu_id DESC
+		)
+		WHERE ROWNUM = 1),
+		(SELECT career_id
+		FROM (
+		SELECT career_id
+		FROM career
+		ORDER BY car_id DESC
+		)
+		WHERE ROWNUM = 1),
+		(SELECT
+		certificate_id
+		FROM (
+		SELECT certificate_id
+		FROM certificate
+		ORDER BY
+		cert_id DESC
+		)
+		WHERE ROWNUM = 1),
+		(SELECT answer_id
+		FROM (
+		SELECT answer_id
+		FROM job_question
+		ORDER BY answer_id DESC
+		)
+		WHERE ROWNUM = 1),
+		#{supportPath},
+		#{militaryServiceMatters},
+		#{veteransTargetStatus},
+		#{disorderStatus},
+		'T',
+		SYSDATE
+		)
+	</insert>
+
+
+	<insert id="saveFileInfo" parameterType="FileInfo">
+		INSERT INTO attached_data VALUES
+		( (SELECT NVL(MAX(file_id) + 1 , 1) FROM attached_data),
+		(SELECT
+		resume_id
+		FROM (
+		SELECT resume_id
+		FROM resume_info
+		ORDER BY
+		resume_id DESC
+		)
+		WHERE ROWNUM = 1),
+		#{fileName},
+		#{originalFileName},
+		#{filePath},
+		#{fileExtension},
+		#{fileSize},
+		SYSDATE)
+	</insert>
+
+
+
+	<select id="findEmployeeList" resultType="Employee">
+		SELECT e.name,
+		jobs_name, e.email
+		FROM employee e, jobs j
+		WHERE e.jobs_id = j.jobs_id
+	</select>
+
 </mapper>
 
 

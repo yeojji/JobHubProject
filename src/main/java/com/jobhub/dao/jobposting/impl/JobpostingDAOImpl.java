@@ -7,10 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.jobhub.dao.jobposting.JobpostingDAO;
+import com.jobhub.dto.employee.EmployeeJobsInfo;
 import com.jobhub.dto.jobposting.Description;
 import com.jobhub.dto.jobposting.FAQs;
 import com.jobhub.dto.jobposting.Job;
 import com.jobhub.dto.jobposting.Jobposting;
+import com.jobhub.dto.jobposting.PostingSearchCondition;
 
 @Repository
 public class JobpostingDAOImpl implements JobpostingDAO {
@@ -27,6 +29,43 @@ public class JobpostingDAOImpl implements JobpostingDAO {
 		List<Jobposting> jobpostingList = sqlSessionTemplate.selectList("jobPosting_mapper.findJobpostingList");
 		return jobpostingList;
 	}
+	
+	/*
+	 * public List<Jobposting> findJobpostingListBySearchCondition(String
+	 * searchKeyword){ List<Jobposting> jobpostingList =
+	 * sqlSessionTemplate.selectList(
+	 * "jobPosting_mapper.findJobpostingListBySearchCondition", searchKeyword);
+	 * return jobpostingList; }
+	 */
+	
+	/*
+	 * public List<Jobposting>
+	 * findPostingListBySearchCondition(PostingSearchCondition
+	 * postingSearchCondition){ List<Jobposting> jobpostingList =
+	 * sqlSessionTemplate.selectList(
+	 * "jobPosting_mapper.findPostingListBySearchCondition",postingSearchCondition);
+	 * return jobpostingList; }
+	 */
+	
+	public List<Jobposting> findPostingListBySearchCondition(String keyword){
+		List<Jobposting> jobpostingList = sqlSessionTemplate.selectList("jobPosting_mapper.findPostingListBySearchCondition",keyword);
+		return jobpostingList;
+	}
+	
+	public List<Jobposting> findPostingListByjobscatename(String jobsCateName){
+		List<Jobposting> jobpostingList = sqlSessionTemplate.selectList("jobPosting_mapper.findPostingListByjobscatename",jobsCateName);
+		return jobpostingList;
+	
+	}
+	
+	
+	
+	
+	public List<Jobposting> findPostingAndJobNameList(){
+		List<Jobposting> jobpostingNameList = sqlSessionTemplate.selectList("jobPosting_mapper.findPostingAndJobNameList");
+		return jobpostingNameList;
+	}
+	
 	
 	public List<Job> findJobNameListbyPid(int jobLevel1) {
 		List<Job> jobNameList = sqlSessionTemplate.selectList("jobPosting_mapper.findJobNameListbyPid", jobLevel1);
@@ -86,6 +125,18 @@ public class JobpostingDAOImpl implements JobpostingDAO {
 	public int removeFaqsById(String FAQsId) {
 		int result = sqlSessionTemplate.delete("jobPosting_mapper.removeFaqs", FAQsId);
 		return result;
+	}
+
+	@Override
+	public List<EmployeeJobsInfo> findEmployeeJobsInfoList() {
+		List<EmployeeJobsInfo> findEmployeeJobsInfoList = sqlSessionTemplate.selectList("jobPosting_mapper.findEmployeeJobsInfoList");
+		return findEmployeeJobsInfoList;
+	}
+
+	@Override
+	public List<Job> findJobsNameByLevel1() {
+		List<Job> findJobsNameByLevel1List = sqlSessionTemplate.selectList("jobPosting_mapper.findJobsNameByLevel1");
+		return findJobsNameByLevel1List;
 	}
 	
 	

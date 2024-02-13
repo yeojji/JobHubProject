@@ -93,11 +93,11 @@
     font-size:17px;
     font-weight:bold;
     color:white;
-    background-color: #2dc26b;
+    background-color: #ebebeb;
     border:none;
     letter-spacing :-1px;
     margin-top:30px;
-    cursor: pointer;
+    cursor: default;
 }
 .form-agree-detail{
     width: 900px;
@@ -129,9 +129,16 @@ ul{
     margin-top: 40px;
 }
 
-.warning {
+.warning, .warningId, .warningPw,
+.warningPwchk, .warningName,.warningBirth,
+.warningEmail, .warningPhone {
     margin-top:5px;
     color: red;
     font-size: 13px;
     display: none;
+}
+
+.signup_input:focus{
+    outline:none;
+    border-color:#2dc26b;
 }

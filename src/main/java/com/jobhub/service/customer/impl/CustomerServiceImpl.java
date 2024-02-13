@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.jobhub.dao.customer.CustomerDAO;
 import com.jobhub.dto.customer.Customer;
+import com.jobhub.dto.jobposting.Job;
 import com.jobhub.service.customer.CustomerService;
 
 @Service
@@ -14,6 +15,8 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Autowired
 	CustomerDAO customerDAO;
+	
+
 	
 	@Override
 	public Customer findCustomerInfo(String userId) {
@@ -30,10 +33,6 @@ public class CustomerServiceImpl implements CustomerService {
 		Customer loginCustomer = customerDAO.findLoginCustomer(customer);
 		return loginCustomer;
 	}
-
-	
-
-	
 
 	public int saveUser(Customer customer) {
 		// TODO Auto-generated method stub
@@ -67,4 +66,6 @@ public class CustomerServiceImpl implements CustomerService {
 		int result = customerDAO.removeCustomer(customer);
 		return result;
 	}
+
+	
 }

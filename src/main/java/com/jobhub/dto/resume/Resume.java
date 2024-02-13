@@ -1,7 +1,5 @@
 package com.jobhub.dto.resume;
 
-import org.springframework.web.multipart.MultipartFile;
-
 import lombok.Data;
 
 @Data
@@ -9,13 +7,14 @@ public class Resume {
 	//이력서 관련 내용
 	String resumeId;
 	String userId;
-	int jobsId;
-	String careerId;
-	String academicId;
-	String certificateId;
+	String postingId;
+	int careerId;
+	int academicId;
+	int certificateId;
+	int answerId;
 	String supportPath;
-	String military_serviceMatters;
-	String veterans_targetStatus;
+	String militaryServiceMatters;
+	String veteransTargetStatus;
 	String disorderStatus;
 	String submissionStatus;
 	String revisionDate;
@@ -40,31 +39,55 @@ public class Resume {
 	String position;  		//고용형태
 	String detailWork;  	//상세업무내용
 	
-	String certSortation;	//자격사항 구분
-	String certType;		//자격/면허 종류
-	String certLevel;		//등급
-	String acquisition;		//취득/응시일
-	String Authority;		//발급기관
-	String language;		//언어
-	String score;			//점수
+	String certSortation;
+	String certType;
+	String certLevel;
+	String acquisition;
+	String lssuingAuthority;
+	String language;
+	String test;
+	String languageGrade;
 	
 	String content1;
 	String content2;
 	String content3;
 	
-	MultipartFile data;   //일단 파일은 좀더 생각해봐야할듯
+	int fileId;
+	String fileName;
+	String originalFileName;
+	String filePath;
+	String fileExtension;
+	long fileSize;
 	
-	String military;		//병역사항
-	String veternas;		//보훈대상 여부
-	String disorder;		//장애사항
+	String career;
+	String education;
+	String age;
+	String name;
+	String jobsName;
+	
+	String title;
+	String phone;
+	String email;
+	String gender;
+	String birth;
+	
+	String resignationDateOfCompany;
+	String joinedDateOfCompany;
+	
+	String startDate;
+	String endDate;
+	String startAge;
+	String endAge;
+	String findOutPath;
+	String careerCondition;
 	
 	/*
 	resume_id					varchar2	이력서ID
 	user_id						varchar2	회원ID
 	jobs_id						varchar2	직무ID
-	career_id					varchar2	경력ID
-	academic_id					varchar2	학력ID
-	certificate_id				varchar2	자격ID
+	career_id					NUMBER		경력ID
+	academic_id					NUMBER		학력ID
+	certificate_id				NUMBER		자격ID
 	support_path				varchar2	지원경로
 	military_service_matters	varchar2	병역사항
 	veterans_target_status		varchar2	보훈대상여부
