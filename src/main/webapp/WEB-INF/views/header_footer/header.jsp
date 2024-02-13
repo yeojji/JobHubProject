@@ -20,10 +20,10 @@
                 	<div class="company_title" onclick="location.href='/'"><img src="D:\fileStorage/logo_1500x211.png"></div>
                 </div>
                 <div class="header_menu1_list">
-                    <div class="header_menu1_list_item">People</div>
-                    <div class="header_menu1_list_item">Culture</div>
-                    <div class="header_menu1_list_item" onclick="location.href='/customer/notice_by_career'">Jobs</div>
-                    <div class="header_menu1_list_item" onclick="location.href='/cus/faqs'">FAQs</div>
+                    <div class="header_menu1_list_item white_font" onclick="location.href='/people'">People</div>
+                    <div class="header_menu1_list_item white_font">Culture</div>
+                    <div class="header_menu1_list_item white_font" onclick="location.href='/customer/notice_by_career'">Jobs</div>
+                    <div class="header_menu1_list_item white_font" onclick="location.href='/cus/faqs'">FAQs</div>
                 </div>
             </div>
             <div class="header_menu2">
