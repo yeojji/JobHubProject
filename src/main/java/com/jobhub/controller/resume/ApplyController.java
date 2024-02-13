@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.jobhub.dto.customer.Customer;
+import com.jobhub.dto.jobposting.Jobposting;
 import com.jobhub.dto.resume.ApplyAnswerForm;
 import com.jobhub.dto.resume.ApplyCareerForm;
 import com.jobhub.dto.resume.ApplyCertificateForm;
@@ -59,11 +60,17 @@ public class ApplyController {
 		model.addAttribute("gender", customerInfo.getGender());
 
 		model.addAttribute("postingId", postingId);
+		Jobposting question = applyService.findQuestions(postingId);
+		model.addAttribute("question1", question.getQuestion1());
+		model.addAttribute("question2", question.getQuestion2());
+		model.addAttribute("question3", question.getQuestion3());
+		
 		return "apply/apply";
+		
 	}
 
 	@PostMapping("/apply")
-	public String applyProcess(@RequestParam String postingId, ApplyEducationForm eduForm, ApplyCareerForm careerForm, 
+	public String applyProcess(HttpSession session, @RequestParam String postingId, ApplyEducationForm eduForm, ApplyCareerForm careerForm, 
 			ApplyCertificateForm certForm, ApplyAnswerForm answerForm,@RequestParam("data") List<MultipartFile> files, Resume resume) {
 
 		//여기는 학력 정보를 테이블에 저장하는 코드입니다.
@@ -87,7 +94,6 @@ public class ApplyController {
 		hashMap.put("eduList", eduList);
 
 		int eduresult = applyService.saveEducationInfo(hashMap);
-
 
 
 		//여기는 경력 정보를 테이블에 저장하는 코드입니다.
@@ -118,7 +124,6 @@ public class ApplyController {
 
 			careerList.add(rsm);
 		}
-
 
 		hashMap.clear();
 		hashMap.put("careerList", careerList);
@@ -188,11 +193,11 @@ public class ApplyController {
 			int ansResult = applyService.saveAnswerInfo(hashMap);
 
 
-
-
-
 			//일단 이력서 테이블 저장 시도해보겠습니다..
 			System.out.println(resume);
+			System.out.println(resume.getSubmissionStatus());
+			String loginId = (String)session.getAttribute("loginId");
+			resume.setUserId(loginId);
 
 			int resumeResult = applyService.saveResumeInfo(resume);
 
@@ -224,8 +229,9 @@ public class ApplyController {
 
 			return "redirect:/";
 
-
-
 		}
+	
+	
+	
 
 	}

@@ -16,7 +16,7 @@
     <div class="container">
         <div class="signup_main">
             <div class="signup_form">
-                <form action="" method="post" id="signupForm">
+                <form action="/sign-up" method="post" id="signupForm">
                     <div class="form_group">
                         <div class="form_line">
                             <label for="signup_input_id" class="signup_label">아이디</label>

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.jobhub.dao.apply.ApplyDAO;
 import com.jobhub.dto.employee.Employee;
+import com.jobhub.dto.jobposting.Jobposting;
 import com.jobhub.dto.resume.Resume;
 import com.jobhub.dto.util.FileInfo;
 import com.jobhub.service.apply.ApplyService;
@@ -114,6 +115,13 @@ int result = applyDAO.saveFileInfo(hashMap);
 		// TODO Auto-generated method stub
 		List<Employee> employeeList = applyDAO.findEmployeeList();
 		return employeeList;
+	}
+
+	@Override
+	public Jobposting findQuestions(String postingId) {
+		// TODO Auto-generated method stub
+		Jobposting questList = applyDAO.findQuestions(postingId);
+		return questList;
 	}
 
 }

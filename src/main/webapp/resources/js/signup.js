@@ -241,6 +241,7 @@ document.getElementById('signup_check').addEventListener('change', function() {
 
 document.getElementById('submitBtn').addEventListener('click', function(e) {
 
+    let form = document.getElementById("signupForm");
     let id = document.getElementById("signup_input_id").value;
     let pw = document.getElementById("signup_input_pw").value;
     let pwChk = document.getElementById("signup_input_pwchk").value;
@@ -271,6 +272,7 @@ document.getElementById('submitBtn').addEventListener('click', function(e) {
         alert('전화번호를 입력해주세요');
         e.preventDefault();
     }else {
+        form.submit();
         alert('회원가입 되었습니다');
     }
 });

@@ -27,7 +27,7 @@ public class UserLoginController {
 		System.out.println(customer);
 		
 		int result = customerService.saveUser(customer);
-		
+		System.out.println(result);
 		if(result > 0) {
 			return "redirect:/login";
 		}else {
