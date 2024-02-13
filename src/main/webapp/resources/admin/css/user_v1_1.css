@@ -582,11 +582,11 @@ html:lang(vi) .mFormBox .formId.onFocus .btnReset { right:110px; }
     -webkit-transform:rotate(0deg); -moz-transform:rotate(0deg); -ms-transform:rotate(0deg); transform:rotate(0deg);
 }
 /* 아이콘 공통 */
-.mTooltip .icon { overflow:hidden; width:18px; height:18px; text-indent:150%; white-space:nowrap; cursor:pointer; background:url("img/admin/ico_tooltip.svg") -1px -1px no-repeat; background-size: 20px; }
+.mTooltip .icon { overflow:hidden; width:18px; height:18px; text-indent:150%; white-space:nowrap; cursor:pointer; background:url("/admin/img/ico_tooltip.svg") -1px -1px no-repeat; background-size: 20px; }
 .mTooltip .icon:hover,
 .mTooltip.show .icon { background-image: url("img/admin/ico_tooltip_on.svg"); }
 .mTooltip.show { z-index:80; }
-.mTooltip .icoNoitce { overflow:hidden; width:16px; height:16px; text-indent:150%; white-space:nowrap; cursor:pointer; background:url("img/admin/sfix_icon.png") 0 0 no-repeat; background-size:100px auto; }
+.mTooltip .icoNoitce { overflow:hidden; width:16px; height:16px; text-indent:150%; white-space:nowrap; cursor:pointer; background:url("/admin/img/sfix_icon.png") 0 0 no-repeat; background-size:100px auto; }
 /* width */
 .mTooltip.gSmall .tooltip { width:253px; }
 .mTooltip.gMedium .tooltip { width:300px; }

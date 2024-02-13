@@ -12,27 +12,6 @@
 <link rel="stylesheet" type="text/css" href="css/notosans.css" media="all">
 <link rel="stylesheet" type="text/css" href="css/user_v1_1.css" media="all">
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<!--  <script type="text/javascript" src="/kr/_resource/js/jquery/jquery-3.5.1.min.js"></script>
-	<script type="text/javascript" src="/kr/_resource/js/jquery/jquery.capslockstate.js"></script>
-	<script type="text/javascript" src="/kr/_resource/js/common_init.js"></script>
-	<script type="text/javascript" src="/kr/_resource/js/lib/wd.ajax.min.js"></script>
-	<script type="text/javascript" src="/kr/_resource/js/lib/wd.json.min.js"></script>
-	<script type="text/javascript" src="/kr/_resource/js/lib/wd.layer.min.js"></script>
-	<script type="text/javascript" src="/kr/_resource/js/lib/wd.util.min.js"></script>
-	<script type="text/javascript" src="/kr/_resource/js/lib/wd.validator.min.js"></script>
-
-	<script type="text/javascript" src="/kr/_resource/js/common.standard.v2.b.js?ver=1706769461"></script>
-	<script type="text/javascript" src="/kr/_resource/js/join/join.standard.register.v2.b.js?ver=1706769461"></script>
-	<script type="text/javascript" src="/kr/_resource/js/jquery/jquery.jobhubIdCheck.v2.js?ver=1706769461"></script>
-	<script type="text/javascript" src="/kr/_resource/js/jquery/jquery.jobhubPwCheck.v2.js?ver=1706769461"></script>
-
-	<script type="text/javascript" src="/kr/_resource/js/zipcode.standard.v2.js?ver=1706769461" charset="utf-8"></script>
-
-	<script type="text/javascript" src="/kr/_resource/js/rsa/rsa.js"></script>
-	<script type="text/javascript" src="/kr/_resource/js/rsa/jsbn.js"></script>
-	<script type="text/javascript" src="/kr/_resource/js/rsa/prng4.js"></script>
-	<script type="text/javascript" src="/kr/_resource/js/rsa/rng.js"></script>
- -->
 <script>
     $(document).ready(function() {
 

@@ -1,89 +1,55 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-<meta charset="utf-8">
-<title>Jobhub 관리자 페이지</title>
-<link rel="stylesheet" href="/admin/css/admin.css">
-<link rel="shortcut icon" href="/common/icon/jobhub_favicon.ico" type="image/x-icon">
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="https://kit.fontawesome.com/b158a20f5c.js"
-	crossorigin="anonymous"></script>
-</head>
-
-<body>
-	<!-- header -->
-	<header id="hd">
-		<div id="hd_wrap">
-			<h1>Jobhub 관리자 페이지</h1>
-			<div id="logo">
-				<a href="/admin/adminMain"><img
-					src="/admin/img/logo_wh_250x35.png" alt="Jobhub logo"></a>
-			</div>
-			<div id="tnb">
-				<ul>
-					<li>${loginId}님</li>
-					<li><a href="#" target="_blank">Jobhub바로가기</a></li>
-					<li><a href="/admin/mypage">마이페이지</a></li>
-					<li id="tnb_logout"><a href="#">로그아웃</a></li>
-				</ul>
-			</div>
-			<!-- gnb -->
-		</div>
-	</header>
+<%@include file="/WEB-INF/views/admin/layout/header.jsp" %>
 	<div id="snb">
 		<dl>
 			<dt class="g10">
 				<i class="fa-solid fa-people-group"></i>회원관리
 			</dt>
 			<dd class="g10">
-				<a href="#">회원정보 조회<em>2</em></a>
+				<a href="">회원정보 조회<em>2</em></a>
 			</dd>
 			<dd class="g10">
-				<a href="#">신규회원 등록</a>
+				<a href="">신규회원 등록</a>
 			</dd>
 			<dd class="g10">
-				<a href="#">탈퇴자 조회</a>
+				<a href="">탈퇴자 조회</a>
 			</dd>
 			<dt class="g10">
 				<i class="fa-solid fa-people-roof"></i>직원관리
 			</dt>
 			<dd class="g10">
-				<a href="#">직원정보 조회<em>2</em></a>
+				<a href="">직원정보 조회<em>2</em></a>
 			</dd>
 			<dd class="g10">
-				<a href="#">신규직원 등록</a>
+				<a href="">신규직원 등록</a>
 			</dd>
 			<dt class="g10">
 				<i class="fa-solid fa-file-lines"></i>이력서관리
 			</dt>
 			<dd class="g10">
-				<a href="#">이력서 조회</a>
+				<a href="/admin/resume">이력서 조회</a>
 			</dd>
 			<dd class="g10">
-				<a href="#">면접지원자 관리</a>
+				<a href="">면접지원자 관리</a>
 			</dd>
 			<dt class="g10">
 				<i class="fa-solid fa-pen-to-square"></i>채용공고 관리
 			</dt>
 			<dd class="g10">
-				<a href="#">신규공고 등록</a>
+				<a href="">신규공고 등록</a>
 			</dd>
 			<dt class="g10">
 				<i class="fa-solid fa-gears"></i>관리자설정
 			</dt>
 			<dd class="g10 active">
-				<a href="#">관리자 조회<em>195</em></a>
+				<a href="/admin/setting">관리자 조회<em>195</em></a>
 			</dd>
 			<dd class="g10">
-				<a href="#">신규계정 생성</a>
+				<a href="">신규계정 생성</a>
 			</dd>
 			<dd class="g10">
-				<a href="#">계정승인요청 조회</a>
+				<a href="">계정승인요청 조회</a>
 			</dd>
 		</dl>
 	</div>
@@ -223,29 +189,4 @@
 	</div>
 
 	<!-- //검색결과 리스트 -->
-
-	<!-- footer -->
-	<div id="ft">
-		<p>Copyright &copy; Jobhub. All rights reserved.</p>
-	</div>
-	<div id="ajax-loading">
-		<img src="/common/img/ajax-loader.gif">
-	</div>
-	<div id="anc_header">
-		<a href="#anc_hd"><span></span>TOP</a>
-	</div>
-	<script src="/admin/js/admin.js"></script>
-	<script src="/common/js/wrest.js"></script>
-	<script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var chkAll = document.querySelector('input[name="chkall"]');
-            chkAll.addEventListener('change', function () {
-                var checkboxes = document.querySelectorAll('input[name="chk[]"]');
-                checkboxes.forEach(function (checkbox) {
-                    checkbox.checked = chkAll.checked;
-                });
-            });
-        });
-    </script>
-</body>
-</html>
+<%@include file="/WEB-INF/views/admin/layout/footer.jsp" %>
