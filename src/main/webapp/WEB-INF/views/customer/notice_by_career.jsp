@@ -66,10 +66,9 @@
 </form>
                     <span class="notice_guide_text">${postingCount}개의 채용공고가 있습니다</span>
                     <!--  바꿔야대 ,, -->  
-                    <%--                            ${postingCountByName} postingCountByName
- --%>                        
+                     
                     
-
+                    
 <c:forEach var="jobpostingNameItem" items="${jobpostingNameList}"> 
     <c:if test="${jobpostingNameItem.postStatus == 'O'}">
         <div class="notice_list_item">
@@ -83,74 +82,38 @@
                 </div>
             </div>
             <div class="">
-                <c:if test="${sessionScope.loginId != null}">
-                    <input type="hidden" value="${scrapId}">
-                    <input type="hidden" value="${jobpostingItem.postingId}" name="postingId">
-                    <input type="hidden" value="${sessionScope.loginId}" name="userId">
-                    <c:choose>
-                        <c:when test="${scrap.equals('1')}">
-                            <i class="fa-solid fa-heart notice_filter_text scrap" onclick="scrapCancle('${jobpostingItem.postingId}',${userId})"></i>
-                        </c:when>
-                        <c:otherwise>
-                            <i class="fa-regular fa-heart notice_filter_text scrap" onclick="scrap('${jobpostingItem.postingId}',${userId})"></i>
-                        </c:otherwise>
-                    
-                    </c:choose>
-                </c:if>
-                        <div class="">
-                        <c:if test="${sessionScope.loginId != null}">
-	                        <input type="hidden" value="${scrapId}">
-	                        <input type="hidden" value="${jobpostingItem.postingId}" name="postingId">
-	                        <input type="hidden" value="${sessionScope.loginId}" name="userId">
-	                        <c:choose>
-		                        <c:when test="${scrap.equals('1')}">
-		                        	<i class="fa-solid fa-heart notice_filter_text scrap" onclick="scrapCancle('${jobpostingItem.postingId}',${userId})"></i>
-		                        </c:when>
-		                        <c:otherwise>
-		                        	<i class="fa-regular fa-heart notice_filter_text scrap" onclick="scrap('${jobpostingItem.postingId}',${userId})"></i>
-		                        </c:otherwise>
-	                        
-	                        </c:choose>
-                        </c:if>
-                        <span class="notice_deadline">${jobpostingItem.applicationStart} ~ ${jobpostingItem.applicationDeadline}</span>
-                        </div>
-                </div>
-                </div>
-                </c:if>
-             </c:forEach>   
-
-                        
-                            
-<%--                            ${postingCountByName} postingCountByName
- --%>                        
-                    
-                    
-<c:forEach var="jobpostingNameItem" items="${jobpostingNameList}"> 
-    <c:if test="${jobpostingNameItem.postStatus == 'O'}">
-        <div class="notice_list_item">
-            <div class="notice_info_title">
-                <a href="../jobsDescription?postingId=${jobpostingNameItem.postingId}" >${jobpostingNameItem.title}</a>
-                <div class="notice_filter">
-                    <span class="notice_filter_text">${jobpostingNameItem.employmentType} |</span>
-                    <span class="notice_filter_text">${jobpostingNameItem.jobsCateName} |</span>
-                    <span class="notice_filter_text">${jobpostingNameItem.jobsItemName} |</span>
-                    <span class="notice_filter_text">${jobpostingNameItem.careerCondition}</span>
-                </div>
-            </div>
-            <span class="notice_deadline">${jobpostingNameItem.applicationStart} ~ ${jobpostingNameItem.applicationDeadline}</span>
+			    <c:if test="${sessionScope.loginId != null}">
+			        <input type="hidden" value="${jobpostingNameItem.postingId}" name="postingId">
+			        <input type="hidden" value="${sessionScope.loginId}" name="userId">
+			
+			        <c:choose>
+				        <c:when test="${empty scrapList}">
+				            <!-- 사용자의 스크랩 목록이 비어있는 경우 -->
+				            <i class="fa-regular fa-heart notice_filter_text scrap" onclick="scrap('${jobpostingNameItem.postingId}','${sessionScope.loginId}')"></i>
+				        </c:when>
+				        <c:otherwise>
+				            <!-- 사용자의 스크랩 목록에 있는 경우 -->
+				            <c:set var="isScrapped" value="false" />
+				            <c:forEach var="scrapItem" items="${scrapList}">
+				                <c:if test="${scrapItem.postingId eq jobpostingNameItem.postingId}">
+				                    <!-- 해당 공고가 스크랩되어 있는 경우 -->
+				                    <i class="fa-solid fa-heart notice_filter_text scrap" onclick="scrapCancle('${jobpostingNameItem.postingId}', '${scrapItem.scrapId}')"></i>
+				                    <c:set var="isScrapped" value="true" />
+				                </c:if>
+				            </c:forEach>
+				            <!-- 해당 공고가 스크랩되어 있지 않은 경우 -->
+				            <c:if test="${not isScrapped}">
+				                <i class="fa-regular fa-heart notice_filter_text scrap" onclick="scrap('${jobpostingNameItem.postingId}','${sessionScope.loginId}')"></i>
+				            </c:if>
+				        </c:otherwise>
+				    </c:choose>
+			    </c:if>
+	            <span class="notice_deadline">${jobpostingNameItem.applicationStart} ~ ${jobpostingNameItem.applicationDeadline}</span>
+        	</div>
         </div>
     </c:if>   
 </c:forEach>
  
->>>>>>> 46042fe48b4d91aee437767406480bf9cc32a821
-            
-
-     
-            
-                    
-                    
-                    
-                    
                    
                   
                 </div>
@@ -172,11 +135,11 @@
         	
         }
         
-        function scrapCancle(scrapId,postingId){
+        function scrapCancle(postingId,scrapId){
     		if(confirm('공고를 삭제하시겠습니까?')){
     			
-    			window.location.href='/deleteScrapItem?scrapId1=' + scrapId
-    					+ '&postingId1=' + postingId;
+    			window.location.href='/deleteScrapItem?scrapId=' + scrapId
+    					+ '&postingId=' + postingId;
     		}
     		
     	}

@@ -41,8 +41,8 @@
                         <input name="userId" type="hidden" value="${userId}">
                             <div class="notice_box">
                                 <div class="notice_box_item_title">${scrapItem.title}</div>
-                                <input name="scrapId1" type="hidden" value="${scrapItem.scrapId}" id="scrapId1">
-                                <input name="postingId1" type="hidden" value="${scrapItem.postingId}" id="postingId1">
+                                <input name="scrapId" type="hidden" value="${scrapItem.scrapId}" id="scrapId">
+                                <input name="postingId" type="hidden" value="${scrapItem.postingId}" id="postingId">
                                 <div class="notice_box_item_heart"> <i class="fa-solid fa-heart scrap_heart" onclick="scrapCancle('${scrapItem.scrapId}','${scrapItem.postingId}')"></i></div>
                             </div>
                          </c:forEach>   
@@ -55,14 +55,14 @@
                     <c:when test="${not empty scrapList}">
                     <c:forEach var="noticeList" items="${noticeList}">
                     <input name="userId" type="hidden" value="${userId}">
-                    <input name="postingId1" type="hidden" value="${noticeList.postingId}" id="postingId">
+                    <input name="postingId" type="hidden" value="${noticeList.postingId}" id="postingId">
                         <div class="notice_detail_box">
                             <div class="notice_3_menu">
                                 <div class="notice_header_left">
                                     <span class="notice_career">${noticeList.careerCondition}</span>
                                 </div>
                                 <div class="notice_header_right">
-                                <input name="scrapId1" type="hidden" value="${scrapItem.scrapId}" id="scrapId1">
+                                <input name="scrapId" type="hidden" value="${scrapItem.scrapId}" id="scrapId">
                                     <i class="fa-solid fa-heart notice_heart" onclick="scrapCancle('${noticeList.scrapId}','${noticeList.postingId}')"></i>
                                     <i class="fa-solid fa-share-nodes"></i>
                                 </div>
@@ -147,8 +147,8 @@
 	function scrapCancle(scrapId,postingId){
 		if(confirm('공고를 삭제하시겠습니까?')){
 			
-			window.location.href='/deleteScrapItem?scrapId1=' + scrapId
-					+ '&postingId1=' + postingId;
+			window.location.href='/deleteScrapItem?scrapId=' + scrapId
+					+ '&postingId=' + postingId;
 		}
 		
 	}

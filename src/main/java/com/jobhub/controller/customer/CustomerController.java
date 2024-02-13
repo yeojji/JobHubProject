@@ -3,11 +3,9 @@ package com.jobhub.controller.customer;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
-import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -15,30 +13,21 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.jobhub.dto.customer.Customer;
-<<<<<<<<< Temporary merge branch 1
-import com.jobhub.dto.employee.Employee;
+import com.jobhub.dto.customer.Scrap;
 import com.jobhub.dto.employee.EmployeeJobsInfo;
-import com.jobhub.dto.jobposting.Job;
-import com.jobhub.service.admin.AdminService;
-=========
 import com.jobhub.dto.jobposting.Description;
 import com.jobhub.dto.jobposting.FAQs;
 import com.jobhub.dto.jobposting.Job;
-import com.jobhub.service.admin.AdminService;
 import com.jobhub.dto.jobposting.Jobposting;
->>>>>>>>> Temporary merge branch 2
+import com.jobhub.dto.jobposting.Notice;
+import com.jobhub.dto.jobposting.PostingSearchCondition;
+import com.jobhub.service.admin.AdminService;
 import com.jobhub.service.customer.CustomerService;
 import com.jobhub.service.jobposting.JobpostingService;
 
@@ -189,22 +178,16 @@ public class CustomerController {
 	
 	@GetMapping("/scrapNotice")
 	public String scrapNotice(@RequestParam(name="postingId")String postingId,
-			HttpSession session, Scrap scrap, 
+			@RequestParam(name="userId")String userId, Scrap scrap, 
 			Customer customer, Model model) {
-		String userId = (String) session.getAttribute("loginId");
-		
+
 		scrap.setPostingId(postingId);
 		scrap.setUserId(userId);
-		
-		model.addAttribute("scrap", scrap.getScrapStatus());
-		
-		System.out.println(customer.getUserId());
 		scrap.setScrapStatus("1");
 		int result = customerService.scrapNotice(scrap);
 		
-		System.out.println(result);
 		if(result >0) {
-			return "redirect:/";		
+			return "redirect:/customer/notice_by_career";		
 		}else {
 			return "/";
 		}
@@ -230,13 +213,14 @@ public class CustomerController {
 	}
 	
 	@GetMapping("/deleteScrapItem")
-	public String deleteScrapItem(@RequestParam(name = "scrapId1") String scrapId,
-							@RequestParam(name = "postingId1") String postingId,
+	public String deleteScrapItem(@RequestParam(name = "scrapId") String scrapId,
+							@RequestParam(name = "postingId") String postingId,
 							Scrap scrap) {
-	
+		System.out.println(scrapId);
+		System.out.println(postingId);
 		scrap.setScrapStatus("2");
 		int result = customerService.removeCustomerScrapItem(scrapId);
-		
+		System.out.println(result);
 		
 		if(result > 0) {
 			customerService.removeCustomerScrapItemByPostingId(postingId);
@@ -302,58 +286,82 @@ public class CustomerController {
 		
 	}
 	
-	
-	
-	
-	
-	
-	
-	//jobs
-	//jobsMain
-	@GetMapping("/customer/notice_by_career")
-	public String showAllNotice(Model model) {
-		System.out.println("get 요청");
-		
-		List<Job> jobList = jobpostingService.findJobList();
-		List<Jobposting> jobpostingList = jobpostingService.findJobpostingList();
-		List<Jobposting> jobpostingNameList = jobpostingService.findPostingAndJobNameList();
-		
-		model.addAttribute("jobList" , jobList);
-		model.addAttribute("jobpostingList" , jobpostingList);
-		
-		model.addAttribute("postingCount",sqlSession.selectOne("jobPosting_mapper.findPostingCountOpen"));
-		
-		return "customer/notice_by_career";
-	}
-	
-<<<<<<<<< Temporary merge branch 1
-	@GetMapping("/notice_info")
-	public String showNoticeInfo() {
-		return "customer/notice_info";
-	}
-=========
-	@GetMapping("/cus/faqs")
-	public String showFaqs(Model model) {
-		List<FAQs> faqsList = jobpostingService.findFaqsList();
-		model.addAttribute("faqsList" , faqsList);
-		return "customer/faqs";
-	}
-	
-	//jobs 제목 누르면 상세보기 페이지
-	@GetMapping("/jobsDescription")
-	public String jobsDescription(@RequestParam String postingId, Model model) {
-		
-		Jobposting jobposting = jobpostingService.findPostingBypostingId(postingId);
-		Description description = jobpostingService.findDescriptionBypostingId(postingId);
-		
-		model.addAttribute("jobposting", jobposting);
-		model.addAttribute("description", description);
-		
-		return "customer/jobsDescription";
-	}
-	
-	
->>>>>>>>> Temporary merge branch 2
-	
+	  //jobs
+   //jobsMain
+   @GetMapping("/customer/notice_by_career")
+   public String showAllNotice(HttpSession session, Jobposting postingId,
+			Customer userId, Model model, PostingSearchCondition postingSearchCondition,Scrap scrap) {
+      
+	   String findCustomer = (String)session.getAttribute("loginId");
+	   session.getAttribute(findCustomer);
+	   
+	   
+      List<Job> jobList = jobpostingService.findJobList();
+      List<Jobposting> jobpostingList = jobpostingService.findJobpostingList();
+      List<Jobposting> jobpostingNameList = jobpostingService.findPostingAndJobNameList();
+      
+      model.addAttribute("jobList" , jobList);
+      model.addAttribute("jobpostingList" , jobpostingList);
+      model.addAttribute("jobpostingNameList" , jobpostingNameList);
+      
+      model.addAttribute("postingCount",sqlSession.selectOne("jobPosting_mapper.findPostingCountOpen"));
+      
+      List<Scrap> scrapList = customerService.customerScarpList(findCustomer);
+      System.out.println(scrapList);
+      model.addAttribute("scrapList", scrapList);
+      return "customer/notice_by_career";
+   }
+   
+   //jobs category 별로 화면 바뀌는 거
+   @GetMapping("/list")
+   public String list(@RequestParam String jobsCateName, Model model) {
+         
+      List<Jobposting>  jobpostingList = jobpostingService.findPostingListByjobscatename(jobsCateName);
+      List<Job> jobList = jobpostingService.findJobList();
+      List<Jobposting> jobpostingNameList = jobpostingService.findPostingAndJobNameList();
+      
+      model.addAttribute("postingCount",sqlSession.selectOne("jobPosting_mapper.findPostingCountByCate",jobsCateName));
+      
+      model.addAttribute("jobpostingList",jobpostingList);
+      model.addAttribute("jobList" , jobList);
+      model.addAttribute("jobpostingNameList" , jobpostingNameList);
+      
+      return "customer/list";
+   }
+   
+   //jobs 제목 누르면 상세보기 페이지
+   @GetMapping("/jobsDescription")
+   public String jobsDescription(@RequestParam String postingId, Model model) {
+      
+      Jobposting jobposting = jobpostingService.findPostingBypostingId(postingId);
+      Description description = jobpostingService.findDescriptionBypostingId(postingId);
+      
+      model.addAttribute("jobposting", jobposting);
+      model.addAttribute("description", description);
+      
+      return "customer/jobsDescription";
+   }
+      
+   
+   //faqs
+   //faqs 메인
+   @GetMapping("/cus/faqs")
+   public String showFaqs(Model model) {
+      List<FAQs> faqsList = jobpostingService.findFaqsList();
+      model.addAttribute("faqsList" , faqsList);
+      return "customer/faqs";
+   }
+   
 
+
+   
+
+   
+   
+   
+//   @GetMapping("/notice_info")
+//   public String showNoticeInfo() {
+//      return "customer/notice_info";
+//   }
+   
 }

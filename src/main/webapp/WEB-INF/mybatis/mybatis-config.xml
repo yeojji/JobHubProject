@@ -20,8 +20,13 @@
 		<typeAlias type="com.jobhub.dto.jobposting.FAQs" alias="FAQs"/>
 		<typeAlias type="com.jobhub.dto.customer.Customer" alias="Customer"/>
 		<typeAlias type="com.jobhub.dto.customer.Scrap" alias="Scrap"/>
-		<typeAlias type="com.jobhub.dto.resume.ResumeEducationForm" alias="educationForm"/>
-		
+		<typeAlias type="com.jobhub.dto.resume.ApplyEducationForm" alias="ApplyEducationForm"/>
+		<typeAlias type="com.jobhub.dto.resume.ApplyFileForm" alias="ApplyFileForm"/>
+		<typeAlias type="com.jobhub.dto.resume.ApplyCareerForm" alias="ApplyCareerForm"/>
+		<typeAlias type="com.jobhub.dto.resume.ApplyAnswerForm" alias="ApplyAnswerForm"/>
+		<typeAlias type="com.jobhub.dto.resume.ApplyEducationForm" alias="ApplyEducationForm"/>
+		<typeAlias type="com.jobhub.dto.resume.Career" alias="Career"/>
+		<typeAlias type="com.jobhub.dto.resume.Company" alias="Company"/>
 		<typeAlias type="com.jobhub.dto.admin.Admin" alias="Admin"/>
 		<typeAlias type="com.jobhub.dto.admin.AdminProfile" alias="AdminProfile"/>
 		<typeAlias type="com.jobhub.dto.admin.AdminSearchCondition" alias="AdminSearchCondition"/>
