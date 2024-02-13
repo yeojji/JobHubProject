@@ -27,9 +27,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.jobhub.dto.customer.Customer;
+import com.jobhub.dto.customer.Scrap;
+import com.jobhub.dto.employee.EmployeeJobsInfo;
+import com.jobhub.dto.jobposting.Description;
+import com.jobhub.dto.jobposting.FAQs;
 import com.jobhub.dto.jobposting.Job;
 import com.jobhub.service.admin.AdminService;
 import com.jobhub.dto.jobposting.Jobposting;
+import com.jobhub.dto.jobposting.Notice;
 import com.jobhub.service.customer.CustomerService;
 import com.jobhub.service.jobposting.JobpostingService;
 

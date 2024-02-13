@@ -71,8 +71,7 @@
                     <%--                            ${postingCountByName} postingCountByName
  --%>                        
                     
-                    
-<<<<<<< HEAD
+
 <c:forEach var="jobpostingNameItem" items="${jobpostingNameList}"> 
     <c:if test="${jobpostingNameItem.postStatus == 'O'}">
         <div class="notice_list_item">
@@ -118,8 +117,10 @@
                         <span class="notice_deadline">${jobpostingItem.applicationStart} ~ ${jobpostingItem.applicationDeadline}</span>
                         </div>
                 </div>
+                </div>
+                </c:if>
              </c:forEach>   
-=======
+
                         
                             
 <%--                            ${postingCountByName} postingCountByName
