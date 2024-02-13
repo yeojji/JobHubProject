@@ -79,6 +79,13 @@ public class ResumeDAOImpl implements ResumeDAO {
 		List<Resume> resumeList = sqlSessionTemplate.selectList("resume_mapper.findResumesByUserId", userId);
 		return resumeList;
 	}
+
+
+	@Override
+	public int updateResume(Resume resume) {
+		 int result = sqlSessionTemplate.update("resume_mapper.updateResume", resume);
+		    return result;
+	}
 	
 	
 }

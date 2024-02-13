@@ -33,7 +33,7 @@ input:-webkit-autofill {-webkit-box-shadow: 0 0 0 1000px white inset;}
 .required, textarea.required {background:url('/img/wrest.gif') top right no-repeat;}
 
 /*tooltip*/
-.tooltip{position:relative;display:inline-block;vertical-align:middle;white-space:nowrap;text-overflow:ellipsis;font-size:13px;font-weight:normal;cursor:pointer;z-index:100;}
+.tooltip{color: red;position:relative;display:inline-block;vertical-align:middle;white-space:nowrap;text-overflow:ellipsis;font-size:12px;font-weight:normal;cursor:pointer;z-index:100;}
 .tooltip .tooltiptext{position:absolute;visibility:hidden;width:auto;min-width:100px;height:auto;background:#000;padding:10px;border-radius:3px;box-shadow: 5px 5px 8px #ccc;font-size:12px;font-weight:normal;color:#fff;line-height:1.4;text-align:left;}
 .tooltip .tooltiptext:after{content:'';position:absolute;top:100%;left:77px;width:0;height:0;margin-left:-8px;border-top:8px solid #000;border-right:8px solid transparent;border-left:8px solid transparent;}
 .tooltip:hover .tooltiptext{visibility:visible;bottom:30px;left:50%;margin-left:-76px;}

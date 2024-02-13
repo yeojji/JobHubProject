@@ -70,6 +70,12 @@ public class ResumeServiceImpl implements ResumeService {
 		return result;
 	}
 
+	@Override
+	public int updateResume(Resume resume) {
+		int result = resumeDAO.updateResume(resume);
+		return result;
+	}
+
 
 	
 }

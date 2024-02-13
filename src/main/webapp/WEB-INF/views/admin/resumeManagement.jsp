@@ -7,8 +7,10 @@
 <meta charset="utf-8">
 <title>Jobhub 관리자 페이지</title>
 <link rel="stylesheet" href="/admin/css/admin.css">
-<link rel="shortcut icon" href="/common/icon/jobhub_favicon.ico" type="image/x-icon">
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="shortcut icon" href="/common/icon/jobhub_favicon.ico"
+	type="image/x-icon">
+<link rel="stylesheet"
+	href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://kit.fontawesome.com/b158a20f5c.js"
@@ -230,7 +232,8 @@
 									<td>${rowStat.index + 1}</td>
 									<td>${resumeItem.jobsName}</td>
 									<td class="tal" colspan="2">${resumeItem.title}</td>
-									<td><a href="/admin/resumeDetail?resumeId=${resumeItem.resumeId}">${resumeItem.name}</a></td>
+									<td><a
+										href="/admin/resumeDetail?resumeId=${resumeItem.resumeId}">${resumeItem.name}</a></td>
 									<td>${resumeItem.age}</td>
 									<td>${resumeItem.education}</td>
 									<td>${resumeItem.career}</td>
@@ -257,54 +260,62 @@
 		<a href="#anc_hd"><span></span>TOP</a>
 	</div>
 	<script type="text/javascript">
-    // 페이지 로드 시 sessionStorage에 저장된 검색 조건이 있는지 확인
-    $(document).ready(function() {
-        var savedSearchCondition = JSON.parse(sessionStorage.getItem('searchCondition'));
-        if (savedSearchCondition) {
-            $('#sfl').val(savedSearchCondition.sfl);
-            $('#searchKeyword').val(savedSearchCondition.searchKeyword);
-            $('#spt').val(savedSearchCondition.spt);
-            $('#startDate').val(savedSearchCondition.startDate);
-            $('#endDate').val(savedSearchCondition.endDate);
-            $('input[name="gender"][value="' + savedSearchCondition.gender + '"]').prop('checked', true);
-            $('#startAge').val(savedSearchCondition.startAge);
-            $('#endAge').val(savedSearchCondition.endAge);
-            $('#career').val(savedSearchCondition.career);
-        }
-    });
+		// 페이지 로드 시 sessionStorage에 저장된 검색 조건이 있는지 확인
+		$(document).ready(
+				function() {
+					var savedSearchCondition = JSON.parse(sessionStorage
+							.getItem('searchCondition'));
+					if (savedSearchCondition) {
+						$('#sfl').val(savedSearchCondition.sfl);
+						$('#searchKeyword').val(
+								savedSearchCondition.searchKeyword);
+						$('#spt').val(savedSearchCondition.spt);
+						$('#startDate').val(savedSearchCondition.startDate);
+						$('#endDate').val(savedSearchCondition.endDate);
+						$(
+								'input[name="gender"][value="'
+										+ savedSearchCondition.gender + '"]')
+								.prop('checked', true);
+						$('#startAge').val(savedSearchCondition.startAge);
+						$('#endAge').val(savedSearchCondition.endAge);
+						$('#career').val(savedSearchCondition.career);
+					}
+				});
 
-    // 검색 폼 제출 시 검색 조건을 sessionStorage에 저장
-    $('#fsearch').submit(function() {
-        var searchCondition = {
-            sfl: $('#sfl').val(),
-            searchKeyword: $('#searchKeyword').val(),
-            spt: $('#spt').val(),
-            startDate: $('#startDate').val(),
-            endDate: $('#endDate').val(),
-            gender: $('input[name="gender"]:checked').val(),
-            startAge: $('#startAge').val(),
-            endAge: $('#endAge').val(),
-            career: $('#career').val(),
-        };
-        sessionStorage.setItem('searchCondition', JSON.stringify(searchCondition));
-    });
-    
- 	// "재설정" 버튼 클릭 시 검색 조건을 초기화
-    $('#frmRest').click(function() {
-        // 폼 내의 입력 값 초기화
-        $('#sfl').val('');
-        $('#searchKeyword').val('');
-        $('#spt').val('');
-        $('#startDate').val('');
-        $('#endDate').val('');
-        $('input[name="gender"]').prop('checked', false);
-        $('#startAge').val('');
-        $('#endAge').val('');
-        $('#career').val('');
+		// 검색 폼 제출 시 검색 조건을 sessionStorage에 저장
+		$('#fsearch').submit(
+				function() {
+					var searchCondition = {
+						sfl : $('#sfl').val(),
+						searchKeyword : $('#searchKeyword').val(),
+						spt : $('#spt').val(),
+						startDate : $('#startDate').val(),
+						endDate : $('#endDate').val(),
+						gender : $('input[name="gender"]:checked').val(),
+						startAge : $('#startAge').val(),
+						endAge : $('#endAge').val(),
+						career : $('#career').val(),
+					};
+					sessionStorage.setItem('searchCondition', JSON
+							.stringify(searchCondition));
+				});
 
-        // sessionStorage에서도 검색 조건 제거
-        sessionStorage.removeItem('searchCondition');
-    });
-</script>
+		// "재설정" 버튼 클릭 시 검색 조건을 초기화
+		$('#frmRest').click(function() {
+			// 폼 내의 입력 값 초기화
+			$('#sfl').val('');
+			$('#searchKeyword').val('');
+			$('#spt').val('');
+			$('#startDate').val('');
+			$('#endDate').val('');
+			$('input[name="gender"]').prop('checked', false);
+			$('#startAge').val('');
+			$('#endAge').val('');
+			$('#career').val('');
+
+			// sessionStorage에서도 검색 조건 제거
+			sessionStorage.removeItem('searchCondition');
+		});
+	</script>
 </body>
 </html>
