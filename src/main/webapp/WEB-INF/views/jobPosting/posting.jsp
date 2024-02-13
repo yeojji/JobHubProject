@@ -23,7 +23,7 @@
  <header id="hd">
         <div id="hd_wrap">
             <h1>Jobhub 관리자 페이지</h1>
-            <div id="logo"><a href="/admin/adminMain"><img src="../resources/admin/images/logo_wh_250x35.png"
+            <div id="logo"><a href="/admin/adminMain"><img src="/img/admin/logo_wh_250x35.png"
                         alt="Jobhub logo"></a></div>
             <div id="tnb">
                 <ul>
