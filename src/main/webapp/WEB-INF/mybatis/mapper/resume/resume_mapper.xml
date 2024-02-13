@@ -109,10 +109,12 @@
 	<update id="updateResume" parameterType="Resume">
 		UPDATE job_customer
 		SET
-			email = #{email},
-			phone = #{phone},
-			birth = #{birth},
-			password = #{password}
+		email = #{email},
+		phone = #{phone},
+		birth = #{birth},
+		password =
+		#{password}
+		WHERE user_id = #{userId}
 	</update>
 
 
