@@ -210,14 +210,12 @@ public class CustomerController {
 	}
 	
 	
-	
-<<<<<<< HEAD
+
 	
 	
 	//jobs
 	//jobsMain
-=======
->>>>>>> 6d9903656d177418c66a368315b0fc3f31ace328
+
 	@GetMapping("/customer/notice_by_career")
 	public String showAllNotice(Model model, PostingSearchCondition postingSearchCondition) {
 		
@@ -255,11 +253,26 @@ public class CustomerController {
 	@GetMapping("/jobsDescription")
 	public String jobsDescription(@RequestParam String postingId, Model model) {
 		
-		Jobposting jobposting = jobpostingService.findPostingBypostingId(postingId);
-		Description description = jobpostingService.findDescriptionBypostingId(postingId);
+		Jobposting jobpostingById = jobpostingService.findPostingBypostingId(postingId);
+		Description descriptionById = jobpostingService.findDescriptionBypostingId(postingId);
 		
-		model.addAttribute("jobposting", jobposting);
-		model.addAttribute("description", description);
+		
+		List<Job> jobList = jobpostingService.findJobList();
+		List<Jobposting> jobpostingList = jobpostingService.findJobpostingList();
+		List<Jobposting> jobpostingNameList = jobpostingService.findPostingAndJobNameList();
+		
+		model.addAttribute("jobList" , jobList);
+		model.addAttribute("jobpostingList" , jobpostingList);
+		model.addAttribute("jobpostingNameList" , jobpostingNameList);
+		
+		
+		
+		model.addAttribute("jobpostingById", jobpostingById);
+		model.addAttribute("descriptionById", descriptionById);
+		
+		
+		
+		
 		
 		return "customer/jobsDescription";
 	}

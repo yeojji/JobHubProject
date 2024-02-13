@@ -27,7 +27,7 @@
                         alt="Jobhub logo"></a></div>
             <div id="tnb">
                 <ul>
-                    <li>${adminName}님</li>
+                    <li>${loginId}님</li>
                     <li><a href="#" target="_blank">Jobhub바로가기</a></li>
                     <li><a href="/admin/mypage">마이페이지</a></li>
                     <li id="tnb_logout"><a href="#">로그아웃</a></li>
@@ -69,6 +69,8 @@
                 <h2>*표시는 필수 입력 항목입니다.</h2>
                 <form  method="post" action="/jobposting">
                     <input type="hidden" name="code" value="list">
+                   
+                    <input type="hidden" name="adminID" value=" ${loginId}">
                     <div class="tbl_frm01">
                         <table class="tablef">
                             <colgroup>
