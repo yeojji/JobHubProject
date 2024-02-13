@@ -36,12 +36,12 @@ public class JobpostingServiceImpl implements JobpostingService {
 		return jobpostingNameList;
 }
 	
-/*
- * public List<Jobposting> findJobpostingListBySearchCondition(String
- * searchKeyword){ List<Jobposting> jobpostingList =
- * jobpostingDAO.findJobpostingListBySearchCondition(searchKeyword); return
- * jobpostingList; }
- */
+
+public List<Jobposting> findJobpostingListBySearchCondition(String keyword) {
+	List<Jobposting> jobpostingList = jobpostingDAO.findJobpostingListBySearchCondition(keyword);
+	return jobpostingList;
+}
+
 	
 /*
  * public List<Jobposting>
@@ -56,7 +56,7 @@ public class JobpostingServiceImpl implements JobpostingService {
  */
 	
 	public List<Jobposting> findPostingListBySearchCondition(String keyword){
-		List<Jobposting> jobpostingList = jobpostingDAO.findPostingListBySearchCondition(keyword);
+		List<Jobposting> jobpostingList = jobpostingDAO.findJobpostingListBySearchCondition(keyword);
 		return jobpostingList;
 	}
 	

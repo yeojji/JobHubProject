@@ -67,8 +67,9 @@
 
                 <!-- 검색 -->
                 <h2>검색</h2>
-                <form name="keyword" id="fsearch" method="get" action ="">
+                <form id="fsearch" action ="">
                     <!-- <input type="hidden" name="code" value="list"> -->
+                   <%--  <input type="hidden" name="postingId" value="${jobpostingItem.postingId}"> --%>
                     <div class="tbl_frm01">
                         <table class="tablef">
                             <colgroup>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>공고페이지</title>
+    <title>faqs</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" 
     integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="  
     crossorigin="anonymous" referrerpolicy="no-referrer"/>
@@ -25,14 +25,22 @@
         	border: solid black 1px;
         }
         
+        .accordion:hover {
+   			 cursor: pointer;
+		}
+
         .accordion-item-title{
-        	font-size :20px;
+        	font-size :17px;
         	font-weight: bold;
         }
         
         .accordion-item{
        		 padding: 20px;
-        	border: solid red 1px;
+        	border: solid #ddd 1px;
+        	
+        	display: flex;
+    flex-direction: column;
+        	
         }
         
         .container{
@@ -47,7 +55,7 @@
     }
 
     .accordion-item-title .fa-chevron-down {
-        margin-left: 10px; /* 화살표와 텍스트 사이의 간격 조절 */
+        margin-left: 10px; 
     }
         
         
@@ -67,15 +75,19 @@
             </div>
         </div>
     </div>
+    
+    
 
     <!-- 아코디언 -->
     <div class="accordion">
-        
+    
+    
       <c:forEach var="faqsListItem" items="${faqsList}">  
-      <%--  	<c:if test="${faqsListItem.category=='채용일반'}"> --%>
+      <%-- 	<c:if test="${faqsListItem.category eq '채용 일반'}">  --%>
        	
         <div class="accordion-item">
             <div class="accordion-item-title">
+            <span>${faqsListItem.category}</span>
     <span>${faqsListItem.title}</span>
     <i class="fa-solid fa-chevron-down"></i>
 </div>
@@ -83,7 +95,7 @@
                 <p>${faqsListItem.content}</p>
             </div>
         </div>
-      <%--   </c:if> --%>
+      <%--   </c:if>  --%>
     </c:forEach>    
 
         

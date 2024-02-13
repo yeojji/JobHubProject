@@ -213,21 +213,42 @@
                     </div>
                     
                     	<script>
+                    	
                     	document.getElementById("modiBtn").addEventListener("click", function(event) {
-                    	    var confirmation = confirm("수정하겠습니까?");
+                    	    // required 속성이 있는 input 요소들을 모두 가져옵니다.
+                    	    var requiredInputs = document.querySelectorAll('[required]');
                     	    
-                    	    // 확인을 눌렀을 경우
-                    	    if (confirmation) {
-                    	        alert("수정되었습니다.");
-                    	        // 폼 제출
-                    	        return true;
+                    	    // 모든 required input 요소들을 순회하면서 값이 있는지 확인합니다.
+                    	    var allInputsFilled = true;
+                    	    for (var i = 0; i < requiredInputs.length; i++) {
+                    	        if (!requiredInputs[i].value) { // 값이 없으면
+                    	            allInputsFilled = false;
+                    	            break;
+                    	        }
+                    	    }
+                    	    
+                    	    // 모든 required input 요소들이 값이 있는 경우에만 수정 확인 창을 띄웁니다.
+                    	    if (allInputsFilled) {
+                    	        var confirmation = confirm("수정하겠습니까?");
+                    	        
+                    	        // 확인을 눌렀을 경우
+                    	        if (confirmation) {
+                    	            alert("수정되었습니다.");
+                    	            // 폼 제출
+                    	            return true;
+                    	        } else {
+                    	            // 취소를 눌렀을 경우
+                    	            // 폼 제출 취소
+                    	            event.preventDefault();
+                    	            return false;
+                    	        }
                     	    } else {
-                    	        // 취소를 눌렀을 경우
-                    	        // 폼 제출 취소
-                    	        event.preventDefault();
+                    	        alert("필수 입력 항목을 모두 채워주세요."); // 모든 required input 요소가 값을 갖고 있지 않은 경우
+                    	        event.preventDefault(); // 폼 제출 취소
                     	        return false;
                     	    }
                     	});
+
                     	
                     	//달력
                     	

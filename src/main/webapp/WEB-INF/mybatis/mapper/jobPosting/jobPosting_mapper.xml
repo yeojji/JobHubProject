@@ -279,15 +279,15 @@ AND title like CONCAT('%', #{keyword}, '%')
     </if>
 </select> -->
 
-<select id="findPostingListBySearchCondition" resultType="Jobposting" parameterType="PostingSearchCondition">
+<select id="findJobpostingListBySearchCondition" resultType="Jobposting" parameterType="String">
     SELECT jp.*, 
-           js.jobs_name AS jobsItemName, 
-           (SELECT jobs_name FROM jobs j WHERE j.jobs_id = js.jobs_pid) AS jobsCateName
+           js.jobs_name AS jobs_Item_Name, 
+           (SELECT jobs_name FROM jobs j WHERE j.jobs_id = js.jobs_pid) AS jobs_Cate_Name
     FROM job_posting jp
     JOIN jobs js ON jp.jobs_id = js.jobs_id
     WHERE 1=1
     <if test="keyword != null and keyword != ''">
-        AND title like concat('%', #{keyword}, '%')
+        AND title like '%' || #{keyword} || '%'
     </if>
 </select>
 

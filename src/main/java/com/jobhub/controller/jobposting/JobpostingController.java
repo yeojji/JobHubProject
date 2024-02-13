@@ -84,13 +84,13 @@ public class JobpostingController {
 	@RequestMapping("jobpostingMain")
 	public String jobpostingMain(Model model, String keyword ) {
 		
-		List<Jobposting> jobpostingList = jobpostingService.findJobpostingList();
+//		List<Jobposting> jobpostingList = jobpostingService.findJobpostingList();
 		
-		List<Jobposting> postingList = jobpostingService.findPostingListBySearchCondition(keyword);
+		List<Jobposting> postingList = jobpostingService.findJobpostingListBySearchCondition(keyword);
 
-		model.addAttribute("jobpostingList" , jobpostingList);
+//		model.addAttribute("jobpostingList" , jobpostingList);
 		
-		model.addAttribute("postingList",postingList);
+		model.addAttribute("jobpostingList",postingList);
 		
 		model.addAttribute("postingCount",sqlSession.selectOne("jobPosting_mapper.findPostingCount"));
 		

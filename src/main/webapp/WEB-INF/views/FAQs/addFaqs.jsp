@@ -130,7 +130,12 @@
     <div id="anc_header"><a href="#anc_hd"><span></span>TOP</a></div>
     <script src="./sources/admin/js/admin.js"></script>
     <script src="./sources/common/js/wrest.js"></script>
+    
+    
+    
     <script>
+    
+    
         document.addEventListener('DOMContentLoaded', function () {
             var chkAll = document.querySelector('input[name="chkall"]');
             chkAll.addEventListener('change', function () {
