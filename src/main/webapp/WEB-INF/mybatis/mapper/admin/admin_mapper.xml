@@ -68,6 +68,18 @@
 	JOIN employee e ON e.employee_ID = ad.employee_ID
 	JOIN jobs js ON e.jobs_id = js.jobs_id
 	WHERE 1 = 1 
+	
+	<!-- 검색어 -->
+	<if test="searchKeyword != null and !searchKeyword.isEmpty()"> 
+		AND ( ad.admin_id LIKE '%' || #{searchKeyword} || '%' 
+		OR js.jobs_name = #{searchKeyword} 
+		OR e.name LIKE '%' || #{searchKeyword} || '%' 
+		OR e.tel LIKE '%' || #{searchKeyword} || '%'
+		OR e.email LIKE '%' || #{searchKeyword} || '%'
+		OR e.employee_id LIKE '%' || #{searchKeyword} || '%' ) 
+		</if>
+		
+		<!-- 
 		<if test="adminId != null and adminId != ''">
 			AND ad.admin_id = #{searchKeyword}
 		</if>
@@ -86,7 +98,7 @@
 		<if test="employeeId != null and employeeId != ''">
 			AND e.employee_id = #{searchKeyword}
 		</if>
-		
+		 -->
 		<!-- 생성일자 -->
 		<if test="creationCode != null and creationCode != ''">
 		<if test="startDate != null and startDate != ''">

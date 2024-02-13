@@ -114,7 +114,7 @@
 											<option value="tel">내선전화번호</option>
 											<option value="email">이메일</option>
 											<option value="employeeId">사번</option>
-									</select> <input type="text" name="stx" value="" class="frm_input"
+									</select> <input type="text" name="searchKeyword" value="" class="frm_input"
 										size="30"></td>
 								</tr>
 								<tr>
@@ -141,7 +141,7 @@
 					</div>
 					<div class="btn_confirm">
 						<input type="submit" value="검색" class="btn_medium"> <input
-							type="button" value="초기화" id="frmRest" class="btn_medium grey">
+							type="button" value="재설정" id="frmRest" class="btn_medium grey">
 					</div>
 				</form>
 				<!-- //검색 -->
@@ -166,9 +166,9 @@
 							<col class="w30">
 							<col class="w70">
 							<col class="w70">
+							<col class="w70">
 							<col class="w100">
 							<col class="w120">
-							<col class="w70">
 							<col class="w70">
 							<col class="w70">
 							<col class="w50">

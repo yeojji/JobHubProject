@@ -16,5 +16,5 @@ public class AdminSearchCondition {
 	String permissionCode;	//Admin
 	String creationCode;	//Admin
 	String userStatus;
-	
+	String searchKeyword;
 }
