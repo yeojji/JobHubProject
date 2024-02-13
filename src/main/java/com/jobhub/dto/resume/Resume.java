@@ -7,7 +7,7 @@ public class Resume {
 	//이력서 관련 내용
 	String resumeId;
 	String userId;
-	String userPw;
+	String password;
 	String postingId;
 	int careerId;
 	int academicId;
@@ -81,6 +81,12 @@ public class Resume {
 	String endAge;
 	String findOutPath;
 	String careerCondition;
+	
+	String sortation;
+	String createdDate;
+	String question1;
+	String question2;
+	String question3;
 	
 	/*
 	resume_id					varchar2	이력서ID

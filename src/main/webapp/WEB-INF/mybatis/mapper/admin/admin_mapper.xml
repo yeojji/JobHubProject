@@ -31,16 +31,7 @@
 	
 	
 	<select id="findAdminList" resultType="Admin">
-	SELECT
-	ad.admin_ID AS admin_ID,
-	e.name AS name,
-	e.employee_ID AS employee_id,
-	js.jobs_name AS jobs_name,
-	e.tel AS tel,
-	e.email AS email,
-	ad.permission_code AS permission_code,
-	ad.creation_code AS creation_code,
-	ad.user_status AS user_status
+	SELECT *
 	FROM administrator ad
 	JOIN employee e ON e.employee_ID = ad.employee_ID
 	JOIN jobs js ON e.jobs_id = js.jobs_id

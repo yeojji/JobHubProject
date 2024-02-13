@@ -90,7 +90,7 @@
 	<div id="wrapper">
 		<div id="content">
 			<div class="s_wrap">
-			<form action="/admin/resumeDetail" method="post">
+			<form action="" id="modify_form" method="post">
 			<input type="hidden" name="resumeId" value="${resume.resumeId}">
 				<h1>이력서 상세 조회</h1>
 				<div class="tbl_frm01">
@@ -102,140 +102,65 @@
 							<col>
 						</colgroup>
 						<tbody>
+							<tr class="mb_adm_fld">
+								<th scope="row">지원한 공고</th>
+								<td colspan="3">
+								${resume.title}
+								</td>
+							</tr>
+							<tr>
+								<th scope="row">직무명</th>
+								<td>${resume.jobsName}</td>
+								<th scope="row">경력조건</th>
+								<td>${resume.careerCondition}</td>
+								
+							</tr>
 							<tr>
 								<th scope="row">이름</th>
 								<td>${resume.name}</td>
-								<th scope="row">아이디</th>
-								<td>${resume.userId}</td>
-							</tr>
-							<tr>
-								<th scope="row">비밀번호</th>
-								<td><input type="text" name="password" value=""
-									class="frm_input"></td>
 								<th scope="row">이메일</th>
 								<td><input type="text" name="email"
 									value="${resume.email}" email itemname="email"
 									class="frm_input" size="30"></td>
 							</tr>
+							
 							<tr>
 								<th scope="row">생년월일</th>
 								<td><input type="text" name="mb_birth" value="${resume.birth}"
 									class="frm_input"></td>
-								<th scope="row">성별</th>
-								<td><input type="radio" name="gender" value="남성"
-									id="gender1" checked="checked"> <label for="gender1">남성</label>
-									<input type="radio" name="gender" value="여성" id="gender2">
-									<label for="gender2">여성</label></td>
+								<th scope="row">나이</th>
+								<td>${resume.age}</td>
 							</tr>
 							<tr>
-								<th scope="row">전화번호</th>
-								<td><input type="text" name="phone" value=""
-									class="frm_input"></td>
+							<th scope="row">성별</th>
+								<td>${resume.gender}</td>
 								<th scope="row">휴대전화</th>
 								<td><input type="text" name="phone"
 									value="${resume.phone}" class="frm_input"></td>
 							</tr>
 							<tr>
-								<th scope="row">주소</th>
-								<td colspan="3"><input type="text" name="zip" value="05089"
-									class="frm_input" size="8" maxlength="5"> <a
-									href="javascript:win_zip('fmemberform', 'zip', 'addr1', 'addr2', 'addr3', 'addr_jibeon');"
-									class="btn_small grey">주소검색</a>
-									<p class="mart5">
-										<input type="text" name="addr1" value="서울 광진구 강변북로 64"
-											class="frm_input" size="60"> 기본주소
-									</p>
-									<p class="mart5">
-										<input type="text" name="addr2" value="2323" class="frm_input"
-											size="60"> 상세주소
-									</p>
-									<p class="mart5">
-										<input type="text" name="addr3" value="(자양동)"
-											class="frm_input" size="60"> 참고항목 <input
-											type="hidden" name="addr_jibeon" value="R">
-									</p></td>
+								<th scope="row">최종학력</th>
+								<td>${resume.sortation}</td>
+								<th scope="row">경력사항</th>
+								<td>${resume.career}</td>
 							</tr>
 							<tr>
-								<th scope="row">본인확인방법</th>
-								<td><input type="radio" name="mb_certify_case" value="ipin"
-									id="mb_certify_ipin"> <label for="mb_certify_ipin">아이핀</label>
-									<input type="radio" name="mb_certify_case" value="hp"
-									id="mb_certify_hp"> <label for="mb_certify_hp">휴대폰</label>
-								</td>
-								<th scope="row">성별</th>
-								<td><input type="radio" name="gender" value="M"
-									id="gender1" checked="checked"> <label for="gender1">남자</label>
-									<input type="radio" name="gender" value="F" id="gender2">
-									<label for="gender2">여자</label></td>
+								<th scope="row">장애사항</th>
+								<td>${resume.disorderStatus}</td>
+								<th scope="row">병역사항</th>
+								<td>${resume.militaryServiceMatters}</td>
 							</tr>
 							<tr>
-								<th scope="row">본인확인</th>
-								<td><input type="radio" name="mb_certify" value="1"
-									id="mb_certify_yes"> <label for="mb_certify_yes">예</label>
-									<input type="radio" name="mb_certify" value=""
-									id="mb_certify_no" checked="checked"> <label
-									for="mb_certify_no">아니오</label></td>
-								<th scope="row">성인인증</th>
-								<td><input type="radio" name="mb_adult" value="1"
-									id="mb_adult_yes"> <label for="mb_adult_yes">예</label>
-									<input type="radio" name="mb_adult" value="0" id="mb_adult_no"
-									checked="checked"> <label for="mb_adult_no">아니오</label>
-								</td>
-							</tr>
-							<tr>
-								<th scope="row">레벨</th>
-								<td><select id="mb_grade" name="mb_grade">
-										<option value='9'>[9] 일반회원</option>
-										<option value='8'>[8] 우수회원</option>
-										<option value='7'>[7] 특별회원</option>
-										<option value='6' selected>[6] 가맹점</option>
-										<option value='5'>[5] 지점</option>
-										<option value='1'>[1] 관리자</option>
-								</select></td>
-								<th scope="row">포인트</th>
-								<td><b>0</b> Point <a
-									href="http://demofran.com/admin/member/member_point_req.php?mb_id=tubeweb1"
-									onclick="win_open(this,'pop_point_req','600','500','yes');return false;"
-									class="btn_small grey marl10">강제적립</a></td>
-							</tr>
-							<tr class="mb_adm_fld">
-								<th scope="row">부운영자 접근허용</th>
-								<td colspan="3">
-									<div class="sub_frm02">
-										<table>
-											<tr>
-												<td><input id="auth_1" type="checkbox" name="auth_1"
-													value="1"> <label for="auth_1">회원관리</label></td>
-												<td><input id="auth_2" type="checkbox" name="auth_2"
-													value="1"> <label for="auth_2">가맹점관리</label></td>
-												<td><input id="auth_3" type="checkbox" name="auth_3"
-													value="1"> <label for="auth_3">공급사관리</label></td>
-												<td><input id="auth_4" type="checkbox" name="auth_4"
-													value="1"> <label for="auth_4">카테고리관리</label></td>
-												<td><input id="auth_5" type="checkbox" name="auth_5"
-													value="1"> <label for="auth_5">상품관리</label></td>
-											</tr>
-											<tr>
-												<td><input id="auth_6" type="checkbox" name="auth_6"
-													value="1"> <label for="auth_6">주문관리</label></td>
-												<td><input id="auth_7" type="checkbox" name="auth_7"
-													value="1"> <label for="auth_7">통계분석</label></td>
-												<td><input id="auth_8" type="checkbox" name="auth_8"
-													value="1"> <label for="auth_8">고객지원</label></td>
-												<td><input id="auth_9" type="checkbox" name="auth_9"
-													value="1"> <label for="auth_9">디자인관리</label></td>
-												<td><input id="auth_10" type="checkbox" name="auth_10"
-													value="1"> <label for="auth_10">환경설정</label></td>
-											</tr>
-										</table>
-									</div>
-								</td>
+								<th scope="row">보훈대상여부</th>
+								<td>${resume.veteransTargetStatus}</td>
+								<th scope="row">이력서 제출일자</th>
+								<td>${resume.revisionDate}</td>
 							</tr>
 						</tbody>
 					</table>
 				</div>
-
-				<h3 class="anc_tit mart30">기타정보</h3>
+				
+				<h3 class="anc_tit mart30">추가정보</h3>
 				<div class="tbl_frm01">
 					<table class="tablef">
 						<colgroup>
@@ -245,30 +170,44 @@
 							<col>
 						</colgroup>
 						<tbody>
+						<tr>
+								<th scope="row">아이디</th>
+								<td>${resume.userId}</td>
+								<th scope="row">비밀번호</th>
+								<td><input type="text" name="password" value="${resume.password}"
+									class="frm_input"></td>
+							</tr>
 							<tr>
 								<th scope="row">가입경로</th>
-								<td>${resumeList.findOutPath}</td>
+								<td>${resume.supportPath}</td>
 								<th scope="row">회원가입일</th>
-								<td>2020-10-04 18:04:17</td>
+								<td>${resume.createdDate}</td>
+							</tr>
+							<tr class="mb_adm_fld">
+								<th scope="row">지원한 공고</th>
+								<td colspan="3">
+								${resume.title}
+								</td>
 							</tr>
 							<tr>
-								<th scope="row">구매횟수</th>
-								<td>0 회</td>
-								<th scope="row">총구매금액</th>
-								<td>0 원</td>
+								<th scope="row">${resume.question1}</th>
+								<td colspan="3">${resume.content1}</td>
 							</tr>
 							<tr>
-								<th scope="row">관리자메모</th>
-								<td colspan="3"><textarea name="memo" class="frm_textbox"
-										rows="3"></textarea></td>
+								<th scope="row">${resume.question2}</th>
+								<td colspan="3">${resume.content2}</td>
+							</tr>
+							<tr>
+								<th scope="row">${resume.question3}</th>
+								<td colspan="3">${resume.content3}</td>
 							</tr>
 						</tbody>
 					</table>
-					</form>
 				</div>
+					</form>
 
 				<div class="btn_confirm">
-					<input type="submit" value="저장" class="btn_medium" accesskey="s">
+					<button type="submit" value="저장" class="btn_medium" accesskey="s"></button>
 					<button type="button" class="btn_medium bx-white"
 						onclick="window.close();">닫기</button>
 				</div>
