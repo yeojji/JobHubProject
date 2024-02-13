@@ -11,6 +11,7 @@ import com.jobhub.dto.jobposting.Description;
 import com.jobhub.dto.jobposting.FAQs;
 import com.jobhub.dto.jobposting.Job;
 import com.jobhub.dto.jobposting.Jobposting;
+import com.jobhub.dto.jobposting.PostingSearchCondition;
 import com.jobhub.service.jobposting.JobpostingService;
 
 @Service
@@ -34,6 +35,46 @@ public class JobpostingServiceImpl implements JobpostingService {
 		List<Jobposting> jobpostingNameList = jobpostingDAO.findPostingAndJobNameList();
 		return jobpostingNameList;
 }
+	
+/*
+ * public List<Jobposting> findJobpostingListBySearchCondition(String
+ * searchKeyword){ List<Jobposting> jobpostingList =
+ * jobpostingDAO.findJobpostingListBySearchCondition(searchKeyword); return
+ * jobpostingList; }
+ */
+	
+/*
+ * public List<Jobposting>
+ * findPostingListBySearchCondition(PostingSearchCondition
+ * postingSearchCondition){
+ * 
+ * List<Jobposting> jobpostingList =
+ * jobpostingDAO.findPostingListBySearchCondition(postingSearchCondition);
+ * return jobpostingList;
+ * 
+ * }
+ */
+	
+	public List<Jobposting> findPostingListBySearchCondition(String keyword){
+		List<Jobposting> jobpostingList = jobpostingDAO.findPostingListBySearchCondition(keyword);
+		return jobpostingList;
+	}
+	
+	/*
+	 * public List<Jobposting> findPostingListBySearchCondition(String keyword) { //
+	 * PostingSearchCondition 객체 생성 및 설정 PostingSearchCondition condition = new
+	 * PostingSearchCondition(); condition.setKeyword(keyword);
+	 * 
+	 * // DAO를 통해 데이터베이스에서 데이터를 조회 return
+	 * jobPostingDAO.findPostingListBySearchCondition(condition); }
+	 */
+	 
+	
+	public List<Jobposting> findPostingListByjobscatename(String jobsCateName){
+		List<Jobposting> jobpostingList = jobpostingDAO.findPostingListByjobscatename(jobsCateName);
+		return jobpostingList;
+	}
+	 
 	
 	
 
@@ -112,6 +153,9 @@ public class JobpostingServiceImpl implements JobpostingService {
 		List<Job> findJobsNameByLevel1List = jobpostingDAO.findJobsNameByLevel1();
 		return findJobsNameByLevel1List;
 	}
+	
+	
+	
 	
 	
 	

@@ -1,31 +1,32 @@
 package com.jobhub.dto.jobposting;
 
-public class postingSearchCondition {
+import lombok.Data;
+
+@Data
+public class PostingSearchCondition {
+	
 	String postingId;
 	String title;
-	String jobsId;
+	int jobsId;
 	String careerCondition;
 	String employmentType;
 	String postWrittenDate;
 	String postStartDate;
 	String postEndDate;
-	String applicationStart;
-	String applicationDeadline;
-	String postStatus;
-	String modifyDate;
-	String adminID;
-	String question1;	
-	String question2;	
-	String question3;	
 	
-	int jobLevel1;
-	int jobLevel2;
+	String postStatus;
+	
 	
 	String jobsCateName;
 	String jobsItemName;
 	
-	int postingCount;
 	
-	
+	String keyword;
 	String searchKeyword;
+	
+	
+	
+
+
+
 }

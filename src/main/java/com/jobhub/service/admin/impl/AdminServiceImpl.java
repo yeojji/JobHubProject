@@ -47,26 +47,25 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public List<Admin> findAdminListBySearchCondition(AdminSearchCondition adminSearchCondition) {
 		List<Admin> adminList = adminDAO.findAdminListBySearchCondition(adminSearchCondition);
-	    return adminList;
+		return adminList;
 	}
 
 	@Override
 	public boolean isDuplicatedId(String id) {
 		// TODO Auto-generated method stub
-		//PK 기준으로 해당 데이터를 조회(read / select)
+		// PK 기준으로 해당 데이터를 조회(read / select)
 		/*
-		UserSearchCondition userSearchCondition = new UserSearchCondition();
-		userSearchCondition.setId(id);
-		userSearchCondition.setSearchKeyword(id);
-		List<User> userList = userDAO.findUserListBySearchCondition(userSearchCondition);
-		userList.get(0);
-		userList.size()==0
-		*/
+		 * UserSearchCondition userSearchCondition = new UserSearchCondition();
+		 * userSearchCondition.setId(id); userSearchCondition.setSearchKeyword(id);
+		 * List<User> userList =
+		 * userDAO.findUserListBySearchCondition(userSearchCondition); userList.get(0);
+		 * userList.size()==0
+		 */
 		Admin admin = adminDAO.findAdminByAdminId(id);
-		if(admin == null) {
-			return false;  //return 0;
+		if (admin == null) {
+			return false; // return 0;
 		} else {
-			return true;   //return 1;
+			return true; // return 1;
 		}
 	}
 
@@ -81,14 +80,13 @@ public class AdminServiceImpl implements AdminService {
 		Admin admin = adminDAO.findAdminByAdminId(id);
 		return admin;
 	}
-	
+
 	@Override
 	public List<Admin> findAdminListByPermissionCode(String permissionCode) {
 		List<Admin> adminList = adminDAO.findAdminListByPermissionCode(permissionCode);
 		return adminList;
 	}
 
-	
 	@Override
 	public int saveEmployeeProfile(EmployeeProfile employeeProfile) {
 		int result = adminDAO.saveEmployeeProfile(employeeProfile);

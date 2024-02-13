@@ -20,6 +20,8 @@ public class Resume {
 	String submissionStatus;
 	String revisionDate;
 	
+
+	
 	String eduSortation;	//학력사항 구분
 	String schoolName;		//학교명
 	String admission;		//입학년도

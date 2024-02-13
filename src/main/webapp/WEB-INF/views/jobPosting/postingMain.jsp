@@ -67,8 +67,8 @@
 
                 <!-- 검색 -->
                 <h2>검색</h2>
-                <form name="fsearch" id="fsearch" method="get">
-                    <input type="hidden" name="code" value="list">
+                <form name="keyword" id="fsearch" method="get" action ="">
+                    <!-- <input type="hidden" name="code" value="list"> -->
                     <div class="tbl_frm01">
                         <table class="tablef">
                             <colgroup>
@@ -81,65 +81,45 @@
                                 <tr>
                                     <th scope="row">제목</th>
                                     <td colspan="3">
-                                        <select name="sfl" class="w120">
-                                            <option value="admin_name">이름</option>
+                                       <!--  <select name="sfl" class="w120">
+                                            <option value="title">제목</option>
                                             <option value="job_name">직무</option>
-                                            <option value="admin_id">관리자 아이디</option>
-                                            <option value="tel">내선전화번호</option>
-                                            <option value="email">이메일</option>
-                                        </select>
-                                        <input type="text" name="stx" value="" class="frm_input" size="30">
+                                            <option >고용형태</option>
+                                            
+                                        </select> -->
+                                        <input type="text" name="keyword" value="" class="frm_input" size="100">
                                     </td>
                                 </tr>
-                                <tr>
-                                    <th scope="row">기간검색</th>
+                              <!--   <tr>
+                                    <th scope="row">작성일</th>
                                     <td colspan="3">
-                                        <select name="spt" class="w100">
-                                            <option value="creation_code">생성일자</option>
-                                            <option value="hire_date">입사일자</option>
-                                        </select>
+                                        
                                         <label for="fr_date" class="sound_only">시작일</label>
                                         <input type="date" name="fr_date" value="" id="fr_date" class="frm_input w100"
                                             maxlength="10" >
-                                        ~
-                                        <label for="to_date" class="sound_only">종료일</label>
-                                        <input type="date" name="to_date" value="" id="to_date" class="frm_input w100"
-                                            maxlength="10">
+                                       
                                         
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">관리자권한</th>
-                                    <td>
-                                        <select name="permission_code" class="w100">
-                                            <option value="1">ADMIN</option>
-                                            <option value="2">SUPERVISOR</option>
-                                            <option value="3">MANAGER</option>
-                                            <option value="4">STAFF</option>
+                                    <th scope="row">노출상태</th>
+                                    
+                                    <td colspan="3">
+                                        <select name="permission_code" class="w120" maxlength="10">
+                                            <option value="1">O</option>
+                                            <option value="2">X</option>
+                                            <option value="3">S</option>
                                         </select>
-                                    </td>
-                                    <th scope="row">경력조건</th>
-                                    <td>
-                                        <select name="career_condition" class="w100">
-                                            <option value="">전체</option>
-                                            <option value="0"> 신입 </option>
-                                            <option value="1~1"> 1년 </option>
-                                            <option value="2~2"> 2년 </option>
-                                            <option value="3~3"> 3년 </option>
-                                            <option value="4~4"> 4년 </option>
-                                            <option value="5~5"> 5년 </option>
-                                            <option value="6~6"> 6년 </option>
-                             
-                                        </select>
-                                    </td>
+                                    </td> 
+                                    
 
-                                </tr>
+                                </tr>-->
                             </tbody>
                         </table>
                     </div>
                     <div class="btn_confirm">
                         <input type="submit" value="검색" class="btn_medium">
-                        <input type="button" value="초기화" id="frmRest" class="btn_medium grey">
+                        <input type="button" value="초기화" id="frmRest" class="btn_medium grey"  onclick="reset()">
                     </div>
                 </form>
                 <!-- //검색 -->
@@ -209,6 +189,8 @@
     <div id="anc_header"><a href="#anc_hd"><span></span>TOP</a></div>
     <script src="./sources/admin/js/admin.js"></script>
     <script src="./sources/common/js/wrest.js"></script>
+    
+    
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             var chkAll = document.querySelector('input[name="chkall"]');
@@ -219,6 +201,13 @@
                 });
             });
         });
+        
+        
+        function reset() {
+            document.getElementById("frmRest").value = "";
+        }
+        
+        
     </script>
 
 

@@ -6,7 +6,7 @@
 
 
 	<select id="findLoginAdmin" parameterType="Admin" resultType="Admin">
-		SELECT * FROM ADMINISTRATOR WHERE admin_id=#{id} and admin_pw=#{pw} and employee_id=#{employeeId}
+		SELECT * FROM ADMINISTRATOR WHERE admin_id=#{adminId} and admin_pw=#{adminPw}
 	</select>
 	
 	
@@ -26,7 +26,7 @@
 	
 	<!-- 관리자 저장(생성) -->
 	<insert id="saveAdmin" parameterType="Admin">
-		insert into ADMINISTRATOR values ( #{id}, #{pw}, #{employeeId}, #{permissionCode}, NOW() ) 
+		insert into ADMINISTRATOR values ( #{adminId}, #{adminPw}, #{employeeId}, #{permissionCode}, NOW() ) 
 	</insert>
 	
 	
