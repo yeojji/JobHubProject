@@ -7,7 +7,10 @@ import org.springframework.stereotype.Service;
 
 import com.jobhub.dao.customer.CustomerDAO;
 import com.jobhub.dto.customer.Customer;
+import com.jobhub.dto.customer.Scrap;
 import com.jobhub.dto.jobposting.Job;
+import com.jobhub.dto.jobposting.Notice;
+import com.jobhub.dto.resume.Resume;
 import com.jobhub.service.customer.CustomerService;
 
 @Service
@@ -66,6 +69,81 @@ public class CustomerServiceImpl implements CustomerService {
 		int result = customerDAO.removeCustomer(customer);
 		return result;
 	}
+
+	@Override
+	public List<Scrap> customerScarpList(String userId) {
+		// TODO Auto-generated method stub
+		
+		List<Scrap> scrapList = customerDAO.customerScarpList(userId);
+		return scrapList;
+	}
+
+	@Override
+	public int removeCustomerScrapList(String userId) {
+		// TODO Auto-generated method stub
+		int result = customerDAO.removeCustomerScrapList(userId);
+		
+		return result;
+	}
+
+	@Override
+	public List<Notice> scrapNoticeInfo(String scrapId) {
+		// TODO Auto-generated method stub
+		List<Notice> noticeList = customerDAO.scrapNoticeInfo(scrapId);
+		
+		return noticeList;
+	}
+
+	@Override
+	public int removeCustomerScrapItem(String scrapId) {
+		// TODO Auto-generated method stub
+		int result = customerDAO.removeCustomerScrapItem(scrapId);
+		
+		return result;
+	}
+
+	@Override
+	public int removeCustomerScrapItemByPostingId(String postingId) {
+		// TODO Auto-generated method stub
+		int result = customerDAO.removeCustomerScrapItemByPostingId(postingId);
+		
+		return result;
+	}
+
+	
+
+	@Override
+	public int scrapNotice(Scrap scrapId) {
+		// TODO Auto-generated method stub
+		
+		int result = customerDAO.scrapNotice(scrapId);
+		
+		return result;
+	}
+
+	@Override
+	public List<Resume> customerResumeList(String userId) {
+		// TODO Auto-generated method stub
+		
+		List<Resume> resumeList = customerDAO.customerResumeList(userId);
+		return resumeList;
+	}
+
+	@Override
+	public String pwCheck(String memberId) throws Exception {
+		// TODO Auto-generated method stub
+		String pwCheck = customerDAO.pwCheck(memberId);
+		return pwCheck;
+	}
+
+	@Override
+	public void pwUpdate(String memberId, String hashedPw) throws Exception {
+		// TODO Auto-generated method stub
+		customerDAO.pwUpdate(memberId, hashedPw);
+		
+	}
+	
+	
 
 	
 }

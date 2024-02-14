@@ -64,6 +64,7 @@
 
     <!--부서별 공고페이지 메인-->
     <div class="container">
+    <input type="hidden" value="${loginId}" id="loginId">
         <div class="notice_box_container">
             <div class="notice_info_header">
                 <span class="notice_title">Find Your Next Career</span>
@@ -109,21 +110,27 @@
 </div>
    
                     <form method="get" action="/jobsDescription" id="form">
-                    
-                    
-                  
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-			<input type="hidden" name="postingId" value="${jobpostingById.postingId}">
-			
-			<br>
-			
-			<label class ="descriptionLabel">-지원 기간</label> <div>${jobpostingById.applicationStart} ~ ${jobpostingById.applicationDeadline}</div> <br>
+			<input type="hidden" name="postingId" value="${postingId}">
+			<label>제목: </label> <span>${jobpostingById.title}</span> <br>
+			<label>직무: </label> <span>${jobpostingById.jobsCateName}</span> <br>
+			<label>직무명: </label> <span>${jobpostingById.jobsItemName}</span> <br>
+			<label>경력조건: </label> <span>${jobpostingById.careerCondition}</span> <br>
+			<label>고용형태: </label> <span>${jobpostingById.employmentType}</span> <br>
+
+			<label>지원일: </label> <span>${jobpostingById.applicationStart} ~ ${jobpostingById.applicationDeadline}</span> <br>
+			<label>질문 1: </label> <span>${jobpostingById.question1}</span> <br>
+			<label>질문 2: </label> <span>${jobpostingById.question2}</span> <br>
+			<label>질문 3: </label> <span>${jobpostingById.question3}</span> <br>
+
+			<label>담당업무: </label> <span>${descriptionById.assignedTask}</span> <br>
+			<label>자격요건: </label> <span>${descriptionById.requirements}</span> <br>
+			<label>우대사항: </label> <span>${descriptionById.preferentialTreatment}</span> <br>
+			<label>전형안내: </label> <span>${descriptionById.screeningGuide}</span> <br>
+			<label>근무형태: </label> <span>${descriptionById.workForm}</span> <br>
+			<label>근무지: </label> <span>${descriptionById.workPlace}</span> <br>
+			<label>근무시간: </label> <span>${descriptionById.workingHours}</span> <br>
+			<label>기타: </label> <span>${descriptionById.etc}</span> <br>
+			<label>보훈 취업지원 대상 및 장애인 서류 제출안내: </label> <span>${descriptionById.submissionGuide}</span> <br>
 
 			<label class ="descriptionLabel">-담당업무</label> <div>${descriptionById.assignedTask}</div> <br>
 			
@@ -150,19 +157,25 @@
 
 
 			<div class="btn_confirm">
-				<input type="submit" value="지원하기" id="submitBtn">
+				<input type="button" value="지원하기" id="submitBtn">
 			</div>
 			
-			
-			
+			</form>
                     <script>
+                    let loginId = document.getElementById('loginId');
 				let form = document.getElementById('form');
 				document.getElementById("submitBtn").addEventListener("click", function (event) {
 					var confirmation = confirm("지원하겠습니까?");
 
 					// 확인을 눌렀을 경우
 					if (confirmation) {
+						//로그인을 해야만 넘어가게 추가
+						if(loginId.value == ''){
+							alert('로그인 후 이용 가능합니다');
+							e.preventDefault();
+						}
 						form.action = "/apply";
+						form.submit();
 						// 폼 제출
 						return true;
 					} else {
@@ -177,7 +190,7 @@
 
 
 
-		</form>
+		
                     
                     
                    

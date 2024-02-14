@@ -3,7 +3,9 @@ package com.jobhub.dao.apply;
 import java.util.List;
 import java.util.Map;
 
+import com.jobhub.dto.customer.Customer;
 import com.jobhub.dto.employee.Employee;
+import com.jobhub.dto.jobposting.Jobposting;
 import com.jobhub.dto.resume.Resume;
 import com.jobhub.dto.util.FileInfo;
 
@@ -23,6 +25,9 @@ public interface ApplyDAO {
 	
 	public int saveFileInfo(Map<String, Object> hashMap);
 
+	public Jobposting findQuestions(String postingId);
+	
 	public List<Employee> findEmployeeList();
 	
+	public Customer findUserById(String id);
 }
