@@ -109,6 +109,7 @@
 </div>
    
                     <form method="get" action="/jobsDescription" id="form">
+                    
 			<input type="hidden" name="postingId" value="${postingId}">
 		
 
