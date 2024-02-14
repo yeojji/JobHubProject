@@ -1,9 +1,10 @@
 package com.jobhub.controller.customer;
 
+import java.beans.Encoder;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 
@@ -14,28 +15,26 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.jobhub.dto.customer.Customer;
-import com.jobhub.dto.employee.Employee;
+import com.jobhub.dto.customer.Scrap;
 import com.jobhub.dto.employee.EmployeeJobsInfo;
-import com.jobhub.dto.jobposting.Job;
-import com.jobhub.service.admin.AdminService;
 import com.jobhub.dto.jobposting.Description;
 import com.jobhub.dto.jobposting.FAQs;
 import com.jobhub.dto.jobposting.Job;
 import com.jobhub.dto.jobposting.Jobposting;
+import com.jobhub.dto.jobposting.Notice;
 import com.jobhub.dto.jobposting.PostingSearchCondition;
+import com.jobhub.dto.resume.Resume;
+import com.jobhub.service.admin.AdminService;
 import com.jobhub.service.customer.CustomerService;
 import com.jobhub.service.jobposting.JobpostingService;
+
+import oracle.sql.CharacterSet;
 
 @Controller
 public class CustomerController {
@@ -102,7 +101,6 @@ public class CustomerController {
 		
 		Customer loginUser = customerService.findLoginCustomer(customer);
 		
-		
 		if(loginUser == null || !(customer.getUserId().equals(loginUser.getUserId()))|| 
 				!(customer.getPassword().equals(loginUser.getPassword())) || loginUser.getCustomerStatus().equals("2")) {
 			
@@ -139,7 +137,9 @@ public class CustomerController {
 		
 		Customer customerInfo = customerService.findCustomerInfo(findCustomer);
 
+		List<Resume> resumeList = customerService.customerResumeList(findCustomer);
 		
+		model.addAttribute("resumeList", resumeList);
 		model.addAttribute("userId", customerInfo.getUserId());
 		model.addAttribute("name", customerInfo.getName());
 		model.addAttribute("email", customerInfo.getEmail());
@@ -152,10 +152,104 @@ public class CustomerController {
 		
 	}
 	
+	
+	
+	
 	@GetMapping("/scrap_page")
-	public String scrap_page(HttpSession session) {
+	public String scrap_page(HttpSession session,Customer customer, 
+			Model model,Scrap scrap) {
+		
+		String findCustomer = (String)session.getAttribute("loginId");
+		
+		session.getAttribute(findCustomer);
+		
+		List<Scrap> scrapList = customerService.customerScarpList(findCustomer);
+		System.out.println(scrapList);
+		if (!scrapList.isEmpty()) {
+		    Scrap firstScrap = scrapList.get(0); 
+		    String postingId = firstScrap.getPostingId(); 
+		    List<Notice> noticeList = customerService.scrapNoticeInfo(postingId);
+		    model.addAttribute("noticeList", noticeList);
+		} else {
+			
+		}
+		model.addAttribute("scrapList",scrapList);
+		
 		return "customer/scrap_page";
 	}
+	
+	
+	@GetMapping("/showScrapNoticeInfo")
+	public String scrapNoticeInfo(@RequestParam(name="postingId")String postingId, HttpSession session, Customer customer, Model model) {
+		
+		String findCustomer = (String)session.getAttribute("loginId");
+		
+		session.getAttribute(findCustomer);
+		
+		List<Scrap> scrapList = customerService.customerScarpList(findCustomer);
+		List<Notice> noticeList = customerService.scrapNoticeInfo(postingId);
+		model.addAttribute("scrapList",scrapList);
+		model.addAttribute("noticeList", noticeList);
+		
+		return "customer/scrap_page";
+	}
+	
+	@GetMapping("/scrapNotice")
+	public String scrapNotice(@RequestParam(name="postingId")String postingId,
+			@RequestParam(name="userId")String userId, Scrap scrap) {
+
+		scrap.setPostingId(postingId);
+		scrap.setUserId(userId);
+		scrap.setScrapStatus("1");
+		
+		int result = customerService.scrapNotice(scrap);
+		
+		if(result >0) {
+			return "redirect:/customer/notice_by_career";		
+		}else {
+			return "/";
+		}
+		
+	}
+	
+	@GetMapping("/deleteAllScrap")
+	public String deleteAllScrap(HttpSession session,Customer customer, Scrap scrap) {
+		
+		String findCustomer = (String)session.getAttribute("loginId");
+		
+		scrap.setScrapStatus("2");
+	    int result = customerService.removeCustomerScrapList(findCustomer);
+
+	    
+	    if (result > 0) {
+	        return "redirect:/customer/notice_by_career";
+	    } else {
+	    	
+	        return "/"; 
+	    }
+	}
+	
+	@GetMapping("/deleteScrapItem")
+	public String deleteScrapItem(@RequestParam(name = "scrapId") String scrapId,
+							@RequestParam(name = "postingId") String postingId,
+							Scrap scrap) {
+		System.out.println(scrapId);
+		System.out.println(postingId);
+		scrap.setScrapStatus("2");
+		int result = customerService.removeCustomerScrapItem(scrapId);
+		System.out.println(result);
+		
+		if(result > 0) {
+			customerService.removeCustomerScrapItemByPostingId(postingId);
+			
+			return "redirect:/customer/notice_by_career";
+		}else {
+			return "/";
+		}
+		
+	}
+	
+	
 	
 	@PostMapping("/mypage/modifyCustomerInfo")
 	public String modifyCustomerInfo(Customer customer, Model model) {
@@ -164,7 +258,7 @@ public class CustomerController {
 		
 		if(result >0) {
 			
-			return "redirect:/";
+			return "redirect:/customer/mypage";
 		}else {
 			
 			
@@ -173,7 +267,8 @@ public class CustomerController {
 	}
 	
 	@PostMapping("/mypage/modifyPw")
-	public String modifyCustomerPw(HttpSession session, Customer customer, Model model,HttpServletRequest request) {
+	public String modifyCustomerPw(HttpSession session, Customer customer, Model model,
+			HttpServletRequest request) {
 		
 		
 		int result = customerService.modifyCustomerPw(customer);
@@ -210,34 +305,22 @@ public class CustomerController {
 	}
 	
 	
-
 	
-	
-	//jobs
-	//jobsMain
 
-	@GetMapping("/customer/notice_by_career")
-	public String showAllNotice(Model model, PostingSearchCondition postingSearchCondition) {
-		
-		List<Job> jobList = jobpostingService.findJobList();
-		List<Jobposting> jobpostingList = jobpostingService.findJobpostingList();
-		List<Jobposting> jobpostingNameList = jobpostingService.findPostingAndJobNameList();
-		
-		model.addAttribute("jobList" , jobList);
-		model.addAttribute("jobpostingList" , jobpostingList);
-		model.addAttribute("jobpostingNameList" , jobpostingNameList);
-		
-		model.addAttribute("postingCount",sqlSession.selectOne("jobPosting_mapper.findPostingCountOpen"));
-		
-		return "customer/notice_by_career";
-	}
+
 	
 	//jobs category 별로 화면 바뀌는 거
 	@GetMapping("/list")
-	public String list(@RequestParam String jobsCateName, Model model) {
-			
+	public String list( Model model , @RequestParam String jobsCateName ) throws UnsupportedEncodingException {
+		
+		
 		List<Jobposting>  jobpostingList = jobpostingService.findPostingListByjobscatename(jobsCateName);
 		List<Job> jobList = jobpostingService.findJobList();
+		
+		for(Job job : jobList) {
+			job.setJobsNameEncoded(java.net.URLEncoder.encode(job.getJobsName(), "UTF-8"));
+		}
+		
 		List<Jobposting> jobpostingNameList = jobpostingService.findPostingAndJobNameList();
 		
 		model.addAttribute("postingCount",sqlSession.selectOne("jobPosting_mapper.findPostingCountByCate",jobsCateName));
@@ -248,56 +331,79 @@ public class CustomerController {
 		
 		return "customer/list";
 	}
+
+@GetMapping("/customer/notice_by_career")
+public String showAllNotice(HttpSession session, Jobposting postingId,
+		 Customer userId, Model model, Scrap scrap, String keyword) {
+   
+	String findCustomer = (String)session.getAttribute("loginId");
+	session.getAttribute(findCustomer);
 	
-	//jobs 제목 누르면 상세보기 페이지
-	@GetMapping("/jobsDescription")
-	public String jobsDescription(@RequestParam String postingId, Model model) {
-		
-		Jobposting jobpostingById = jobpostingService.findPostingBypostingId(postingId);
-		Description descriptionById = jobpostingService.findDescriptionBypostingId(postingId);
-		
-		
-		List<Job> jobList = jobpostingService.findJobList();
-		List<Jobposting> jobpostingList = jobpostingService.findJobpostingList();
-		List<Jobposting> jobpostingNameList = jobpostingService.findPostingAndJobNameList();
-		
-		model.addAttribute("jobList" , jobList);
-		model.addAttribute("jobpostingList" , jobpostingList);
-		model.addAttribute("jobpostingNameList" , jobpostingNameList);
-		
-		
-		
-		model.addAttribute("jobpostingById", jobpostingById);
-		model.addAttribute("descriptionById", descriptionById);
-		
-		
-		
-		
-		
-		return "customer/jobsDescription";
-	}
-		
-	
-	//faqs
-	//faqs 메인
-	@GetMapping("/cus/faqs")
-	public String showFaqs(Model model) {
-		List<FAQs> faqsList = jobpostingService.findFaqsList();
-		model.addAttribute("faqsList" , faqsList);
-		return "customer/faqs";
-	}
-	
+	model.addAttribute("loginId", findCustomer);
+	System.out.println(findCustomer);
+   List<Job> jobList = jobpostingService.findJobList();
+   List<Jobposting> jobpostingList = jobpostingService.findJobpostingList();
+   List<Jobposting> jobpostingNameList = jobpostingService.findPostingAndJobNameListBySearchCondition(keyword);
+   
+   model.addAttribute("jobList" , jobList);
+   model.addAttribute("jobpostingList" , jobpostingList);
+   model.addAttribute("jobpostingNameList" , jobpostingNameList);
+   
+   model.addAttribute("postingCount",sqlSession.selectOne("jobPosting_mapper.findPostingCountOpen"));
+   
+   if(session.getAttribute(findCustomer) != null) {
+   List<Scrap> scrapList = customerService.customerScarpList(findCustomer);
+
+   System.out.println(scrapList);
+   model.addAttribute("scrapList", scrapList);
+   }
+   return "customer/notice_by_career";
+}
 
 
+//jobs 제목 누르면 상세보기 페이지
+@GetMapping("/jobsDescription")
+public String jobsDescription(@RequestParam String postingId, Model model, HttpSession session) {
+   
+	Jobposting jobpostingById = jobpostingService.findPostingBypostingId(postingId);
+	Description descriptionById = jobpostingService.findDescriptionBypostingId(postingId);
 	
+	
+	List<Job> jobList = jobpostingService.findJobList();
+	List<Jobposting> jobpostingList = jobpostingService.findJobpostingList();
+	List<Jobposting> jobpostingNameList = jobpostingService.findPostingAndJobNameList();
+	
+	model.addAttribute("jobList" , jobList);
+	model.addAttribute("jobpostingList" , jobpostingList);
+	model.addAttribute("jobpostingNameList" , jobpostingNameList);
+	
+	model.addAttribute("jobpostingById", jobpostingById);
+	model.addAttribute("descriptionById", descriptionById);
+	
+	
+	return "customer/jobsDescription";
+}
+   
 
-	
-	
-	
-	@GetMapping("/notice_info")
-	public String showNoticeInfo() {
-		return "customer/notice_info";
-	}
-	
+//faqs
+//faqs 메인
+@GetMapping("/cus/faqs")
+public String showFaqs(Model model) {
+   List<FAQs> faqsList = jobpostingService.findFaqsList();
+   model.addAttribute("faqsList" , faqsList);
+   return "customer/faqs";
+}
+
+
+
+
+
+
+
+
+//   @GetMapping("/notice_info")
+//   public String showNoticeInfo() {
+//      return "customer/notice_info";
+//   }
 
 }

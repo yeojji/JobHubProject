@@ -63,41 +63,49 @@
         </div>
         <div class="main">
             <div class="company_news_boxs">
-                <h2 class="company_news_title">회사뉴스타이틀</h2>
+                <h2 class="company_news_title">Job Hub's NEWS</h2>
                 <div class="company_news_list">
                     <div class="company_news_box">
-                        <div class="news_1_image">뉴스1이미지</div>
+                        <div class="news_1_image"><img src="/image/뉴스이미지1.jpg" style="width: 100%; height: 250px; object-fit:cover;"></div>
                         <div class="news_box">
-                            <div class="news_title">뉴스타이틀</div>
+                            <div class="news_title">인공지능 기술 개발로 혁신</div>
                             <div class="news_content">
-                                뉴스내용
+                                "JOBHUB가 인공지능 기술을 도입하여 새로운 혁신을 이루고 있습니다. 
+                                채용 프로세스의 효율성과 정확성을 높이는데 주력하고 있습니다. 자세한 내용은 더 많은 뉴스에서 확인하세요."
                             </div>
                         </div>
                     </div>
                     <div class="company_news_box">
-                        <div class="news_2_image">뉴스2이미지</div>
+                        <div class="news_2_image"><img src="/image/뉴스이미지2.jpg" style="width: 100%; height: 250px; object-fit:cotain;"></div>
                         <div class="news_box">
-                            <div class="news_title">뉴스타이틀</div>
+                            <div class="news_title">글로벌 인재 채용 진행 중</div>
                             <div class="news_content">
-                                뉴스내용
+                               "JOBHUB에서는 글로벌 인재를 모집하고 있습니다. 
+                               다양한 배경과 경험을 가진 인재들을 기다리고 있으며, 
+                               우리와 함께 일하고 싶은 분들의 지원을 기다립니다."
                             </div>
                         </div>
                     </div>
                     <div class="company_news_box">
                         <div class="news_3_image">뉴스3이미지</div>
                         <div class="news_box">
-                            <div class="news_title">뉴스타이틀</div>
+                            <div class="news_title">2024년 채용 계획 발표</div>
                             <div class="news_content">
-                                뉴스내용
+                                 "2024년 JOBHUB의 채용 계획이 발표되었습니다. 
+                                 다양한 부문에서 새로운 인재들을 모집하고 있습니다. 
+                                 채용에 관심이 있는 분들은 지금 지원하세요!"
                             </div>
                         </div>
                     </div>
                     <div class="company_news_box">
                         <div class="news_4_image">뉴스4이미지</div>
                         <div class="news_box">
-                            <div class="news_title">뉴스타이틀</div>
+                            <div class="news_title">글로벌 사업 확장 소식</div>
                             <div class="news_content">
-                                뉴스내용
+                            "JOBHUB이 글로벌 사업 확장에 성공적으로 나서고 있습니다. 
+                            새로운 도전과 기회가 기다리고 있으니 
+                            함께 성장하고 싶은 분들의 지원을 기다립니다."
+
                             </div>
                         </div>
                     </div>
@@ -129,65 +137,13 @@
 	                </c:forEach>
 	                </div>
                 <div class="more_about_employee_info">
-                    <span class="more_about_text2">More about our JobHub ></span>
+                    <span class="more_about_text2" onclick="location.href='/people'">More about our JobHub ></span>
                 </div>
             </div>
         </div>
     </div>
 
 <script>
-$(document).ready(function(){
-	
-    if($("select[name=jobLevel1]").val() == "") {
-        $("select[name=jobLevel2]").attr("disabled", true);
-    }
-    console.log('file loading');	    
-    
-    $(jobLevel1).on('change', function () {
-    	console.log('select chagned');
-    	jobLevel1 = $(this).val();
-    	console.log(jobLevel1);
-    	
-        if (jobLevel1 != "") {
-        	
-        	
-        	
-            jQuery.ajax({
-                type: "POST",
-                url: "/jobnameByPid",
-                data: {
-                    jobLevel1: jobLevel1
-                },
-                //datatype: "text",
-                datatype: "json",
-                success: function (jobNameList) {
-                    //var data = JSON.parse(jobNameList); 
-                    console.log(jobNameList); // 콘솔에 데이터가 제대로 나오는지 확인
-                    $('#jobLevel2').empty(); 	//자식 테이블 한번 지우기
-                    $.each(jobNameList, function (index, job) {	 //index, Object
-                        console.log(index); // 콘솔에 각각의 키와 값이 제대로 나오는지 확인
-                        console.log(job); // 콘솔에 각각의 키와 값이 제대로 나오는지 확인
-                        //index: 현재 요소의 인덱스(걍 자리채우기용) //job 현재 요소의 값
-                        $('<option></option>').val(job.jobsId).text(job.jobsName).appendTo($('#jobLevel2'));
-                    });
-                },
-                error: function (xhr, status, error) {
-                    console.log("ERROR!!!", error); // 에러 로그 확인
-                }
-            });
-            
-            $("select[name=jobLevel2]").attr("disabled", false);
-            
-            
-            
-        } else {
-            $("select[name=jobLevel2]").attr("disabled", true);
-        }
-
-     
-    });
-});
-
 
 
 

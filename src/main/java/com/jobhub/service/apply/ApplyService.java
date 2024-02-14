@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.jobhub.dto.employee.Employee;
+import com.jobhub.dto.jobposting.Jobposting;
 import com.jobhub.dto.resume.Resume;
 import com.jobhub.dto.util.FileInfo;
 
@@ -24,6 +25,11 @@ public interface ApplyService {
 	
 	public int saveFileInfo(List<FileInfo> fileInfo);
 	
+	public Jobposting findQuestions(String postingId);
+	
+	
+	
+	public boolean isDuplicatedId(String id);
 	
 	public List<Employee> findEmployeeList();
 }

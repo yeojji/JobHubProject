@@ -58,7 +58,8 @@
 <form action="/customer/notice_by_career" method="get">
     <div class="search_jobs_box">
         <i class="fa-solid fa-magnifying-glass search_icon"></i>
-        <input type="text" placeholder="Search Jobs" class="search_jobs" name="searchKeyword">
+        <input type="text" placeholder="Search Jobs" class="search_jobs" name="keyword">
+         
         <button type="submit">검색</button>
     </div>
 </form>
@@ -69,7 +70,7 @@
                     
                     
 <c:forEach var="jobpostingNameItem" items="${jobpostingNameList}"> 
-    <c:if test="${jobpostingNameItem.postStatus == 'O'}">
+    <%--  <c:if test="${jobpostingNameItem.postStatus = 'O'} " > --%> 
         <div class="notice_list_item">
             <div class="notice_info_title">
                 <a href="../jobsDescription?postingId=${jobpostingNameItem.postingId}" >${jobpostingNameItem.title}</a>
@@ -80,19 +81,39 @@
                     <span class="notice_filter_text">${jobpostingNameItem.careerCondition}</span>
                 </div>
             </div>
-            <span class="notice_deadline">${jobpostingNameItem.applicationStart} ~ ${jobpostingNameItem.applicationDeadline}</span>
+            <div class="">
+			    <c:if test="${sessionScope.loginId != null}">
+			        <input type="hidden" value="${jobpostingNameItem.postingId}" name="postingId">
+			        <input type="hidden" value="${sessionScope.loginId}" name="userId">
+			
+			        <c:choose>
+				        <c:when test="${empty scrapList}">
+				            <!-- 사용자의 스크랩 목록이 비어있는 경우 -->
+				            <i class="fa-regular fa-heart notice_filter_text scrap" onclick="scrap('${jobpostingNameItem.postingId}','${sessionScope.loginId}')"></i>
+				        </c:when>
+				        <c:otherwise>
+				            <!-- 사용자의 스크랩 목록에 있는 경우 -->
+				            <c:set var="isScrapped" value="false" />
+				            <c:forEach var="scrapItem" items="${scrapList}">
+				                <c:if test="${scrapItem.postingId eq jobpostingNameItem.postingId}">
+				                    <!-- 해당 공고가 스크랩되어 있는 경우 -->
+				                    <i class="fa-solid fa-heart notice_filter_text scrap" onclick="scrapCancle('${jobpostingNameItem.postingId}', '${scrapItem.scrapId}')"></i>
+				                    <c:set var="isScrapped" value="true" />
+				                </c:if>
+				            </c:forEach>
+				            <!-- 해당 공고가 스크랩되어 있지 않은 경우 -->
+				            <c:if test="${not isScrapped}">
+				                <i class="fa-regular fa-heart notice_filter_text scrap" onclick="scrap('${jobpostingNameItem.postingId}','${sessionScope.loginId}')"></i>
+				            </c:if>
+				        </c:otherwise>
+				    </c:choose>
+			    </c:if>
+	            <span class="notice_deadline">${jobpostingNameItem.applicationStart} ~ ${jobpostingNameItem.applicationDeadline}</span>
+        	</div>
         </div>
-    </c:if>   
+   <%--  </c:if> --%>   
 </c:forEach>
  
-            
-
-     
-            
-                    
-                    
-                    
-                    
                    
                   
                 </div>
@@ -100,6 +121,29 @@
         </div>
   
 
+    <script>
+        
+	
+        function scrap(postingId, userId){
+        	if(confirm('스크랩 하시겠습니까?')){
+        		window.location.href='/scrapNotice?postingId=' + postingId
+        				+ '&userId=' + userId;
+        	}
+        }
+        
+        
+        function scrapCancle(postingId,scrapId){
+    		if(confirm('공고를 삭제하시겠습니까?')){
+    			
+    			window.location.href='/deleteScrapItem?scrapId=' + scrapId
+    					+ '&postingId=' + postingId;
+    		}
+    		
+    	}
+        
+        
+
+    </script>
 
 
      <!--footer-->

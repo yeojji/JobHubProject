@@ -24,6 +24,8 @@ public interface JobpostingService {
 	
 	public List<Jobposting> findPostingAndJobNameList();
 	
+
+	
 	public List<Job> findJobNameListbyPid(int jobLevel1);
 	
 	public int saveJobposting(Jobposting jobposting);
@@ -53,11 +55,12 @@ public interface JobpostingService {
 	
 	//public List<Jobposting> findPostingListBySearchCondition(PostingSearchCondition postingSearchCondition);
 	
-	public List<Jobposting> findPostingListBySearchCondition(String keyword);
+	public List<Jobposting> findJobpostingListBySearchCondition(String keyword);
 	
+	public List<Jobposting> findPostingAndJobNameListBySearchCondition(String keyword);
 	
-	
-	public List<Jobposting> findPostingListByjobscatename(String jobscatename);
+	public List<Jobposting> findPostingListByjobscatename(String jobsCateName);
 
+	
 	
 }

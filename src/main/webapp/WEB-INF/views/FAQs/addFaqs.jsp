@@ -23,7 +23,7 @@
  <header id="hd">
         <div id="hd_wrap">
             <h1>Jobhub 관리자 페이지</h1>
-            <div id="logo"><a href="/admin/adminMain"><img src="./sources/admin/img/logo_wh_250x35.png"
+            <div id="logo"><a href="/admin/adminMain"><img src="/img/admin/logo_wh_250x35.png"
                         alt="Jobhub logo"></a></div>
             <div id="tnb">
                 <ul>
@@ -130,7 +130,12 @@
     <div id="anc_header"><a href="#anc_hd"><span></span>TOP</a></div>
     <script src="./sources/admin/js/admin.js"></script>
     <script src="./sources/common/js/wrest.js"></script>
+    
+    
+    
     <script>
+    
+    
         document.addEventListener('DOMContentLoaded', function () {
             var chkAll = document.querySelector('input[name="chkall"]');
             chkAll.addEventListener('change', function () {

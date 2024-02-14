@@ -11,14 +11,18 @@
     height: 90px;
     padding: 30px;
     justify-content: space-between;
-    border-bottom: 1px solid black;
     transition: background-color 0.1s ease;
+    --header-bg-color: transparent;
 }
 
 
 .scrolled {
     background-color: white;
     color: black;
+}
+
+.white_fnt{
+	color : black;
 }
 
 .header_menu1{

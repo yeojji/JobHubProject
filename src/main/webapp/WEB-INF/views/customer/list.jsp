@@ -45,7 +45,8 @@
 								 --%>
 								<%-- <span class="category_item"><a href="../list?cateName=${jobItem.jobsCateName}">${jobItem.jobsName}</a></span> --%>
 								
-								<span class="category_item"><a href="../list?jobsCateName=${jobItem.jobsName}">${jobItem.jobsName}</a></span>
+<%-- 								<span class="category_item"><a href="../list?jobsCateName=${jobItem.jobsName}">${jobItem.jobsName}</a></span> --%>
+								<span class="category_item"><a href="../list?jobsCateName=${jobItem.jobsNameEncoded}">${jobItem.jobsName}</a></span>
 								
 							</c:when>
 						</c:choose>
@@ -78,7 +79,7 @@
                     
                     
 				<c:forEach var="jobpostingListItem" items="${jobpostingList}"> 
-    <c:if test="${jobpostingListItem.postStatus == 'O'}">
+    <c:if test="${jobpostingListItem.postStatus == 'O'}">  
         <div class="notice_list_item">
             <div class="notice_info_title">
                 <a href="../jobsDescription?postingId=${jobpostingListItem.postingId}" >${jobpostingListItem.title}</a>
@@ -91,7 +92,7 @@
             </div>
             <span class="notice_deadline">${jobpostingListItem.applicationStart} ~ ${jobpostingListItem.applicationDeadline}</span>
         </div>
-    </c:if>   
+   </c:if>
 </c:forEach>
  
             
