@@ -365,21 +365,23 @@ public String showAllNotice(HttpSession session, Jobposting postingId,
 @GetMapping("/jobsDescription")
 public String jobsDescription(@RequestParam String postingId, Model model, HttpSession session) {
    
-	String loginId = (String)session.getAttribute("loginId");
-	session.getAttribute(loginId);
-	model.addAttribute("loginId", loginId);
+	Jobposting jobpostingById = jobpostingService.findPostingBypostingId(postingId);
+	Description descriptionById = jobpostingService.findDescriptionBypostingId(postingId);
 	
-   Jobposting jobposting = jobpostingService.findPostingBypostingId(postingId);
-   Description description = jobpostingService.findDescriptionBypostingId(postingId);
-   
-   System.out.println(jobposting + "공고");
-   System.out.println(description + "공고상세");
-   
-   model.addAttribute("postingId", jobposting.getPostingId());
-   model.addAttribute("jobposting", jobposting);
-   model.addAttribute("description", description);
-   
-   return "customer/jobsDescription";
+	
+	List<Job> jobList = jobpostingService.findJobList();
+	List<Jobposting> jobpostingList = jobpostingService.findJobpostingList();
+	List<Jobposting> jobpostingNameList = jobpostingService.findPostingAndJobNameList();
+	
+	model.addAttribute("jobList" , jobList);
+	model.addAttribute("jobpostingList" , jobpostingList);
+	model.addAttribute("jobpostingNameList" , jobpostingNameList);
+	
+	model.addAttribute("jobpostingById", jobpostingById);
+	model.addAttribute("descriptionById", descriptionById);
+	
+	
+	return "customer/jobsDescription";
 }
    
 
