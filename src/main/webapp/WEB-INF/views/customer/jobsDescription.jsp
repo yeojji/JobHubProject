@@ -109,21 +109,8 @@
 </div>
    
                     <form method="get" action="/jobsDescription" id="form">
-                    
-                    
-                  
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-			<input type="hidden" name="postingId" value="${jobpostingById.postingId}">
-			
-			<br>
-			
-			<label class ="descriptionLabel">-지원 기간</label> <div>${jobpostingById.applicationStart} ~ ${jobpostingById.applicationDeadline}</div> <br>
+			<input type="hidden" name="postingId" value="${postingId}">
+		
 
 			<label class ="descriptionLabel">-담당업무</label> <div>${descriptionById.assignedTask}</div> <br>
 			
@@ -153,8 +140,7 @@
 				<input type="submit" value="지원하기" id="submitBtn">
 			</div>
 			
-			
-			
+			</form>
                     <script>
 				let form = document.getElementById('form');
 				document.getElementById("submitBtn").addEventListener("click", function (event) {

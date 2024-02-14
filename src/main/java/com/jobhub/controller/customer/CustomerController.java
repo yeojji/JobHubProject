@@ -303,22 +303,43 @@ public class CustomerController {
 	
 	
 
-	//jobs
-	//jobsMain
+
+	
+	//jobs category 별로 화면 바뀌는 거
+	@GetMapping("/list")
+	public String list( Model model , @RequestParam String jobsCateName ) throws UnsupportedEncodingException {
+		
+		
+		List<Jobposting>  jobpostingList = jobpostingService.findPostingListByjobscatename(jobsCateName);
+		List<Job> jobList = jobpostingService.findJobList();
+		
+		for(Job job : jobList) {
+			job.setJobsNameEncoded(java.net.URLEncoder.encode(job.getJobsName(), "UTF-8"));
+		}
+		
+		List<Jobposting> jobpostingNameList = jobpostingService.findPostingAndJobNameList();
+		
+		model.addAttribute("postingCount",sqlSession.selectOne("jobPosting_mapper.findPostingCountByCate",jobsCateName));
+		
+		model.addAttribute("jobpostingList",jobpostingList);
+		model.addAttribute("jobList" , jobList);
+		model.addAttribute("jobpostingNameList" , jobpostingNameList);
+		
+		return "customer/list";
+	}
 
 @GetMapping("/customer/notice_by_career")
 public String showAllNotice(HttpSession session, Jobposting postingId,
-		 Customer userId, Model model, PostingSearchCondition postingSearchCondition,Scrap scrap) {
+		 Customer userId, Model model, Scrap scrap, String keyword) {
    
 	String findCustomer = (String)session.getAttribute("loginId");
 	session.getAttribute(findCustomer);
-	
 	
 	model.addAttribute("loginId", findCustomer);
 	System.out.println(findCustomer);
    List<Job> jobList = jobpostingService.findJobList();
    List<Jobposting> jobpostingList = jobpostingService.findJobpostingList();
-   List<Jobposting> jobpostingNameList = jobpostingService.findPostingAndJobNameList();
+   List<Jobposting> jobpostingNameList = jobpostingService.findPostingAndJobNameListBySearchCondition(keyword);
    
    model.addAttribute("jobList" , jobList);
    model.addAttribute("jobpostingList" , jobpostingList);
@@ -335,42 +356,28 @@ public String showAllNotice(HttpSession session, Jobposting postingId,
    return "customer/notice_by_career";
 }
 
-//jobs category 별로 화면 바뀌는 거
-@GetMapping("/list")
-public String list(@RequestParam String jobsCateName, Model model) {
-	  
-   List<Jobposting>  jobpostingList = jobpostingService.findPostingListByjobscatename(jobsCateName);
-   List<Job> jobList = jobpostingService.findJobList();
-   List<Jobposting> jobpostingNameList = jobpostingService.findPostingAndJobNameList();
-   
-   model.addAttribute("postingCount",sqlSession.selectOne("jobPosting_mapper.findPostingCountByCate",jobsCateName));
-   
-   model.addAttribute("jobpostingList",jobpostingList);
-   model.addAttribute("jobList" , jobList);
-   model.addAttribute("jobpostingNameList" , jobpostingNameList);
-   
-   return "customer/list";
-}
 
 //jobs 제목 누르면 상세보기 페이지
 @GetMapping("/jobsDescription")
 public String jobsDescription(@RequestParam String postingId, Model model, HttpSession session) {
    
-	String loginId = (String)session.getAttribute("loginId");
-	session.getAttribute(loginId);
-	model.addAttribute("loginId", loginId);
+	Jobposting jobpostingById = jobpostingService.findPostingBypostingId(postingId);
+	Description descriptionById = jobpostingService.findDescriptionBypostingId(postingId);
 	
-   Jobposting jobposting = jobpostingService.findPostingBypostingId(postingId);
-   Description description = jobpostingService.findDescriptionBypostingId(postingId);
-   
-   System.out.println(jobposting + "공고");
-   System.out.println(description + "공고상세");
-   
-   model.addAttribute("postingId", jobposting.getPostingId());
-   model.addAttribute("jobposting", jobposting);
-   model.addAttribute("description", description);
-   
-   return "customer/jobsDescription";
+	
+	List<Job> jobList = jobpostingService.findJobList();
+	List<Jobposting> jobpostingList = jobpostingService.findJobpostingList();
+	List<Jobposting> jobpostingNameList = jobpostingService.findPostingAndJobNameList();
+	
+	model.addAttribute("jobList" , jobList);
+	model.addAttribute("jobpostingList" , jobpostingList);
+	model.addAttribute("jobpostingNameList" , jobpostingNameList);
+	
+	model.addAttribute("jobpostingById", jobpostingById);
+	model.addAttribute("descriptionById", descriptionById);
+	
+	
+	return "customer/jobsDescription";
 }
    
 
