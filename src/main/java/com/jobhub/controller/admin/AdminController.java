@@ -42,7 +42,7 @@ public class AdminController {
 	public String logout(HttpSession session) {
 		loginManager.logout(session);
 
-		return "redirect:/admin";
+		return "redirect:/admin/login";
 	}
 
 	// 로그인
@@ -73,17 +73,21 @@ public class AdminController {
 		return "redirect:/admin";
 	}
 
-	@GetMapping("/adminSetting")
+	@GetMapping("/setting")
 	public String adminSetting(Model model, @ModelAttribute AdminSearchCondition adminSearchCondition) {
+		System.out.println("Received adminSearchCondition: " + adminSearchCondition);
+		List<Admin> adminList;
+		
+		// 검색 조건이 없을 때 전체 목록을 가져옴
 
-		// 관리자 정보 목록 >> view 전달
-		System.out.println(adminSearchCondition);
+				if (adminSearchCondition != null) {
+					adminList = adminService.findAdminListBySearchCondition(adminSearchCondition);
+				} else {
+					adminList = adminService.findAdminList();
+				}
+				System.out.println("Size of resumeList: " + adminList.size()); // 리스트사이즈 확인
+				model.addAttribute("adminList", adminList);
 
-		List<Admin> adminList = adminService.findAdminListBySearchCondition(adminSearchCondition);
-
-		model.addAttribute("adminList", adminList);
-
-		return "admin/adminSetting";
-	}
-
+				return "admin/adminSetting";
+			}
 }

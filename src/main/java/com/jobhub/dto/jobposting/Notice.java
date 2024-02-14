@@ -1,16 +1,12 @@
 package com.jobhub.dto.jobposting;
 
-
 import lombok.Data;
 
 @Data
-public class Jobposting {
-
-		//채용공고 관련 내용
-	
+public class Notice {
 	String postingId;
 	String title;
-	int jobsId;
+	String jobsId;
 	String careerCondition;
 	String employmentType;
 	String postWrittenDate;
@@ -25,6 +21,8 @@ public class Jobposting {
 	String question2;	
 	String question3;	
 	
+	int scrapId;
+	
 	int jobLevel1;
 	int jobLevel2;
 	
@@ -32,11 +30,16 @@ public class Jobposting {
 	String jobsItemName;
 	
 	int postingCount;
-	
-	String jobsName;
-	int jobLevel;
-	
-	
-	
-	
+	String descriptionId;
+	String creationDate;
+	String assignedTask;
+	String requirements;
+	String preferentialTreatment;
+	String screeningGuide;
+	String workForm;
+	String workPlace;
+	String workingHours;
+	String etc;
+	String submissionGuide;
+
 }

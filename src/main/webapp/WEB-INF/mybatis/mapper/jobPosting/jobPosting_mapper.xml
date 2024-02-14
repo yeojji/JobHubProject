@@ -35,6 +35,8 @@
 		ORDER BY TO_NUMBER(SUBSTR(posting_id, 8)) DESC
 	</select>
 	
+
+	
 	<select id="findPostingAndJobNameList" resultType="Jobposting">
 		select jp.*, js.jobs_name jobsItemName , (select
 		jobs_name from jobs j where j.jobs_id = js.jobs_pid)jobsCateName
@@ -66,7 +68,7 @@
 		#{applicationDeadline} ,
 		#{postStatus} ,
 		sysdate,
-		'admiinId',
+		#{adminID},
 		#{question1} ,
 		#{question2} ,
 		#{question3} )
@@ -233,51 +235,7 @@
 	</delete>
 	
 	
-	
-<!-- <select id="findJobpostingListBySearchCondition" resultType="jobposting" parameterType="searchKeyword">
-    SELECT * FROM job_posting
-    WHERE 1=1
-    <if test="searchKeyword != null and searchKeyword != ''">
-        AND title LIKE '%' || #{searchKeyword} || '%'
-    </if>
-</select> -->
 
-<!-- 
- <select id="findPostingListBySearchCondition" resultType="String" parameterType="PostingSearchCondition">
-    SELECT jp.*, js.jobs_name AS jobsItemName, (SELECT jobs_name FROM jobs j WHERE j.jobs_id = js.jobs_pid) AS jobsCateName
-    FROM job_posting jp
-    JOIN jobs js ON jp.jobs_id = js.jobs_id
-    WHERE 1=1
-    <if test="title != null and title != ''">
-        AND title like concat('%',#{keyword},'%' )
-    </if>
-    
-    SELECT jp.*, 
-       js.jobs_name AS jobsItemName, 
-       (SELECT jobs_name FROM jobs j WHERE j.jobs_id = js.jobs_pid) AS jobsCateName
-FROM job_posting jp
-JOIN jobs js ON jp.jobs_id = js.jobs_id
-WHERE 1=1
-<if test="title != null and title != ''">
-AND title like CONCAT('%', #{keyword}, '%')
-   </if> 
-    
-
-</select> -->
-
-
-
-<!-- <select id="findPostingListBySearchCondition" resultType="Jobposting" parameterType="PostingSearchCondition">
-    SELECT jp.*, 
-           js.jobs_name AS jobsItemName, 
-           (SELECT jobs_name FROM jobs j WHERE j.jobs_id = js.jobs_pid) AS jobsCateName
-    FROM job_posting jp
-    JOIN jobs js ON jp.jobs_id = js.jobs_id
-    WHERE 1=1
-    <if test="keyword != null and keyword != ''">
-        AND title like concat('%', #{keyword}, '%')
-    </if>
-</select> -->
 
 <select id="findPostingListBySearchCondition" resultType="Jobposting" parameterType="PostingSearchCondition">
     SELECT jp.*, 

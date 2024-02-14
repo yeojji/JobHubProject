@@ -17,13 +17,20 @@
         <div class="header_menu">
             <div class="header_menu1">
                 <div class="header_title">
-                	<div class="company_title" onclick="location.href='/'"><img src="D:\fileStorage/logo_1500x211.png"></div>
+                	<div class="company_title" onclick="location.href='/'"><img src="/admin/img/logo_250x35.png" class="header_img"></div>
                 </div>
                 <div class="header_menu1_list">
-                    <div class="header_menu1_list_item" onclick="location.href='/people'">People</div>
+<<<<<<<<< Temporary merge branch 1
+                    <div class="header_menu1_list_item">People</div>
                     <div class="header_menu1_list_item">Culture</div>
                     <div class="header_menu1_list_item" onclick="location.href='/customer/notice_by_career'">Jobs</div>
                     <div class="header_menu1_list_item" onclick="location.href='/cus/faqs'">FAQs</div>
+=========
+                    <div class="header_menu1_list_item white_font" onclick="location.href='/people'">People</div>
+                    <div class="header_menu1_list_item white_font">Culture</div>
+                    <div class="header_menu1_list_item white_font" onclick="location.href='/customer/notice_by_career'">Jobs</div>
+                    <div class="header_menu1_list_item white_font" onclick="location.href='/cus/faqs'">FAQs</div>
+>>>>>>>>> Temporary merge branch 2
                 </div>
             </div>
             <div class="header_menu2">
@@ -40,7 +47,7 @@
 	                		  <i class="fa-regular fa-heart white_font" onclick="login()"></i>
 	                	</c:if>
 	                	<c:if test="${sessionScope.loginId != null}">
-	                		  <i class="fa-regular fa-heart white_font" onclick="location.href='/scrap_page'"></i>
+	                		  <i class="fa-regular fa-heart white_font red" onclick="location.href='/scrap_page'"></i>
 	                	</c:if>
                     	
                     </div>
@@ -75,19 +82,7 @@
     		}
     	}
     	
-    	const header = document.querySelector('.header_menu');
-    	const color = document.querySelector('.white_font');
-        const headerHeight = 0; 
-        window.addEventListener("scroll", () => {
-            
-            if (window.scrollY > headerHeight) {
-                header.classList.add("scrolled"); // 스크롤이 내려갈 때 클래스 추가
-                color.style.color = 'black';
-            } else {
-                header.classList.remove("scrolled"); // 스크롤이 위로 올라갈 때 클래스 제거
-                color.style.color = 'white';
-            }
-        });
+    	
 	
     
     </script>

@@ -9,7 +9,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>공고페이지</title>
+    <title>공고메인페이지</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" 
     integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="  
     crossorigin="anonymous" referrerpolicy="no-referrer"/>
@@ -39,11 +39,7 @@
 					<c:forEach var="jobItem" items="${jobList}">
 						<c:choose>
 							<c:when test="${jobItem.jobsLevel == 1}">
-								
-								<%-- <span class="category_item" ><a href="../list?cateName=${jobItem.jobsName}">${jobItem.jobsName}</a></span>
-								 --%>
-								<%-- <span class="category_item"><a href="../list?cateName=${jobItem.jobsCateName}">${jobItem.jobsName}</a></span> --%>
-								
+							
 								<span class="category_item"><a href="../list?jobsCateName=${jobItem.jobsName}">${jobItem.jobsName}</a></span>
 								
 							</c:when>
@@ -67,13 +63,9 @@
     </div>
 </form>
                     <span class="notice_guide_text">${postingCount}개의 채용공고가 있습니다</span>
-                    <!--  바꿔야대 ,, -->  
+                   
                     
-                    
-                        
-                            
-<%--                            ${postingCountByName} postingCountByName
- --%>                        
+                                               
                     
                     
 <c:forEach var="jobpostingNameItem" items="${jobpostingNameList}"> 
@@ -88,19 +80,39 @@
                     <span class="notice_filter_text">${jobpostingNameItem.careerCondition}</span>
                 </div>
             </div>
-            <span class="notice_deadline">${jobpostingNameItem.applicationStart} ~ ${jobpostingNameItem.applicationDeadline}</span>
+            <div class="">
+			    <c:if test="${sessionScope.loginId != null}">
+			        <input type="hidden" value="${jobpostingNameItem.postingId}" name="postingId">
+			        <input type="hidden" value="${sessionScope.loginId}" name="userId">
+			
+			        <c:choose>
+				        <c:when test="${empty scrapList}">
+				            <!-- 사용자의 스크랩 목록이 비어있는 경우 -->
+				            <i class="fa-regular fa-heart notice_filter_text scrap" onclick="scrap('${jobpostingNameItem.postingId}','${sessionScope.loginId}')"></i>
+				        </c:when>
+				        <c:otherwise>
+				            <!-- 사용자의 스크랩 목록에 있는 경우 -->
+				            <c:set var="isScrapped" value="false" />
+				            <c:forEach var="scrapItem" items="${scrapList}">
+				                <c:if test="${scrapItem.postingId eq jobpostingNameItem.postingId}">
+				                    <!-- 해당 공고가 스크랩되어 있는 경우 -->
+				                    <i class="fa-solid fa-heart notice_filter_text scrap" onclick="scrapCancle('${jobpostingNameItem.postingId}', '${scrapItem.scrapId}')"></i>
+				                    <c:set var="isScrapped" value="true" />
+				                </c:if>
+				            </c:forEach>
+				            <!-- 해당 공고가 스크랩되어 있지 않은 경우 -->
+				            <c:if test="${not isScrapped}">
+				                <i class="fa-regular fa-heart notice_filter_text scrap" onclick="scrap('${jobpostingNameItem.postingId}','${sessionScope.loginId}')"></i>
+				            </c:if>
+				        </c:otherwise>
+				    </c:choose>
+			    </c:if>
+	            <span class="notice_deadline">${jobpostingNameItem.applicationStart} ~ ${jobpostingNameItem.applicationDeadline}</span>
+        	</div>
         </div>
     </c:if>   
 </c:forEach>
  
-            
-
-     
-            
-                    
-                    
-                    
-                    
                    
                   
                 </div>
@@ -108,6 +120,29 @@
         </div>
   
 
+    <script>
+        
+	
+        function scrap(postingId, userId){
+        	if(confirm('스크랩 하시겠습니까?')){
+        		window.location.href='/scrapNotice?postingId=' + postingId
+        				+ '&userId=' + userId;
+        	}
+        }
+        
+        
+        function scrapCancle(postingId,scrapId){
+    		if(confirm('공고를 삭제하시겠습니까?')){
+    			
+    			window.location.href='/deleteScrapItem?scrapId=' + scrapId
+    					+ '&postingId=' + postingId;
+    		}
+    		
+    	}
+        
+        
+
+    </script>
 
 
      <!--footer-->

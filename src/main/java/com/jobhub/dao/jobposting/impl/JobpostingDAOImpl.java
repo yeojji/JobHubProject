@@ -14,6 +14,7 @@ import com.jobhub.dto.jobposting.Job;
 import com.jobhub.dto.jobposting.Jobposting;
 import com.jobhub.dto.jobposting.PostingSearchCondition;
 
+
 @Repository
 public class JobpostingDAOImpl implements JobpostingDAO {
 
@@ -129,14 +130,12 @@ public class JobpostingDAOImpl implements JobpostingDAO {
 
 	@Override
 	public List<EmployeeJobsInfo> findEmployeeJobsInfoList() {
-		// TODO Auto-generated method stub
 		List<EmployeeJobsInfo> findEmployeeJobsInfoList = sqlSessionTemplate.selectList("jobPosting_mapper.findEmployeeJobsInfoList");
 		return findEmployeeJobsInfoList;
 	}
 
 	@Override
 	public List<Job> findJobsNameByLevel1() {
-		// TODO Auto-generated method stub
 		List<Job> findJobsNameByLevel1List = sqlSessionTemplate.selectList("jobPosting_mapper.findJobsNameByLevel1");
 		return findJobsNameByLevel1List;
 	}

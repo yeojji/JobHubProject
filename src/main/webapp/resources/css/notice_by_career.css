@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+.header_menu{
+	background-color : white;
+}
+
 .container{
     padding-top: 130px;
     padding-bottom: 130px;
@@ -130,6 +134,7 @@
 }
 
 .notice_list_item{
+    cursor: pointer;
     padding-top: 50px;
     display: flex;
     justify-content: space-between;
@@ -141,6 +146,7 @@
 .notice_info_title{
     display: flex;
     flex-direction: column;
+    cursor : pointer;
 }
 
 .notice_title_text{
@@ -155,4 +161,8 @@
 .notice_filter_text{
     color: gray;
     margin-right: 5px;
+}
+
+.scrap{
+    cursor: pointer;
 }
