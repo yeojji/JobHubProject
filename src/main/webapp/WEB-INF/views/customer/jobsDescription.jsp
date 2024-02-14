@@ -111,26 +111,7 @@
    
                     <form method="get" action="/jobsDescription" id="form">
 			<input type="hidden" name="postingId" value="${postingId}">
-			<label>제목: </label> <span>${jobpostingById.title}</span> <br>
-			<label>직무: </label> <span>${jobpostingById.jobsCateName}</span> <br>
-			<label>직무명: </label> <span>${jobpostingById.jobsItemName}</span> <br>
-			<label>경력조건: </label> <span>${jobpostingById.careerCondition}</span> <br>
-			<label>고용형태: </label> <span>${jobpostingById.employmentType}</span> <br>
-
-			<label>지원일: </label> <span>${jobpostingById.applicationStart} ~ ${jobpostingById.applicationDeadline}</span> <br>
-			<label>질문 1: </label> <span>${jobpostingById.question1}</span> <br>
-			<label>질문 2: </label> <span>${jobpostingById.question2}</span> <br>
-			<label>질문 3: </label> <span>${jobpostingById.question3}</span> <br>
-
-			<label>담당업무: </label> <span>${descriptionById.assignedTask}</span> <br>
-			<label>자격요건: </label> <span>${descriptionById.requirements}</span> <br>
-			<label>우대사항: </label> <span>${descriptionById.preferentialTreatment}</span> <br>
-			<label>전형안내: </label> <span>${descriptionById.screeningGuide}</span> <br>
-			<label>근무형태: </label> <span>${descriptionById.workForm}</span> <br>
-			<label>근무지: </label> <span>${descriptionById.workPlace}</span> <br>
-			<label>근무시간: </label> <span>${descriptionById.workingHours}</span> <br>
-			<label>기타: </label> <span>${descriptionById.etc}</span> <br>
-			<label>보훈 취업지원 대상 및 장애인 서류 제출안내: </label> <span>${descriptionById.submissionGuide}</span> <br>
+		
 
 			<label class ="descriptionLabel">-담당업무</label> <div>${descriptionById.assignedTask}</div> <br>
 			
