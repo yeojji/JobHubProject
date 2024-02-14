@@ -30,6 +30,9 @@ public interface ResumeDAO {
 	// 이력서 수정
 	public int modifyResume(Resume resume);
 	
+	// 관리자 페이지 내 이력서 수정
+	public int updateResume(Resume resume);
+	
 	 // 이력서 삭제
     public int deleteResume(String resumeId);
     

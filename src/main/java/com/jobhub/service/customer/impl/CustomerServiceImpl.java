@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.jobhub.dao.customer.CustomerDAO;
 import com.jobhub.dto.customer.Customer;
+import com.jobhub.dto.customer.CustomerSearchCondition;
+import com.jobhub.dto.employee.Employee;
 import com.jobhub.dto.customer.Scrap;
 import com.jobhub.dto.jobposting.Job;
 import com.jobhub.dto.jobposting.Notice;
@@ -176,6 +178,17 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 	
 	
+
+	@Override
+	public List<Customer> findCustomerList() {
+		List<Customer> customerList = customerDAO.findCustomerList();
+		return customerList;
+	}
+	@Override
+	public List<Customer> findCustomerListBySearchCondition(CustomerSearchCondition customerSearchCondition) {
+		List<Customer> customerList = customerDAO.findCustomerListBySearchCondition(customerSearchCondition);
+		return customerList;
+	}
 
 	
 }

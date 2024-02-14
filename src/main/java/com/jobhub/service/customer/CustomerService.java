@@ -3,7 +3,7 @@ import java.util.List;
 
 import com.jobhub.dto.customer.Customer;
 import com.jobhub.dto.customer.Scrap;
-import com.jobhub.dto.jobposting.Job;
+import com.jobhub.dto.customer.CustomerSearchCondition;
 import com.jobhub.dto.jobposting.Notice;
 import com.jobhub.dto.resume.Resume;
 public interface CustomerService {

@@ -1,87 +1,55 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-<meta charset="utf-8">
-<title>Jobhub 관리자 페이지</title>
-<link rel="stylesheet" href="/admin/css/admin.css">
-<link rel="shortcut icon" href="/common/icon/jobhub_favicon.ico" type="image/x-icon">
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="https://kit.fontawesome.com/b158a20f5c.js"
-	crossorigin="anonymous"></script>
-</head>
-<body>
-	<!-- header -->
-	<header id="hd">
-		<div id="hd_wrap">
-			<h1>Jobhub 관리자 페이지</h1>
-			<div id="logo">
-				<a href="/admin"><img src="/admin/img/logo_wh_250x35.png"
-					alt="Jobhub logo"></a>
-			</div>
-			<div id="tnb">
-				<ul>
-					<li>${loginId}님</li>
-					<li><a href="/login" target="_blank">Jobhub바로가기</a></li>
-					<li><a href="/admin/mypage">마이페이지</a></li>
-					<li id="tnb_logout"><a href="/admin/logout">로그아웃</a></li>
-				</ul>
-			</div>
-		</div>
-	</header>
+<%@include file="/WEB-INF/views/admin/layout/header.jsp" %>
 	<div id="snb">
 		<dl>
 			<dt class="g10">
 				<i class="fa-solid fa-people-group"></i>회원관리
 			</dt>
 			<dd class="g10">
-				<a href="#">회원정보 조회<em>2</em></a>
+				<a href="">회원정보 조회<em>2</em></a>
 			</dd>
 			<dd class="g10">
-				<a href="#">신규회원 등록</a>
+				<a href="">신규회원 등록</a>
 			</dd>
 			<dd class="g10">
-				<a href="#">탈퇴자 조회</a>
+				<a href="">탈퇴자 조회</a>
 			</dd>
 			<dt class="g10">
 				<i class="fa-solid fa-people-roof"></i>직원관리
 			</dt>
 			<dd class="g10">
-				<a href="#">직원정보 조회<em>2</em></a>
+				<a href="">직원정보 조회<em>2</em></a>
 			</dd>
 			<dd class="g10">
-				<a href="#">신규직원 등록</a>
+				<a href="">신규직원 등록</a>
 			</dd>
 			<dt class="g10">
 				<i class="fa-solid fa-file-lines"></i>이력서관리
 			</dt>
 			<dd class="g10 active">
-				<a href="#">이력서 조회</a>
+				<a href="/admin/resume">이력서 조회</a>
 			</dd>
 			<dd class="g10">
-				<a href="#">면접지원자 관리</a>
+				<a href="">면접지원자 관리</a>
 			</dd>
 			<dt class="g10">
 				<i class="fa-solid fa-pen-to-square"></i>채용공고 관리
 			</dt>
 			<dd class="g10">
-				<a href="#">신규공고 등록</a>
+				<a href="">신규공고 등록</a>
 			</dd>
 			<dt class="g10">
 				<i class="fa-solid fa-gears"></i>관리자설정
 			</dt>
 			<dd class="g10">
-				<a href="#">관리자 조회<em>195</em></a>
+				<a href="/admin/setting">관리자 조회<em>195</em></a>
 			</dd>
 			<dd class="g10">
-				<a href="#">신규계정 생성</a>
+				<a href="">신규계정 생성</a>
 			</dd>
 			<dd class="g10">
-				<a href="#">계정승인요청 조회</a>
+				<a href="">계정승인요청 조회</a>
 			</dd>
 		</dl>
 	</div>
@@ -206,11 +174,11 @@
 								<th scope="col">번호</th>
 								<th scope="col">채용부서</th>
 								<th scope="col" colspan="2">채용공고</th>
-								<th scope="col"><a href="#">이름</a></th>
+								<th scope="col">이름</th>
 								<th scope="col">나이</th>
 								<th scope="col">학력</th>
 								<th scope="col">경력</th>
-								<th scope="col"><a href="#">제출일시</a></th>
+								<th scope="col">제출일시</th>
 								<th scope="col">상태</th>
 							</tr>
 						</thead>
@@ -230,7 +198,8 @@
 									<td>${rowStat.index + 1}</td>
 									<td>${resumeItem.jobsName}</td>
 									<td class="tal" colspan="2">${resumeItem.title}</td>
-									<td><a href="/admin/resumeDetail?resumeId=${resumeItem.resumeId}">${resumeItem.name}</a></td>
+									<td><a
+										href="/admin/resumeDetail?resumeId=${resumeItem.resumeId}">${resumeItem.name}</a></td>
 									<td>${resumeItem.age}</td>
 									<td>${resumeItem.education}</td>
 									<td>${resumeItem.career}</td>
@@ -248,63 +217,63 @@
 			</div>
 		</div>
 	</div>
-
 	<!-- //검색결과 리스트 -->
-	<div id="ft">
-		<p>Copyright &copy; Jobhub. All rights reserved.</p>
-	</div>
-	<div id="anc_header">
-		<a href="#anc_hd"><span></span>TOP</a>
-	</div>
 	<script type="text/javascript">
-    // 페이지 로드 시 sessionStorage에 저장된 검색 조건이 있는지 확인
-    $(document).ready(function() {
-        var savedSearchCondition = JSON.parse(sessionStorage.getItem('searchCondition'));
-        if (savedSearchCondition) {
-            $('#sfl').val(savedSearchCondition.sfl);
-            $('#searchKeyword').val(savedSearchCondition.searchKeyword);
-            $('#spt').val(savedSearchCondition.spt);
-            $('#startDate').val(savedSearchCondition.startDate);
-            $('#endDate').val(savedSearchCondition.endDate);
-            $('input[name="gender"][value="' + savedSearchCondition.gender + '"]').prop('checked', true);
-            $('#startAge').val(savedSearchCondition.startAge);
-            $('#endAge').val(savedSearchCondition.endAge);
-            $('#career').val(savedSearchCondition.career);
-        }
-    });
+		// 페이지 로드 시 sessionStorage에 저장된 검색 조건이 있는지 확인
+		$(document).ready(
+				function() {
+					var savedSearchCondition = JSON.parse(sessionStorage
+							.getItem('searchCondition'));
+					if (savedSearchCondition) {
+						$('#sfl').val(savedSearchCondition.sfl);
+						$('#searchKeyword').val(
+								savedSearchCondition.searchKeyword);
+						$('#spt').val(savedSearchCondition.spt);
+						$('#startDate').val(savedSearchCondition.startDate);
+						$('#endDate').val(savedSearchCondition.endDate);
+						$(
+								'input[name="gender"][value="'
+										+ savedSearchCondition.gender + '"]')
+								.prop('checked', true);
+						$('#startAge').val(savedSearchCondition.startAge);
+						$('#endAge').val(savedSearchCondition.endAge);
+						$('#career').val(savedSearchCondition.career);
+					}
+				});
 
-    // 검색 폼 제출 시 검색 조건을 sessionStorage에 저장
-    $('#fsearch').submit(function() {
-        var searchCondition = {
-            sfl: $('#sfl').val(),
-            searchKeyword: $('#searchKeyword').val(),
-            spt: $('#spt').val(),
-            startDate: $('#startDate').val(),
-            endDate: $('#endDate').val(),
-            gender: $('input[name="gender"]:checked').val(),
-            startAge: $('#startAge').val(),
-            endAge: $('#endAge').val(),
-            career: $('#career').val(),
-        };
-        sessionStorage.setItem('searchCondition', JSON.stringify(searchCondition));
-    });
-    
- 	// "재설정" 버튼 클릭 시 검색 조건을 초기화
-    $('#frmRest').click(function() {
-        // 폼 내의 입력 값 초기화
-        $('#sfl').val('');
-        $('#searchKeyword').val('');
-        $('#spt').val('');
-        $('#startDate').val('');
-        $('#endDate').val('');
-        $('input[name="gender"]').prop('checked', false);
-        $('#startAge').val('');
-        $('#endAge').val('');
-        $('#career').val('');
+		// 검색 폼 제출 시 검색 조건을 sessionStorage에 저장
+		$('#fsearch').submit(
+				function() {
+					var searchCondition = {
+						sfl : $('#sfl').val(),
+						searchKeyword : $('#searchKeyword').val(),
+						spt : $('#spt').val(),
+						startDate : $('#startDate').val(),
+						endDate : $('#endDate').val(),
+						gender : $('input[name="gender"]:checked').val(),
+						startAge : $('#startAge').val(),
+						endAge : $('#endAge').val(),
+						career : $('#career').val(),
+					};
+					sessionStorage.setItem('searchCondition', JSON
+							.stringify(searchCondition));
+				});
 
-        // sessionStorage에서도 검색 조건 제거
-        sessionStorage.removeItem('searchCondition');
-    });
-</script>
-</body>
-</html>
+		// "재설정" 버튼 클릭 시 검색 조건을 초기화
+		$('#frmRest').click(function() {
+			// 폼 내의 입력 값 초기화
+			$('#sfl').val('');
+			$('#searchKeyword').val('');
+			$('#spt').val('');
+			$('#startDate').val('');
+			$('#endDate').val('');
+			$('input[name="gender"]').prop('checked', false);
+			$('#startAge').val('');
+			$('#endAge').val('');
+			$('#career').val('');
+
+			// sessionStorage에서도 검색 조건 제거
+			sessionStorage.removeItem('searchCondition');
+		});
+	</script>
+<%@include file="/WEB-INF/views/admin/layout/footer.jsp" %>

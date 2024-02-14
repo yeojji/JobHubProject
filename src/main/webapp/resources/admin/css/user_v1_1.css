@@ -87,9 +87,6 @@ footer.typeCs p, footer.typeCs a { display:block; color:#667084; font-size:14px;
 .headingArea .desc { margin:8px 0 0; text-align:center; font-size:18px; }
 .headingArea .logo a { display:inline-block; }
 .headingArea .logo.typeDcollection--large a img {width: 164px;}
-.headingArea .cafe24Logo { width:140px; height:21px; }
-.headingArea .cafe24Logo .path1 { fill:#001522; }
-.headingArea .cafe24Logo .path2 { fill:#0071bb; }
 
 /* fText */
 .fText { padding:12px; height:48px; max-width:100%; font-size:14px; line-height:20px; color:#1b1e26; box-sizing:border-box; outline:0 none; border:1px solid #d6dae1; border-radius:4px;
@@ -582,11 +579,11 @@ html:lang(vi) .mFormBox .formId.onFocus .btnReset { right:110px; }
     -webkit-transform:rotate(0deg); -moz-transform:rotate(0deg); -ms-transform:rotate(0deg); transform:rotate(0deg);
 }
 /* 아이콘 공통 */
-.mTooltip .icon { overflow:hidden; width:18px; height:18px; text-indent:150%; white-space:nowrap; cursor:pointer; background:url("img/admin/ico_tooltip.svg") -1px -1px no-repeat; background-size: 20px; }
+.mTooltip .icon { overflow:hidden; width:18px; height:18px; text-indent:150%; white-space:nowrap; cursor:pointer; background:url("/admin/img/ico_tooltip.svg") -1px -1px no-repeat; background-size: 20px; }
 .mTooltip .icon:hover,
-.mTooltip.show .icon { background-image: url("img/admin/ico_tooltip_on.svg"); }
+.mTooltip.show .icon { background-image: url("/admin/img/ico_tooltip_on.svg"); }
 .mTooltip.show { z-index:80; }
-.mTooltip .icoNoitce { overflow:hidden; width:16px; height:16px; text-indent:150%; white-space:nowrap; cursor:pointer; background:url("img/admin/sfix_icon.png") 0 0 no-repeat; background-size:100px auto; }
+.mTooltip .icoNoitce { overflow:hidden; width:16px; height:16px; text-indent:150%; white-space:nowrap; cursor:pointer; background:url("/admin/img/sfix_icon.png") 0 0 no-repeat; background-size:100px auto; }
 /* width */
 .mTooltip.gSmall .tooltip { width:253px; }
 .mTooltip.gMedium .tooltip { width:300px; }
@@ -622,7 +619,6 @@ html:lang(vi) .mFormBox .formId.onFocus .btnReset { right:110px; }
     .headingArea + .mTitle { margin:0 0 16px; }
 /* mTitle typeLeft */
 .mTitle.typeLeft { margin:12px 0 28px; text-align:left; font-size:0; }
-.mTitle.typeLeft .btnBack { position:relative; display:inline-block; width:28px; height:28px; margin:0 7px 0 0; font-size:0; line-height:0; vertical-align:middle; background:url("//img.cafe24.com/img/user/images/sfix_icon.png") 0px -250px no-repeat; }
 .mTitle.typeLeft h2 { display:inline-block; font-weight:bold; color:#2E3039; vertical-align:middle; }
 
 /* 프론트 차단 페이지 */
@@ -636,7 +632,6 @@ html:lang(vi) .mFormBox .formId.onFocus .btnReset { right:110px; }
 #wrap.intercept #header .nav:hover .menu { display:block; }
 #wrap.intercept #header .nav .menu li a { position:relative; display:inline-block; width:100%; padding:7px 36px 7px 24px; box-sizing:border-box; font-size:14px; line-height:22px; }
 #wrap.intercept #header .nav .menu li a:hover { color:#2dc26b; background-color:#f4f5f8; }
-#wrap.intercept #header .nav .menu li a:before { content:''; position:absolute; top:50%; right:24px; width:12px; height:12px; margin:-6px 0 0; background:url('//img.cafe24.com/img/user/images/sfix_icon.png')0 -50px no-repeat; }
 #wrap.intercept #header .nav .menu li a:hover:before { background-position-x:-50px; }
 #wrap.intercept #contents { width:auto; }
 #wrap.intercept #footer { width:auto; max-width:1440px; margin:0 auto; padding:24px 0 40px; border-top:1px solid #d6dae1; }

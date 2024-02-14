@@ -37,6 +37,7 @@ public class ResumeSearchCondition {
 	String findOutPath;
 	String careerCondition;
 	String career;
-	
+	String spt;
+	String sfl;
 	
 }

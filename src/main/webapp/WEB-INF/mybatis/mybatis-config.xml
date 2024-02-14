@@ -18,6 +18,7 @@
 		<typeAlias type="com.jobhub.dto.jobposting.Notice" alias="Notice"/>
 		<typeAlias type="com.jobhub.dto.jobposting.Description" alias="Description"/>
 		<typeAlias type="com.jobhub.dto.jobposting.FAQs" alias="FAQs"/>
+   		<typeAlias type="com.jobhub.dto.jobposting.PostingSearchCondition" alias="PostingSearchCondition"/>
 		<typeAlias type="com.jobhub.dto.customer.Customer" alias="Customer"/>
 		<typeAlias type="com.jobhub.dto.customer.Scrap" alias="Scrap"/>
 		<typeAlias type="com.jobhub.dto.customer.CustomerFaq" alias="CustomerFaq"/>
@@ -28,6 +29,7 @@
 		<typeAlias type="com.jobhub.dto.resume.ApplyEducationForm" alias="ApplyEducationForm"/>
 		<typeAlias type="com.jobhub.dto.resume.Career" alias="Career"/>
 		<typeAlias type="com.jobhub.dto.resume.Company" alias="Company"/>
+		<typeAlias type="com.jobhub.dto.customer.CustomerSearchCondition" alias="CustomerSearchCondition"/>
 		<typeAlias type="com.jobhub.dto.admin.Admin" alias="Admin"/>
 		<typeAlias type="com.jobhub.dto.admin.AdminProfile" alias="AdminProfile"/>
 		<typeAlias type="com.jobhub.dto.admin.AdminSearchCondition" alias="AdminSearchCondition"/>
@@ -40,7 +42,6 @@
 		<typeAlias type="com.jobhub.dto.resume.Resume" alias="Resume"/>
 		<typeAlias type="com.jobhub.dto.resume.ResumeSearchCondition" alias="ResumeSearchCondition"/>
 
-   		<typeAlias type="com.jobhub.dto.jobposting.PostingSearchCondition" alias="PostingSearchCondition"/>
 
 		
 	</typeAliases>

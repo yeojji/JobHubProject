@@ -12,4 +12,6 @@ public class Job {
 	int jobsLevel;
 	int jobsPid;
 	
+	String jobsNameEncoded;
+	
 }

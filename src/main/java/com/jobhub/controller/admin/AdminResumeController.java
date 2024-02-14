@@ -70,15 +70,16 @@ public class AdminResumeController {
     }
 	
 	@PostMapping("/resumeDetail")
-	public String modifyresumeDetail(Resume resume) {
+	public String modifyResumeDetail(Resume resume, Model model) {
 		
 		System.out.println(resume);
 		
-		int result = resumeService.modifyResume(resume);
+		int result = resumeService.updateResume(resume);
 		
 		if( result > 0 ) {
-			return "redirect:/admin/resume";	
+			return "redirect:/admin/resumeDetail?resumeId=" + resume.getResumeId();
 		} else {
+			model.addAttribute("errorMessage", "이력서 수정 실패했습니다.");
 			return "admin/resumeDetail";	
 		}
 	}

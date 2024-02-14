@@ -1,62 +1,28 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-<meta charset="utf-8">
-<title>Jobhub 관리자 페이지</title>
-<link rel="stylesheet" href="/admin/css/admin.css">
-<link rel="shortcut icon" href="/common/icon/jobhub_favicon.ico"
-	type="image/x-icon">
-<link rel="stylesheet"
-	href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="https://kit.fontawesome.com/b158a20f5c.js"
-	crossorigin="anonymous"></script>
-</head>
-<body>
-	<!-- header -->
-	<header id="hd">
-		<div id="hd_wrap">
-			<h1>Jobhub 관리자 페이지</h1>
-			<div id="logo">
-				<a href="/admin"><img src="/admin/img/logo_wh_250x35.png"
-					alt="Jobhub logo"></a>
-			</div>
-			<div id="tnb">
-				<ul>
-					<li>${loginId}님</li>
-					<li><a href="#" target="_blank">Jobhub바로가기</a></li>
-					<li><a href="/admin/mypage">마이페이지</a></li>
-					<li id="tnb_logout"><a href="/admin/logout">로그아웃</a></li>
-				</ul>
-			</div>
-		</div>
-	</header>
+<%@include file="/WEB-INF/views/admin/layout/header.jsp" %>
 	<div id="snb">
 		<dl>
 			<dt class="g10">
 				<i class="fa-solid fa-people-group"></i>회원관리
 			</dt>
 			<dd class="g10">
-				<a href="#">회원정보 조회<em>2</em></a>
+				<a href="">회원정보 조회<em>2</em></a>
 			</dd>
 			<dd class="g10">
-				<a href="#">신규회원 등록</a>
+				<a href="">신규회원 등록</a>
 			</dd>
 			<dd class="g10">
-				<a href="#">탈퇴자 조회</a>
+				<a href="">탈퇴자 조회</a>
 			</dd>
 			<dt class="g10">
 				<i class="fa-solid fa-people-roof"></i>직원관리
 			</dt>
 			<dd class="g10">
-				<a href="#">직원정보 조회<em>2</em></a>
+				<a href="">직원정보 조회<em>2</em></a>
 			</dd>
 			<dd class="g10">
-				<a href="#">신규직원 등록</a>
+				<a href="">신규직원 등록</a>
 			</dd>
 			<dt class="g10">
 				<i class="fa-solid fa-file-lines"></i>이력서관리
@@ -65,225 +31,258 @@
 				<a href="/admin/resume">이력서 조회</a>
 			</dd>
 			<dd class="g10">
-				<a href="#">면접지원자 관리</a>
+				<a href="">면접지원자 관리</a>
 			</dd>
 			<dt class="g10">
 				<i class="fa-solid fa-pen-to-square"></i>채용공고 관리
 			</dt>
 			<dd class="g10">
-				<a href="#">신규공고 등록</a>
+				<a href="">신규공고 등록</a>
 			</dd>
 			<dt class="g10">
 				<i class="fa-solid fa-gears"></i>관리자설정
 			</dt>
 			<dd class="g10">
-				<a href="#">관리자 조회<em>195</em></a>
+				<a href="/admin/setting">관리자 조회<em>195</em></a>
 			</dd>
 			<dd class="g10">
-				<a href="#">신규계정 생성</a>
+				<a href="">신규계정 생성</a>
 			</dd>
 			<dd class="g10">
-				<a href="#">계정승인요청 조회</a>
+				<a href="">계정승인요청 조회</a>
 			</dd>
 		</dl>
 	</div>
 	<div id="wrapper">
 		<div id="content">
 			<div class="s_wrap">
-			<form action="/admin/resumeDetail" method="post">
-			<input type="hidden" name="resumeId" value="${resume.resumeId}">
-				<h1>이력서 상세 조회</h1>
-				<div class="tbl_frm01">
-					<table class="tablef">
-						<colgroup>
-							<col class="w130">
-							<col>
-							<col class="w130">
-							<col>
-						</colgroup>
-						<tbody>
-							<tr>
-								<th scope="row">이름</th>
-								<td>${resume.name}</td>
-								<th scope="row">아이디</th>
-								<td>${resume.userId}</td>
-							</tr>
-							<tr>
-								<th scope="row">비밀번호</th>
-								<td><input type="text" name="password" value=""
-									class="frm_input"></td>
-								<th scope="row">이메일</th>
-								<td><input type="text" name="email"
-									value="${resume.email}" email itemname="email"
-									class="frm_input" size="30"></td>
-							</tr>
-							<tr>
-								<th scope="row">생년월일</th>
-								<td><input type="text" name="mb_birth" value="${resume.birth}"
-									class="frm_input"></td>
-								<th scope="row">성별</th>
-								<td><input type="radio" name="gender" value="남성"
-									id="gender1" checked="checked"> <label for="gender1">남성</label>
-									<input type="radio" name="gender" value="여성" id="gender2">
-									<label for="gender2">여성</label></td>
-							</tr>
-							<tr>
-								<th scope="row">전화번호</th>
-								<td><input type="text" name="phone" value=""
-									class="frm_input"></td>
-								<th scope="row">휴대전화</th>
-								<td><input type="text" name="phone"
-									value="${resume.phone}" class="frm_input"></td>
-							</tr>
-							<tr>
-								<th scope="row">주소</th>
-								<td colspan="3"><input type="text" name="zip" value="05089"
-									class="frm_input" size="8" maxlength="5"> <a
-									href="javascript:win_zip('fmemberform', 'zip', 'addr1', 'addr2', 'addr3', 'addr_jibeon');"
-									class="btn_small grey">주소검색</a>
-									<p class="mart5">
-										<input type="text" name="addr1" value="서울 광진구 강변북로 64"
-											class="frm_input" size="60"> 기본주소
-									</p>
-									<p class="mart5">
-										<input type="text" name="addr2" value="2323" class="frm_input"
-											size="60"> 상세주소
-									</p>
-									<p class="mart5">
-										<input type="text" name="addr3" value="(자양동)"
-											class="frm_input" size="60"> 참고항목 <input
-											type="hidden" name="addr_jibeon" value="R">
-									</p></td>
-							</tr>
-							<tr>
-								<th scope="row">본인확인방법</th>
-								<td><input type="radio" name="mb_certify_case" value="ipin"
-									id="mb_certify_ipin"> <label for="mb_certify_ipin">아이핀</label>
-									<input type="radio" name="mb_certify_case" value="hp"
-									id="mb_certify_hp"> <label for="mb_certify_hp">휴대폰</label>
-								</td>
-								<th scope="row">성별</th>
-								<td><input type="radio" name="gender" value="M"
-									id="gender1" checked="checked"> <label for="gender1">남자</label>
-									<input type="radio" name="gender" value="F" id="gender2">
-									<label for="gender2">여자</label></td>
-							</tr>
-							<tr>
-								<th scope="row">본인확인</th>
-								<td><input type="radio" name="mb_certify" value="1"
-									id="mb_certify_yes"> <label for="mb_certify_yes">예</label>
-									<input type="radio" name="mb_certify" value=""
-									id="mb_certify_no" checked="checked"> <label
-									for="mb_certify_no">아니오</label></td>
-								<th scope="row">성인인증</th>
-								<td><input type="radio" name="mb_adult" value="1"
-									id="mb_adult_yes"> <label for="mb_adult_yes">예</label>
-									<input type="radio" name="mb_adult" value="0" id="mb_adult_no"
-									checked="checked"> <label for="mb_adult_no">아니오</label>
-								</td>
-							</tr>
-							<tr>
-								<th scope="row">레벨</th>
-								<td><select id="mb_grade" name="mb_grade">
-										<option value='9'>[9] 일반회원</option>
-										<option value='8'>[8] 우수회원</option>
-										<option value='7'>[7] 특별회원</option>
-										<option value='6' selected>[6] 가맹점</option>
-										<option value='5'>[5] 지점</option>
-										<option value='1'>[1] 관리자</option>
-								</select></td>
-								<th scope="row">포인트</th>
-								<td><b>0</b> Point <a
-									href="http://demofran.com/admin/member/member_point_req.php?mb_id=tubeweb1"
-									onclick="win_open(this,'pop_point_req','600','500','yes');return false;"
-									class="btn_small grey marl10">강제적립</a></td>
-							</tr>
-							<tr class="mb_adm_fld">
-								<th scope="row">부운영자 접근허용</th>
-								<td colspan="3">
-									<div class="sub_frm02">
-										<table>
-											<tr>
-												<td><input id="auth_1" type="checkbox" name="auth_1"
-													value="1"> <label for="auth_1">회원관리</label></td>
-												<td><input id="auth_2" type="checkbox" name="auth_2"
-													value="1"> <label for="auth_2">가맹점관리</label></td>
-												<td><input id="auth_3" type="checkbox" name="auth_3"
-													value="1"> <label for="auth_3">공급사관리</label></td>
-												<td><input id="auth_4" type="checkbox" name="auth_4"
-													value="1"> <label for="auth_4">카테고리관리</label></td>
-												<td><input id="auth_5" type="checkbox" name="auth_5"
-													value="1"> <label for="auth_5">상품관리</label></td>
-											</tr>
-											<tr>
-												<td><input id="auth_6" type="checkbox" name="auth_6"
-													value="1"> <label for="auth_6">주문관리</label></td>
-												<td><input id="auth_7" type="checkbox" name="auth_7"
-													value="1"> <label for="auth_7">통계분석</label></td>
-												<td><input id="auth_8" type="checkbox" name="auth_8"
-													value="1"> <label for="auth_8">고객지원</label></td>
-												<td><input id="auth_9" type="checkbox" name="auth_9"
-													value="1"> <label for="auth_9">디자인관리</label></td>
-												<td><input id="auth_10" type="checkbox" name="auth_10"
-													value="1"> <label for="auth_10">환경설정</label></td>
-											</tr>
-										</table>
-									</div>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
+				<form action="/admin/resumeDetail" id="modify_form" method="post">
+					<input type="hidden" name="resumeId" value="${resume.resumeId}">
+					<input type="hidden" name="userId" value="${resume.userId}">
+					<h1>이력서 상세 조회</h1>
+					<div class="tbl_frm01">
+						<table class="tablef">
+							<colgroup>
+								<col class="w130">
+								<col>
+								<col class="w130">
+								<col>
+							</colgroup>
+							<tbody>
+								<!-- 이력서 수정 결과 메시지 표시 -->
+								<c:if test="${not empty errorMessage}">
+									<tr class="error-message">
+										<th scope="row">에러메시지</th>
+										<td colspan="3">${errorMessage}</td>
+									</tr>
+								</c:if>
+								<tr class="mb_adm_fld">
+									<th scope="row">지원한 공고</th>
+									<td colspan="3">${resume.title}</td>
+								</tr>
+								<tr>
+									<th scope="row">직무명</th>
+									<td>${resume.jobsName}</td>
+									<th scope="row">경력조건</th>
+									<td>${resume.careerCondition}</td>
 
-				<h3 class="anc_tit mart30">기타정보</h3>
-				<div class="tbl_frm01">
-					<table class="tablef">
-						<colgroup>
-							<col class="w130">
-							<col>
-							<col class="w130">
-							<col>
-						</colgroup>
-						<tbody>
-							<tr>
-								<th scope="row">가입경로</th>
-								<td>${resumeList.findOutPath}</td>
-								<th scope="row">회원가입일</th>
-								<td>2020-10-04 18:04:17</td>
-							</tr>
-							<tr>
-								<th scope="row">구매횟수</th>
-								<td>0 회</td>
-								<th scope="row">총구매금액</th>
-								<td>0 원</td>
-							</tr>
-							<tr>
-								<th scope="row">관리자메모</th>
-								<td colspan="3"><textarea name="memo" class="frm_textbox"
-										rows="3"></textarea></td>
-							</tr>
-						</tbody>
-					</table>
-					</form>
-				</div>
+								</tr>
+								<tr>
+									<th scope="row">이름</th>
+									<td>${resume.name}</td>
+									<th scope="row">이메일</th>
+									<td><input type="text" name="email"
+										value="${resume.email}" class="frm_input" size="30"></td>
+								</tr>
 
-				<div class="btn_confirm">
-					<input type="submit" value="저장" class="btn_medium" accesskey="s">
-					<button type="button" class="btn_medium bx-white"
-						onclick="window.close();">닫기</button>
-				</div>
-				</section>
+								<tr>
+									<th scope="row">생년월일</th>
+									<td><input type="text" name="birth" id="birthInput"
+										value="${resume.birth}" class="frm_input"
+										oninput="formatBirthDate()" maxlength="8"></td>
+									<th scope="row">나이</th>
+									<td>${resume.age}</td>
+								</tr>
+								<tr>
+									<th scope="row">성별</th>
+									<td>${resume.gender}</td>
+									<th scope="row">휴대전화</th>
+									<td><input type="text" name="phone" id="phoneInput"
+										maxlength="13" value="${resume.phone}" class="frm_input"
+										oninput="formatPhoneNumber()"> <span class="tooltip"
+										id="phoneTooltip" style="display: none;">휴대전화는 010으로
+											입력해 주세요.</span></td>
+								</tr>
+								<tr>
+									<th scope="row">최종학력</th>
+									<td>${resume.sortation}</td>
+									<th scope="row">경력사항</th>
+									<td>${resume.career}</td>
+								</tr>
+								<tr>
+									<th scope="row">장애사항</th>
+									<td>${resume.disorderStatus}</td>
+									<th scope="row">병역사항</th>
+									<td>${resume.militaryServiceMatters}</td>
+								</tr>
+								<tr>
+									<th scope="row">보훈대상여부</th>
+									<td>${resume.veteransTargetStatus}</td>
+									<th scope="row">이력서 제출일자</th>
+									<td>${resume.revisionDate}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					<h3 class="anc_tit mart30">추가정보</h3>
+					<div class="tbl_frm01">
+						<table class="tablef">
+							<colgroup>
+								<col class="w130">
+								<col>
+								<col class="w130">
+								<col>
+							</colgroup>
+							<tbody>
+								<tr>
+									<th scope="row">아이디</th>
+									<td>${resume.userId}</td>
+									<th scope="row">비밀번호</th>
+									<td><input type="password" name="password"
+										value="${resume.password}" class="frm_input"></td>
+								</tr>
+								<tr>
+									<th scope="row">가입경로</th>
+									<td>${resume.supportPath}</td>
+									<th scope="row">회원가입일</th>
+									<td>${resume.createdDate}</td>
+								</tr>
+								<tr class="mb_adm_fld">
+									<th scope="row">지원한 공고</th>
+									<td colspan="3">${resume.title}</td>
+								</tr>
+								<tr>
+									<th scope="row">${resume.question1}</th>
+									<td colspan="3">${resume.content1}</td>
+								</tr>
+								<tr>
+									<th scope="row">${resume.question2}</th>
+									<td colspan="3">${resume.content2}</td>
+								</tr>
+								<tr>
+									<th scope="row">${resume.question3}</th>
+									<td colspan="3">${resume.content3}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<h3 class="anc_tit mart30">지원 상태</h3>
+					<div class="tbl_frm01">
+						<table class="tablef">
+							<colgroup>
+								<col class="w130">
+								<col class="w180">
+								<col class="w130">
+								<col>
+							</colgroup>
+							<tbody>
+								<tr>
+									<th scope="row">합격메일 발송</th>
+									<td><a id="sendLink" href="#" onclick="sendMail('${resume.email}');" class="btn_small grey marl10">합격메일 발송하기</a></td>
+									<th scope="row">상태 변경</th>
+									<td>
+									<input type="radio" name="status" value="지원완료" id="status1" checked="checked"> <label for="status1">지원완료</label>
+									<input type="radio" name="status" value="서류심사중" id="status2" > <label for="status2">서류심사중</label>
+									<input type="radio" name="status" value="불합격" id="status3" > <label for="status3">불합격</label>
+									<input type="radio" name="status" value="서류합격" id="status4" > <label for="status4">서류합격</label>
+									<input type="radio" name="status" value="면접예정" id="status5" > <label for="status5">면접예정</label>
+									<input type="radio" name="status" value="채용완료" id="status6" > <label for="status6">채용완료</label>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="btn_confirm">
+						<input type="submit" value="저장" class="btn_medium" accesskey="s">
+						<button type="button" class="btn_medium bx-white"
+							onclick="window.close();">닫기</button>
+					</div>
+				</form>
 			</div>
-			</form>
 		</div>
 	</div>
-	</div>
 	<!-- //검색결과 리스트 -->
-	<div id="ft">
-		<p>Copyright &copy; Jobhub. All rights reserved.</p>
-	</div>
-	<div id="anc_header">
-		<a href="#anc_hd"><span></span>TOP</a>
-	</div>
-</body>
-</html>
+
+	<script>
+		// 생년월일 자동 슬래시
+		function formatBirthDate() {
+			const birthInput = document.getElementById('birthInput');
+
+			// 입력된 생년월일에서 슬래시 제거
+			let birthDate = birthInput.value.replace(/\//g, '');
+
+			// 생년월일에 슬래시 추가
+			if (birthDate.length == 6) {
+				birthDate = birthDate.replace(/^(\d{2})(\d{2})(\d{2})$/,
+						"$1/$2/$3");
+			}
+
+			// 입력된 값으로 변경
+			birthInput.value = birthDate;
+		}
+
+		//휴대폰번호 자동 하이픈
+		function formatPhoneNumber() {
+			const phoneInput = document.getElementById('phoneInput');
+			const phoneTooltip = document.getElementById('phoneTooltip');
+
+			// 입력된 휴대폰번호에서 하이픈 제거
+			const phoneNumber = phoneInput.value.replace(/-/g, '');
+
+			// 휴대폰번호가 010으로 시작하는지 확인
+			if (phoneNumber.startsWith('010')) {
+				// 010으로 시작하면 하이픈을 추가
+				const formattedPhoneNumber = phoneNumber.replace(
+						/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(
+						/\-{1,2}$/g, "");
+				phoneInput.value = formattedPhoneNumber;
+				// 툴팁 숨김
+				phoneTooltip.style.display = 'none';
+			} else {
+				// 툴팁 표시
+				phoneTooltip.style.display = 'inline';
+			}
+		}
+		
+		
+		function sendMail(email) {
+		    // 링크 클릭 후 바로 이동하지 않도록 막기
+		    event.preventDefault();
+
+		    // 링크 비활성화
+		    var sendLink = document.getElementById('sendLink');
+		    sendLink.classList.add('disabled');
+
+		    // AJAX를 사용하여 서버에 이메일 전송 요청
+		    $.ajax({
+		        type: 'POST',
+		        url: '/admin/sendMail',  // 업데이트된 엔드포인트
+		        data: { email: email },
+		        success: function (response) {
+		            // 성공 시
+		            console.log('이메일 발송 성공');
+		            // 여기에서 필요한 추가 작업 수행
+		        },
+		        error: function (error) {
+		            // 실패 시 
+		            console.error('이메일 발송 실패');
+		        },
+		        complete: function () {
+		            // AJAX 완료 후 링크 재활성화
+		            sendLink.classList.remove('disabled');
+		        }
+		    });
+		}
+	</script>
+<%@include file="/WEB-INF/views/admin/layout/footer.jsp" %>

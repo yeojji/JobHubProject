@@ -11,8 +11,10 @@ import org.springframework.stereotype.Repository;
 import com.jobhub.dao.customer.CustomerDAO;
 import com.jobhub.dto.customer.Customer;
 import com.jobhub.dto.customer.Scrap;
+import com.jobhub.dto.customer.CustomerSearchCondition;
 import com.jobhub.dto.jobposting.Job;
 import com.jobhub.dto.jobposting.Notice;
+import com.jobhub.dto.resume.Resume;
 import com.jobhub.dto.resume.Resume;
 
 @Repository
@@ -176,6 +178,16 @@ public class CustomerDAOImpl implements CustomerDAO{
 	}
 	
 	
+	@Override
+	public List<Customer> findCustomerList() {
+		List<Customer> customerList = sqlSessionTemplate.selectList("user_mapper.findCustomerList");
+		return customerList;
+	}
+	@Override
+	public List<Customer> findCustomerListBySearchCondition(CustomerSearchCondition customerSearchCondition) {
+		List<Customer> customerList = sqlSessionTemplate.selectList("user_mapper.findCustomerListBySearchCondition", customerSearchCondition);
+		return customerList;
+	}
 	
 
 

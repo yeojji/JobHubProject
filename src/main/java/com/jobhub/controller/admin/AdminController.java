@@ -32,9 +32,6 @@ public class AdminController {
 	
 	@RequestMapping
 	public String admin(HttpSession session) {
-//		if(session == null || session.getAttribute("loginId") == null){
-//			return "redirect:/admin/login";
-//		}
 		return "admin/index";
 	}
 
@@ -90,4 +87,5 @@ public class AdminController {
 
 				return "admin/adminSetting";
 			}
+	
 }

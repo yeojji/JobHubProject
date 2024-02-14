@@ -25,8 +25,8 @@
 			<div id="tnb">
 				<ul>
 					<li>${loginId}님</li>
-					<li><a href="/login" target="_blank">Jobhub바로가기</a></li>
-					<li><a href="/admin/mypage">마이페이지</a></li>
+					<li><a href="/" target="_blank">Jobhub바로가기</a></li>
+					<li><a href="">마이페이지</a></li>
 					<li id="tnb_logout"><a href="/admin/logout">로그아웃</a></li>
 				</ul>
 			</div>

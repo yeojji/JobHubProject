@@ -20,7 +20,6 @@
 			birth = #{birth},
 			phone = #{phone}
 		WHERE user_id = #{userId}
-		
 	</update>
 	
 	
@@ -38,7 +37,6 @@
 		UPDATE job_customer
 		SET password = #{password}
 		WHERE user_id = #{userId}
-	
 	</update>
 	
 	<update id="removeCustomer" parameterType="Customer">
@@ -47,6 +45,55 @@
 		WHERE user_id = #{userId}
 	</update>
 	
+	<select id="findCustomerListBySearchCondition" resultType="Customer" parameterType="CustomerSearchCondition">
+		SELECT *
+		FROM job_customer
+		WHERE 1=1
+		<if test="searchKeyword != null and !searchKeyword.isEmpty()">
+		<choose>
+			<when test="sfl == 'userId'">
+				AND user_id LIKE '%' || #{searchKeyword} || '%'
+			</when>
+			<when test="sfl == 'email'">
+				AND email = #{searchKeyword}
+			</when>
+			<when test="sfl == 'name'">
+				AND name LIKE '%' || #{searchKeyword} || '%'
+			</when>
+			<when test="sfl == 'phone'">
+				AND phone LIKE '%' || #{searchKeyword} || '%'
+			</when>
+		</choose>
+	</if>
+		<!-- 가입기간 조회 -->
+		<if test="spt == 'createdDate'">
+			<if test="startDate != null and startDate != ''">
+				<![CDATA[AND TO_DATE(created_date, 'YYYY-MM-DD') >= TO_DATE(#{startDate}, 'YYYY-MM-DD')]]>
+			</if>
+			<if test="endDate != null and endDate != ''">
+				<![CDATA[AND TO_DATE(created_date, 'YYYY-MM-DD') <= TO_DATE(#{endDate},
+			'YYYY-MM-DD')]]>
+			</if>
+		</if>
+		<if test="spt == 'birth'">
+			<if test="startDate != null and startDate != ''">
+			<![CDATA[AND TO_DATE(birth, 'YYYY-MM-DD') >= TO_DATE(#{startDate},
+			'YYYY-MM-DD')]]>
+			</if>
+			<if test="endDate != null and endDate != ''">
+				AND TO_DATE(birth, 'YYYY-MM-DD') &lt;= TO_DATE(#{endDate},
+			'YYYY-MM-DD')
+			</if>
+		</if>
+		<if test="gender != null and gender != ''">
+			AND gender = #{gender}
+		</if>
+	</select>
+		
+	<select id="findCustomerList" resultType="Customer">
+		SELECT *
+		FROM job_customer
+	</select>
 	<insert id="scrapNotice" parameterType="Scrap">
 		insert into scrap VALUES 
 		(seq_scrap_id.nextVal ,

@@ -6,7 +6,7 @@
 			<dt class="g10">
 				<i class="fa-solid fa-people-group"></i>회원관리
 			</dt>
-			<dd class="g10">
+			<dd class="g10 active">
 				<a href="/admin/customers">회원정보 조회<em>2</em></a>
 			</dd>
 			<dd class="g10">
@@ -42,7 +42,7 @@
 			<dt class="g10">
 				<i class="fa-solid fa-gears"></i>관리자설정
 			</dt>
-			<dd class="g10 active">
+			<dd class="g10">
 				<a href="/admin/setting">관리자 조회<em>195</em></a>
 			</dd>
 			<dd class="g10">
@@ -56,11 +56,12 @@
 	<div id="wrapper">
 		<div id="content">
 			<div class="s_wrap">
-				<h1>관리자 조회</h1>
+				<h1>회원 조회</h1>
 
 				<!-- 검색 -->
 				<h2>검색</h2>
-				<form name="fsearch" id="fsearch" method="get">
+				<form action="/admin/customers" name="fsearch" id="fsearch"
+					method="get">
 					<input type="hidden" name="code" value="list">
 					<div class="tbl_frm01">
 						<table class="tablef">
@@ -74,33 +75,29 @@
 								<tr>
 									<th scope="row">검색어</th>
 									<td colspan="3"><select name="sfl" class="w120">
-											<option value="adminId">아이디</option>
-											<option value="jobName">직무</option>
-											<option value="name">이름</option>
-											<option value="tel">내선전화번호</option>
+											<option value="userId">아이디</option>
 											<option value="email">이메일</option>
-											<option value="employeeId">사번</option>
+											<option value="name">이름</option>
+											<option value="phone">휴대전화번호</option>
 									</select> <input type="text" name="searchKeyword" value="" class="frm_input"
 										size="30"></td>
 								</tr>
 								<tr>
 									<th scope="row">기간검색</th>
 									<td><select name="spt" class="w100">
-											<option value="creationCode">생성일자</option>
-											<option value="hireDate">입사일자</option>
-									</select><label for="startDate" class="sound_only">시작일</label> <input
-										type="date" name="startDate" value="" id="startDate"
+											<option value="createdDate">가입일자</option>
+											<option value="birth">생년월일</option>
+									</select><label for="startDate" class="sound_only">시작일</label> 
+									<input type="date" name="startDate" value="" id="startDate"
 										class="frm_input w100" maxlength="10"> ~ <label
 										for="endDate" class="sound_only">종료일</label> <input
 										type="date" name="endDate" value="" id="endDate"
 										class="frm_input w100" maxlength="10"></td>
-									<th scope="row">관리자권한</th>
-									<td><select name="permissionCode" class="w100">
-											<option value="ADMIN">ADMIN</option>
-											<option value="SUPERVISOR">SUPERVISOR</option>
-											<option value="MANAGER">MANAGER</option>
-											<option value="STAFF">STAFF</option>
-									</select></td>
+									<th scope="row">성별</th>
+									<td><label><input type="radio" name="gender"
+											value="" checked="checked"> 전체</label> <label><input
+											type="radio" name="gender" value="여"> 여성</label> <label><input
+											type="radio" name="gender" value="남"> 남성</label></td>
 								</tr>
 							</tbody>
 						</table>
@@ -116,14 +113,14 @@
 
 				<!-- 검색결과 리스트 -->
 				<div class="local_ov mart30">
-					총 관리자 : <b class="fc_red">${adminList.size()}</b>명 
+					총 관리자 : <b class="fc_red">${customerList.size()}</b>명 
 					<select id="page_rows" onchange="" class="marl5">
 						<option value="30" selected="selected">30줄 정렬</option>
 						<option value="50">50줄 정렬</option>
 						<option value="100">100줄 정렬</option>
 						<option value="150">150줄 정렬</option>
 					</select> <a href="./member.php?code=register_form"
-						class="fr btn_lsmall green">신규 관리자 생성</a>
+						class="fr btn_lsmall green">신규 회원 생성</a>
 				</div>
 				<div class="tbl_head01">
 					<table>
@@ -134,10 +131,8 @@
 							<col class="w70">
 							<col class="w70">
 							<col class="w100">
+							<col class="w30">
 							<col class="w120">
-							<col class="w70">
-							<col class="w70">
-							<col class="w50">
 						</colgroup>
 						<thead>
 							<tr>
@@ -146,35 +141,31 @@
 								<th scope="col">번호</th>
 								<th scope="col">아이디</th>
 								<th scope="col">이름</th>
-								<th scope="col">사번</th>
-								<th scope="col">부서</th>
-								<th scope="col">내선번호</th>
-								<th scope="col">권한</th>
-								<th scope="col">생성일자</th>
-								<th scope="col">계정상태</th>
+								<th scope="col">이메일</th>
+								<th scope="col">휴대전화번호</th>
+								<th scope="col">성별</th>
+								<th scope="col">가입일자</th>
 							</tr>
 						</thead>
 						<tbody class="list">
-							<c:if test="${empty adminList}">
+							<c:if test="${empty customerList}">
 								<tr>
 									<td colspan="11">검색 결과가 없습니다.</td>
 								</tr>
 							</c:if>
 
-							<c:forEach var="adminItem" items="${adminList}"
+							<c:forEach var="customerItem" items="${customerList}"
 								varStatus="rowStat">
 								<tr class="${rowStat.index % 2 == 0 ? 'list0' : 'list1'}">
 									<!-- 리스트 출력 -->
 									<td><input type="checkbox" name="chk[]" value="${rowStat.index + 1}" id="chk_${rowStat.index + 1}"></td>
 									<td>${rowStat.index + 1}</td>
-									<td>${adminItem.adminId}</td>
-									<td>${adminItem.name}</td>
-									<td>${adminItem.employeeId}</td>
-									<td>${adminItem.jobsName}</td>
-									<td>${adminItem.tel}</td>
-									<td>${adminItem.permissionCode}</td>
-									<td>${adminItem.creationCode}</td>
-									<td>${adminItem.userStatus}</td>
+									<td>${customerItem.userId}</td>
+									<td>${customerItem.name}</td>
+									<td>${customerItem.email}</td>
+									<td>${customerItem.phone}</td>
+									<td>${customerItem.gender}</td>
+									<td>${customerItem.createdDate}</td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -182,7 +173,7 @@
 				</div>
 				<div class="local_frm02">
 					<a href="./member.php?code=register_form"
-						class="fr btn_lsmall green">신규 관리자 생성</a>
+						class="fr btn_lsmall green">신규 회원 생성</a>
 				</div>
 			</div>
 		</div>

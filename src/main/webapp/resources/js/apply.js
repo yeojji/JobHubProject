@@ -73,12 +73,16 @@ $(document).ready(function () {
                     alert('졸업년도를 입력해주세요')
                 } else {
 
-                    $('.eduinput').show();
-                    $('.eduinput').css({ "display": "flex" });
-                    $('.eduinput').append(eduContent);
-                    $(document).on("click", "#edu_remove", function () {
-                        $(this).closest("#edu_info").remove();
-                    });
+                    if (admis > grad) {
+                        alert('입학일이 졸업(예정)일보다 클 수 없습니다.')
+                    } else {
+                        $('.eduinput').show();
+                        $('.eduinput').css({ "display": "flex" });
+                        $('.eduinput').append(eduContent);
+                        $(document).on("click", "#edu_remove", function () {
+                            $(this).closest("#edu_info").remove();
+                        });
+                    }
                 }
             } else if (result == '전문대학' || result == '대학교' || result == '대학원(석사)' || result == '대학원(박사)') {
                 let eduSortation = $("#eduSortation").val();
@@ -125,12 +129,16 @@ $(document).ready(function () {
                 } else if (graduation == "") {
                     alert('졸업년도를 입력해주세요')
                 } else {
-                    $('.eduinput').show();
-                    $('.eduinput').css({ "display": "flex" });
-                    $('.eduinput').append(eduContent);
-                    $(document).on("click", "#edu_remove", function () {
-                        $(this).closest("#edu_info").remove();
-                    });
+                    if (admis > grad) {
+                        alert('입학일이 졸업(예정)일보다 클 수 없습니다.')
+                    } else {
+                        $('.eduinput').show();
+                        $('.eduinput').css({ "display": "flex" });
+                        $('.eduinput').append(eduContent);
+                        $(document).on("click", "#edu_remove", function () {
+                            $(this).closest("#edu_info").remove();
+                        });
+                    }
                 }
             } else {
                 alert('잘못된 접근입니다.');
@@ -177,13 +185,16 @@ $(document).ready(function () {
         } else if (careerdetail == "") {
             alert('상세 업무내용을 입력해주세요')
         } else {
-            $('.careerinput').show();
-            $('.careerinput').css({ "display": "flex" });
-            $('.careerinput').append(careerContent);
-            $(document).on("click", "#car_remove", function () {
-                $(this).closest("#car_info").remove();
-            });
-
+            if (join > resign) {
+                alert('입사일이 퇴사일보다 클 수 없습니다')
+            } else {
+                $('.careerinput').show();
+                $('.careerinput').css({ "display": "flex" });
+                $('.careerinput').append(careerContent);
+                $(document).on("click", "#car_remove", function () {
+                    $(this).closest("#car_info").remove();
+                });
+            }
         }
     })
 
@@ -292,38 +303,118 @@ $(document).ready(function () {
 
 })
 
+let admis;
+let grad;
+
 const inputAdmis = (target) => {
     let val = target.value.replace(/\D/g, "");
     let leng = val.length;
     let result = '';
 
+    if (leng < 4) {
+        result = val;
+    } else {
+        result += val.substring(0, 4);
+        result += ".";
+        result += val.substring(4, 6);
+        if (val.substring(4, 6) > 12) {
+            alert("날짜 형식이 맞지 않습니다")
+            console.log(val.substring(4, 6))
+        }
+
+    }
+
+    target.value = result;
+    admis = target.value;
+}
+
+const inputGrad = (target) => {
+    let val = target.value.replace(/\D/g, "");
+    let leng = val.length;
+    let result = '';
+
+    if (leng < 4) {
+        result = val;
+    } else {
+        result += val.substring(0, 4);
+        result += ".";
+        result += val.substring(4, 6);
+        if (val.substring(4, 6) > 12) {
+            alert("날짜 형식이 맞지 않습니다")
+            console.log(val.substring(4, 6))
+        }
+    }
+    target.value = result;
+    grad = target.value;
+}
+
+let join;
+let resign;
+
+const inputjoin = (target) => {
+    let val = target.value.replace(/\D/g, "");
+    let leng = val.length;
+    let result = '';
+
+
     if (leng < 6) {
         result = val;
-    } else{
+    } else if (leng < 8) {
         result += val.substring(0, 4);
         result += ".";
         result += val.substring(4);
+    } else {
+        result += val.substring(0, 4);
+        result += ".";
+        result += val.substring(4, 6);
+        result += ".";
+        result += val.substring(6);
+
         if (!checkValidDate(result)) {
-           alert('정확한 날짜를 입력하세요')
+            alert('날짜 형식이 맞지 않습니다')
         }
-
-   
-
     }
-    
-   target.value = result;
+    target.value = result;
+    join = target.value;
 }
 
+const inputresign = (target) => {
+    let val = target.value.replace(/\D/g, "");
+    let leng = val.length;
+    let result = '';
+
+
+    if (leng < 6) {
+        result = val;
+    } else if (leng < 8) {
+        result += val.substring(0, 4);
+        result += ".";
+        result += val.substring(4);
+    } else {
+        result += val.substring(0, 4);
+        result += ".";
+        result += val.substring(4, 6);
+        result += ".";
+        result += val.substring(6);
+
+        if (!checkValidDate(result)) {
+            alert('날짜 형식이 맞지 않습니다')
+        }
+    }
+    target.value = result;
+    resign = target.value;
+}
 
 const checkValidDate = (value) => {
     let result = true;
     try {
-        let date = value.split("-");
+        let date = value.split(".");
         let y = parseInt(date[0], 10),
-            m = parseInt(date[1], 10)
+            m = parseInt(date[1], 10),
+            d = parseInt(date[2], 10);
 
         let dateRegex = /^(?=\d)(?:(?:31(?!.(?:0?[2469]|11))|(?:30|29)(?!.0?2)|29(?=.0?2.(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00)))(?:\x20|$))|(?:2[0-8]|1\d|0?[1-9]))([-.\/])(?:1[012]|0?[1-9])\1(?:1[6-9]|[2-9]\d)?\d\d(?:(?=\x20\d)\x20|$))?(((0?[1-9]|1[012])(:[0-5]\d){0,2}(\x20[AP]M))|([01]\d|2[0-3])(:[0-5]\d){1,2})?$/;
-        result = dateRegex.test(d + '.' + m);
+        result = dateRegex.test(d + '.' + m + '.' + y);
     } catch (err) {
         result = false;
     }

@@ -22,7 +22,7 @@
  <header id="hd">
         <div id="hd_wrap">
             <h1>Jobhub 관리자 페이지</h1>
-            <div id="logo"><a href="/admin/adminMain"><img src="./sources/admin/img/logo_wh_250x35.png"
+            <div id="logo"><a href="/admin/adminMain"><img src="/img/admin/logo_wh_250x35.png"
                         alt="Jobhub logo"></a></div>
             <div id="tnb">
                 <ul>
@@ -67,8 +67,9 @@
 
                 <!-- 검색 -->
                 <h2>검색</h2>
-                <form name="keyword" id="fsearch" method="get" action ="">
+                <form id="fsearch" action ="">
                     <!-- <input type="hidden" name="code" value="list"> -->
+                   <%--  <input type="hidden" name="postingId" value="${jobpostingItem.postingId}"> --%>
                     <div class="tbl_frm01">
                         <table class="tablef">
                             <colgroup>
