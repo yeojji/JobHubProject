@@ -64,6 +64,7 @@
 
     <!--부서별 공고페이지 메인-->
     <div class="container">
+    <input type="hidden" id="loginId" value="${loginId}">
         <div class="notice_box_container">
             <div class="notice_info_header">
                 <span class="notice_title">Find Your Next Career</span>
@@ -143,15 +144,22 @@
 			
 			</form>
                     <script>
+                    let loginId = document.getElementById('loginId');
 				let form = document.getElementById('form');
 				document.getElementById("submitBtn").addEventListener("click", function (event) {
 					var confirmation = confirm("지원하겠습니까?");
 
 					// 확인을 눌렀을 경우
 					if (confirmation) {
+						if(loginId.value == ''){
+							alert('로그인 후 이용가능합니다');
+							event.preventDefault();
+						}else{
+						
 						form.action = "/apply";
 						// 폼 제출
 						return true;
+						}
 					} else {
 						// 취소를 눌렀을 경우
 						// 폼 제출 취소

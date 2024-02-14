@@ -379,6 +379,8 @@ public class CustomerController {
 @GetMapping("/jobsDescription")
 public String jobsDescription(@RequestParam String postingId, Model model, HttpSession session) {
    
+	String loginId = (String) session.getAttribute("loginId");
+	model.addAttribute("loginId",loginId);
 	Jobposting jobpostingById = jobpostingService.findPostingBypostingId(postingId);
 	Description descriptionById = jobpostingService.findDescriptionBypostingId(postingId);
 	
