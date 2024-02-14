@@ -302,10 +302,12 @@
 .apply_mili{
     width:228px;
     padding-left:5px;
+    margin-top:10px;
 }
 .apply_disorder{
     width:138px;
     padding-left:5px;
+    margin-top:10px;
 }
 hr{
     width:50%;
@@ -340,6 +342,7 @@ hr{
 #edu_remove
 {
     margin-left: 20px;
+    
 }
 #edu_info{
     display: flex;
@@ -385,3 +388,43 @@ hr{
 ul{
     list-style:none;
 }
+span{
+    color:#2dc26b;
+    
+}
+
+.form_gender input[type="radio"] {
+    display: none;
+}
+.form_gender input[type="radio"] + span {
+    display: flex;
+    flex-direction: column;
+    padding-top:9px;
+    color:#b6b6b6;
+    font-weight: bold;
+    background-color: #ececec;
+    width:70px;
+    height:45px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.form_gender input[type="radio"]:checked + span {
+    background-color: #2dc26b;
+    color: #ffffff;
+}
+.chk_status{
+	margin-top:10px;
+	display:flex
+}
+
+#edu_remove,
+#car_remove,
+#cert_remove{
+	border:0;
+    outline:0;
+     background-color: inherit ;
+    cursor:pointer;
+     text-decoration: underline;
+}
+

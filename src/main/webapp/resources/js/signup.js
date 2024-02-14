@@ -284,3 +284,4 @@ document.getElementById('submitBtn').addEventListener('click', function(e) {
         alert('회원가입 되었습니다');
     }
 });
+

@@ -28,5 +28,8 @@ public interface ApplyService {
 	public Jobposting findQuestions(String postingId);
 	
 	
+	
+	public boolean isDuplicatedId(String id);
+	
 	public List<Employee> findEmployeeList();
 }
