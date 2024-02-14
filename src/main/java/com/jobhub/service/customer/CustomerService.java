@@ -28,7 +28,7 @@ public interface CustomerService {
 	
 	public int scrapNotice(Scrap scrapId);
 	
-	public List<Scrap> customerScarpList(String userId);
+	public List<Scrap> customerScrapList(String userId);
 	
 	public int removeCustomerScrapList(String userId);
 	

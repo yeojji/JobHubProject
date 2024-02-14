@@ -71,10 +71,10 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public List<Scrap> customerScarpList(String userId) {
+	public List<Scrap> customerScrapList(String userId) {
 		// TODO Auto-generated method stub
 		
-		List<Scrap> scrapList = customerDAO.customerScarpList(userId);
+		List<Scrap> scrapList = customerDAO.customerScrapList(userId);
 		return scrapList;
 	}
 

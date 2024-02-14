@@ -31,6 +31,7 @@ import com.jobhub.dto.resume.Resume;
 import com.jobhub.service.admin.AdminService;
 import com.jobhub.service.customer.CustomerService;
 import com.jobhub.service.jobposting.JobpostingService;
+import com.jobhub.util.LoginManager;
 
 @Controller
 public class CustomerController {
@@ -47,6 +48,8 @@ public class CustomerController {
 	@Autowired
     private SqlSession sqlSession;
 	
+	@Autowired
+	LoginManager loginManager;
 	
 	@GetMapping("/login")
 	public String login() {
@@ -108,9 +111,8 @@ public class CustomerController {
 			
 		}else {
 			
-			session.setAttribute("loginId", loginUser.getUserId());
-			session.setAttribute("loginPw", loginUser.getPassword());
-			
+			loginManager.setSessionLogin(loginUser.getUserId(), session);
+		
 			return "redirect:/";
 			
 		}
@@ -118,9 +120,9 @@ public class CustomerController {
 	}
 	
 	@PostMapping("/logout")
-	public String logoutProcess(HttpServletRequest request, HttpSession session) {
+	public String logoutProcess(HttpSession session) {
 		
-		session.removeAttribute("loginId");
+		loginManager.logout(session);
 		
 		return  "redirect:/";
 	}
@@ -159,7 +161,7 @@ public class CustomerController {
 		
 		session.getAttribute(findCustomer);
 		
-		List<Scrap> scrapList = customerService.customerScarpList(findCustomer);
+		List<Scrap> scrapList = customerService.customerScrapList(findCustomer);
 		System.out.println(scrapList);
 		if (!scrapList.isEmpty()) {
 		    Scrap firstScrap = scrapList.get(0); 
@@ -182,7 +184,7 @@ public class CustomerController {
 		
 		session.getAttribute(findCustomer);
 		
-		List<Scrap> scrapList = customerService.customerScarpList(findCustomer);
+		List<Scrap> scrapList = customerService.customerScrapList(findCustomer);
 		List<Notice> noticeList = customerService.scrapNoticeInfo(postingId);
 		model.addAttribute("scrapList",scrapList);
 		model.addAttribute("noticeList", noticeList);
@@ -254,7 +256,7 @@ public class CustomerController {
 		
 		if(result >0) {
 			
-			return "redirect:/customer/mypage";
+			return "/customer/mypage";
 		}else {
 			
 			
@@ -306,29 +308,34 @@ public class CustomerController {
 	//jobs
 	//jobsMain
 
-@GetMapping("/customer/notice_by_career")
-public String showAllNotice(HttpSession session, Jobposting postingId,
-		 Customer userId, Model model, PostingSearchCondition postingSearchCondition,Scrap scrap) {
-   
-	String findCustomer = (String)session.getAttribute("loginId");
-	session.getAttribute(findCustomer);
-	
-	
-   List<Job> jobList = jobpostingService.findJobList();
-   List<Jobposting> jobpostingList = jobpostingService.findJobpostingList();
-   List<Jobposting> jobpostingNameList = jobpostingService.findPostingAndJobNameList();
-   
-   model.addAttribute("jobList" , jobList);
-   model.addAttribute("jobpostingList" , jobpostingList);
-   model.addAttribute("jobpostingNameList" , jobpostingNameList);
-   
-   model.addAttribute("postingCount",sqlSession.selectOne("jobPosting_mapper.findPostingCountOpen"));
-   
-   List<Scrap> scrapList = customerService.customerScarpList(findCustomer);
-   System.out.println(scrapList);
-   model.addAttribute("scrapList", scrapList);
-   return "customer/notice_by_career";
-}
+	@GetMapping("/customer/notice_by_career")
+	public String showAllNotice(HttpSession session, Jobposting postingId,
+	       Customer userId, Model model, PostingSearchCondition postingSearchCondition,Scrap scrap) {
+	   
+	   String findCustomer = (String)session.getAttribute("loginId");
+	   session.getAttribute(findCustomer);
+	   
+	   System.out.println(findCustomer);
+	   List<Job> jobList = jobpostingService.findJobList();
+	   List<Jobposting> jobpostingList = jobpostingService.findJobpostingList();
+	   List<Jobposting> jobpostingNameList = jobpostingService.findPostingAndJobNameList();
+	   
+	   System.out.println(jobpostingNameList);
+	   
+	   model.addAttribute("jobList" , jobList);
+	   model.addAttribute("jobpostingList" , jobpostingList);
+	   model.addAttribute("jobpostingNameList" , jobpostingNameList);
+	   
+	   model.addAttribute("postingCount",sqlSession.selectOne("jobPosting_mapper.findPostingCountOpen"));
+	   
+	   if(findCustomer != null) {
+	   List<Scrap> scrapList = customerService.customerScrapList(findCustomer);
+	   System.out.println(" 사용자 스크랩 리스트" + scrapList);
+	   System.out.println(scrapList);
+	   model.addAttribute("scrapList", scrapList);
+	   }
+	   return "customer/notice_by_career";
+	}
 
 //jobs category 별로 화면 바뀌는 거
 @GetMapping("/list")

@@ -140,6 +140,7 @@
 		<c:if test="${not empty scrapList}">
 		if((confirm('찜한 모든 공고를 삭제하시겠습니까?'))){
 			window.location.href='/deleteAllScrap?userId=' + userId;
+			
 		}
 		</c:if>
         
