@@ -30,14 +30,6 @@
 	update job_customer set password = #{password} where user_id = #{userId}
 	</update>
 	
-	<select id="pwCheck" resultType="String">
-	select password from job_customer where user_id = #{userId}
-	</select>
-	
-	<update id="pwUpdate">
-	update job_customer set password = #{password} where user_id = #{userId}
-	</update>
-	
 	<update id="modifyCustomerPw" parameterType="Customer">
 		UPDATE job_customer
 		SET password = #{password}
