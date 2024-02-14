@@ -58,6 +58,7 @@
 			<div class="s_wrap">
 				<form action="/admin/resumeDetail" id="modify_form" method="post">
 					<input type="hidden" name="resumeId" value="${resume.resumeId}">
+					<input type="hidden" name="userId" value="${resume.userId}">
 					<h1>이력서 상세 조회</h1>
 					<div class="tbl_frm01">
 						<table class="tablef">
