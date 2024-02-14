@@ -29,7 +29,7 @@
 .scrap_notice_box{
     display: flex;
     justify-content: space-between;
-    background-color: rgb(255, 250, 244);
+    background-color: #ececec;
     padding-top: 50px;
 }
 

@@ -29,7 +29,9 @@
             <div class="notice_info_header">
                 <span class="notice_title">Find Your Next Career</span>
                 <div class="company_advertising_slide">
-                    
+                    <img src="">
+                    <img src="">
+                    <img>
                 </div>
 
 				<div class="career_category">
