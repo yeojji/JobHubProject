@@ -356,15 +356,19 @@ public String list(@RequestParam String jobsCateName, Model model) {
 
 //jobs 제목 누르면 상세보기 페이지
 @GetMapping("/jobsDescription")
-public String jobsDescription(@RequestParam String postingId, Model model) {
+public String jobsDescription(@RequestParam String postingId, Model model, HttpSession session) {
    
+	String loginId = (String)session.getAttribute("loginId");
+	session.getAttribute(loginId);
+	model.addAttribute("loginId", loginId);
+	
    Jobposting jobposting = jobpostingService.findPostingBypostingId(postingId);
    Description description = jobpostingService.findDescriptionBypostingId(postingId);
    
    System.out.println(jobposting + "공고");
    System.out.println(description + "공고상세");
    
-   
+   model.addAttribute("postingId", jobposting.getPostingId());
    model.addAttribute("jobposting", jobposting);
    model.addAttribute("description", description);
    

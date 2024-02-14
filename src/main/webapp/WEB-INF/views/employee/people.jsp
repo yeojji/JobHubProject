@@ -9,7 +9,7 @@
 <link href="css/people.css" rel="stylesheet">
 </head>
 <body>
-<!-- 헤더박을부분 -->
+
 <%@ include file="../header_footer/header.jsp" %>
 
 <div class="p_header">
@@ -31,7 +31,7 @@
     <c:forEach var="empList" items="${empList}">
         <li class="itemList">
             <div class="img_area">
-                <img src="./img/이미지.jpeg">
+                <img src="image/employee.png">
             </div>
             <div class="text_area">
                 <span class="name">${empList.name}</span>

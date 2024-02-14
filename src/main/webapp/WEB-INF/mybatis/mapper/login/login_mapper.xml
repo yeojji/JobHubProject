@@ -6,7 +6,16 @@
 
 <mapper namespace="login_mapper">
 	<insert id="saveUser" parameterType="Customer">
-		insert into job_customer values ( #{userId}, #{email}, #{password}, #{name}, #{birth}
-		, #{phone}, TO_CHAR(SYSDATE), #{gender}, 'JOIN')
+		insert into job_customer values 
+		( 
+		TRIM(#{userId}), 
+		TRIM(#{email}), 
+		TRIM(#{password}), 
+		TRIM(#{name}), 
+		TRIM(#{birth}),
+		TRIM(#{phone}), 
+		TO_CHAR(SYSDATE), 
+		#{gender}, 
+		'JOIN')
 	</insert>
 </mapper>

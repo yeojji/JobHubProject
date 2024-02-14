@@ -106,13 +106,21 @@ const onInputPhone = (target) => {
     let phoneNum = '';
 
     if (number.length >= 4) {
-        if (number.length >= 11) {
-            phoneNum = number.substring(0, 3) + '-' + number.substring(3, 7) + '-' + number.substring(7, 11);
-        } else {
-            phoneNum = number.substring(0, 3) + '-' + number.substring(3, 6);
-            if (number.length > 6) {
-                phoneNum += '-' + number.substring(6);
+        if (number.startsWith('010') || number.startsWith('011') || number.startsWith('017')) {
+
+
+            if (number.length >= 11) {
+                phoneNum = number.substring(0, 3) + '-' + number.substring(3, 7) + '-' + number.substring(7, 11);
+            } else {
+                phoneNum = number.substring(0, 3) + '-' + number.substring(3, 6);
+                if (number.length > 6) {
+                    phoneNum += '-' + number.substring(6);
+                }
             }
+
+        } else {
+            alert('잘못된 형식입니다.');
+            return;
         }
     } else {
         phoneNum = number;

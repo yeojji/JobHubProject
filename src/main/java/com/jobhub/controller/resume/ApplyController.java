@@ -61,6 +61,7 @@ public class ApplyController {
 
 		model.addAttribute("postingId", postingId);
 		Jobposting question = applyService.findQuestions(postingId);
+		model.addAttribute("title", question.getTitle());
 		model.addAttribute("question1", question.getQuestion1());
 		model.addAttribute("question2", question.getQuestion2());
 		model.addAttribute("question3", question.getQuestion3());

@@ -14,7 +14,7 @@
 		'null', ''), REPLACE(#{item.graduationStatus} , 'null', '') ) </foreach> 
 		</insert> -->
 
-	<!-- <insert id="saveCareerInfo" parameterType="hashmap"> <foreach collection="careerList" 
+	<!-- <insert id="saveCareerInfo" parameterType="hashmap"><foreach collection="careerList" 
 		item="ca" open="INSERT ALL" close="SELECT * FROM dual"> INTO career VALUES 
 		( (SELECT NVL(MAX(career_id), 0) + 1 FROM career), 1, #{ca.companyName}, 
 		#{ca.departmentName}, #{ca.joinDate}, #{ca.resignationDate}, #{ca.duty}, 
@@ -210,7 +210,7 @@
 	</select>
 	
 	<select id="findQuestions" parameterType="String" resultType="Jobposting">
-		SELECT question_1, question_2, question_3 
+		SELECT title, question_1, question_2, question_3 
 		FROM job_posting
 		WHERE posting_id = #{postingId}
 	</select>
