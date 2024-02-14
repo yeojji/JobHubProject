@@ -58,7 +58,8 @@
 <form action="/customer/notice_by_career" method="get">
     <div class="search_jobs_box">
         <i class="fa-solid fa-magnifying-glass search_icon"></i>
-        <input type="text" placeholder="Search Jobs" class="search_jobs" name="searchKeyword">
+        <input type="text" placeholder="Search Jobs" class="search_jobs" name="keyword">
+         
         <button type="submit">검색</button>
     </div>
 </form>
@@ -69,7 +70,7 @@
                     
                     
 <c:forEach var="jobpostingNameItem" items="${jobpostingNameList}"> 
-    <c:if test="${jobpostingNameItem.postStatus == 'O'}">
+    <%--  <c:if test="${jobpostingNameItem.postStatus = 'O'} " > --%> 
         <div class="notice_list_item">
             <div class="notice_info_title">
                 <a href="../jobsDescription?postingId=${jobpostingNameItem.postingId}" >${jobpostingNameItem.title}</a>
@@ -82,7 +83,7 @@
             </div>
             <span class="notice_deadline">${jobpostingNameItem.applicationStart} ~ ${jobpostingNameItem.applicationDeadline}</span>
         </div>
-    </c:if>   
+   <%--  </c:if> --%>   
 </c:forEach>
  
             

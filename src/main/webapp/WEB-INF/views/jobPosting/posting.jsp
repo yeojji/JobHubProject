@@ -92,7 +92,7 @@
                                     <td>
                                         <select name="jobLevel1"
 										id="jobLevel1" required>
-										<option value="" selected disabled="disabled">직무를 선택하세요.</option>
+										<option value="" selected disabled="disabled" id="">직무를 선택하세요.</option>
 											<c:forEach var="jobItem" items="${jobList}">
 												<c:choose>
 													<c:when test="${jobItem.jobsLevel == 1}">
@@ -256,54 +256,10 @@
     <script>
 
 	
-    document.getElementById("modiBtn").addEventListener("click", function(event) {
-	    // required 속성이 있는 input 요소들을 모두 가져옵니다.
-	    var requiredInputs = document.querySelectorAll('[required]');
-	    
-	    // 모든 required input 요소들을 순회하면서 값이 있는지 확인합니다.
-	    var allInputsFilled = true;
-	    for (var i = 0; i < requiredInputs.length; i++) {
-	        if (!requiredInputs[i].value) { // 값이 없으면
-	            allInputsFilled = false;
-	            break;
-	        }
-	    }
-	    
-	    // 모든 required input 요소들이 값이 있는 경우에만 수정 확인 창을 띄웁니다.
-	    if (allInputsFilled) {
-	        var confirmation = confirm("수정하겠습니까?");
-	        
-	        // 확인을 눌렀을 경우
-	        if (confirmation) {
-	            alert("수정되었습니다.");
-	            // 폼 제출
-	            return true;
-	        } else {
-	            // 취소를 눌렀을 경우
-	            // 폼 제출 취소
-	            event.preventDefault();
-	            return false;
-	        }
-	    } else {
-	        alert("필수 입력 항목을 모두 채워주세요."); // 모든 required input 요소가 값을 갖고 있지 않은 경우
-	        event.preventDefault(); // 폼 제출 취소
-	        return false;
-	    }
-	});
 	
-	
-        document.addEventListener('DOMContentLoaded', function () {
-            var chkAll = document.querySelector('input[name="chkall"]');
-            chkAll.addEventListener('change', function () {
-                var checkboxes = document.querySelectorAll('input[name="chk[]"]');
-                checkboxes.forEach(function (checkbox) {
-                    checkbox.checked = chkAll.checked;
-                });
-            });
-        });
 
 
-
+//jquery
 
 	
 $(document).ready(function(){
@@ -319,25 +275,21 @@ $(document).ready(function(){
     	console.log(jobLevel1);
     	
         if (jobLevel1 != "") {
-        	
-        	
-        	
+        		
             jQuery.ajax({
                 type: "POST",
                 url: "/jobnameByPid",
                 data: {
                     jobLevel1: jobLevel1
                 },
-                //datatype: "text",
+               
                 datatype: "json",
                 success: function (jobNameList) {
-                    //var data = JSON.parse(jobNameList); 
-                    console.log(jobNameList); // 콘솔에 데이터가 제대로 나오는지 확인
+                    console.log(jobNameList); 
                     $('#jobLevel2').empty(); 	//자식 테이블 한번 지우기
                     $.each(jobNameList, function (index, job) {	 //index, Object
-                        console.log(index); // 콘솔에 각각의 키와 값이 제대로 나오는지 확인
-                        console.log(job); // 콘솔에 각각의 키와 값이 제대로 나오는지 확인
-                        //index: 현재 요소의 인덱스(걍 자리채우기용) //job 현재 요소의 값
+                        console.log(index); 
+                        console.log(job); 
                         $('<option></option>').val(job.jobsId).text(job.jobsName).appendTo($('#jobLevel2'));
                     });
                 },
@@ -347,13 +299,11 @@ $(document).ready(function(){
             });
             
             $("select[name=jobLevel2]").attr("disabled", false); //코드 한줄한줄 따로 생각할 것
-            
-            
+             
             
         } else {
             $("select[name=jobLevel2]").attr("disabled", true);
         }
-
      
     });
 });
@@ -382,6 +332,46 @@ $(document).ready(function(){
         }
     });
     appEndDateInput.min = appStartDateInput.value;
+    
+
+    //등록하시겠습니까
+    
+		document.getElementById("saveBtn").addEventListener("click", function(event) {
+                    	    // required 속성이 있는 input 요소들을 모두 가져옵니다.
+                    	    var requiredInputs = document.querySelectorAll('[required]');
+                    	    
+                    	    // 모든 required input 요소들을 순회하면서 값이 있는지 확인합니다.
+                    	    var allInputsFilled = true;
+                    	    for (var i = 0; i < requiredInputs.length; i++) {
+                    	        if (!requiredInputs[i].value) { // 값이 없으면
+                    	            allInputsFilled = false;
+                    	            break;
+                    	        }
+                    	    }
+                    	    
+                    	    // 모든 required input 요소들이 값이 있는 경우에만 수정 확인 창을 띄웁니다.
+                    	    if (allInputsFilled) {
+                    	        var confirmation = confirm("등록하겠습니까?");
+                    	        
+                    	        // 확인을 눌렀을 경우
+                    	        if (confirmation) {
+                    	            alert("등록되었습니다.");
+                    	            // 폼 제출
+                    	            return true;
+                    	        } else {
+                    	            // 취소를 눌렀을 경우
+                    	            // 폼 제출 취소
+                    	            event.preventDefault();
+                    	            return false;
+                    	        }
+                    	    } else {
+                    	        alert("필수 입력 항목을 모두 채워주세요."); // 모든 required input 요소가 값을 갖고 있지 않은 경우
+                    	        event.preventDefault(); // 폼 제출 취소
+                    	        return false;
+                    	    }
+                    	});
+
+
 
 	
 	</script>

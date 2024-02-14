@@ -30,6 +30,8 @@ public class JobpostingDAOImpl implements JobpostingDAO {
 		return jobpostingList;
 	}
 	
+
+	
 	
 	public List<Jobposting> findJobpostingListBySearchCondition(String keyword) {
 		List<Jobposting> jobpostingList = sqlSessionTemplate
@@ -37,6 +39,12 @@ public class JobpostingDAOImpl implements JobpostingDAO {
 		return jobpostingList;
 	}
 	
+	
+	public List<Jobposting> findPostingAndJobNameListBySearchCondition(String keyword){
+		List<Jobposting> jobpostingList = sqlSessionTemplate
+				.selectList("jobPosting_mapper.findPostingAndJobNameListBySearchCondition", keyword);
+		return jobpostingList;
+	}
 	
 	/*
 	 * public List<Jobposting>

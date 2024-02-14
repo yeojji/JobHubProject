@@ -1,5 +1,7 @@
 package com.jobhub.controller.customer;
 
+import java.beans.Encoder;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -36,6 +38,8 @@ import com.jobhub.dto.jobposting.Jobposting;
 import com.jobhub.dto.jobposting.PostingSearchCondition;
 import com.jobhub.service.customer.CustomerService;
 import com.jobhub.service.jobposting.JobpostingService;
+
+import oracle.sql.CharacterSet;
 
 @Controller
 public class CustomerController {
@@ -215,17 +219,21 @@ public class CustomerController {
 	
 	//jobs
 	//jobsMain
-
+	
 	@GetMapping("/customer/notice_by_career")
-	public String showAllNotice(Model model, PostingSearchCondition postingSearchCondition) {
+	public String showAllNotice(Model model,  String keyword ) {
 		
 		List<Job> jobList = jobpostingService.findJobList();
-		List<Jobposting> jobpostingList = jobpostingService.findJobpostingList();
-		List<Jobposting> jobpostingNameList = jobpostingService.findPostingAndJobNameList();
+		//List<Jobposting> jobpostingList = jobpostingService.findJobpostingList();
+		//List<Jobposting> jobpostingNameList = jobpostingService.findPostingAndJobNameList();
+		
+		List<Jobposting> jobpostingNameList = jobpostingService.findPostingAndJobNameListBySearchCondition(keyword);
 		
 		model.addAttribute("jobList" , jobList);
-		model.addAttribute("jobpostingList" , jobpostingList);
+		//model.addAttribute("jobpostingList" , jobpostingList);
 		model.addAttribute("jobpostingNameList" , jobpostingNameList);
+		
+		
 		
 		model.addAttribute("postingCount",sqlSession.selectOne("jobPosting_mapper.findPostingCountOpen"));
 		
@@ -234,10 +242,16 @@ public class CustomerController {
 	
 	//jobs category 별로 화면 바뀌는 거
 	@GetMapping("/list")
-	public String list(@RequestParam String jobsCateName, Model model) {
-			
+	public String list( Model model , @RequestParam String jobsCateName ) throws UnsupportedEncodingException {
+		
+		
 		List<Jobposting>  jobpostingList = jobpostingService.findPostingListByjobscatename(jobsCateName);
 		List<Job> jobList = jobpostingService.findJobList();
+		
+		for(Job job : jobList) {
+			job.setJobsNameEncoded(java.net.URLEncoder.encode(job.getJobsName(), "UTF-8"));
+		}
+		
 		List<Jobposting> jobpostingNameList = jobpostingService.findPostingAndJobNameList();
 		
 		model.addAttribute("postingCount",sqlSession.selectOne("jobPosting_mapper.findPostingCountByCate",jobsCateName));

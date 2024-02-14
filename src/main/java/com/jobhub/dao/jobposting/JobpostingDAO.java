@@ -15,6 +15,8 @@ public interface JobpostingDAO {
 	
 	public List<Job> findJobsNameByLevel1();
 	
+
+	
 	public List<EmployeeJobsInfo> findEmployeeJobsInfoList();
 	
 	public List<Jobposting> findJobpostingList();
@@ -52,6 +54,8 @@ public interface JobpostingDAO {
 	//public List<Jobposting> findPostingListBySearchCondition(PostingSearchCondition postingSearchCondition);
 
 	public List<Jobposting> findJobpostingListBySearchCondition(String keyword);
+	
+	public List<Jobposting> findPostingAndJobNameListBySearchCondition(String keyword);
 	
 	
 	public List<Jobposting> findPostingListByjobscatename(String jobsCateName);

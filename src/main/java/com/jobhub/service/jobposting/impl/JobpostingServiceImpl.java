@@ -31,6 +31,7 @@ public class JobpostingServiceImpl implements JobpostingService {
 		return jobposting;
 	}
 	
+
 	public List<Jobposting> findPostingAndJobNameList(){
 		List<Jobposting> jobpostingNameList = jobpostingDAO.findPostingAndJobNameList();
 		return jobpostingNameList;
@@ -39,6 +40,11 @@ public class JobpostingServiceImpl implements JobpostingService {
 
 public List<Jobposting> findJobpostingListBySearchCondition(String keyword) {
 	List<Jobposting> jobpostingList = jobpostingDAO.findJobpostingListBySearchCondition(keyword);
+	return jobpostingList;
+}
+
+public List<Jobposting> findPostingAndJobNameListBySearchCondition(String keyword){
+	List<Jobposting> jobpostingList = jobpostingDAO.findPostingAndJobNameListBySearchCondition(keyword);
 	return jobpostingList;
 }
 
@@ -70,8 +76,8 @@ public List<Jobposting> findJobpostingListBySearchCondition(String keyword) {
 	 */
 	 
 	
-	public List<Jobposting> findPostingListByjobscatename(String jobsCateName){
-		List<Jobposting> jobpostingList = jobpostingDAO.findPostingListByjobscatename(jobsCateName);
+	public List<Jobposting> findPostingListByjobscatename(String keyword ){//,2개, SearchCondition 객체
+		List<Jobposting> jobpostingList = jobpostingDAO.findPostingListByjobscatename(keyword);
 		return jobpostingList;
 	}
 	 
