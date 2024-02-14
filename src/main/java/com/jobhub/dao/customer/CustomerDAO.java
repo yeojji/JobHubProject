@@ -22,6 +22,7 @@ public interface CustomerDAO {
 	
 	public void pwUpdate(String userId, String hashedPw)throws Exception;
 	
+	public List<Resume> findResumesByUserId(String userId);
 	
 	public int modifyCustomerPw(Customer customer);
 	
@@ -40,6 +41,12 @@ public interface CustomerDAO {
 	public List<Notice> scrapNoticeInfo(String scrapId);
 	
 	public List<Resume> customerResumeList(String userId);
+	
+	public List<Resume> findSubmissionResume(String userId);
+	
+	public List<Resume> findSubmissionResumeByPostingId(String postingId);
+	
+	public List<Resume> findNotSubmissionResume(String userId);
 	
 //	public int scrapCheck(String id, String postingId);
 //	

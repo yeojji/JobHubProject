@@ -310,13 +310,27 @@
     overflow-y: auto;
 }
 
+.box_select{
+    display: flex;
+    justify-content: space-between;
+}
 
 .modal_close_btn, .modal_close_btn2, .modal_close_btn3{
     cursor: pointer;
+    font-size: 20px;
+}
+
+.complete_btn{
+    width: 50%;
+}
+
+.close_btn, .submit_btn, .close_modal_pw, .submitBtn, .close_modal_delete, .submitBtn2{
+    width: 50%;
+    height: 20px;
 }
 
 .modify_modal_title{
-    font-size: 15px;
+    font-size: 20px;
     font-weight: bold;
 }
 
@@ -341,6 +355,7 @@
 .modify_info{
     width: 100%;
     height: 30px;
+    padding-bottom: 10px;
 }
 
 .modify_info:focus{

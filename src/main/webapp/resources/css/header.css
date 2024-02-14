@@ -11,8 +11,8 @@
     height: 90px;
     padding: 30px;
     justify-content: space-between;
-    transition: background-color 0.1s ease;
     background-color: white;
+    z-index: 10;
 }
 
 

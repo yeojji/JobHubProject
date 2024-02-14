@@ -39,10 +39,12 @@
                         <div class="notice_box_list">
                         <c:forEach var="scrapItem" items="${scrapList}">
                         <input name="userId" type="hidden" value="${userId}">
-                            <div class="notice_box" onclick="showNotice('${scrapItem.postingId}')">
-                                <div class="notice_box_item_title">${scrapItem.title}</div>
-                                <input name="scrapId" type="hidden" value="${scrapItem.scrapId}" id="scrapId">
-                                <input name="postingId" type="hidden" value="${scrapItem.postingId}" id="postingId">
+                            <div class="notice_box">
+                            	<div class="notice_box_item" onclick="showNotice('${scrapItem.postingId}')">
+	                                <div class="notice_box_item_title">${scrapItem.title}</div>
+	                                <input name="scrapId" type="hidden" value="${scrapItem.scrapId}" id="scrapId">
+	                                <input name="postingId" type="hidden" value="${scrapItem.postingId}" id="postingId">
+                                </div>
                                 <div class="notice_box_item_heart"> <i class="fa-solid fa-heart scrap_heart" onclick="scrapCancle('${scrapItem.scrapId}','${scrapItem.postingId}')"></i></div>
                             </div>
                          </c:forEach>   
@@ -140,7 +142,7 @@
 		<c:if test="${not empty scrapList}">
 		if((confirm('찜한 모든 공고를 삭제하시겠습니까?'))){
 			window.location.href='/deleteAllScrap?userId=' + userId;
-			
+			window.location.reload();
 		}
 		</c:if>
         
@@ -150,9 +152,10 @@
 	function scrapCancle(scrapId,postingId){
 		console.log('scrapCancle 함수 호출' + postingId);
 		if(confirm('공고를 삭제하시겠습니까?')){
-			
+			window.location.reload();
 			window.location.href='/deleteScrapItem?scrapId=' + scrapId
 					+ '&postingId=' + postingId;
+			
 		}
 		
 	}
@@ -172,28 +175,7 @@
 		window.location.href='/showScrapNoticeInfo?postingId=' + postingId;
 	}
 	
-	let selectedNoticeBox = null;
-
-	function toggleSelectedBox(element) {
-	    // 선택된 notice_detail_box가 있으면 기본 색상으로 되돌림
-	    if (selectedNoticeBox !== null) {
-	        selectedNoticeBox.classList.remove('selected');
-	    }
-
-	    // 현재 클릭한 notice_detail_box를 파란색으로 표시
-	    element.classList.add('selected');
-
-	    // 현재 선택된 notice_detail_box의 참조 업데이트
-	    selectedNoticeBox = element;
-	}
-
-	// 각 notice_detail_box에 이벤트 리스너 추가
-	document.querySelectorAll('.notice_detail_box').forEach(function (box) {
-	    box.addEventListener('click', function () {
-	        toggleSelectedBox(box);
-	    });
-	});
-
+	
 		 
 </script>		 
       <!--footer-->

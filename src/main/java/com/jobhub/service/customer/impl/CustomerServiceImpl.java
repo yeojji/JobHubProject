@@ -142,6 +142,38 @@ public class CustomerServiceImpl implements CustomerService {
 		customerDAO.pwUpdate(memberId, hashedPw);
 		
 	}
+
+	@Override
+	public List<Resume> findResumesByUserId(String userId) {
+		// TODO Auto-generated method stub
+		
+		List<Resume> resumeList = customerDAO.customerResumeList(userId);
+		return resumeList;
+	}
+
+	@Override
+	public List<Resume> findSubmissionResume(String userId) {
+		// TODO Auto-generated method stub
+		
+		List<Resume> resumeList = customerDAO.findSubmissionResume(userId);
+		return resumeList;
+	}
+
+	@Override
+	public List<Resume> findSubmissionResumeByPostingId(String postingId) {
+		// TODO Auto-generated method stub
+		
+		List<Resume> resumeList = customerDAO.findSubmissionResumeByPostingId(postingId);
+		return resumeList;
+	}
+
+	@Override
+	public List<Resume> findNotSubmissionResume(String userId) {
+		// TODO Auto-generated method stub
+		
+		List<Resume> resumeList = customerDAO.findNotSubmissionResume(userId);
+		return resumeList;
+	}
 	
 	
 

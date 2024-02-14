@@ -65,35 +65,38 @@
                 <span class="go_to_resume" onclick="location.href='/customer/notice_by_career'">지원하기 ></span>
             </div>
             <!--회원이 임시저장한 지원서가 있을 때-->
-            <div class="member_write_resume_box">
-                <span class="temporary_storage_text">임시저장 <i class="fa-solid fa-circle-exclamation"></i></span>
-                <div class="member_write_resume_content_modify">     
-                    <div class="notice_title_box">
-                        <div class="notice_title">[Tech] IT감사/내부통제 담당자</div>
-                        <div class="write_resume_date">작성일 2024.01.30</div>
-                    </div>
-                    <div class="temporary_storage_resume">
-                        <div class="write_resume_icon_box">
-                            <div class="show_resume">
-                                <i class="fa-regular fa-newspaper icon_size"></i>
-                                <span class="resume_text show_resume">보기</span>
-                            </div>
-                            <div class="modify_resume">
-                                <i class="fa-solid fa-pen-to-square icon_size"></i>
-                                <span class="resume_text">수정</span>
-                            </div>
-                            <div class="delete_resume">
-                                <i class="fa-regular fa-trash-can icon_size"></i>
-                                <span class="resume_text remove_resume">삭제</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>     
-            </div>
+            
+			            <div class="member_write_resume_box">
+			                <span class="temporary_storage_text">임시저장 <i class="fa-solid fa-circle-exclamation"></i></span>
+			                <div class="member_write_resume_content_modify">     
+			                    <div class="notice_title_box">
+			                        <div class="notice_title">[Tech] IT감사/내부통제 담당자</div>
+			                        <div class="write_resume_date">작성일 : </div>
+			                    </div>
+			                    <div class="temporary_storage_resume">
+			                        <div class="write_resume_icon_box">
+			                            <div class="show_resume">
+			                                <i class="fa-regular fa-newspaper icon_size"></i>
+			                                <span class="resume_text show_resume">보기</span>
+			                            </div>
+			                            <div class="modify_resume">
+			                                <i class="fa-solid fa-pen-to-square icon_size"></i>
+			                                <span class="resume_text">수정</span>
+			                            </div>
+			                            <div class="delete_resume">
+			                                <i class="fa-regular fa-trash-can icon_size"></i>
+			                                <span class="resume_text remove_resume">삭제</span>
+			                            </div>
+			                        </div>
+			                    </div>
+			                </div>     
+			            </div>
+		          
             <!--회원이 임시저장한 지원서가 없을 때-->
-            <div class="not_temporary_storage_resume_box">
-                <span class="none_content_text">임시저장한 지원서가 없습니다</span>
-            </div>
+	            <div class="not_temporary_storage_resume_box">
+	                <span class="none_content_text">임시저장한 지원서가 없습니다</span>
+	            </div>
+           
         </div>
         <!--회원 지원공고 현황 (합/불/진행중)-->
         <div class="member_resume_status_box">
@@ -103,31 +106,33 @@
             <!--회원이 지원한 공고가 있을 때-->
             <c:choose>
 	            <c:when test="${not empty resumeList}">
-		            <div class="member_write_resume_box">
-		            	<c:forEach var="resumeitem" items="${resumeList}">
-		                <span class="submitted_resume_text">제출완료</span>
-		                <div class="member_write_resume_content">
-		                    <div class="notice_title_box">
-		                        <div class="notice_title">${resumeitem.title}</div>
-		                        <div class="submission_resume_date">${resumeitem.revisionDate}</div>
-		                    </div>
-		                    <div class="show_acceptance_status">
-		                        <!--합격시-->
-		                        <span class="acceptance_box">
-		                            합격
-		                        </span>
-		                        <!--불합격시-->
-		                        <span class="failed_box">
-		                            불합격
-		                        </span>
-		                        <!--진행중-->
-		                        <span class="ongoing_box">
-		                            진행중
-		                        </span>
-		                    </div>
-		                </div>  
-		                </c:forEach>    
-		            </div>
+	            
+			            <div class="member_write_resume_box">
+			            	<c:forEach var="resumeitem" items="${resumeList}">
+			                <span class="submitted_resume_text">제출완료</span>
+			                <div class="member_write_resume_content">
+			                    <div class="notice_title_box">
+			                        <div class="notice_title">${resumeitem.title}</div>
+			                        <div class="submission_resume_date">제출 날짜 : ${resumeitem.revisionDate}</div>
+			                    </div>
+			                    <div class="show_acceptance_status">
+			                        <!--합격시-->
+			                        <span class="acceptance_box">
+			                            합격
+			                        </span>
+			                        <!--불합격시-->
+			                        <span class="failed_box">
+			                            불합격
+			                        </span>
+			                        <!--진행중-->
+			                        <span class="ongoing_box">
+			                            진행중
+			                        </span>
+			                    </div>
+			                </div>  
+			                </c:forEach>    
+			            </div>
+		            
 	            </c:when>
 	            <c:otherwise>
 		            <!--회원이 지원한 공고가 없을 때-->
@@ -171,8 +176,10 @@
 <!--  회원 기본정보 변경 모달창  -->
 <div class="user_info_modify_modal">
     <div class="user_info_modify_modal_body">
-        <div class="modal_close_btn"><i class="fa-solid fa-xmark"></i></div>
-        <span class="modify_modal_title"> ${name}님 기본정보 변경 </span>
+        <div class="box_select">
+            <div class="modal_close_btn"><i class="fa-solid fa-xmark"></i></div>
+            <span class="modify_modal_title"> ${name}님 기본정보 변경 </span>
+        </div>
         <div class="user_email_info">
             <span class="modify_main_title">이메일</span>
             <span class="user_email">${email}</span>
@@ -182,12 +189,12 @@
                 <div class="modify_box">
                     <input type="hidden" name="userId" value="${userId}">
                     <span class="modify_main_title">이름</span>
-                    <input type="text" placeholder="${name}" class="modify_info_name" name="name" value="${name}">
+                    <input type="text" placeholder="${name}" class="modify_info_name modify_info" name="name" value="${name}">
                 </div>
                 <div class="modify_box">
                     <span class="modify_main_title">생년월일</span>
                     <div class="two_modify_box">
-                        <input type="text" placeholder="${birth}" id="modify_info_birth" class="modify_info_birth" name="birth" value="${birth}" maxlength="10" oninput="onInputBirth()">
+                        <input type="text" placeholder="${birth}" id="modify_info_birth" class="modify_info_birth modify_info" name="birth" value="${birth}" maxlength="10" oninput="onInputBirth()">
                         <span class="warningBirth">생일은 필수 입력값입니다.</span>
                         <span class="warning">잘못된 생년월일 형식입니다. 생년월일을 정확하게 입력해주세요.</span>
                         <div class="gender_btn">
@@ -201,7 +208,7 @@
                 <div class="modify_box">
                     <span class="modify_main_title">휴대폰 번호</span>
                     <input type="text" placeholder="회원 휴대폰 번호" 
-                    class="modify_info_phone" name="phone" value="${phone}" oninput="onInputPhone(this)" maxlength="13" oninput="onInputPhone()">
+                    class="modify_info_phone modify_info" name="phone" value="${phone}" oninput="onInputPhone(this)" maxlength="13" oninput="onInputPhone()">
                 	<span class="warningPhone">휴대전화는 필수 입력값입니다.</span>
                 </div>
             </div>

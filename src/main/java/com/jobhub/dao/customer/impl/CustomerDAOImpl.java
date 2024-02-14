@@ -72,12 +72,7 @@ public class CustomerDAOImpl implements CustomerDAO{
 		
 		return result;
 	}
-//	@Override
-//	public int savePosting(Scrap scarpId) {
-//		// TODO Auto-generated method stub
-//		int result = sqlSessionTemplate.insert("user_mapper.scrap",scarpId);
-//		return result;
-//	}
+
 	
 	@Override
 	public List<Scrap> customerScrapList(String userId) {
@@ -149,6 +144,37 @@ public class CustomerDAOImpl implements CustomerDAO{
 		sqlSessionTemplate.update("user_mapper.pwUpdate", map);
 		
 	}
+	@Override
+	public List<Resume> findResumesByUserId(String userId) {
+		// TODO Auto-generated method stub
+		
+		List<Resume> resumeList = sqlSessionTemplate.selectList("resume_mapper.findResumesByUserId", userId);
+		
+		return resumeList;
+	}
+	@Override
+	public List<Resume> findSubmissionResume(String userId) {
+		// TODO Auto-generated method stub
+		
+		List<Resume> resumeList = sqlSessionTemplate.selectList("resume_mapper.findSubmissionResume", userId);
+		return resumeList;
+	}
+	@Override
+	public List<Resume> findSubmissionResumeByPostingId(String postingId) {
+		// TODO Auto-generated method stub
+		
+		List<Resume> resumeList = sqlSessionTemplate.selectList("resume_mapper.findSubmissionResumeByPostingId", postingId);
+		
+		return resumeList;
+	}
+	@Override
+	public List<Resume> findNotSubmissionResume(String userId) {
+		// TODO Auto-generated method stub
+		
+		List<Resume> resumeList = sqlSessionTemplate.selectList("resume_mapper.findNotSubmissionResume", userId);
+		return resumeList;
+	}
+	
 	
 	
 

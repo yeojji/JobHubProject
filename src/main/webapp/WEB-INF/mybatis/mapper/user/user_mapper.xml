@@ -23,6 +23,9 @@
 		
 	</update>
 	
+	
+	
+	
 	<select id="pwCheck" resultType="String">
 	select password from job_customer where user_id = #{userId}
 	</select>

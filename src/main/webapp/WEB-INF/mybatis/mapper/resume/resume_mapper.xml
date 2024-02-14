@@ -74,6 +74,21 @@
       WHERE user_id = #{userId}
    </select>
 
+	<select id="findSubmissionResume" resultType="Resume" parameterType="String">
+		select * from resume_info where user_id = #{userId} 
+		and submission_status = '제출'
+	</select>
+	
+	<select id="findNotSubmissionResume" resultType="Resume" parameterType="String">
+		select * from resume_info where user_id = #{userId} 
+		and submission_status = '비제출'
+	</select>
+	
+	<select id="findSubmissionResumeByPostingId" resultType="Resume" parameterType="String">
+		select * from resume_info r, job_posting j where posting_id = #{postingId} 
+		and r.posting_id = j.posting_id and submission_status = '제출'
+	</select>
+	
 
    <!-- 이력서 수정 -->
    <update id="modifyResume" parameterType="Resume">

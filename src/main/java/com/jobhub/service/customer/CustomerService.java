@@ -39,5 +39,13 @@ public interface CustomerService {
 	public List<Notice> scrapNoticeInfo(String scrapId);
 	
 	public List<Resume> customerResumeList(String userId);
+	
+	public List<Resume> findResumesByUserId(String userId);
+	
+	public List<Resume> findSubmissionResume(String userId);
+	
+	public List<Resume> findSubmissionResumeByPostingId(String postingId);
+	
+	public List<Resume> findNotSubmissionResume(String userId);
 
 }

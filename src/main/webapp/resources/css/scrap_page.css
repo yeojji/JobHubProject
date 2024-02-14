@@ -103,12 +103,17 @@
     background-color: white;
 }
 
+.notice_box_item{
+	display: flex;
+    justify-content: space-between;
+}
+
 .notice_box_item_title{
     font-size: 15px;
 }
 
-.scrap-heart{
-    font-size: 21px;
+.scrap_heart{
+    font-size: 15px;
    	color: red;
 }
 

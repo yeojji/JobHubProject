@@ -21,7 +21,8 @@
     <!--메인페이지-->
     <div class="main_container">
         <div class="main_header">
-            <div class="text_area">
+            <video class="text_area" src="/image/1216_1280_Compress_1_4aa78543db.mp4" muted autoplay playsinline loop="loop">
+                
                 <span class="company_title_text">One step closer</span>
                 <span class="company_title_text"> to a better future</span>
                 <div class="select_filter_box">
@@ -55,7 +56,7 @@
                         <i class="fa-solid fa-arrow-right"></i>
                     </div>
                 </div>
-            </div>
+            </video>
             <div class="scroll_down">
                 <span class="scroll_down_text">scroll</span>
                 <span class="scroll_down_text"><i class="fa-solid fa-chevron-down"></i></span>

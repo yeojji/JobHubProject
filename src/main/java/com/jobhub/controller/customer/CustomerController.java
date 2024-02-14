@@ -80,7 +80,8 @@ public class CustomerController {
 
 	@GetMapping("/")
 	public String main(Model model) {
-	    List<EmployeeJobsInfo> employeeJobsInfoList = jobpostingService.findEmployeeJobsInfoList();
+	    
+		List<EmployeeJobsInfo> employeeJobsInfoList = jobpostingService.findEmployeeJobsInfoList();
 	    List<EmployeeJobsInfo> randomEmployeeInfos = getRandomEmployeeJobsInfos(employeeJobsInfoList, 3);
 	    
 	    List<Job> findJobsNameByLevel1List = jobpostingService.findJobsNameByLevel1List();
@@ -90,6 +91,7 @@ public class CustomerController {
 	    model.addAttribute("findJobsName", findJobsNameByLevel1List);
 
 	    return "main/mainpage";
+	    
 	}
 	
 	
@@ -134,15 +136,24 @@ public class CustomerController {
 		String findCustomer = (String)session.getAttribute("loginId");
 		
 		Customer customerInfo = customerService.findCustomerInfo(findCustomer);
-
-		List<Resume> resumeList = customerService.customerResumeList(findCustomer);
 		
-		model.addAttribute("resumeList", resumeList);
+		List<Resume> resumeSubmissionList = customerService.findSubmissionResume(findCustomer);
+		
+		List<Resume> notSubmissionresume = customerService.findNotSubmissionResume(findCustomer);
+		
+		
+		
+//		List<Resume> submissionResumeinfo = customerService.findSubmissionResumeByPostingId();
+		System.out.println(resumeSubmissionList);
+		
+		model.addAttribute("resumeList", resumeSubmissionList);
+		model.addAttribute("notSubmission", notSubmissionresume);
 		model.addAttribute("userId", customerInfo.getUserId());
 		model.addAttribute("name", customerInfo.getName());
 		model.addAttribute("email", customerInfo.getEmail());
 		model.addAttribute("birth", customerInfo.getBirth());
 		model.addAttribute("phone", customerInfo.getPhone());
+		model.addAttribute("gender", customerInfo.getGender());
 		
 	
 		return "customer/mypage";
@@ -238,9 +249,11 @@ public class CustomerController {
 		System.out.println(result);
 		
 		if(result > 0) {
-			customerService.removeCustomerScrapItemByPostingId(postingId);
+			if(postingId != null) {
+				customerService.removeCustomerScrapItemByPostingId(postingId);
+			}
 			
-			return "redirect:/customer/notice_by_career";
+			return "redirect:/scrap_page";
 		}else {
 			return "/";
 		}
@@ -256,7 +269,7 @@ public class CustomerController {
 		
 		if(result >0) {
 			
-			return "/customer/mypage";
+			return "redirect:/mypage";
 		}else {
 			
 			
