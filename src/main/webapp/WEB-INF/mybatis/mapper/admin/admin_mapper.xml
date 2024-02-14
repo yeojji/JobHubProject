@@ -15,7 +15,7 @@
 		SELECT * FROM ADMINISTRATOR
 		WHERE admin_id=#{id}
 	</select>
-	
+	 
 	
 	<!-- 직원ID로 조회 -->
 	<select id="findAdminByEmployeeId" parameterType="String" resultType="Admin">
@@ -45,7 +45,7 @@
 	
 	
 	<select id="findAdminListBySearchCondition" resultType="Admin" parameterType="AdminSearchCondition">
-		SELECT
+	SELECT
 	ad.admin_ID AS admin_id,
 	e.name AS name,
 	e.employee_ID AS employee_id,
@@ -61,57 +61,49 @@
 	WHERE 1 = 1 
 	
 	<!-- 검색어 -->
-	<if test="searchKeyword != null and !searchKeyword.isEmpty()"> 
-		AND ( ad.admin_id LIKE '%' || #{searchKeyword} || '%' 
-		OR js.jobs_name = #{searchKeyword} 
-		OR e.name LIKE '%' || #{searchKeyword} || '%' 
-		OR e.tel LIKE '%' || #{searchKeyword} || '%'
-		OR e.email LIKE '%' || #{searchKeyword} || '%'
-		OR e.employee_id LIKE '%' || #{searchKeyword} || '%' ) 
+	<if test="searchKeyword != null and !searchKeyword.isEmpty()">
+		<choose>
+			<when test="sfl == 'title'">
+				AND ad.admin_id LIKE '%' || #{searchKeyword} || '%'
+			</when>
+			<when test="sfl == 'user_id'">
+				AND js.jobs_name = #{searchKeyword}
+			</when>
+			<when test="sfl == 'user_id'">
+				AND e.name LIKE '%' || #{searchKeyword} || '%'
+			</when>
+			<when test="sfl == 'user_id'">
+				AND e.tel LIKE '%' || #{searchKeyword} || '%'
+			</when>
+			<when test="sfl == 'user_id'">
+				AND e.email LIKE '%' || #{searchKeyword} || '%'
+			</when>
+			<when test="sfl == 'user_id'">
+				AND e.employee_id LIKE '%' || #{searchKeyword} || '%'
+			</when>
+		</choose>
+	</if>
+		<if test="spt == 'creationCode'">
+		
+			<if test="startDate != null and startDate != ''">
+				<![CDATA[AND TO_DATE(ad.creation_code, 'YYYY-MM-DD') >= TO_DATE(#{startDate}, 'YYYY-MM-DD')]]>
+			</if>
+			<if test="endDate != null and endDate != ''">
+				<![CDATA[AND TO_DATE(ad.creation_code, 'YYYY-MM-DD') <= TO_DATE(#{endDate},
+			'YYYY-MM-DD')]]>
+			</if>
 		</if>
 		
-		<!-- 
-		<if test="adminId != null and adminId != ''">
-			AND ad.admin_id = #{searchKeyword}
-		</if>
-		<if test="jobsName != null and jobsName != ''">
-			AND js.jobs_name = #{searchKeyword}
-		</if>
-		<if test="name != null and name != ''">
-			AND e.name = #{searchKeyword}
-		</if>
-		<if test="tel != null and tel != ''">
-			AND e.tel = #{searchKeyword}
-		</if>
-		<if test="email != null and email != ''">
-			AND e.email = #{searchKeyword}
-		</if>
-		<if test="employeeId != null and employeeId != ''">
-			AND e.employee_id = #{searchKeyword}
-		</if>
-		 -->
-		<!-- 생성일자 -->
-		<if test="creationCode != null and creationCode != ''">
-		<if test="startDate != null and startDate != ''">
-			AND TO_DATE(ad.creation_code, 'YYYY-MM-DD') >= TO_DATE(#{startDate},
+		<if test="spt == 'hireDate'">
+			<if test="startDate != null and startDate != ''">
+			<![CDATA[AND TO_DATE(e.hire_date, 'YYYY-MM-DD') >= TO_DATE(#{startDate},
+			'YYYY-MM-DD')]]>
+			</if>
+			<if test="endDate != null and endDate != ''">
+				AND TO_DATE(e.hire_date, 'YYYY-MM-DD') &lt;= TO_DATE(#{endDate},
 			'YYYY-MM-DD')
+			</if>
 		</if>
-		<if test="endDate != null and endDate != ''">
-			AND TO_DATE(ad.creation_code, 'YYYY-MM-DD') &lt;= TO_DATE(#{endDate},
-			'YYYY-MM-DD')
-		</if>
-		</if>
-		<if test="hireDate != null and hireDate != ''">
-		<if test="startDate != null and startDate != ''">
-			AND TO_DATE(e.hire_date, 'YYYY-MM-DD') >= TO_DATE(#{startDate},
-			'YYYY-MM-DD')
-		</if>
-		<if test="endDate != null and endDate != ''">
-			AND TO_DATE(e.hire_date, 'YYYY-MM-DD') &lt;= TO_DATE(#{endDate},
-			'YYYY-MM-DD')
-		</if>
-		</if>
-		
 		
 		<if test="permissionCode != null and permissionCode != ''">
 			AND ad.permission_code = #{permissionCode}

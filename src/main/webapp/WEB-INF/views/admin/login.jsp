@@ -81,7 +81,7 @@
 	<!-- footer -->
 	<footer id="footer">
 		<p class="jobhub_direct">
-			<a href="/login">Jobhub 바로가기</a>
+			<a href="/">Jobhub 바로가기</a>
 		</p>
 		<p class="copyright">&copy; Jobhub Corp. All Rights Reserved.</p>
 	</footer>
