@@ -165,7 +165,6 @@
 							</a>
 						</h1>
 					</div>
-					<!-------------------STEP 1---------------------->
 					<!-- <div id="divStep1"> -->
 					<div class="tabCont" style="display: block;">
 						<div style="display: block;">
@@ -237,7 +236,7 @@
 			<!-- footer -->
 			<footer id="footer">
 				<p class="jobhub_direct">
-					<a href="/login">Jobhub 바로가기</a>
+					<a href="/">Jobhub 바로가기</a>
 				</p>
 				<p class="copyright">&copy; Jobhub Corp. All Rights Reserved.</p>
 			</footer>

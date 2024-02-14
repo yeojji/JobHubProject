@@ -1,13 +1,9 @@
 package com.jobhub.dto.customer;
 
-
 import lombok.Data;
 
 @Data
-public class Customer {
-
-	//고객(회원) 정보
-
+public class CustomerSearchCondition {
 	String userId;
 	String email;
 	String password;
@@ -17,4 +13,9 @@ public class Customer {
 	String createdDate;
 	String gender;
 	String customerStatus;
+	String startDate;
+	String endDate;
+	String spt;
+	String sfl;
+	String searchKeyword;
 }

@@ -174,11 +174,11 @@
 								<th scope="col">번호</th>
 								<th scope="col">채용부서</th>
 								<th scope="col" colspan="2">채용공고</th>
-								<th scope="col"><a href="#">이름</a></th>
+								<th scope="col">이름</th>
 								<th scope="col">나이</th>
 								<th scope="col">학력</th>
 								<th scope="col">경력</th>
-								<th scope="col"><a href="#">제출일시</a></th>
+								<th scope="col">제출일시</th>
 								<th scope="col">상태</th>
 							</tr>
 						</thead>

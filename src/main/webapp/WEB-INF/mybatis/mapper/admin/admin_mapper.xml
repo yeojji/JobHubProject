@@ -63,22 +63,22 @@
 	<!-- 검색어 -->
 	<if test="searchKeyword != null and !searchKeyword.isEmpty()">
 		<choose>
-			<when test="sfl == 'title'">
+			<when test="sfl == 'adminId'">
 				AND ad.admin_id LIKE '%' || #{searchKeyword} || '%'
 			</when>
-			<when test="sfl == 'user_id'">
+			<when test="sfl == 'jobsName'">
 				AND js.jobs_name = #{searchKeyword}
 			</when>
-			<when test="sfl == 'user_id'">
+			<when test="sfl == 'name'">
 				AND e.name LIKE '%' || #{searchKeyword} || '%'
 			</when>
-			<when test="sfl == 'user_id'">
+			<when test="sfl == 'tel'">
 				AND e.tel LIKE '%' || #{searchKeyword} || '%'
 			</when>
-			<when test="sfl == 'user_id'">
+			<when test="sfl == 'email'">
 				AND e.email LIKE '%' || #{searchKeyword} || '%'
 			</when>
-			<when test="sfl == 'user_id'">
+			<when test="sfl == 'employeeId'">
 				AND e.employee_id LIKE '%' || #{searchKeyword} || '%'
 			</when>
 		</choose>
