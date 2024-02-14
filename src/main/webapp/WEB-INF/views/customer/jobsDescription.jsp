@@ -64,7 +64,6 @@
 
     <!--부서별 공고페이지 메인-->
     <div class="container">
-    <input type="hidden" value="${loginId}" id="loginId">
         <div class="notice_box_container">
             <div class="notice_info_header">
                 <span class="notice_title">Find Your Next Career</span>
@@ -110,6 +109,7 @@
 </div>
    
                     <form method="get" action="/jobsDescription" id="form">
+                    
 			<input type="hidden" name="postingId" value="${postingId}">
 		
 
@@ -138,25 +138,18 @@
 
 
 			<div class="btn_confirm">
-				<input type="button" value="지원하기" id="submitBtn">
+				<input type="submit" value="지원하기" id="submitBtn">
 			</div>
 			
 			</form>
                     <script>
-                    let loginId = document.getElementById('loginId');
 				let form = document.getElementById('form');
 				document.getElementById("submitBtn").addEventListener("click", function (event) {
 					var confirmation = confirm("지원하겠습니까?");
 
 					// 확인을 눌렀을 경우
 					if (confirmation) {
-						//로그인을 해야만 넘어가게 추가
-						if(loginId.value == ''){
-							alert('로그인 후 이용 가능합니다');
-							e.preventDefault();
-						}
 						form.action = "/apply";
-						form.submit();
 						// 폼 제출
 						return true;
 					} else {
@@ -171,7 +164,7 @@
 
 
 
-		
+		</form>
                     
                     
                    

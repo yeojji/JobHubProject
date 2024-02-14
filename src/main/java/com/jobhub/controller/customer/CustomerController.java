@@ -1,6 +1,5 @@
 package com.jobhub.controller.customer;
 
-import java.beans.Encoder;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -393,6 +392,7 @@ public String jobsDescription(@RequestParam String postingId, Model model, HttpS
 	
 	model.addAttribute("jobpostingById", jobpostingById);
 	model.addAttribute("descriptionById", descriptionById);
+	model.addAttribute("postingId", postingId);
 	
 	
 	return "customer/jobsDescription";
