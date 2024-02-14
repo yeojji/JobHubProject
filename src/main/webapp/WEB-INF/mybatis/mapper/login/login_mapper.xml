@@ -18,4 +18,10 @@
 		#{gender}, 
 		'JOIN')
 	</insert>
+	
+	<select id="findUserById" parameterType="String" resultType="Customer">
+		SELECT * FROM job_customer
+		WHERE user_id = #{userId}
+	</select>
+	
 </mapper>
