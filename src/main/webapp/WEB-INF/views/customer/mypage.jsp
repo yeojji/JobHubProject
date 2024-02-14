@@ -237,7 +237,7 @@
                 	<input type="hidden" value="${loginPw}" id="currentPw">
                     <span class="modify_main_title">현재 비밀번호</span>
                     <input type="password" placeholder="현재 비밀번호를 입력해주세요." 
-                    class="modify_info" id="pw" oninput="checkPw()">
+                    class="modify_info" id="pw" oninput="checkPw(target)">
                     <span id="error_msg_pw" class="error_msg"></span>
                 </div>
                 <div class="modify_box">
@@ -249,7 +249,7 @@
                 <div class="modify_box">
                     <span class="modify_main_title">새 비밀번호 확인</span>
                     <input type="password" placeholder="새 비밀번호를 한 번 더 입력해주세요" 
-                    class="modify_info" id= "pw3" name="password" oninput="pwCheck()">
+                    class="modify_info" id= "pw3" name="password" oninput="pwCheck(target)">
                        <span id="error_msg" class="error_msg"></span>
                 </div>
             </div>

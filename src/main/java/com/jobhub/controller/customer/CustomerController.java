@@ -151,6 +151,7 @@ public class CustomerController {
 		model.addAttribute("resumeList", resumeSubmissionList);
 		model.addAttribute("notSubmission", notSubmissionresume);
 		model.addAttribute("userId", customerInfo.getUserId());
+		model.addAttribute("loginPw", customerInfo.getPassword());
 		model.addAttribute("name", customerInfo.getName());
 		model.addAttribute("email", customerInfo.getEmail());
 		model.addAttribute("birth", customerInfo.getBirth());
