@@ -2,6 +2,11 @@
     box-sizing: border-box;
 }
 
+.white_font{
+	color : black;
+}
+
+
 .container{
     margin: 0 auto;
     display: flex;
@@ -385,4 +390,13 @@
 
 .input_faq2{
     width: 50%;
+}
+
+.warning, .warningId, .warningPw,
+.warningPwchk, .warningName,.warningBirth,
+.warningEmail, .warningPhone {
+    margin-top:5px;
+    color: red;
+    font-size: 13px;
+    display: none;
 }

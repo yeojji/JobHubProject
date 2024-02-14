@@ -6,6 +6,10 @@
     box-sizing: border-box;
 }
 
+.header_menu{
+	background-color : white;
+}
+
 .notice_info_container{
     display: flex;
     flex-direction: column;

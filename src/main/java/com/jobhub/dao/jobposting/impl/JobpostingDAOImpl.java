@@ -14,6 +14,7 @@ import com.jobhub.dto.jobposting.Job;
 import com.jobhub.dto.jobposting.Jobposting;
 import com.jobhub.dto.jobposting.PostingSearchCondition;
 
+
 @Repository
 public class JobpostingDAOImpl implements JobpostingDAO {
 
