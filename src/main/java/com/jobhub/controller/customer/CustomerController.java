@@ -105,7 +105,7 @@ public class CustomerController {
 		Customer loginUser = customerService.findLoginCustomer(customer);
 		
 		if(loginUser == null || !(customer.getUserId().equals(loginUser.getUserId()))|| 
-				!(customer.getPassword().equals(loginUser.getPassword())) || loginUser.getCustomerStatus().equals("2")) {
+				!(customer.getPassword().equals(loginUser.getPassword())) || loginUser.getCustomerStatus().equals("WITHDRAWAL")) {
 			
 			
 			model.addAttribute("msg", "로그인 정보가 맞지 않습니다");
@@ -301,7 +301,7 @@ public class CustomerController {
 	
 	@PostMapping("/mypage/remove")
 	public String removeCustomer(HttpSession session, Customer customer, Model model, HttpServletRequest request) {
-		customer.setCustomerStatus("2");
+		customer.setCustomerStatus("WITHDRAWAL");
 		int result = customerService.removeCustomer(customer);
 		
 		if(result > 0) {
