@@ -301,7 +301,7 @@ document.getElementById('ap_submit').addEventListener('click', function (e) {
     let highName = document.getElementById("highName").value;
     let highAdmis = document.getElementById("high_admis").value;
     let highGrad = document.getElementById("high_grad").value;
-    let content1 = document.getElementById("content1").value;
+    let content1 = document.getElementById("content1");
     document.getElementById('status').value = "제출";
 
     if (supportPath === '') {

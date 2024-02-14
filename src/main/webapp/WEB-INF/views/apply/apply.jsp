@@ -19,7 +19,7 @@
 				<div class="apply_title">지원서 작성하기</div>
 				<div class="container">
 					<div class="apply_header">
-						<div class="apply_header_title">2024 LINE ADS AI/ML Internship</div>
+						<div class="apply_header_title">${title}</div>
 						<div class="apply_header_button">
 							<button type="button" class="apply_header_btn" id="hd_save">임시저장</button>
 							<button type="button" class="apply_header_btn">미리보기</button>
@@ -202,32 +202,11 @@
 								<div class="ap_mydetail">
 									<label class="apply_label">${question1}</label>
 									<div>
-										<textarea name="content1" cols="100" rows="14" class="text_area"></textarea>
+										<textarea name="content1" cols="100" rows="14" class="text_area" id="content1"></textarea>
 									</div>
+									<input type="hidden" name="content2" value="null">
+									<input type="hidden" name="content3" value="null">
 	
-								
-									<c:choose>
-										<c:when test="${content2 != ''}">
-										<div>
-											<label class="apply_label">${question2}</label>
-											<textarea name="content2" cols="100" rows="14" class="text_area"></textarea>
-										</div>
-										</c:when>
-										
-										<c:when test="${content3 != ''}">
-										<div>
-											<label class="apply_label">${question3}</label>
-											<textarea name="content3" cols="100" rows="14" class="text_area"></textarea>
-										</div>
-										</c:when>
-										
-										<c:otherwise>
-										<input type="hidden" name="content2" value="null">
-										<input type="hidden" name="content3" value="null">
-										</c:otherwise>
-									</c:choose>
-									
-									
 								</div>
 							</div>
 							<div class="apply_content">
