@@ -6,7 +6,7 @@
     box-sizing:border-box;
 }
 .container{
-
+	margin-left:30px;
 }
 .container::after {
     content:""; /* ::after content 가 아예 없으면 동작X */

@@ -68,26 +68,4 @@ http://www.springframework.org/schema/context/spring-context.xsd">
 
 
 
-	<!--<interceptors>
-		<interceptor>
-			<mapping path="/**"/>
-			<exclude-mapping path="/resources/**" />
-			<exclude-mapping path="/admin/joinApproval" />
-			<exclude-mapping path="/admin/login" />
-			<exclude-mapping path="/admin/css/**" />
-			<exclude-mapping path="/admin/images/**" />
-			<exclude-mapping path="/admin/asset/**" />
-			<exclude-mapping path="/admin/js/**" />
-			<exclude-mapping path="/css/**" />
-			<exclude-mapping path="/js/**" />
-			<exclude-mapping path="/img/**" />
-			<exclude-mapping path="/fileStorage/**" />
-			<exclude-mapping path="/image/**" />
-			<exclude-mapping path="/" />
-			<exclude-mapping path="/main" />
-			<exclude-mapping path="/login" />
-			<beans:bean class="com.jobhub.interceptor.LoginInterceptor" />
-		</interceptor>
-	</interceptors> -->
-
 </beans:beans>

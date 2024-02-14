@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -34,6 +34,7 @@
         </div>
         <div class="dividing_line"></div>
         <div class="notice_list_item_box">
+        <c:forEach var="jobpostingItem" items="${jobpostingList}"> 
             <div class="notice_info_title_box">
                 <div class="notice_info_title_left">
                     <span class="notice_title_text">공고제목</span>
@@ -125,7 +126,7 @@
                 </div>
             </div>
             <div class="dividing_line"></div>
-            
+            </c:forEach>
         </div>
         <div class="notice_page_btn">
             <button class="go_to_notice_list">목록보기</button>

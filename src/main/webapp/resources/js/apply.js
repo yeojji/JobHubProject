@@ -37,8 +37,6 @@ $(document).ready(function () {
         }
     });
 
-
-
     $(document).on("click", "button[name='edu']", function () {
         var result = $("#eduSortation").val();
         if (result == null) {
@@ -140,8 +138,6 @@ $(document).ready(function () {
         }
     });
 
-
-
     $(document).on("click", "button[name='career']", function () {
         let companyName = $("#companyName").val();
         let departmentName = $("#departmentName").val();
@@ -190,7 +186,6 @@ $(document).ready(function () {
 
         }
     })
-
 
     $(document).on("click", "button[name='cert']", function () {
         var result = $("#certSortation").val();
@@ -297,30 +292,148 @@ $(document).ready(function () {
 
 })
 
+const inputAdmis = (target) => {
+    let val = target.value.replace(/\D/g, "");
+    let leng = val.length;
+    let result = '';
+
+    if (leng < 6) {
+        result = val;
+    } else{
+        result += val.substring(0, 4);
+        result += ".";
+        result += val.substring(4);
+        if (!checkValidDate(result)) {
+           alert('정확한 날짜를 입력하세요')
+        }
+
+   
+
+    }
+    
+   target.value = result;
+}
 
 
-document.getElementById('ap_submit').addEventListener('click', function(e) {
+const checkValidDate = (value) => {
+    let result = true;
+    try {
+        let date = value.split("-");
+        let y = parseInt(date[0], 10),
+            m = parseInt(date[1], 10)
+
+        let dateRegex = /^(?=\d)(?:(?:31(?!.(?:0?[2469]|11))|(?:30|29)(?!.0?2)|29(?=.0?2.(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00)))(?:\x20|$))|(?:2[0-8]|1\d|0?[1-9]))([-.\/])(?:1[012]|0?[1-9])\1(?:1[6-9]|[2-9]\d)?\d\d(?:(?=\x20\d)\x20|$))?(((0?[1-9]|1[012])(:[0-5]\d){0,2}(\x20[AP]M))|([01]\d|2[0-3])(:[0-5]\d){1,2})?$/;
+        result = dateRegex.test(d + '.' + m);
+    } catch (err) {
+        result = false;
+    }
+    return result;
+}
+
+document.getElementById('ap_submit').addEventListener('click', function (e) {
     e.preventDefault();
     let form = document.getElementById('apply_form');
-        let supportPath = document.getElementById("supportPath").value;
-        let military = document.getElementById("military").value;
-        let eduSortation = document.getElementById("eduSortation").value;
-        let highName = document.getElementById("highName").value;
-        let highAdmis = document.getElementById("high_admis").value;
-        let highGrad = document.getElementById("high_grad").value;
-        let content1 = document.getElementById("content1").value;
-        
-        if (supportPath === '') {
-            alert('지원경로를 선택해주세요');
-            e.preventDefault();
-        } else if(eduSortation === '' || highName === '' || highAdmis === '' || highGrad === ''){
-            alert('고등학교 학력사항은 필수 입력입니다')
-        } else if(content1 === ''){
-            alert('직무질문에 대한 답변은 필수 입력입니다')
-        } else if (military === '') {
-            alert('병역사항을 선택해주세요');
-            e.preventDefault();
-        } else{
-            form.submit();
-        }
+    let supportPath = document.getElementById("supportPath").value;
+    let military = document.getElementById("military").value;
+    let eduSortation = document.getElementById("eduSortation").value;
+    let highName = document.getElementById("highName").value;
+    let highAdmis = document.getElementById("high_admis").value;
+    let highGrad = document.getElementById("high_grad").value;
+    let content1 = document.getElementById("content1");
+    document.getElementById('status').value = "제출";
+
+    if (supportPath === '') {
+        alert('지원경로를 선택해주세요');
+        e.preventDefault();
+    } else if (eduSortation === '' || highName === '' || highAdmis === '' || highGrad === '') {
+        alert('고등학교 학력사항은 필수 입력입니다')
+    } else if (content1 === '') {
+        alert('직무질문에 대한 답변은 필수 입력입니다')
+    } else if (military === '') {
+        alert('병역사항을 선택해주세요');
+        e.preventDefault();
+    } else {
+        form.submit();
+    }
+});
+
+document.getElementById('hd_submit').addEventListener('click', function (e) {
+    e.preventDefault();
+    let form = document.getElementById('apply_form');
+    let supportPath = document.getElementById("supportPath").value;
+    let military = document.getElementById("military").value;
+    let eduSortation = document.getElementById("eduSortation").value;
+    let highName = document.getElementById("highName").value;
+    let highAdmis = document.getElementById("high_admis").value;
+    let highGrad = document.getElementById("high_grad").value;
+    let content1 = document.getElementById("content1").value;
+    document.getElementById('status').value = "제출";
+
+    if (supportPath === '') {
+        alert('지원경로를 선택해주세요');
+        e.preventDefault();
+    } else if (eduSortation === '' || highName === '' || highAdmis === '' || highGrad === '') {
+        alert('고등학교 학력사항은 필수 입력입니다')
+    } else if (content1 === '') {
+        alert('직무질문에 대한 답변은 필수 입력입니다')
+    } else if (military === '') {
+        alert('병역사항을 선택해주세요');
+        e.preventDefault();
+    } else {
+        form.submit();
+    }
+});
+
+document.getElementById('hd_save').addEventListener('click', function (e) {
+    e.preventDefault();
+    let form = document.getElementById('apply_form');
+    let supportPath = document.getElementById("supportPath").value;
+    let military = document.getElementById("military").value;
+    let eduSortation = document.getElementById("eduSortation").value;
+    let highName = document.getElementById("highName").value;
+    let highAdmis = document.getElementById("high_admis").value;
+    let highGrad = document.getElementById("high_grad").value;
+    let content1 = document.getElementById("content1").value;
+    document.getElementById('status').value = "비제출";
+
+    if (supportPath === '') {
+        alert('지원경로를 선택해주세요');
+        e.preventDefault();
+    } else if (eduSortation === '' || highName === '' || highAdmis === '' || highGrad === '') {
+        alert('고등학교 학력사항은 필수 입력입니다')
+    } else if (content1 === '') {
+        alert('직무질문에 대한 답변은 필수 입력입니다')
+    } else if (military === '') {
+        alert('병역사항을 선택해주세요');
+        e.preventDefault();
+    } else {
+        form.submit();
+    }
+});
+
+document.getElementById('ap_save').addEventListener('click', function (e) {
+    e.preventDefault();
+    let form = document.getElementById('apply_form');
+    let supportPath = document.getElementById("supportPath").value;
+    let military = document.getElementById("military").value;
+    let eduSortation = document.getElementById("eduSortation").value;
+    let highName = document.getElementById("highName").value;
+    let highAdmis = document.getElementById("high_admis").value;
+    let highGrad = document.getElementById("high_grad").value;
+    let content1 = document.getElementById("content1").value;
+    document.getElementById('status').value = "비제출";
+
+    if (supportPath === '') {
+        alert('지원경로를 선택해주세요');
+        e.preventDefault();
+    } else if (eduSortation === '' || highName === '' || highAdmis === '' || highGrad === '') {
+        alert('고등학교 학력사항은 필수 입력입니다')
+    } else if (content1 === '') {
+        alert('직무질문에 대한 답변은 필수 입력입니다')
+    } else if (military === '') {
+        alert('병역사항을 선택해주세요');
+        e.preventDefault();
+    } else {
+        form.submit();
+    }
 });
