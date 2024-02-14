@@ -254,7 +254,7 @@ public class CustomerController {
 		
 		if(result >0) {
 			
-			return "redirect:/";
+			return "redirect:/customer/mypage";
 		}else {
 			
 			

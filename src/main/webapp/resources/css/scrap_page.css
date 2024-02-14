@@ -2,6 +2,10 @@
     margin: 0 ;
 }
 
+.header_menu{
+	background-color : white;
+}
+
 .scrap_main{
 	padding-top:100px;
     display: flex;

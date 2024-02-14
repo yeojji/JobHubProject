@@ -168,6 +168,7 @@
     </div>
 </div>
 
+<!--  회원 기본정보 변경 모달창  -->
 <div class="user_info_modify_modal">
     <div class="user_info_modify_modal_body">
         <div class="modal_close_btn"><i class="fa-solid fa-xmark"></i></div>
@@ -186,7 +187,7 @@
                 <div class="modify_box">
                     <span class="modify_main_title">생년월일</span>
                     <div class="two_modify_box">
-                        <input type="text" placeholder="${birth}" id="modify_info_birth" class="modify_info_birth" name="birth" value="${birth}" maxlength="8" oninput="checkValidDate()">
+                        <input type="text" placeholder="${birth}" id="modify_info_birth" class="modify_info_birth" name="birth" value="${birth}" maxlength="10" oninput="onInputBirth()">
                         <span class="warningBirth">생일은 필수 입력값입니다.</span>
                         <span class="warning">잘못된 생년월일 형식입니다. 생년월일을 정확하게 입력해주세요.</span>
                         <div class="gender_btn">
@@ -213,6 +214,8 @@
     </div>
 </div>
 
+
+<!-- 회원 비밀번호 변경 모달창  -->
 <div class="user_pw_modify_modal">
     <div class="user_pw_modify_modal_body">
         <div class="modal_close_btn2"><i class="fa-solid fa-xmark"></i></div>
@@ -531,16 +534,25 @@
     const onInputPhone = (target) => {
         let number = target.value.replace(/[^0-9]/g, '');
         let phoneNum = '';
-
+		
         if (number.length >= 4) {
-            if (number.length >= 11) {
-                phoneNum = number.substring(0, 3) + '-' + number.substring(3, 7) + '-' + number.substring(7, 11);
-            } else {
-                phoneNum = number.substring(0, 3) + '-' + number.substring(3, 6);
-                if (number.length > 6) {
-                    phoneNum += '-' + number.substring(6);
-                }
-            }
+        
+        	if(number.startsWith('010') || number.startsWith('011') || number.startsWith('017')){
+        		
+        	
+	            if (number.length >= 11) {
+	                phoneNum = number.substring(0, 3) + '-' + number.substring(3, 7) + '-' + number.substring(7, 11);
+	            } else {
+	                phoneNum = number.substring(0, 3) + '-' + number.substring(3, 6);
+	                if (number.length > 6) {
+	                    phoneNum += '-' + number.substring(6);
+	                }
+	            }
+            
+        	}else{
+        		alert('잘못된 형식입니다.');
+        		return;
+        	}
         } else {
             phoneNum = number;
         }
@@ -564,21 +576,60 @@
         }
     }
     
-    const checkValidDate = (value) => {
-        let result = true;
-        try {
-            let date = value.split("-");
-            let y = parseInt(date[0], 10),
-                m = parseInt(date[1], 10),
-                d = parseInt(date[2], 10);
+    const onInputBirth = () => {
+        console.log('생일 입력');
+        let date = document.querySelector("#modify_info_birth");
+        let warning = document.querySelector(".warning");
 
-            let dateRegex = /^(?=\d)(?:(?:31(?!.(?:0?[2469]|11))|(?:30|29)(?!.0?2)|29(?=.0?2.(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00)))(?:\x20|$))|(?:2[0-8]|1\d|0?[1-9]))([-.\/])(?:1[012]|0?[1-9])\1(?:1[6-9]|[2-9]\d)?\d\d(?:(?=\x20\d)\x20|$))?(((0?[1-9]|1[012])(:[0-5]\d){0,2}(\x20[AP]M))|([01]\d|2[0-3])(:[0-5]\d){1,2})?$/;
-            result = dateRegex.test(d + '-' + m + '-' + y);
-        } catch (err) {
-            result = false;
+        let val = date.value.replace(/\D/g, "");
+        let leng = val.length;
+        let result = '';
+
+        let inputBirth = document.getElementById('modify_info_birth');
+
+        if (leng < 5) {
+            result = val;
+        } else if (leng < 7) {
+            result += val.substring(0, 4);
+            result += "-";
+            result += val.substring(4);
+        } else {
+            result += val.substring(0, 4);
+            result += "-";
+            result += val.substring(4, 6);
+            result += "-";
+            result += val.substring(6, 8);
         }
-        return result;
+
+        if (result.length === 10) {
+            if (!checkValidDate(result)) {
+                warning.style.display = "block";
+                inputBirth.style.borderColor = "red";
+            } else {
+                warning.style.display = "none";
+                inputBirth.style.borderColor = "";
+            }
+        }
+
+        date.value = result;
+
+        let warningBirths = document.querySelectorAll('.warningBirth');
+        let birth = inputBirth.value.trim();
+
+        if (birth === '') {
+            warningBirths.forEach(warningBirth => {
+                warningBirth.style.display = "block";
+            });
+            inputBirth.style.borderColor = "red";
+            warning.style.display = "none";
+        } else {
+            warningBirths.forEach(warningBirth => {
+                warningBirth.style.display = "none";
+            });
+            inputBirth.style.borderColor = "";
+        }
     }
+
     
     
     function pwCheck() {

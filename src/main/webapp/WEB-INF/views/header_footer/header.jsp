@@ -17,7 +17,7 @@
         <div class="header_menu">
             <div class="header_menu1">
                 <div class="header_title">
-                	<div class="company_title" onclick="location.href='/'"><img src="D:\fileStorage/logo_1500x211.png"></div>
+                	<div class="company_title" onclick="location.href='/'"><img src="/admin/img/logo_250x35.png" class="header_img"></div>
                 </div>
                 <div class="header_menu1_list">
                     <div class="header_menu1_list_item white_font" onclick="location.href='/people'">People</div>
@@ -75,19 +75,7 @@
     		}
     	}
     	
-    	const header = document.querySelector('.header_menu');
-    	const color = document.querySelectorAll('.white_font');
-        const headerHeight = 0; 
-        window.addEventListener("scroll", () => {
-            
-            if (window.scrollY > headerHeight) {
-                header.classList.add("scrolled"); // 스크롤이 내려갈 때 클래스 추가
-                color.style.color = 'black';
-            } else {
-                header.classList.remove("scrolled"); // 스크롤이 위로 올라갈 때 클래스 제거
-                color.style.color = 'white';
-            }
-        });
+    	
 	
     
     </script>

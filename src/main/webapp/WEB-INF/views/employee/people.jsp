@@ -43,6 +43,7 @@
         
     </ul>
     <!-- 푸터박을부분 -->
+    <%@ include file="../header_footer/footer.jsp" %>
 </div>
 </body>
 </html>

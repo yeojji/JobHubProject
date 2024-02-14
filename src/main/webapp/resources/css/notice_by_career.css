@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+.header_menu{
+	background-color : white;
+}
+
 .container{
     padding-top: 130px;
     padding-bottom: 130px;

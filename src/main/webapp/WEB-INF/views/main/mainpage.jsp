@@ -66,7 +66,7 @@
                 <h2 class="company_news_title">Job Hub's NEWS</h2>
                 <div class="company_news_list">
                     <div class="company_news_box">
-                        <div class="news_1_image">뉴스1이미지</div>
+                        <div class="news_1_image"><img src="/image/뉴스이미지1.jpg" style="width: 100%; height: 250px; object-fit:cover;"></div>
                         <div class="news_box">
                             <div class="news_title">인공지능 기술 개발로 혁신</div>
                             <div class="news_content">
@@ -76,7 +76,7 @@
                         </div>
                     </div>
                     <div class="company_news_box">
-                        <div class="news_2_image">뉴스2이미지</div>
+                        <div class="news_2_image"><img src="/image/뉴스이미지2.jpg" style="width: 100%; height: 250px; object-fit:cotain;"></div>
                         <div class="news_box">
                             <div class="news_title">글로벌 인재 채용 진행 중</div>
                             <div class="news_content">
@@ -144,58 +144,6 @@
     </div>
 
 <script>
-$(document).ready(function(){
-	
-    if($("select[name=jobLevel1]").val() == "") {
-        $("select[name=jobLevel2]").attr("disabled", true);
-    }
-    console.log('file loading');	    
-    
-    $(jobLevel1).on('change', function () {
-    	console.log('select chagned');
-    	jobLevel1 = $(this).val();
-    	console.log(jobLevel1);
-    	
-        if (jobLevel1 != "") {
-        	
-        	
-        	
-            jQuery.ajax({
-                type: "POST",
-                url: "/jobnameByPid",
-                data: {
-                    jobLevel1: jobLevel1
-                },
-                //datatype: "text",
-                datatype: "json",
-                success: function (jobNameList) {
-                    //var data = JSON.parse(jobNameList); 
-                    console.log(jobNameList); // 콘솔에 데이터가 제대로 나오는지 확인
-                    $('#jobLevel2').empty(); 	//자식 테이블 한번 지우기
-                    $.each(jobNameList, function (index, job) {	 //index, Object
-                        console.log(index); // 콘솔에 각각의 키와 값이 제대로 나오는지 확인
-                        console.log(job); // 콘솔에 각각의 키와 값이 제대로 나오는지 확인
-                        //index: 현재 요소의 인덱스(걍 자리채우기용) //job 현재 요소의 값
-                        $('<option></option>').val(job.jobsId).text(job.jobsName).appendTo($('#jobLevel2'));
-                    });
-                },
-                error: function (xhr, status, error) {
-                    console.log("ERROR!!!", error); // 에러 로그 확인
-                }
-            });
-            
-            $("select[name=jobLevel2]").attr("disabled", false);
-            
-            
-            
-        } else {
-            $("select[name=jobLevel2]").attr("disabled", true);
-        }
-
-     
-    });
-});
-
 
 
 
