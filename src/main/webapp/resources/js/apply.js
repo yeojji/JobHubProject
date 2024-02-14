@@ -302,7 +302,7 @@ const inputAdmis = (target) => {
     } else{
         result += val.substring(0, 4);
         result += ".";
-        result += val.substring(4, 6);
+        result += val.substring(4);
         if (!checkValidDate(result)) {
            alert('정확한 날짜를 입력하세요')
         }

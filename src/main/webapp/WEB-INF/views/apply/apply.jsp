@@ -67,7 +67,7 @@
 
 								</div>
 								<div class="ap_mydetail ap_grade">
-									<select name="eduSortation" id="eduSortation" class="ap_inpt apply_edu">
+									<select id="eduSortation" class="ap_inpt apply_edu">
 										<option value="" disabled selected hidden>구분</option>
 										<option value="고등학교">고등학교</option>
 										<option value="전문대학">전문대학</option>
@@ -76,29 +76,29 @@
 										<option value="대학원(박사)">대학원(박사)</option>
 									</select>
 									<div class="apply_edu_highschool">
-										<input type="text" name="schoolName" placeholder="학교명"
+										<input type="text" placeholder="학교명"
 											class="ap_inpt apply_shcname" id="highName">
-										<input type="text" name="admission" placeholder="입학년월"
+										<input type="text" placeholder="입학년월"
 											class="ap_inpt apply_date2" id="high_admis" oninput="inputAdmis(this)">
 										<span class="from_to">~</span>
-										<input type="text" name="graduation" placeholder="졸업년월"
+										<input type="text" placeholder="졸업년월"
 											class="ap_inpt apply_date2" id="high_grad">
 										<button type="button" class="ap_inpt2 apply_careerbtn" name="edu">완료</button>
 									</div>
 									<div class="apply_edu_university">
-										<input type="text" name="schoolName" placeholder="학교명"
+										<input type="text" placeholder="학교명"
 											class="apply_shcname2 ap_inpt" id="uniName">
-										<input type="text" name="major" placeholder="전공" class="apply_major ap_inpt"
+										<input type="text" placeholder="전공" class="apply_major ap_inpt"
 											id="uni_major">
-										<input type="text" name="minor" placeholder="(세)부전공" class="apply_major ap_inpt"
+										<input type="text" placeholder="(세)부전공" class="apply_major ap_inpt"
 											id="uni_minor">
-										<input type="text" name="grade" placeholder="평점" class="apply_grade ap_inpt"
+										<input type="text" placeholder="평점" class="apply_grade ap_inpt"
 											id="uni_grade">
-										<input type="text" name="totalScore" placeholder="총점"
+										<input type="text" placeholder="총점"
 											class="apply_grade apply_total ap_inpt" id="uni_total">
-										<input type="text" name="admission" placeholder="입학년월"
+										<input type="text" placeholder="입학년월"
 											class="ap_inpt apply_date3" id="uni_admis">
-										<span class="from_to">~</span> <input type="text" name="graduation"
+										<span class="from_to">~</span> <input type="text"
 											placeholder="졸업년월" class="ap_inpt apply_date3" id="uni_grad">
 										<select id="graduationStatus" name="graduationStatus"
 											class="ap_inpt apply_grade_status">
@@ -128,15 +128,15 @@
 
 								</div>
 								<div class="ap_mydetail">
-									<input type="text" name="companyName" id="companyName" placeholder="회사명" class="ap_inpt apply_cname">
-									<input type="text" name="departmentName" id="departmentName" placeholder="부서명"
+									<input type="text" id="companyName" placeholder="회사명" class="ap_inpt apply_cname">
+									<input type="text" id="departmentName" placeholder="부서명"
 										class="ap_inpt apply_dname">
-									<input type="text" name="joinDate" id="joinDate" placeholder="입사일" class="ap_inpt apply_date">
+									<input type="text" id="joinDate" placeholder="입사일" class="ap_inpt apply_date">
 									<span class="from_to">~</span>
-									<input type="text" name="resignationDate" id="resignationDate" placeholder="퇴사일"
+									<input type="text" id="resignationDate" placeholder="퇴사일"
 										class="ap_inpt apply_date">
-									<input type="text" name="duty" id="duty" placeholder="담당업무" class="ap_inpt apply_duty">
-									<select id="position" name="position" class="ap_inpt apply_position">
+									<input type="text" id="duty" placeholder="담당업무" class="ap_inpt apply_duty">
+									<select id="position" class="ap_inpt apply_position">
 										<option value="" disabled selected hidden>고용형태</option>
 										<option value="정규">정규</option>
 										<option value="계약">계약</option>
@@ -146,7 +146,7 @@
 									<button type="button" class="ap_inpt2 apply_careerbtn" name="career">완료</button>
 								</div>
 								<div>
-									<textarea id="careerdetail" name="detailWork" cols="100" rows="14" placeholder="상세업무내용"
+									<textarea id="careerdetail" cols="100" rows="14" placeholder="상세업무내용"
 										class="text_area"></textarea>
 								</div>
 								<div class="cr_noti">
@@ -166,33 +166,33 @@
 
 								</div>
 								<div class="ap_mydetail ap_certi">
-									<select id="certSortation" name="certSortation" class="ap_inpt apply_certi">
+									<select id="certSortation" class="ap_inpt apply_certi">
 										<option value="" disabled selected hidden>구분</option>
 										<option value="자격">자격</option>
 										<option value="어학">어학</option>
 									</select>
 									<div class="apply_qualification">
-										<input type="text" name="certType" id="certType" placeholder="자격/면허종류"
+										<input type="text" id="certType" placeholder="자격/면허종류"
 											class="ap_inpt apply_type">
-										<input type="text" name="certLevel" id="qual_certLevel" placeholder="등급"
+										<input type="text" id="qual_certLevel" placeholder="등급"
 											class="ap_inpt apply_level">
-										<input type="text" name="acquisition" id="qual_acquisition" placeholder="취득/응시일"
+										<input type="text" id="qual_acquisition" placeholder="취득/응시일"
 											class="ap_inpt apply_cdate">
-										<input type="text" name="lssuingAuthority" id="qual_lssuingAuthority" placeholder="발급기관"
+										<input type="text" id="qual_lssuingAuthority" placeholder="발급기관"
 											class="ap_inpt apply_auth">
 										<button type="button" class="ap_inpt2 apply_careerbtn" name="cert">완료</button>
 									</div>
 									<div class="apply_language_skill">
-										<input type="text" name="language" id="language" placeholder="언어"
+										<input type="text" id="language" placeholder="언어"
 											class="ap_inpt apply_language">
-										<input type="text" name="test" id="test" placeholder="시험" class="ap_inpt apply_language">
-										<input type="text" name="certLevel" id="lang_certLevel" placeholder="등급"
+										<input type="text" id="test" placeholder="시험" class="ap_inpt apply_language">
+										<input type="text" id="lang_certLevel" placeholder="등급"
 											class="ap_inpt apply_level">
-										<input type="text" name="languageGrade" id="languageGrade" placeholder="점수"
+										<input type="text" id="languageGrade" placeholder="점수"
 											class="ap_inpt apply_langGrade">
-										<input type="text" name="acquisition" id="lang_acquisition" placeholder="취득/응시일"
+										<input type="text" id="lang_acquisition" placeholder="취득/응시일"
 											class="ap_inpt apply_cdate">
-										<input type="text" name="lssuingAuthority" id="lang_lssuingAuthority" placeholder="발급기관"
+										<input type="text" id="lang_lssuingAuthority" placeholder="발급기관"
 											class="ap_inpt apply_auth">
 										<button type="button" class="ap_inpt2 apply_careerbtn" name="cert">완료</button>
 									</div>
