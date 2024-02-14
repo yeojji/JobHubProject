@@ -20,17 +20,12 @@
                 	<div class="company_title" onclick="location.href='/'"><img src="/admin/img/logo_250x35.png" class="header_img"></div>
                 </div>
                 <div class="header_menu1_list">
-<<<<<<<<< Temporary merge branch 1
-                    <div class="header_menu1_list_item">People</div>
-                    <div class="header_menu1_list_item">Culture</div>
-                    <div class="header_menu1_list_item" onclick="location.href='/customer/notice_by_career'">Jobs</div>
-                    <div class="header_menu1_list_item" onclick="location.href='/cus/faqs'">FAQs</div>
-=========
+
                     <div class="header_menu1_list_item white_font" onclick="location.href='/people'">People</div>
                     <div class="header_menu1_list_item white_font">Culture</div>
                     <div class="header_menu1_list_item white_font" onclick="location.href='/customer/notice_by_career'">Jobs</div>
                     <div class="header_menu1_list_item white_font" onclick="location.href='/cus/faqs'">FAQs</div>
->>>>>>>>> Temporary merge branch 2
+
                 </div>
             </div>
             <div class="header_menu2">

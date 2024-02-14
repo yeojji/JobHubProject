@@ -82,7 +82,7 @@ public class CustomerDAOImpl implements CustomerDAO{
 	@Override
 	public List<Scrap> customerScarpList(String userId) {
 		// TODO Auto-generated method stub
-		List<Scrap> scrapList = sqlSessionTemplate.selectList("user_mapper.customerScarpList",  userId);
+		List<Scrap> scrapList = sqlSessionTemplate.selectList("user_mapper.customerScarpList", userId);
 		
 		return scrapList;
 	}
