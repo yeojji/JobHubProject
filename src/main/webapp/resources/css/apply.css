@@ -382,3 +382,6 @@ hr{
 #cert_remove{
     margin-left: 20px;
 }
+ul{
+    list-style:none;
+}

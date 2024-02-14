@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.jobhub.dao.apply.ApplyDAO;
 import com.jobhub.dto.employee.Employee;
+import com.jobhub.dto.jobposting.Jobposting;
 import com.jobhub.dto.resume.Resume;
 import com.jobhub.dto.util.FileInfo;
 
@@ -85,6 +86,13 @@ int result = sqlSessionTemplate.insert("apply_mapper.saveFileInfo", hashMap);
 		// TODO Auto-generated method stub
 		List<Employee> employeeList = sqlSessionTemplate.selectList("apply_mapper.findEmployeeList");
 		return employeeList;
+	}
+
+	@Override
+	public Jobposting findQuestions(String postingId) {
+		// TODO Auto-generated method stub
+		Jobposting questList = sqlSessionTemplate.selectOne("apply_mapper.findQuestions", postingId);
+		return questList;
 	}
 
 }

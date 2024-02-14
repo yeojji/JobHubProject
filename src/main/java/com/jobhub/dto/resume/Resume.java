@@ -22,6 +22,8 @@ public class Resume {
 	
 	//11번 라인부터 41번라인까지는 dto 다 따로따로
 	//테이블에서 가져오는 dto하나 테이블에 저장하는 dto 하나
+
+	
 	String eduSortation;	//학력사항 구분
 	String schoolName;		//학교명
 	String admission;		//입학년도
