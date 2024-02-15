@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.jobhub.dto.customer.Customer;
+import com.jobhub.dto.customer.CustomerFaq;
 import com.jobhub.dto.customer.Scrap;
 import com.jobhub.dto.employee.EmployeeJobsInfo;
 import com.jobhub.dto.jobposting.Description;
@@ -138,11 +139,9 @@ public class CustomerController {
 		
 		Customer customerInfo = customerService.findCustomerInfo(findCustomer);
 		
-		List<Resume> resumeSubmissionList = customerService.findSubmissionResume(findCustomer);
+		List<Resume> resumeSubmissionList = customerService.findSubmissionResumeByUserId(findCustomer);
 		
 		List<Resume> notSubmissionresume = customerService.findNotSubmissionResume(findCustomer);
-		
-		
 		
 //		List<Resume> submissionResumeinfo = customerService.findSubmissionResumeByPostingId();
 		System.out.println(resumeSubmissionList);
@@ -163,7 +162,19 @@ public class CustomerController {
 		
 	}
 	
-	
+	@PostMapping("/sendFaq")
+	public String sendFaq(@ModelAttribute CustomerFaq customerFaq, Model model) {
+		
+		int result = customerService.savecustomerFaq(customerFaq);
+		
+		if(result > 0) {
+			return "redirect:/mypage";
+		}else {
+			return "/";
+		}
+		
+		
+	}
 	
 	
 	@GetMapping("/scrap_page")

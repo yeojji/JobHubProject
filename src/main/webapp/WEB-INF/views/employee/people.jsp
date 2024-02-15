@@ -31,7 +31,7 @@
     <c:forEach var="empList" items="${empList}">
         <li class="itemList">
             <div class="img_area">
-                <img src="image/employee.png">
+                <img class="img" src="image/employee.png">
             </div>
             <div class="text_area">
                 <span class="name">${empList.name}</span>

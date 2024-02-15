@@ -146,7 +146,7 @@
 				let form = document.getElementById('form');
 				document.getElementById("submitBtn").addEventListener("click", function (event) {
 					var confirmation = confirm("지원하겠습니까?");
-
+				
 					// 확인을 눌렀을 경우
 					if (confirmation) {
 						form.action = "/apply";
@@ -158,6 +158,9 @@
 						event.preventDefault();
 						return false;
 					}
+					
+				
+					
 				});
 			</script>
 

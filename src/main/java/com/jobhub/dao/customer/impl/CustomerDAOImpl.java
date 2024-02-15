@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.jobhub.dao.customer.CustomerDAO;
 import com.jobhub.dto.customer.Customer;
+import com.jobhub.dto.customer.CustomerFaq;
 import com.jobhub.dto.customer.Scrap;
 import com.jobhub.dto.customer.CustomerSearchCondition;
 import com.jobhub.dto.jobposting.Job;
@@ -162,10 +163,10 @@ public class CustomerDAOImpl implements CustomerDAO{
 		return resumeList;
 	}
 	@Override
-	public List<Resume> findSubmissionResumeByPostingId(String postingId) {
+	public List<Resume> findSubmissionResumeByUserId(String userId) {
 		// TODO Auto-generated method stub
 		
-		List<Resume> resumeList = sqlSessionTemplate.selectList("resume_mapper.findSubmissionResumeByPostingId", postingId);
+		List<Resume> resumeList = sqlSessionTemplate.selectList("resume_mapper.findSubmissionResumeByUserId", userId);
 		
 		return resumeList;
 	}
@@ -187,6 +188,14 @@ public class CustomerDAOImpl implements CustomerDAO{
 	public List<Customer> findCustomerListBySearchCondition(CustomerSearchCondition customerSearchCondition) {
 		List<Customer> customerList = sqlSessionTemplate.selectList("user_mapper.findCustomerListBySearchCondition", customerSearchCondition);
 		return customerList;
+	}
+	@Override
+	public int savecustomerFaq(CustomerFaq customerFaq) {
+		// TODO Auto-generated method stub
+		
+		int result = sqlSessionTemplate.insert("user_mapper.customerFaq", customerFaq);
+		
+		return result;
 	}
 	
 

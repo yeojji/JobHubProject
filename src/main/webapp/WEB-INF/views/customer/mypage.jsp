@@ -65,14 +65,18 @@
                 <span class="go_to_resume" onclick="location.href='/customer/notice_by_career'">지원하기 ></span>
             </div>
             <!--회원이 임시저장한 지원서가 있을 때-->
-            
+            <c:choose>
+            	<c:when test="${not empty notSubmission}">
+            		<c:forEach var="notSubmission" items="${notSubmission}">
 			            <div class="member_write_resume_box">
 			                <span class="temporary_storage_text">임시저장 <i class="fa-solid fa-circle-exclamation"></i></span>
-			                <div class="member_write_resume_content_modify">     
+			                <div class="member_write_resume_content_modify">
+			                	   
 			                    <div class="notice_title_box">
-			                        <div class="notice_title">[Tech] IT감사/내부통제 담당자</div>
-			                        <div class="write_resume_date">작성일 : </div>
+			                        <div class="notice_title">${notSubmission.title}</div>
+			                        <div class="write_resume_date">작성일 : ${notSubmission.revisionDate}</div>
 			                    </div>
+			                    
 			                    <div class="temporary_storage_resume">
 			                        <div class="write_resume_icon_box">
 			                            <div class="show_resume">
@@ -91,12 +95,15 @@
 			                    </div>
 			                </div>     
 			            </div>
-		          
+			            </c:forEach>
+			            </c:when>
+		       <c:otherwise>
             <!--회원이 임시저장한 지원서가 없을 때-->
 	            <div class="not_temporary_storage_resume_box">
 	                <span class="none_content_text">임시저장한 지원서가 없습니다</span>
 	            </div>
-           
+	            </c:otherwise>
+           </c:choose>
         </div>
         <!--회원 지원공고 현황 (합/불/진행중)-->
         <div class="member_resume_status_box">
@@ -116,14 +123,14 @@
 			                        <div class="submission_resume_date">제출 날짜 : ${resumeitem.revisionDate}</div>
 			                    </div>
 			                    <div class="show_acceptance_status">
-			                        <!--합격시-->
+			                        <!--합격시
 			                        <span class="acceptance_box">
 			                            합격
-			                        </span>
-			                        <!--불합격시-->
+			                        </span>-->
+			                        <!--불합격시
 			                        <span class="failed_box">
 			                            불합격
-			                        </span>
+			                        </span>-->
 			                        <!--진행중-->
 			                        <span class="ongoing_box">
 			                            진행중
@@ -295,7 +302,8 @@
 <div class="user_show_resume_modal">
     <div class="user_show_resume_modal_body">
         <div class="show_resume_modal_close_btn"><i class="fa-solid fa-xmark"></i></div>
-        <span class="show_resume_modal_title"> 지원한 공고 제목 </span>
+        <c:forEach var="notSubmission" items="${notSubmission}">
+        <span class="show_resume_modal_title">${notSubmission.title}</span>
         <p>임시저장</p>
         <div class="customer_info_box">
             <span>${name}</span>
@@ -347,6 +355,7 @@
             <!--필수 입력 사항을 입력 안 했을 때-->
             <span class="error_msg">필수 입력 사항을 다시 한번 확인하고 작성해주세요</span>
         </div>
+        </c:forEach>
         <div class="button_box">
             <button class="show_resume_modal_close_btn">닫기</button>
             <button >지원서 삭제</button>
@@ -361,7 +370,7 @@
         <div class="show_user_faq_modal_close_btn"><i class="fa-solid fa-xmark"></i></div>
         <span class="show_user_faq_modal_title"> 1:1 문의 </span>
         <div class="user_faq_main">
-            <form action="" method="post" enctype="multipart/form-data" class="faqForm">
+            <form action="/sendFaq" method="post" enctype="multipart/form-data" class="faqForm">
                 <div class="faq_title_box">
                     <span class="faq_title_text">문의 제목</span>
                     <input name="faqTitle" class="input_faq" id="faq_title">
@@ -372,6 +381,7 @@
                 </div>
                 <div class="faq_customer_info_box">
                     <div class="faq_email_box">
+                    	<input type="hidden" name="userId" value="${userId}">
                         <span class="faq_title_text input_faq2">이메일</span>
                         <input value="${email}" name="email" id="email">
                     </div>
@@ -399,6 +409,8 @@
 </div>
 
 <script>
+
+
     const modal1 = document.querySelector('.user_info_modify_modal');
     const modalbody1 = document.querySelector('.user_info_modify_modal_body');
     const openModify_modal1 = document.querySelector('.member_modify_text1');
@@ -742,15 +754,18 @@
      
      console.log('눌림');
 	   
-	   if(confirm('등록하시겠습니까?')){
+	   if(confirm('문의 등록하시겠습니까?')){
             if(title == null || content == null || email == null || phone == null || checkbox.checked == false){
                 alert('필수 입력항목을 입력해주세요');
                 return;
             }
 
 			alert('등록되었습니다.');
-		   document.quertSelector('.faqBtn').submit();
-           window.location.reload();
+			
+		   document.querySelector('.faqForm').submit();
+		   console.log('외않되');
+		   modal5.style.display = "none";
+		   
 
 		   
 	   }

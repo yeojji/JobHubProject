@@ -3,6 +3,7 @@ package com.jobhub.dao.customer;
 import java.util.List;
 
 import com.jobhub.dto.customer.Customer;
+import com.jobhub.dto.customer.CustomerFaq;
 import com.jobhub.dto.customer.CustomerSearchCondition;
 import com.jobhub.dto.customer.Scrap;
 import com.jobhub.dto.jobposting.Job;
@@ -45,9 +46,11 @@ public interface CustomerDAO {
 	
 	public List<Resume> findSubmissionResume(String userId);
 	
-	public List<Resume> findSubmissionResumeByPostingId(String postingId);
+	public List<Resume> findSubmissionResumeByUserId(String userId);
 	
 	public List<Resume> findNotSubmissionResume(String userId);
+	
+	public int savecustomerFaq(CustomerFaq customerFaq);
 	
 //	public int scrapCheck(String id, String postingId);
 //	
