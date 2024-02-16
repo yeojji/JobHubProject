@@ -12,6 +12,7 @@
 
 <%@ include file="../header_footer/header.jsp" %>
 
+<div class="main_container">
 <div class="p_header">
     <p class="p_header_title">Meet the Global LINERs</p>
     <div class="p_sub_tab">
@@ -44,6 +45,7 @@
     </ul>
     <!-- 푸터박을부분 -->
     <%@ include file="../header_footer/footer.jsp" %>
+</div>
 </div>
 </body>
 </html>

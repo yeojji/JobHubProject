@@ -186,19 +186,18 @@ public class CustomerServiceImpl implements CustomerService {
 		
 		return result;
 	}
+
+	@Override
+	public int removeResumeByResumeId(String userId) {
+		// TODO Auto-generated method stub
+		
+		int result = customerDAO.removeResumeByResumeId(userId);
+		
+		return result;
+	}
 	
 	
 
-//	@Override
-//	public List<Customer> findCustomerList() {
-//		List<Customer> customerList = customerDAO.findCustomerList();
-//		return customerList;
-//	}
-//	@Override
-//	public List<Customer> findCustomerListBySearchCondition(CustomerSearchCondition customerSearchCondition) {
-//		List<Customer> customerList = customerDAO.findCustomerListBySearchCondition(customerSearchCondition);
-//		return customerList;
-//	}
 
 	
 }

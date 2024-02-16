@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -67,21 +68,23 @@
             <!--회원이 임시저장한 지원서가 있을 때-->
             <c:choose>
             	<c:when test="${not empty notSubmission}">
-            		<c:forEach var="notSubmission" items="${notSubmission}">
+            		<c:forEach var="notSubmissionitem" items="${notSubmission}">
 			            <div class="member_write_resume_box">
+			            	<input type="hidden" name="${notSubmissionitem.resumeId}">
+			            	<input type="hidden" name="${notSubmissionitem.postingId}">
 			                <span class="temporary_storage_text">임시저장 <i class="fa-solid fa-circle-exclamation"></i></span>
 			                <div class="member_write_resume_content_modify">
 			                	   
 			                    <div class="notice_title_box">
-			                        <div class="notice_title">${notSubmission.title}</div>
-			                        <div class="write_resume_date">작성일 : ${notSubmission.revisionDate}</div>
+			                        <div class="notice_title">${notSubmissionitem.title}</div>
+			                        <div class="write_resume_date">작성일 : ${notSubmissionitem.revisionDate}</div>
 			                    </div>
 			                    
 			                    <div class="temporary_storage_resume">
 			                        <div class="write_resume_icon_box">
 			                            <div class="show_resume">
 			                                <i class="fa-regular fa-newspaper icon_size"></i>
-			                                <span class="resume_text show_resume">보기</span>
+			                                <span class="resume_text show_resume" onclick="showModalFunction(selectedPostingId)">보기</span>
 			                            </div>
 			                            <div class="modify_resume">
 			                                <i class="fa-solid fa-pen-to-square icon_size"></i>
@@ -98,7 +101,7 @@
 			            </c:forEach>
 			            </c:when>
 		       <c:otherwise>
-            <!--회원이 임시저장한 지원서가 없을 때-->
+            	<!--회원이 임시저장한 지원서가 없을 때-->
 	            <div class="not_temporary_storage_resume_box">
 	                <span class="none_content_text">임시저장한 지원서가 없습니다</span>
 	            </div>
@@ -206,8 +209,8 @@
                         <span class="warning">잘못된 생년월일 형식입니다. 생년월일을 정확하게 입력해주세요.</span>
                         <div class="gender_btn">
                             <select name ="gender" >
-                                <option value="남자" <c:if test="${gender == '남자'}">selected</c:if>>남자</option>
-                                <option value="여자" <c:if test="${gender == '여자'}">selected</c:if>>여자</option>
+                                 <option value="남자" <c:if test="${gender eq '남자'}"> selected </c:if>> 남자</option>
+                                 <option value="여자" <c:if test="${gender eq '여자'}"> selected </c:if>> 여자</option>
                             </select>
                         </div>
                     </div>
@@ -302,65 +305,80 @@
 <div class="user_show_resume_modal">
     <div class="user_show_resume_modal_body">
         <div class="show_resume_modal_close_btn"><i class="fa-solid fa-xmark"></i></div>
-        <c:forEach var="notSubmission" items="${notSubmission}">
-        <span class="show_resume_modal_title">${notSubmission.title}</span>
-        <p>임시저장</p>
-        <div class="customer_info_box">
-            <span>${name}</span>
-            <div class="member_info_box_footer">
-                <div class="member_email_box">
-                    <span class="member_info_title">이메일</span>
-                    <p class="member_email">${email}</p>
-                </div>
-                <div class="member_birth_box">
-                    <span class="member_info_title">생년월일</span>
-                    <p class="member_birth">${birth}</p>
-                </div>
-                <div class="member_tel_box">
-                    <span class="member_info_title">휴대폰 번호</span>
-                    <p class="member_tel">${phone}</p>
-                </div>
-            </div>
-            <!--필수 입력 사항을 입력 안 했을 때-->
-            <span class="error_msg">필수 입력 사항을 다시 한번 확인하고 작성해주세요</span>
         
-        </div>
-        <div class="customer_veterans_disability_box">
-            <ul>보훈/장애
-                <li>보훈 여부 </li>
-                <li>장애 여부 </li>
-            </ul>
-        </div>
-        <div class="military_service_box">
-            <span>병역</span>
-            <span></span>
-            <!--필수 입력 사항을 입력 안 했을 때-->
-            <span class="error_msg">필수 입력 사항을 다시 한번 확인하고 작성해주세요</span>
-        </div>
-        <div class="attached_materials_box">
-            <ul>첨부자료
-                <li>경력기술서</li>
-                <li>포트폴리오</li>
-            </ul>
-            <!--필수 입력 사항을 입력 안 했을 때-->
-            <span class="error_msg">필수 입력 사항을 다시 한번 확인하고 작성해주세요</span>
-        </div>
-        <div class="self_introduce_box">
-            <span>자기소개서</span>
-            <span></span>
-        </div>
-        <div class="support_path_box">
-            <span>지원경로 및 세부사항</span>
-            <span></span>
-            <!--필수 입력 사항을 입력 안 했을 때-->
-            <span class="error_msg">필수 입력 사항을 다시 한번 확인하고 작성해주세요</span>
-        </div>
-        </c:forEach>
+       <c:choose>
+        <c:when test="${not empty notSubmission}">
+        <input type="hidden" name="${notSubmission.postingId}">
+	        <c:forEach var="notSubmissionmodal" items="${notSubmission}">
+	        	<c:if test="${notSubmissionmodal.postingId == selectedPostingId}">
+		        <span class="show_resume_modal_title">${notSubmissionmodal.title}</span>
+		        <p>임시저장</p>
+		        <div class="customer_info_box">
+		            <span>${name}</span>
+		            <div class="member_info_box_footer">
+		                <div class="member_email_box">
+		                    <span class="member_info_title">이메일</span>
+		                    <p class="member_email">${email}</p>
+		                </div>
+		                <div class="member_birth_box">
+		                    <span class="member_info_title">생년월일</span>
+		                    <p class="member_birth">${birth}</p>
+		                </div>
+		                <div class="member_tel_box">
+		                    <span class="member_info_title">휴대폰 번호</span>
+		                    <p class="member_tel">${phone}</p>
+		                </div>
+		            </div>
+		            <!--필수 입력 사항을 입력 안 했을 때-->
+		            <c:if test="${empty email || empty birth || empty phone}">
+		            	<span class="error_msg">필수 입력 사항을 다시 한번 확인하고 작성해주세요</span>
+		        	</c:if> 
+		        </div>
+		        <div class="customer_veterans_disability_box">
+		            <ul>보훈/장애
+		                <li>보훈 여부 ${notSubmissionmodal.veteransTargetStatus}</li>
+		                <li>장애 여부 ${notSubmissionmodal.disorderStatus}</li>
+		            </ul>
+		        </div>
+		        <div class="military_service_box">
+		            <span>병역 ${notSubmissionmodal.militaryServiceMatters}</span>
+		            <span></span>
+		            <!--필수 입력 사항을 입력 안 했을 때-->
+		            <c:if test="${ empty notSubmissionmodal.militaryServiceMatters}">
+		            	<span class="error_msg">필수 입력 사항을 다시 한번 확인하고 작성해주세요</span>
+		            </c:if>
+		        </div>
+		        <div class="attached_materials_box">
+		            <ul>첨부자료
+		                <li>경력기술서</li>
+		                <li>포트폴리오</li>
+		            </ul>
+		            <!--필수 입력 사항을 입력 안 했을 때-->
+		            <span class="error_msg">필수 입력 사항을 다시 한번 확인하고 작성해주세요</span>
+		        </div>
+		        <div class="self_introduce_box">
+		            <span>자기소개서</span>
+		            <span>(선택사항) 본인에 대해서 잘 설명할 수 있는 대표적인 프로젝트 경험에 대해서 작성해주세요. 
+		            (사용기술, 개발방식, 트러블슈팅, 담당역할이 드러나도록 작성해주세요.</span>
+		        </div>
+		        <div class="support_path_box">
+		            <span>지원경로 및 세부사항 ${notSubmissionmodal.supportPath}</span>
+		            <span></span>
+		            <!--필수 입력 사항을 입력 안 했을 때-->
+		            <c:if test="${ empty notSubmissionmodal.supportPath}">
+		            	<span class="error_msg">필수 입력 사항을 다시 한번 확인하고 작성해주세요</span>
+		            </c:if>
+		        </div>
+		        </c:if>
+	         </c:forEach>
+        </c:when>
+        </c:choose>
         <div class="button_box">
             <button class="show_resume_modal_close_btn">닫기</button>
-            <button >지원서 삭제</button>
-            <button >지원서 수정</button>
+            <button onclick="remove_resume()">지원서 삭제</button>
+            <button onclick="modify_resume(this)">지원서 수정</button>
         </div>
+       
     </div>
 </div>
 
@@ -409,368 +427,389 @@
 </div>
 
 <script>
+const modal1 = document.querySelector('.user_info_modify_modal');
+const modalbody1 = document.querySelector('.user_info_modify_modal_body');
+const openModify_modal1 = document.querySelector('.member_modify_text1');
+
+const modal2 = document.querySelector('.user_pw_modify_modal');
+const modalbody2 = document.querySelector('.user_pw_modify_modal_body');
+const openModify_modal2 = document.querySelector('.member_modify_text2');
+
+const modal3 = document.querySelector('.user_delete_modal');
+const modalbody3 = document.querySelector('.user_delete_modal_body');
+const openModify_modal3 = document.querySelector('.member_modify_text3'); 
+
+const modal4 = document.querySelector('.user_show_resume_modal');
+const modalbody4 = document.querySelector('.user_show_resume_modal_body');
+const openModify_modal4 = document.querySelector('.show_resume');
+
+const modal5 = document.querySelector('.user_faq_modal');
+const modalbody5 = document.querySelector('.user_faq_modal_body');
+const openModify_modal5 = document.querySelector('#go_user_faq');
 
 
-    const modal1 = document.querySelector('.user_info_modify_modal');
-    const modalbody1 = document.querySelector('.user_info_modify_modal_body');
-    const openModify_modal1 = document.querySelector('.member_modify_text1');
+
+const close1 = document.querySelector('.modal_close_btn');
+const close2 = document.querySelector('.modal_close_btn2');
+const close3 = document.querySelector('.modal_close_btn3');
+const close4 = document.querySelector('.show_resume_modal_close_btn');
+const close5 = document.querySelector('.show_user_faq_modal_close_btn');
+
+openModify_modal1.addEventListener("click",()=>{
+    modal1.style.display = "flex";
+    document.body.style.overflowY = "hidden";
     
-    const modal2 = document.querySelector('.user_pw_modify_modal');
-    const modalbody2 = document.querySelector('.user_pw_modify_modal_body');
-    const openModify_modal2 = document.querySelector('.member_modify_text2');
-    
-    const modal3 = document.querySelector('.user_delete_modal');
-    const modalbody3 = document.querySelector('.user_delete_modal_body');
-    const openModify_modal3 = document.querySelector('.member_modify_text3');
-    
-    const modal4 = document.querySelector('.user_show_resume_modal');
-    const modalbody4 = document.querySelector('.user_show_resume_modal_body');
-    const openModify_modal4 = document.querySelector('.show_resume');
+})
 
-    const modal5 = document.querySelector('.user_faq_modal');
-    const modalbody5 = document.querySelector('.user_faq_modal_body');
-    const openModify_modal5 = document.querySelector('#go_user_faq');
+openModify_modal2.addEventListener("click",()=>{
+    modal2.style.display = "flex";
+    document.body.style.overflowY = "hidden";
+})
 
+ openModify_modal3.addEventListener("click",()=>{
+    modal3.style.display = "flex";
+    document.body.style.overflowY = "hidden";
+})
 
+openModify_modal4.addEventListener("click",()=>{
+    modal4.style.display = "flex";
+    document.body.style.overflowY = "hidden";
+})
 
-    const close1 = document.querySelector('.modal_close_btn');
-    const close2 = document.querySelector('.modal_close_btn2');
-    const close3 = document.querySelector('.modal_close_btn3');
-    const close4 = document.querySelector('.show_resume_modal_close_btn');
-    const close5 = document.querySelector('.show_user_faq_modal_close_btn');
-    
-    openModify_modal1.addEventListener("click",()=>{
-        modal1.style.display = "flex";
-        document.body.style.overflowY = "hidden";
-        
-    })
+openModify_modal5.addEventListener("click",()=>{
+    modal5.style.display = "flex";
+    document.body.style.overflowY = "hidden";
+})
 
-    openModify_modal2.addEventListener("click",()=>{
-        modal2.style.display = "flex";
-        document.body.style.overflowY = "hidden";
-    })
-    
-     openModify_modal3.addEventListener("click",()=>{
-        modal3.style.display = "flex";
-        document.body.style.overflowY = "hidden";
-    })
-    
-    openModify_modal4.addEventListener("click",()=>{
-        modal4.style.display = "flex";
-        document.body.style.overflowY = "hidden";
-    })
+close1.addEventListener("click",()=>{
+    modal1.style.display ="none";
+    document.body.style.overflowY = "auto";
+    window.location.reload();
+})
 
-    openModify_modal5.addEventListener("click",()=>{
-        modal5.style.display = "flex";
-        document.body.style.overflowY = "hidden";
-    })
+close2.addEventListener("click",()=>{
+    modal2.style.display = "none";
+    document.body.style.overflowY = "auto";
+    window.location.reload();
+})
 
-    close1.addEventListener("click",()=>{
+close3.addEventListener("click",()=>{
+    modal3.style.display = "none";
+    document.body.style.overflowY = "auto";
+    window.location.reload();
+})
+
+close4.addEventListener("click",()=>{
+    modal4.style.display = "none";
+    document.body.style.overflowY = "auto";
+    window.location.reload();
+})
+
+close5.addEventListener("click",()=>{
+    modal5.style.display = "none";
+    document.body.style.overflowY = "auto";
+    window.location.reload();
+})
+
+document.querySelector('.close_btn').addEventListener("click",()=>{
+    if(confirm('취소하시겠습니까?')){
         modal1.style.display ="none";
-        document.body.style.overflowY = "auto";
         window.location.reload();
-    })
-    
-    close2.addEventListener("click",()=>{
-        modal2.style.display = "none";
-        document.body.style.overflowY = "auto";
-        window.location.reload();
-    })
-    
-    close3.addEventListener("click",()=>{
-        modal3.style.display = "none";
-        document.body.style.overflowY = "auto";
-        window.location.reload();
-    })
-
-    close4.addEventListener("click",()=>{
-        modal4.style.display = "none";
-        document.body.style.overflowY = "auto";
-        window.location.reload();
-    })
-    
-    close5.addEventListener("click",()=>{
-        modal5.style.display = "none";
-        document.body.style.overflowY = "auto";
-        window.location.reload();
-    })
-    
-    document.querySelector('.close_btn').addEventListener("click",()=>{
-        if(confirm('취소하시겠습니까?')){
-            modal1.style.display ="none";
-            window.location.reload();
-        }
-        
-    })
-    
-     document.querySelector('.close_modal_pw').addEventListener("click",()=>{
-        if(confirm('취소하시겠습니까?')){
-            modal2.style.display ="none";
-            window.location.reload();
-        }
-        
-    })
-    
-    document.querySelector('.close_modal_delete').addEventListener("click",()=>{
-        if(confirm('취소하시겠습니까?')){
-            modal3.style.display ="none";
-            window.location.reload();
-        }
-        
-    })
-    
-    
-    document.querySelector('.submit_btn').addEventListener('click',function(){
-        if(confirm('회원정보를 수정하시겠습니까?')){
-            document.querySelector('.modify_form').submit();
-            alert('수정되었습니다');
-        }
-    });
-    
-    var currentPw = document.getElementById('currentPw').value;
-	console.log(currentPw);
-    
-    function checkPw() {
-    	var inputPw = document.getElementById('pw').value;
-    	var error_pw = document.getElementById('error_msg_pw');
-    	
-    	if(inputPw.trim() === ""){
-            return;
-    	}	
-	    	if(inputPw !== currentPw){
-	    		
-	    		error_pw.innerHTML = '불일치';
-	    		error_pw.style.color = 'red';
-	            
-	    	}else{
-	    		error_pw.innerHTML = '일치';
-	    		error_pw.style.color = 'green';
-	    	}
-   
-    	
     }
     
-    const onInputPhone = (target) => {
-        let number = target.value.replace(/[^0-9]/g, '');
-        let phoneNum = '';
-		
-        if (number.length >= 4) {
-        
-        	if(number.startsWith('010') || number.startsWith('011') || number.startsWith('017')){
-        		
-        	
-	            if (number.length >= 11) {
-	                phoneNum = number.substring(0, 3) + '-' + number.substring(3, 7) + '-' + number.substring(7, 11);
-	            } else {
-	                phoneNum = number.substring(0, 3) + '-' + number.substring(3, 6);
-	                if (number.length > 6) {
-	                    phoneNum += '-' + number.substring(6);
-	                }
-	            }
+})
+
+ document.querySelector('.close_modal_pw').addEventListener("click",()=>{
+    if(confirm('취소하시겠습니까?')){
+        modal2.style.display ="none";
+        window.location.reload();
+    }
+    
+})
+
+document.querySelector('.close_modal_delete').addEventListener("click",()=>{
+    if(confirm('취소하시겠습니까?')){
+        modal3.style.display ="none";
+        window.location.reload();
+    }
+    
+})
+
+
+document.querySelector('.submit_btn').addEventListener('click',function(){
+    if(confirm('회원정보를 수정하시겠습니까?')){
+        document.querySelector('.modify_form').submit();
+        alert('수정되었습니다');
+    }
+});
+
+var currentPw = document.getElementById('currentPw').value;
+console.log(currentPw);
+
+function checkPw() {
+	var inputPw = document.getElementById('pw').value;
+	var error_pw = document.getElementById('error_msg_pw');
+	
+	if(inputPw.trim() === ""){
+        return;
+	}	
+    	if(inputPw !== currentPw){
+    		
+    		error_pw.innerHTML = '불일치';
+    		error_pw.style.color = 'red';
             
-        	}else{
-        		alert('잘못된 형식입니다.');
-        		return;
-        	}
-        } else {
-            phoneNum = number;
-        }
+    	}else{
+    		error_pw.innerHTML = '일치';
+    		error_pw.style.color = 'green';
+    	}
 
-        target.value = phoneNum;
+	
+}
 
-        let warningPhones = document.querySelectorAll('.warningPhone');
-        let inputPhone = document.getElementById('signup_input_phone');
-        let phone = inputPhone.value.trim();
-        
-        if (phone === '') {
-            warningPhones.forEach(warningPhone => {
-                warningPhone.style.display = "block";
-            });
-            inputPhone.style.borderColor = "red";
-        } else {
-            warningPhones.forEach(warningPhone => {
-                warningPhone.style.display = "none";
-            });
-            inputPhone.style.borderColor = "";
-        }
-    }
+const onInputPhone = (target) => {
+    let number = target.value.replace(/[^0-9]/g, '');
+    let phoneNum = '';
+	
+    if (number.length >= 4) {
     
-    const onInputBirth = () => {
-        console.log('생일 입력');
-        let date = document.querySelector("#modify_info_birth");
-        let warning = document.querySelector(".warning");
-
-        let val = date.value.replace(/\D/g, "");
-        let leng = val.length;
-        let result = '';
-
-        let inputBirth = document.getElementById('modify_info_birth');
-
-        if (leng < 5) {
-            result = val;
-        } else if (leng < 7) {
-            result += val.substring(0, 4);
-            result += "-";
-            result += val.substring(4);
-        } else {
-            result += val.substring(0, 4);
-            result += "-";
-            result += val.substring(4, 6);
-            result += "-";
-            result += val.substring(6, 8);
-        }
-
-        if (result.length === 10) {
-            if (!checkValidDate(result)) {
-                warning.style.display = "block";
-                inputBirth.style.borderColor = "red";
+    	if(number.startsWith('010') || number.startsWith('011') || number.startsWith('017')){
+    		
+    	
+            if (number.length >= 11) {
+                phoneNum = number.substring(0, 3) + '-' + number.substring(3, 7) + '-' + number.substring(7, 11);
             } else {
-                warning.style.display = "none";
-                inputBirth.style.borderColor = "";
+                phoneNum = number.substring(0, 3) + '-' + number.substring(3, 6);
+                if (number.length > 6) {
+                    phoneNum += '-' + number.substring(6);
+                }
             }
-        }
+        
+    	}else{
+    		alert('잘못된 형식입니다.');
+    		return;
+    	}
+    } else {
+        phoneNum = number;
+    }
 
-        date.value = result;
+    target.value = phoneNum;
 
-        let warningBirths = document.querySelectorAll('.warningBirth');
-        let birth = inputBirth.value.trim();
+    let warningPhones = document.querySelectorAll('.warningPhone');
+    let inputPhone = document.getElementById('signup_input_phone');
+    let phone = inputPhone.value.trim();
+    
+    if (phone === '') {
+        warningPhones.forEach(warningPhone => {
+            warningPhone.style.display = "block";
+        });
+        inputPhone.style.borderColor = "red";
+    } else {
+        warningPhones.forEach(warningPhone => {
+            warningPhone.style.display = "none";
+        });
+        inputPhone.style.borderColor = "";
+    }
+}
 
-        if (birth === '') {
-            warningBirths.forEach(warningBirth => {
-                warningBirth.style.display = "block";
-            });
+const onInputBirth = () => {
+    console.log('생일 입력');
+    let date = document.querySelector("#modify_info_birth");
+    let warning = document.querySelector(".warning");
+
+    let val = date.value.replace(/\D/g, "");
+    let leng = val.length;
+    let result = '';
+
+    let inputBirth = document.getElementById('modify_info_birth');
+
+    if (leng < 5) {
+        result = val;
+    } else if (leng < 7) {
+        result += val.substring(0, 4);
+        result += "-";
+        result += val.substring(4);
+    } else {
+        result += val.substring(0, 4);
+        result += "-";
+        result += val.substring(4, 6);
+        result += "-";
+        result += val.substring(6, 8);
+    }
+
+    if (result.length === 10) {
+        if (!checkValidDate(result)) {
+            warning.style.display = "block";
             inputBirth.style.borderColor = "red";
-            warning.style.display = "none";
         } else {
-            warningBirths.forEach(warningBirth => {
-                warningBirth.style.display = "none";
-            });
+            warning.style.display = "none";
             inputBirth.style.borderColor = "";
         }
     }
 
-    
-    
-    function pwCheck() {
-        let pass1 = document.getElementById('pw2').value;
-        let pass2 = document.getElementById('pw3').value;
-        let error_msg = document.getElementById('error_msg');
+    date.value = result;
 
-        if (pass1 !== "" || pass2 !== "") {
-           
-                if (pass1 === pass2) {
-                    error_msg.innerHTML = '일치';
-                    document.getElementById('pw3').style.borderColor = 'green';
-                    error_msg.style.color = 'green';
-                } else {
-                    error_msg.innerHTML = '불일치';
-                    document.getElementById('pw3').style.borderColor = 'red';
-                    error_msg.style.color = 'red';
-                }
-           
-        }
+    let warningBirths = document.querySelectorAll('.warningBirth');
+    let birth = inputBirth.value.trim();
+
+    if (birth === '') {
+        warningBirths.forEach(warningBirth => {
+            warningBirth.style.display = "block";
+        });
+        inputBirth.style.borderColor = "red";
+        warning.style.display = "none";
+    } else {
+        warningBirths.forEach(warningBirth => {
+            warningBirth.style.display = "none";
+        });
+        inputBirth.style.borderColor = "";
     }
-    
-    function removeUser(){
-    	var currentPw = document.getElementById('userPw').value;
-    	var inputPw = document.getElementById('inputPw').value;
-    	
-    	if(inputPw !== ""){
-    		if(inputPw === currentPw){
-	    		error_pw_msg.innerHTML = '일치';
-		    	error_pw_msg.style.color = 'green';
-            
-	    	}else{
-	    		error_pw_msg.innerHTML = '불일치';
-    			error_pw_msg.style.color = 'red';
-	    		
-	    	}
-    	}
-    	
-    	
-    }
-    
-    
-    document.querySelector('.submitBtn').addEventListener('click',function(){
-    	let inputPw = document.getElementById('pw').value;
-    	let currentPw = document.getElementById('currentPw').value;
-    	let pass1 = document.getElementById('pw2').value;
-        let pass2 = document.getElementById('pw3').value;
-        if(confirm('비밀번호를 수정하시겠습니까?')){
-        	
-        	if(!(pass1.length >= 8 && /(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-])/.test(pass1)) || 
-        	!(pass2.length >= 8 && /(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-])/.test(pass2))	){
-        		alert('비밀번호는 비밀번호는 최소 8자 이상이어야 하며, 특수문자를 적어도 하나 이상 포함해야 합니다.');
-        		return;
-        	}
-        	if(inputPw !== currentPw){
-        		alert('현재 비밀번호가 다릅니다.');
-        		return;
-        	}
-        	if(pass1 !== pass2){
-        		alert('새로운 비밀번호가 다릅니다. 다시 수정해주세요');
-    			return;
-        	}
-        	if(pass1 === null || pass2 === null || pass1 === "" || pass2 === ""){
-        		alert('새로운 비밀번호를 입력해주세요');
-        		return;
-        	}
-        		document.querySelector('.modify_pw_form').submit();
-        		alert('수정되었습니다');
-        		
-        	if(alert('다시 로그인 해 주세요')){
-        		return;
-        	}
-        }
-    });
-   
-     
-    
-	document.querySelector('#submitBtn2').addEventListener('click',function(){
-		let test1 = document.getElementById('userPw').value;
-    	let test2 = document.getElementById('inputPw').value;
-		if(confirm('회원님의 정보를 삭제하시겠습니까?')){
-			
-			if(test2 === null || test2 === ""){
-				alert('현재 비밀번호를 입력 해 주세요');
-				return;
-			}
-			
-			if(test1 !== test2){
-				alert('비밀번호가 다릅니다.');
-				return;
-			}
-			document.querySelector('.delete_user_form').submit();
-			alert('삭제되었습니다.');
-		}
-	})
-	
-   document.querySelector('#faqBtn').addEventListener('click',function(){
-	 let title =  document.querySelector('#faq_title');
-     let content = document.querySelector('#faq_content');
-     let email = document.querySelector('#email');
-     let phone = document.querySelector('#phone');
-     let checkbox = document.querySelector('#checkbox');
-     
-     console.log('눌림');
-	   
-	   if(confirm('문의 등록하시겠습니까?')){
-            if(title == null || content == null || email == null || phone == null || checkbox.checked == false){
-                alert('필수 입력항목을 입력해주세요');
-                return;
+}
+
+
+
+function pwCheck() {
+    let pass1 = document.getElementById('pw2').value;
+    let pass2 = document.getElementById('pw3').value;
+    let error_msg = document.getElementById('error_msg');
+
+    if (pass1 !== "" || pass2 !== "") {
+       
+            if (pass1 === pass2) {
+                error_msg.innerHTML = '일치';
+                document.getElementById('pw3').style.borderColor = 'green';
+                error_msg.style.color = 'green';
+            } else {
+                error_msg.innerHTML = '불일치';
+                document.getElementById('pw3').style.borderColor = 'red';
+                error_msg.style.color = 'red';
             }
+       
+    }
+}
 
-			alert('등록되었습니다.');
-			
-		   document.querySelector('.faqForm').submit();
-		   console.log('외않되');
-		   modal5.style.display = "none";
-		   
+function removeUser(){
+	var currentPw = document.getElementById('userPw').value;
+	var inputPw = document.getElementById('inputPw').value;
+	
+	if(inputPw !== ""){
+		if(inputPw === currentPw){
+    		error_pw_msg.innerHTML = '일치';
+	    	error_pw_msg.style.color = 'green';
+        
+    	}else{
+    		error_pw_msg.innerHTML = '불일치';
+			error_pw_msg.style.color = 'red';
+    		
+    	}
+	}
+	
+	
+}
 
-		   
-	   }
-   })
+
+document.querySelector('.submitBtn').addEventListener('click',function(){
+	let inputPw = document.getElementById('pw').value;
+	let currentPw = document.getElementById('currentPw').value;
+	let pass1 = document.getElementById('pw2').value;
+    let pass2 = document.getElementById('pw3').value;
+    if(confirm('비밀번호를 수정하시겠습니까?')){
+    	
+    	if(!(pass1.length >= 8 && /(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-])/.test(pass1)) || 
+    	!(pass2.length >= 8 && /(?=.*[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-])/.test(pass2))	){
+    		alert('비밀번호는 비밀번호는 최소 8자 이상이어야 하며, 특수문자를 적어도 하나 이상 포함해야 합니다.');
+    		return;
+    	}
+    	if(inputPw !== currentPw){
+    		alert('현재 비밀번호가 다릅니다.');
+    		return;
+    	}
+    	if(pass1 !== pass2){
+    		alert('새로운 비밀번호가 다릅니다. 다시 수정해주세요');
+			return;
+    	}
+    	if(pass1 === null || pass2 === null || pass1 === "" || pass2 === ""){
+    		alert('새로운 비밀번호를 입력해주세요');
+    		return;
+    	}
+    		document.querySelector('.modify_pw_form').submit();
+    		alert('수정되었습니다');
+    		
+    	if(alert('다시 로그인 해 주세요')){
+    		return;
+    	}
+    }
+});
+
+ 
+
+document.querySelector('#submitBtn2').addEventListener('click',function(){
+	let test1 = document.getElementById('userPw').value;
+	let test2 = document.getElementById('inputPw').value;
+	if(confirm('회원님의 정보를 삭제하시겠습니까?')){
+		
+		if(test2 === null || test2 === ""){
+			alert('현재 비밀번호를 입력 해 주세요');
+			return;
+		}
+		
+		if(test1 !== test2){
+			alert('비밀번호가 다릅니다.');
+			return;
+		}
+		document.querySelector('.delete_user_form').submit();
+		alert('삭제되었습니다.');
+	}
+})
+
+document.querySelector('#faqBtn').addEventListener('click',function(){
+ let title =  document.querySelector('#faq_title');
+ let content = document.querySelector('#faq_content');
+ let email = document.querySelector('#email');
+ let phone = document.querySelector('#phone');
+ let checkbox = document.querySelector('#checkbox');
+ 
+ console.log('눌림');
+   
+   if(confirm('문의 등록하시겠습니까?')){
+        if(title == null || content == null || email == null || phone == null || checkbox.checked == false){
+            alert('필수 입력항목을 입력해주세요');
+            return;
+        }
+
+		alert('등록되었습니다.');
+		
+	   document.querySelector('.faqForm').submit();
+	   console.log('외않되');
+	   modal5.style.display = "none";
+	   
+
+	   
+   }
+})
+
+
+var selectedPostingId = null;
+
+function showResumeModal(postingId) {
+    selectedPostingId = postingId;
+    // 모달 표시 함수를 호출하는 부분에 원하는 함수를 넣어주세요
+    // 예: showModalFunction(selectedPostingId);
+    console.log("선택된 공고 ID: " + selectedPostingId);
+    // 모달을 표시하는 로직을 넣어주세요
+    // console.log 문을 실제 모달 표시 로직으로 교체해주세요
+    
+    return 
+}
+
+
+
+
+
+
+
 </script>
+
+
 
 
         <!--footer-->

@@ -52,6 +52,8 @@ public interface CustomerDAO {
 	
 	public int savecustomerFaq(CustomerFaq customerFaq);
 	
+	public int removeResumeByResumeId(String userId);
+	
 //	public int scrapCheck(String id, String postingId);
 //	
 //	public int scrapCancel(String id, String postingId);

@@ -95,17 +95,17 @@
 
 	<select id="findSubmissionResume" resultType="Resume" parameterType="String">
 		select * from resume_info where user_id = #{userId} 
-		and submission_status = '제출'
+		and submission_status = '제출' 
 	</select>
 	
 	<select id="findNotSubmissionResume" resultType="Resume" parameterType="String">
 		select * from resume_info r, job_posting j where user_id = #{userId} and r.posting_id = j.posting_id
-		and submission_status = '비제출'
+		and r.submission_status = '비제출' and j.post_status = 'O'
 	</select>
 	
 	<select id="findSubmissionResumeByUserId" resultType="Resume" parameterType="String">
 		select * from resume_info r, job_posting j where user_id = #{userId} 
-		and r.posting_id = j.posting_id and submission_status = '제출'
+		and r.posting_id = j.posting_id and submission_status = '제출' and j.post_status = 'O'
 	</select>
 	
 

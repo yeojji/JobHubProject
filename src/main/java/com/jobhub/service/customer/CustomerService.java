@@ -50,5 +50,7 @@ public interface CustomerService {
 	public List<Resume> findNotSubmissionResume(String userId);
 	
 	public int savecustomerFaq(CustomerFaq customerFaq);
+	
+	public int removeResumeByResumeId(String userId);
 
 }

@@ -58,6 +58,10 @@ public class CustomerDAOImpl implements CustomerDAO{
 		
 		return result;
 	}
+	
+	
+	
+	
 	@Override
 	public int modifyCustomerPw(Customer customer) {
 		// TODO Auto-generated method stub
@@ -130,6 +134,7 @@ public class CustomerDAOImpl implements CustomerDAO{
 		
 		return resumeList;
 	}
+	
 	@Override
 	public String pwCheck(String userId) throws Exception {
 		// TODO Auto-generated method stub
@@ -138,6 +143,7 @@ public class CustomerDAOImpl implements CustomerDAO{
 		
 		return pwCheck;
 	}
+	
 	@Override
 	public void pwUpdate(String userId, String hashedPw) throws Exception {
 		// TODO Auto-generated method stub
@@ -147,6 +153,7 @@ public class CustomerDAOImpl implements CustomerDAO{
 		sqlSessionTemplate.update("user_mapper.pwUpdate", map);
 		
 	}
+	
 	@Override
 	public List<Resume> findResumesByUserId(String userId) {
 		// TODO Auto-generated method stub
@@ -194,6 +201,15 @@ public class CustomerDAOImpl implements CustomerDAO{
 		// TODO Auto-generated method stub
 		
 		int result = sqlSessionTemplate.insert("user_mapper.customerFaq", customerFaq);
+		
+		return result;
+	}
+	@Override
+	public int removeResumeByResumeId(String userId) {
+		// TODO Auto-generated method stub
+		
+		int result = sqlSessionTemplate.delete("user_mapper.removeResumeByResumeId", userId);
+		
 		
 		return result;
 	}
