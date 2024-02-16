@@ -324,7 +324,7 @@ public class CustomerController {
 	
 	@PostMapping("/mypage/modifyCustomerInfo")
 	public String modifyCustomerInfo(Customer customer, Model model) {
-		
+		//유효성 검증 Vaildator 사용하기
 		int result = customerService.modifyCustomerInfo(customer);
 		
 		if(result >0) {
