@@ -142,8 +142,6 @@ public class CustomerController {
 		
 		List<Resume> notSubmissionresume = customerService.findNotSubmissionResume(findCustomer);
 		
-		
-		
 //		List<Resume> submissionResumeinfo = customerService.findSubmissionResumeByPostingId();
 		System.out.println(resumeSubmissionList);
 		

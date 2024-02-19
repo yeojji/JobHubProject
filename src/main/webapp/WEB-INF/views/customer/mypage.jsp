@@ -64,14 +64,16 @@
                 <span class="member_modify_resume_title">나의 임시저장 지원서</span>
                 <span class="go_to_resume" onclick="location.href='/customer/notice_by_career'">지원하기 ></span>
             </div>
-            <!--회원이 임시저장한 지원서가 있을 때-->
-            
+            <c:choose>
+            	<c:when test="${not empty notSubmission}">
+            		<c:forEach var="notSubmissionItem" items="${notSubmission}"> 
 			            <div class="member_write_resume_box">
 			                <span class="temporary_storage_text">임시저장 <i class="fa-solid fa-circle-exclamation"></i></span>
-			                <div class="member_write_resume_content_modify">     
+			                <div class="member_write_resume_content_modify">
+			                    
 			                    <div class="notice_title_box">
-			                        <div class="notice_title">[Tech] IT감사/내부통제 담당자</div>
-			                        <div class="write_resume_date">작성일 : </div>
+			                        <div class="notice_title">${notSubmissionItem.title}</div>
+			                        <div class="write_resume_date">작성일 : ${notSubmissionItem.revisionDate}</div>
 			                    </div>
 			                    <div class="temporary_storage_resume">
 			                        <div class="write_resume_icon_box">
@@ -89,14 +91,16 @@
 			                            </div>
 			                        </div>
 			                    </div>
-			                </div>     
+			                </div> 
 			            </div>
-		          
-            <!--회원이 임시저장한 지원서가 없을 때-->
-	            <div class="not_temporary_storage_resume_box">
-	                <span class="none_content_text">임시저장한 지원서가 없습니다</span>
-	            </div>
-           
+			            </c:forEach> 
+			            </c:when>
+            	<c:otherwise>
+		            <div class="not_temporary_storage_resume_box">
+		                <span class="none_content_text">임시저장한 지원서가 없습니다</span>
+		            </div>
+		            </c:otherwise>
+		            </c:choose>
         </div>
         <!--회원 지원공고 현황 (합/불/진행중)-->
         <div class="member_resume_status_box">
