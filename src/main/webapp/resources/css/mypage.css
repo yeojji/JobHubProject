@@ -320,8 +320,15 @@
     font-size: 20px;
 }
 
+.delete_user_form{
+	padding-top:50px;
+	width:100%
+}
+
 .complete_btn{
-    width: 50%;
+    width: 100%;
+    display: flex;
+    padding-top:50px;
 }
 
 .close_btn, .submit_btn, .close_modal_pw, .submitBtn, .close_modal_delete, .submitBtn2{

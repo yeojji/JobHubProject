@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.jobhub.dao.customer.CustomerDAO;
 import com.jobhub.dto.customer.Customer;
+import com.jobhub.dto.customer.CustomerFaq;
 import com.jobhub.dto.customer.CustomerSearchCondition;
 import com.jobhub.dto.employee.Employee;
 import com.jobhub.dto.customer.Scrap;
@@ -162,10 +163,10 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public List<Resume> findSubmissionResumeByPostingId(String postingId) {
+	public List<Resume> findSubmissionResumeByUserId(String userId) {
 		// TODO Auto-generated method stub
 		
-		List<Resume> resumeList = customerDAO.findSubmissionResumeByPostingId(postingId);
+		List<Resume> resumeList = customerDAO.findSubmissionResumeByUserId(userId);
 		return resumeList;
 	}
 
@@ -176,19 +177,27 @@ public class CustomerServiceImpl implements CustomerService {
 		List<Resume> resumeList = customerDAO.findNotSubmissionResume(userId);
 		return resumeList;
 	}
+
+	@Override
+	public int savecustomerFaq(CustomerFaq customerFaq) {
+		// TODO Auto-generated method stub
+		
+		int result = customerDAO.savecustomerFaq(customerFaq);
+		
+		return result;
+	}
+
+	@Override
+	public int removeResumeByResumeId(String userId) {
+		// TODO Auto-generated method stub
+		
+		int result = customerDAO.removeResumeByResumeId(userId);
+		
+		return result;
+	}
 	
 	
 
-	@Override
-	public List<Customer> findCustomerList() {
-		List<Customer> customerList = customerDAO.findCustomerList();
-		return customerList;
-	}
-	@Override
-	public List<Customer> findCustomerListBySearchCondition(CustomerSearchCondition customerSearchCondition) {
-		List<Customer> customerList = customerDAO.findCustomerListBySearchCondition(customerSearchCondition);
-		return customerList;
-	}
 
 	
 }

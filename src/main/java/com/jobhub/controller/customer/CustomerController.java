@@ -1,5 +1,6 @@
 package com.jobhub.controller.customer;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -8,6 +9,7 @@ import java.util.Random;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
@@ -17,9 +19,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jobhub.dto.customer.Customer;
+import com.jobhub.dto.customer.CustomerFaq;
 import com.jobhub.dto.customer.Scrap;
 import com.jobhub.dto.employee.EmployeeJobsInfo;
 import com.jobhub.dto.jobposting.Description;
@@ -95,6 +101,21 @@ public class CustomerController {
 	    
 	}
 	
+//	@RequestMapping(value="loginCheck.do", method = RequestMethod.POST)
+//	public void loginCheck(@RequestParam("userId") String userId, @RequestParam("userPw") String userPw,
+//							HttpServletResponse response, HttpSession session) throws IOException {
+//		
+//		Customer customer = new Customer();
+//		LoginManager loginManager = new LoginManager();
+//		
+//		customer.setUserId(userId);
+//		customer.setPassword(userPw);
+//		
+//		
+//		response.getWriter().print(false);
+//		response.getWriter().print(true);
+//	}
+	
 	
 
 	
@@ -130,6 +151,15 @@ public class CustomerController {
 		return  "redirect:/";
 	}
 	
+//	@RequestMapping(value="/pwCheck", method=RequestMethod.POST)
+//	@ResponseBody
+//	public int pwcheck(Customer customer) throws Exception{
+//		String userPw = customerService.pwCheck(customer.getPassword());
+////		if(customer == null || !BCrypt.checkPw)
+//	}
+	
+	
+	
 	
 	@GetMapping("/mypage")
 	public String mypage(HttpSession session, Model model, Customer customer) {
@@ -138,7 +168,7 @@ public class CustomerController {
 		
 		Customer customerInfo = customerService.findCustomerInfo(findCustomer);
 		
-		List<Resume> resumeSubmissionList = customerService.findSubmissionResume(findCustomer);
+		List<Resume> resumeSubmissionList = customerService.findSubmissionResumeByUserId(findCustomer);
 		
 		List<Resume> notSubmissionresume = customerService.findNotSubmissionResume(findCustomer);
 		
@@ -161,7 +191,37 @@ public class CustomerController {
 		
 	}
 	
+	@GetMapping("/remove_resume")
+	public String removeResume(Resume resume,HttpSession session) {
+		
+		String userId = (String) session.getAttribute("loginId");
+		
+		int result = customerService.removeResumeByResumeId(userId);
+		
+		if(result > 0) {
+			return "redirect:/mypage";
+		}else {
+			
+			return "/";
+		}
+		
+		
+	}
 	
+	
+	@PostMapping("/sendFaq")
+	public String sendFaq(@ModelAttribute CustomerFaq customerFaq, Model model) {
+		
+		int result = customerService.savecustomerFaq(customerFaq);
+		
+		if(result > 0) {
+			return "redirect:/mypage";
+		}else {
+			return "/";
+		}
+		
+		
+	}
 	
 	
 	@GetMapping("/scrap_page")
@@ -264,7 +324,7 @@ public class CustomerController {
 	
 	@PostMapping("/mypage/modifyCustomerInfo")
 	public String modifyCustomerInfo(Customer customer, Model model) {
-		
+		//유효성 검증 Vaildator 사용하기
 		int result = customerService.modifyCustomerInfo(customer);
 		
 		if(result >0) {

@@ -73,7 +73,7 @@
                     
                    
 <c:forEach var="jobpostingNameItem" items="${jobpostingNameList}"> 
-    <%--  <c:if test="${jobpostingNameItem.postStatus = 'O'} " > --%> 
+     <c:if test="${jobpostingNameItem.postStatus.trim() eq 'O'} " >  
         <div class="notice_list_item">
             <div class="notice_info_title">
                 <a href="../jobsDescription?postingId=${jobpostingNameItem.postingId}" >${jobpostingNameItem.title}</a>
@@ -119,7 +119,7 @@
                <span class="notice_deadline">${jobpostingNameItem.applicationStart} ~ ${jobpostingNameItem.applicationDeadline}</span>
            </div>
         </div>
-   <%--  </c:if> --%>   
+     </c:if>
 </c:forEach>
 
  
